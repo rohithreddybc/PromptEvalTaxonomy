@@ -58,7 +58,7 @@ framework is applied: 67.5\% rely on benchmark-based evaluation, 78.8\% are
 fully automated, and zero examine clinical or multilingual tasks as a primary
 evaluation target despite active deployment in both domains. These numbers are
 not incidental. They expose structural defaults in how the field measures
-prompting claims --- defaults that persist precisely because no shared language
+prompting claims - defaults that persist precisely because no shared language
 exists for naming them.
 
 This paper provides the analytical framework that makes those patterns visible:
@@ -69,8 +69,8 @@ a PRISMA 2020 systematic review spanning six academic databases, and use it to
 map 80 verified papers onto a common grid.
 
 Three structural gaps follow directly from this mapping. First, benchmark-based,
-task-specific, fully automated evaluation --- the dominant configuration across
-54 of 80 papers --- is poorly suited to open-ended generation and
+task-specific, fully automated evaluation - the dominant configuration across
+54 of 80 papers - is poorly suited to open-ended generation and
 domain-sensitive settings where no gold answer exists. Second, the 19
 LLM-as-judge papers draw from at least six distinct judge configurations with
 no shared calibration protocol, rendering their scores mutually incomparable.
@@ -80,7 +80,7 @@ and where prompting is actively being deployed.
 
 The taxonomy's contribution is a shared analytical vocabulary for evaluation
 design. It does not prescribe which choices to make. It makes implicit choices
-visible --- so that researchers designing studies can reason about trade-offs
+visible - so that researchers designing studies can reason about trade-offs
 explicitly, and practitioners reading results can assess what those results
 actually cover.
 \end{abstract}
@@ -592,8 +592,8 @@ in Large Language Models''~\cite{wei2022chain}.}
 D1\,=\,Benchmark (reasoning: performance is measured on established
 arithmetic and commonsense benchmarks such as GSM8K and SVAMP, using
 standardized test sets with gold answers).
-D2\,=\,Reasoning (reasoning: all tasks --- arithmetic, symbolic, and
-commonsense --- are closed-form reasoning problems).
+D2\,=\,Reasoning (reasoning: all tasks - arithmetic, symbolic, and
+commonsense - are closed-form reasoning problems).
 D3\,=\,Task-specific (reasoning: exact-match accuracy is used, which is
 the natural metric for tasks with a single correct answer).
 D4\,=\,Automated (reasoning: no human judgment is involved; evaluation
@@ -628,7 +628,7 @@ Consider a researcher evaluating a new retrieval-augmented generation (RAG)
 prompting technique for clinical question answering. Before any data
 collection begins, the taxonomy requires five explicit design decisions.
 
-\textit{D1 --- Which evaluation method?} Benchmark evaluation assumes a
+\textit{D1 - Which evaluation method?} Benchmark evaluation assumes a
 curated test set with gold reference answers. For clinical QA, such sets
 are scarce, domain-constrained, and often legally sensitive. Human
 evaluation or a hybrid approach is more defensible here: domain experts
@@ -637,13 +637,13 @@ cannot. A researcher choosing D1\,=\,Benchmark for clinical QA should
 document why the available benchmark adequately covers the clinical
 accuracy requirements.
 
-\textit{D2 --- Which task scope?} The task is unambiguously clinical,
+\textit{D2 - Which task scope?} The task is unambiguously clinical,
 placing this work in the zero-paper region of the corpus (see
 Section~\ref{sec:comparison}). Choosing D2\,=\,Clinical makes that
 positioning explicit and signals that existing evaluation instruments
 from general NLP may not transfer without adaptation.
 
-\textit{D3 --- Which metric?} No gold reference exists for open-ended
+\textit{D3 - Which metric?} No gold reference exists for open-ended
 clinical responses, making reference-based metrics (BLEU, ROUGE)
 structurally inadequate. Model-based factual precision metrics such as
 FActScore~\cite{factscore2023} are defensible if the knowledge source is
@@ -651,13 +651,13 @@ well-defined. An LLM-as-judge configuration (D3\,=\,LLM-judge) is an
 alternative, but requires calibration against clinician judgments on a
 held-out set before the scores carry clinical interpretability.
 
-\textit{D4 --- What automation level?} Clinical annotation requires expert
+\textit{D4 - What automation level?} Clinical annotation requires expert
 time, which is expensive. Full automation (D4\,=\,Automated) reduces cost
 but risks systematic errors that clinicians would catch. Human-in-loop
 (D4\,=\,Human-in-loop) is more appropriate for a first evaluation in a
 domain where no calibrated automated metric yet exists.
 
-\textit{D5 --- What evaluation scope?} A single-model result
+\textit{D5 - What evaluation scope?} A single-model result
 (D5\,=\,Single-model) in clinical QA provides the weakest possible
 generalizability evidence. Cross-model evaluation (D5\,=\,Cross-model) is
 required before the technique can be recommended for deployment across
@@ -686,19 +686,19 @@ confront.
 \textbf{Evaluation Design Question} & \textbf{Taxonomy Dimension + Key Trade-off} \\
 \hline
 How will model outputs be scored? &
-  D1 --- Evaluation Method: precision of human judgment vs.\ scalability
+  D1 - Evaluation Method: precision of human judgment vs.\ scalability
   of automated pipelines \\
 What type of task is being evaluated? &
-  D2 --- Task Scope: task-fidelity of a narrow domain vs.\ generalizability
+  D2 - Task Scope: task-fidelity of a narrow domain vs.\ generalizability
   of a multi-task setting \\
 Which measurement operationalizes quality? &
-  D3 --- Metric Type: automation and reproducibility of reference-based
+  D3 - Metric Type: automation and reproducibility of reference-based
   metrics vs.\ construct validity of model-based or judge-based metrics \\
 How much human effort is available? &
-  D4 --- Automation Level: scalability and speed of full automation vs.\
+  D4 - Automation Level: scalability and speed of full automation vs.\
   bias-control and interpretability of human involvement \\
 Over how many models and datasets? &
-  D5 --- Evaluation Scope: narrow replicability of single-model evidence
+  D5 - Evaluation Scope: narrow replicability of single-model evidence
   vs.\ generalizability claims that require cross-model or cross-domain
   coverage \\
 \hline
@@ -855,8 +855,8 @@ following fields:
 \item Publication venue and type (journal, conference, preprint)
 \end{enumerate}
 
-The complete extraction dataset --- all 80 papers mapped to their
-five-dimensional taxonomy codes --- is available as a machine-readable
+The complete extraction dataset - all 80 papers mapped to their
+five-dimensional taxonomy codes - is available as a machine-readable
 spreadsheet at https://github.com/rohithreddybc/PromptEvalTaxonomy. Researchers extending this
 corpus or conducting meta-analyses may use this dataset with citation
 to this work.
@@ -1279,7 +1279,7 @@ have the greatest impact.
 Fifty-four of 80 papers in the corpus share the same evaluation
 configuration: benchmark-based scoring, task-specific metrics, fully
 automated pipelines, and cross-model comparison. That concentration is
-not coincidence --- it reflects a rational convergence on a setup that
+not coincidence - it reflects a rational convergence on a setup that
 is scalable, reproducible, and well-suited to tasks with deterministic
 answers. What the taxonomy makes visible, for the first time, is the
 precise boundary where this configuration stops being adequate: at the
@@ -1480,7 +1480,7 @@ taxonomy dimension. Items are written as yes/no questions; a ``no'' answer
 does not disqualify a study but should be accompanied by explicit
 justification in the paper.
 
-\textbf{D1 --- Evaluation Method}
+\textbf{D1 - Evaluation Method}
 \begin{itemize}
   \item Have you explicitly named the evaluation method your study uses
         (benchmark, human evaluation, LLM-as-judge, ablation study, or
@@ -1496,7 +1496,7 @@ justification in the paper.
         evaluated items?
 \end{itemize}
 
-\textbf{D2 --- Task Scope}
+\textbf{D2 - Task Scope}
 \begin{itemize}
   \item Have you stated the task domain (e.g., reasoning, code generation,
         clinical QA, multilingual generation) explicitly, and confirmed it
@@ -1510,7 +1510,7 @@ justification in the paper.
         an aggregate?
 \end{itemize}
 
-\textbf{D3 --- Metric Type}
+\textbf{D3 - Metric Type}
 \begin{itemize}
   \item Have you stated which metric type your study uses
         (reference-based, model-based, LLM-as-judge, or task-specific)
@@ -1525,7 +1525,7 @@ justification in the paper.
         significance tests where sample size permits?
 \end{itemize}
 
-\textbf{D4 --- Automation Level}
+\textbf{D4 - Automation Level}
 \begin{itemize}
   \item Have you characterized the automation level of your evaluation
         (fully manual, human-in-loop, hybrid, or fully automated)?
@@ -1539,7 +1539,7 @@ justification in the paper.
         submission and peer review could alter reported results?
 \end{itemize}
 
-\textbf{D5 --- Evaluation Scope}
+\textbf{D5 - Evaluation Scope}
 \begin{itemize}
   \item Have you stated the evaluation scope explicitly
         (single-model/dataset, cross-model, cross-dataset, cross-domain,
