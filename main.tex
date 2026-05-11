@@ -18,6 +18,8 @@
 \usepackage{orcidlink}
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
 
 % Placeholder marker for items that depend on the second-coder /
 % expanded-corpus analysis still in progress. Renders prominently so
@@ -120,6 +122,29 @@ prompting, retrieval-augmented generation, automated prompt
 optimization, and dozens of related techniques have been proposed,
 evaluated, and deployed across tasks as varied as arithmetic reasoning
 and clinical decision support~\cite{wei2022chain, lewis2020retrieval, sahoo2024systematic}.
+
+To see why evaluation practice matters, consider a concrete scenario.
+A researcher proposes a chain-of-thought variant for medical
+differential diagnosis. Study~A evaluates it on MedQA using
+exact-match accuracy against a fixed answer key (Evaluation Method =
+Benchmark, Metric = Task-specific, Automation = Fully automated).
+Study~B evaluates the same technique using GPT-4 as a clinical
+scoring judge on a different question set (Evaluation Method =
+LLM-as-judge, Metric = LLM-judge, Automation = Fully automated).
+Both studies report improvements over their respective baselines.
+
+A clinician or systems architect choosing between the two techniques
+cannot combine these results. Study~A's accuracy gain does not
+establish clinical utility: exact-match against a multiple-choice
+answer key does not capture the reasoning quality or safety properties
+that clinical deployment requires. Study~B's GPT-4 judge may or may
+not be calibrated to the judgment standard that a domain expert would
+apply; without a calibration experiment, the score is uninterpretable
+relative to clinical ground truth. This is not a failure of rigor
+inside either study. It is the absence of a shared vocabulary for
+describing what each study actually measured, which tradeoffs each
+accepted, and under what conditions each result transfers. Providing
+that vocabulary is the contribution of this paper.
 
 What has not kept pace with technique development is evaluation practice.
 Across the literature, the same prompting strategy might be assessed using
@@ -488,6 +513,68 @@ its measurement-theory sense throughout: a metric or pipeline is
 and a measurement has \textit{construct validity} when its scores are
 meaningful evidence about the property of interest in the deployment
 context.
+
+\subsection{Formal Definitions}
+\label{subsec:definitions}
+
+The following five definitions formalize the conceptual vocabulary
+used throughout the rest of the paper. Each definition is tight by
+design; the nuances and operationalizations are developed in
+Sections~\ref{sec:taxonomy}--\ref{sec:tools}.
+
+\begin{definition}[Prompt Engineering Evaluation Framework]
+A prompt engineering evaluation framework $\mathcal{F}$ is a tuple
+$(m,\, t,\, q,\, a,\, s,\, r,\, p)$ where each component
+corresponds to a choice along one of the seven dimensions
+D1\textendash D7 defined in Section~\ref{sec:taxonomy}. Any
+complete instantiation of the tuple defines a valid evaluation
+configuration; the corpus in Section~\ref{sec:comparison} is
+analyzed as a distribution over such configurations.
+\end{definition}
+
+\begin{definition}[Construct Validity]
+An evaluation configuration $\mathcal{F}$ has construct validity for
+a target property $\pi$ to the degree that high scores under
+$\mathcal{F}$ constitute genuine evidence that a model or prompting
+technique achieves $\pi$ in the intended deployment context.
+Construct validity is partial and degree-valued, not binary: a
+benchmark measuring arithmetic accuracy has high construct validity
+for arithmetic tasks and substantially lower construct validity for
+claims about open-ended clinical reasoning~\cite{cronbach1955construct,
+messick1995validity, jacobs2021measurement}.
+\end{definition}
+
+\begin{definition}[Measurement Reliability]
+An evaluation configuration $\mathcal{F}$ is reliable if repeated
+applications of $\mathcal{F}$ to the same model--prompt pair produce
+scores with small variance under nominally identical conditions.
+\textit{Within-run reliability} (fixed software, fixed model
+snapshot) and \textit{across-time reliability} (across API revisions,
+judge-model updates, or benchmark re-releases) are distinct
+sub-properties; high within-run reliability does not imply
+across-time reliability~\cite{subramonian2023takeoneforteam}.
+\end{definition}
+
+\begin{definition}[Reference-Anchored Evaluation]
+An evaluation configuration is \textit{reference-anchored} if scoring
+is determined by comparison to a stored gold answer---an exact-match
+key, a reference translation, or a passing test suite---without
+invoking a separate judge. Reference-anchored configurations have
+high within-run reliability but fail when no single correct answer
+exists, when the reference set is contaminated by training data, or
+when the reference under-determines acceptable outputs.
+\end{definition}
+
+\begin{definition}[Judgment-Anchored Evaluation]
+An evaluation configuration is \textit{judgment-anchored} if scoring
+is delegated to an evaluator---a human annotator, an expert panel,
+or an LLM judge---whose output is not pre-determined by a stored
+reference. Judgment-anchored configurations can pursue construct
+validity beyond what any fixed reference set supports, but they
+introduce evaluator-specific biases and require explicit calibration
+before scores carry cross-study interpretability~\cite{gu2025llmjudge,
+feng2025sage}.
+\end{definition}
 
 % ---------------------------------------------------------------
 \section{A Taxonomy of Prompt Engineering Evaluation Frameworks}
@@ -1223,6 +1310,130 @@ Will third parties be able to reproduce the result? &
 \end{table}
 
 % ---------------------------------------------------------------
+\section{Evaluation Tools and Resources}
+\label{sec:tools}
+
+The seven-dimensional taxonomy is not only an analytical lens; it is
+also a map to an existing ecosystem of open tools and frameworks that
+operationalize different regions of the validity/reliability design
+space. This section catalogs the most widely used resources in each
+category, mapping each tool to the taxonomy dimensions it directly
+supports. The catalog is not exhaustive---the field moves quickly---
+but covers the tools that appear in or are directly relevant to the
+80-paper corpus. Researchers selecting an evaluation approach can use
+this section alongside the design quick-reference in
+Table~\ref{tab:quickref}.
+
+\subsection{Automated Evaluation Frameworks}
+\label{subsec:tools_auto}
+
+Fully automated evaluation frameworks (Dimension~4 = Automated,
+Dimension~1 = Benchmark) form the infrastructure of Archetype~A.
+Three frameworks dominate the corpus.
+
+\textbf{EleutherAI lm-evaluation-harness}~\cite{gao2021lmeval} is
+an open-source evaluation harness supporting more than 200 tasks
+across dozens of benchmarks (MMLU, BIG-Bench, ARC, HellaSwag, and
+others). It provides a uniform interface for running any
+Hugging~Face-compatible model against any registered benchmark,
+making cross-model evaluation (D5~=~Cross-model) straightforward.
+Its primary limitation for PE evaluation is that it is tuned to
+closed-form tasks; D3 for all built-in tasks is Task-specific, so
+its construct validity for open-ended generation is narrow.
+
+\textbf{Stanford HELM}~\cite{liang2022helm} extends the automated
+framework model to a holistic multi-scenario suite evaluating
+accuracy, calibration, robustness, fairness, bias, toxicity, and
+efficiency simultaneously. HELM natively supports D5~=~Cross-model
+and D5~=~Cross-dataset evaluation, and its robustness scenarios
+provide partial support for D6~=~Multi-prompt aggregate by running
+models against perturbed and natural-language variants of the same
+test. The full HELM suite is computationally expensive; the corpus
+includes papers that use subsets of HELM metrics rather than the
+complete suite.
+
+\textbf{OpenCompass} (2023) extends HELM-style multi-model
+evaluation to a broader set of languages and model families,
+including models primarily evaluated in non-English settings. It
+provides partial infrastructure for D2~=~Multilingual evaluation,
+which is otherwise underrepresented in the corpus (see
+Section~\ref{subsec:d2dist}).
+
+\subsection{LLM-as-Judge Frameworks}
+\label{subsec:tools_judge}
+
+LLM-as-judge frameworks (D1~=~LLM-as-judge, D3~=~LLM-judge)
+constitute Archetype~B's primary infrastructure.
+
+\textbf{MT-Bench and the FastChat judge}~\cite{zheng2023judging}
+provide the reference implementation of GPT-4 pairwise scoring for
+instruction-following tasks. MT-Bench's eight-category structure
+(writing, roleplay, extraction, reasoning, math, coding, STEM,
+humanities) is the de~facto scope for Archetype~B studies in the
+instruction-following domain. The FastChat judge infrastructure
+supports judge-version pinning (D7~=~Judge-version-pinned) at the
+model-snapshot level.
+
+\textbf{AlpacaEval 2.0}~\cite{dubois2024alpacaeval} extends pairwise
+LLM judging with a length-controlled win-rate metric that partially
+corrects for the verbosity bias documented in~\cite{gu2025llmjudge}.
+Its public leaderboard provides reproducibility at the GitHub commit
+level, making it one of the few Archetype~B frameworks that
+explicitly addresses D7.
+
+\textbf{Prometheus and Prometheus-2}~\cite{kim2024prometheus} are
+open-source fine-tuned judge models that can substitute for GPT-4 in
+pairwise and pointwise evaluation pipelines. Because they are
+locally deployable and version-controlled, they directly address
+the judge-version-pinning concern in D7: a paper using Prometheus
+can pin the exact model checkpoint and reproduce the judge's
+behavior without depending on a proprietary API whose behavior may
+drift between requests.
+
+\subsection{Contamination-Resistant and Dynamic Benchmarks}
+\label{subsec:tools_dynamic}
+
+Static benchmarks accumulate contamination risk as models train on
+larger web-scale corpora. A small set of benchmarks in the corpus
+are specifically designed to address D7~=~Contamination-checked.
+
+\textbf{WildBench}~\cite{wildbench2024} continuously generates new
+evaluation items from real user queries, making it structurally
+harder to contaminate than fixed test sets. Its live leaderboard
+regularly refreshes both the item set and the reference model,
+providing a model for how Archetype~B evaluation can maintain
+across-time reliability (D7) at scale.
+
+\textbf{MMLU-Pro}~\cite{mmluprob2024} replaces MMLU's
+multiple-choice distractors with expert-reviewed harder alternatives,
+reducing the extent to which guessing strategies can inflate scores
+on the original MMLU. It is not contamination-resistant in the
+dynamic-benchmark sense but does partially address the construct
+validity concern that MMLU scores are inflated by surface patterns
+rather than genuine knowledge.
+
+\subsection{Robustness and Sensitivity Testing Tools}
+\label{subsec:tools_robust}
+
+The corpus papers classified as D6~=~Sensitivity-bounded or
+D6~=~Multi-prompt aggregate rely primarily on two tools.
+
+\textbf{PromptBench}~\cite{promptbench2023} provides an adversarial
+and paraphrase-based prompt robustness evaluation suite, testing
+model performance under character-level, word-level, sentence-level,
+and semantic-level perturbations. It directly operationalizes
+D6~=~Sensitivity-bounded by reporting variance bounds across
+perturbation levels rather than a single-prompt point estimate.
+
+\textbf{PromptSET}~\cite{promptsensitivity2025} is a
+paraphrase-based sensitivity benchmark designed specifically for PE
+evaluation: it generates semantically equivalent prompt variants and
+measures the spread of model performance across them. PromptSET is
+the primary reference for D6 in the taxonomy and the tool most
+directly relevant to closing the robustness gap identified in
+Section~\ref{subsec:d6dist}.
+
+% ---------------------------------------------------------------
 \section{Methodology: Systematic Literature Review}
 \label{sec:methodology}
 \label{sec:methodology2}
@@ -1683,12 +1894,13 @@ candidate failure-mode example
 worth highlighting in the discussion
 (Section~\ref{sec:discussion}).
 
-%% Legacy per-paper longtable retained here in a comment for archival
-%% purposes; the current version of the paper reports the
-%% category-aggregated summary above and releases the full mapping as
-%% supplementary data. To restore the longtable, uncomment the block
-%% from \clearpage through \twocolumn in the previous revision (see
-%% git history) and re-insert before the Distribution subsections.
+%% Legacy per-paper longtable (D1-D5 only, 80 rows) retained here in
+%% source for archival reference. The current paper reports:
+%%   (a) the 5-row category-aggregated summary (Table II, above), and
+%%   (b) the 10-row representative sample with all 7 dimensions (Appendix B).
+%% The full 80-paper coding is released as a machine-readable spreadsheet
+%% at https://github.com/rohithreddybc/PromptEvalTaxonomy.
+%% D6 and D7 columns will be added to this block on corpus expansion.
 
 \iffalse
 \clearpage
@@ -2483,39 +2695,79 @@ alongside point estimates - the distinction between D6 =
 Single-prompt and D6 = Sensitivity-bounded in our taxonomy - is a
 practical change that does not require new theory.
 
+\textbf{Multimodal and agentic PE evaluation frameworks.} Evaluation
+frameworks for multimodal prompting (image + text, audio + text) and
+for multi-step agentic pipelines do not map cleanly onto any of the
+three archetypes identified in Section~\ref{sec:comparison}. D2
+(Task Scope) currently has no subcategory for vision-language or
+agent-task evaluation, and the D1/D3/D4 configurations that dominate
+Archetype~A were designed for single-turn, text-only settings. As
+agentic systems become primary PE deployment contexts, evaluation
+frameworks that address multi-step task completion, tool use, and
+inter-agent consistency will be needed. Extending the taxonomy to
+D2~=~Agentic and D2~=~Multimodal, with corresponding metric and
+scope choices, is a near-term priority.
+
+\textbf{Standardized evaluation reporting templates.} Even without
+changing evaluation methods, a community-endorsed minimum-bar
+reporting template---analogous to the CONSORT checklist in clinical
+trials~\cite{raji2021ai} or the NLG evaluation reporting norms of
+Gehrmann et al.~\cite{repairing2022}---would make existing results
+comparable without requiring methodological consensus. The evaluation
+design checklist in Appendix~\ref{app:checklist} is one version of
+such a template, designed to surface the seven taxonomy decisions
+before evaluation begins. The direction for the field is for a
+venue-endorsed version to be adopted at major NLP/AI conferences as
+a submission requirement alongside reporting of hardware, model
+version, and random seeds.
+
 \subsection{Limitations of This Survey}
 \label{subsec:surveylimits}
 
-Three limitations bound what this survey can and cannot claim.
+Four limitations bound what this survey can and cannot claim.
 
-\textit{Search coverage is incomplete.} Search strings operate on
+\textit{Search-string coverage gaps.} Search strings operate on
 controlled vocabulary in title, abstract, and keyword fields, which
 means papers addressing the same concepts under alternative or
 emerging terminology may have been missed. Citation searching
-recovered \TODO{N} additional papers, but completeness cannot be
-guaranteed. Where the corpus shows an absence (clinical and
-multilingual primary targets, in particular), we are explicit
-throughout this paper that the absence is a property of the corpus
-under our inclusion criteria, not a claim about the field at
-large.
+recovered \TODO{N} additional papers not surfaced by the primary
+query, but completeness cannot be guaranteed. Where the corpus shows
+an absence (clinical and multilingual primary targets, in
+particular), we are explicit throughout this paper that the absence
+is a property of the corpus under our inclusion criteria, not a
+claim about the field at large.
 
-\textit{The quality filter may underrepresent recent work.} Papers
-published in 2025--2026 that have not yet accumulated citations and
-were not published at a recognized venue fall outside the retention
-criteria. The corpus may therefore underrepresent recent
-methodological developments, particularly in the fast-moving
-LLM-as-judge and dynamic-benchmark subfields.
+\textit{Recency bias against 2025--2026 work.} Papers published in
+2025--2026 that have not yet accumulated citations and were not
+published at a recognized venue fall outside the retention criteria.
+The corpus may therefore underrepresent recent methodological
+developments, particularly in the fast-moving LLM-as-judge and
+dynamic-benchmark subfields. The planned expansion to 120--150
+papers (Section~\ref{sec:methodology}) specifically targets this
+gap by extending the search cutoff and loosening the citation
+threshold for papers at recognized venues.
 
-\textit{Coding requires judgment at category boundaries.} D4
-(automation level), D6 (robustness), and D7 (reproducibility)
-required interpretation for papers that did not explicitly
-describe their evaluation along the corresponding axis. The
-inter-rater statistics in Section~\ref{subsec:coding_reliability}
-quantify the resulting uncertainty per dimension, and the
-sensitivity analysis in Section~\ref{subsec:sensitivity}
-establishes how much that uncertainty propagates to the headline
-claims. We report what we measured rather than presenting the
-coding as more rigorous than it is.
+\textit{Coding-judgment ambiguity at boundary cases.} D4 (automation
+level), D6 (robustness), and D7 (reproducibility) required
+interpretation for papers that did not explicitly describe their
+evaluation along the corresponding axis. The inter-rater statistics
+in Section~\ref{subsec:coding_reliability} quantify the resulting
+uncertainty per dimension, and the sensitivity analysis in
+Section~\ref{subsec:sensitivity} establishes how much that
+uncertainty propagates to the headline claims. We report what we
+measured rather than presenting the coding as more rigorous than it
+is.
+
+\textit{Corpus scope does not generalize to all PE evaluation.}
+The findings apply only to papers matching the inclusion criteria
+described in Section~\ref{sec:methodology}. In particular, the
+corpus excludes domain-specific applied papers (e.g., clinical case
+studies that do not generalize beyond a single narrow dataset) and
+non-English papers. Patterns that appear structural in the corpus
+may not hold in the excluded literature, and absence-of-evidence
+findings (such as the low reporting rate of clinical or multilingual
+PE evaluation) should not be read as evidence-of-absence at the
+field level.
 
 
 % ---------------------------------------------------------------
@@ -2691,5 +2943,104 @@ This checklist is available in machine-readable form at
 Researchers may copy and adapt it for their own study
 preregistration or supplementary materials, with citation to this
 work.
+
+% ---------------------------------------------------------------
+\section{Representative Per-Paper Taxonomy Mapping (All Seven Dimensions)}
+\label{app:fulltable}
+
+Table~\ref{tab:fulltable} presents a representative cross-section of
+the 80-paper corpus coded across all seven taxonomy dimensions. Ten
+papers are shown here---one per major paper category, selected to
+illustrate the range of configurations in the corpus. The complete
+80-paper machine-readable dataset is released at
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}. D6
+(Robustness) and D7 (Reproducibility) codings are being verified
+against the second-coder analysis; values marked \TODO{verify} will
+be updated on corpus expansion. Abbreviations: BM~=~Benchmark;
+LJ~=~LLM-as-judge; HE~=~Human eval; Abl~=~Ablation;
+TS~=~Task-specific; MB~=~Model-based; Hyb~=~Hybrid;
+Auto~=~Automated; HiL~=~Human-in-loop; CM~=~Cross-model;
+CD~=~Cross-domain; CDs~=~Cross-dataset; SM~=~Single-model;
+Sng~=~Single-prompt; MAg~=~Multi-prompt aggregate;
+SB~=~Sensitivity-bounded; AI~=~Artifact-incomplete;
+AR~=~Artifact-released; CC~=~Contamination-checked;
+JP~=~Judge-ver-pinned.
+
+\clearpage
+\onecolumn
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+
+{\footnotesize
+\begin{longtable}{p{3.2cm} p{1.8cm} p{1.1cm} p{1.5cm} p{1.1cm} p{1.2cm} p{1.1cm} p{2.4cm}}
+\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). The complete 80-paper dataset is available as a machine-readable spreadsheet at the GitHub URL above. D6 and D7 values marked \textbf{verify} will be confirmed against second-coder analysis on corpus expansion.}
+\label{tab:fulltable}\\
+\toprule
+\textbf{Paper (year)} &
+\cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
+\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task}} &
+\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
+\cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
+\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
+\textbf{D6 Robust.} &
+\textbf{D7 Reprod.} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\textit{Table~\ref{tab:fulltable} (continued)}}\\
+\toprule
+\textbf{Paper (year)} &
+\cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
+\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task}} &
+\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
+\cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
+\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
+\textbf{D6 Robust.} &
+\textbf{D7 Reprod.} \\
+\midrule
+\endhead
+\midrule \multicolumn{8}{r}{\textit{Continued on next page}}\\ \endfoot
+\bottomrule \endlastfoot
+
+\multicolumn{8}{l}{\textit{Prompting Technique Papers}} \\ \midrule
+\rowcolor{rowgray}
+Wei et al.~\cite{wei2022chain} (2022) Chain-of-Thought &
+BM & Reasoning & TS & Auto & CM & Sng & AR \\
+Kojima et al.~\cite{kojima2022large} (2022) Zero-Shot CoT &
+BM & Reasoning & TS & Auto & CM & Sng & AR \\
+\rowcolor{rowgray}
+Ouyang et al.~\cite{ouyang2022training} (2022) InstructGPT/RLHF &
+HE & Multi-task & Hyb & HiL & SM & Sng & AI \\
+\midrule
+\multicolumn{8}{l}{\textit{Automated Prompt Optimization Papers}} \\ \midrule
+Zhou et al.~\cite{zhou2022ape} (2022) APE &
+BM & Multi-task & TS & Auto & CM & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{LLM-as-Judge / Metric Papers}} \\ \midrule
+\rowcolor{rowgray}
+Zheng et al.~\cite{zheng2023judging} (2023) MT-Bench &
+LJ & Multi-task & LJ & Auto & CM & MAg & JP \\
+Liu et al.~\cite{liu2023geval} (2023) G-Eval &
+LJ & Generation & LJ & Hyb & CM & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{Benchmark / Dynamic Benchmark Papers}} \\ \midrule
+\rowcolor{rowgray}
+Lin et al.~\cite{wildbench2024} (2024) WildBench &
+LJ & Multi-task & LJ & Auto & CM & Sng & CC+JP \\
+Wang et al.~\cite{wang2018glue} (2018) GLUE &
+BM & Multi-task & TS & Auto & CDs & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{Robustness / Sensitivity Papers}} \\ \midrule
+\rowcolor{rowgray}
+Zhu et al.~\cite{promptbench2023} (2023) PromptBench &
+BM & Multi-task & TS & Auto & CM & SB & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{LLM Evaluation Survey Papers}} \\ \midrule
+Chang et al.~\cite{chang2023survey} (2023) LLM Eval Survey &
+HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
+
+\end{longtable}
+}
+
+\twocolumn
 
 \end{document}
