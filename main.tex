@@ -1,3 +1,6 @@
+% NOTE: IEEEtran is used for drafting. Convert to acmart (sigconf or
+% acmsmall style) before ACM CSUR submission. The taxonomy tables use
+% \textwidth-based column widths that will need adjustment.
 \documentclass[journal]{IEEEtran}
 
 \usepackage{cite}
@@ -78,11 +81,11 @@ The dimensions cover evaluation method, task scope, metric type,
 automation level, evaluation scope, robustness, and reproducibility
 and contamination resistance. We apply the taxonomy through a PRISMA
 2020 systematic review spanning six academic databases to a corpus
-of \TODO{N (currently 80; expansion to 120-150 in progress)}
-papers, and use it to derive co-occurrence patterns, recurring
-evaluation \textit{archetypes}, and a catalog of failure modes in
-which a paper's evaluation configuration does not support its
-contribution claims.
+of 80 papers (expansion to 120--150 in progress), and use it to
+derive co-occurrence patterns, recurring evaluation
+\textit{archetypes}, and a catalog of failure modes in which a
+paper's evaluation configuration does not support its contribution
+claims.
 
 Three findings stand out. The dominant configuration in the corpus -
 benchmark-based, task-specific, fully automated evaluation - clusters
@@ -141,20 +144,22 @@ that clinical deployment requires. Study~B's GPT-4 judge may or may
 not be calibrated to the judgment standard that a domain expert would
 apply; without a calibration experiment, the score is uninterpretable
 relative to clinical ground truth. This is not a failure of rigor
-inside either study. It is the absence of a shared vocabulary for
-describing what each study actually measured, which tradeoffs each
-accepted, and under what conditions each result transfers. Providing
-that vocabulary is the contribution of this paper.
+inside either study. It is the consequence of an evaluation ecosystem
+without a shared vocabulary for describing what each study measured,
+which tradeoffs each configuration accepts, and under what conditions
+results transfer across labs. Providing that vocabulary---a
+seven-dimensional taxonomy grounded in measurement theory---is the
+primary contribution of this paper.
 
-What has not kept pace with technique development is evaluation practice.
-Across the literature, the same prompting strategy might be assessed using
-benchmark accuracy on one model, human preference ratings on another,
-LLM-judge scoring on a third, and pass@$k$ on code generation tasks for
-a fourth. Each evaluation is internally consistent. None is directly comparable to the
-others. Researchers deciding which technique to apply to a new
-problem have no principled basis for interpreting results across studies,
-because the evaluation frameworks underlying those results
-are organized along different, unstated, and mutually incompatible
+The scenario is not unusual. The same prompting strategy can be
+assessed using benchmark accuracy on one model, human preference
+ratings on another, LLM-judge scoring on a third, and pass@$k$ on
+code generation tasks for a fourth. Each evaluation is internally
+consistent. None is directly comparable to the others.
+Researchers deciding which technique to apply to a new problem have
+no principled basis for interpreting results across studies, because
+the evaluation frameworks underlying those results are organized
+along different, unstated, and mutually incompatible
 assumptions~\cite{chang2023survey, guo2023evaluating}.
 
 This has practical consequences. Prompt engineering claims
@@ -188,8 +193,7 @@ of the underlying tensions; the projections, and the empirical
 co-occurrence patterns they predict, are documented in
 Sections~\ref{sec:taxonomy} and~\ref{sec:comparison}.
 
-We apply the taxonomy to a corpus of \TODO{N=120-150 (currently 80; expansion in progress)} papers identified through a PRISMA
-2020 systematic review of six databases. Three substantive findings
+We apply the taxonomy to a corpus of 80 papers (expansion to 120--150 in progress) identified through a PRISMA 2020 systematic review of six databases. Three substantive findings
 emerge. First, the dominant configuration in the corpus -
 benchmark-based, task-specific, fully automated, single- or cross-model
 - occupies the high-reliability, low-validity, reference-anchored region
@@ -221,15 +225,17 @@ Section~\ref{sec:related_work} reviews three streams of related work
 (prompt engineering methods, LLM evaluation frameworks, existing
 surveys and taxonomies) and explicitly differentiates this paper from
 each. Section~\ref{sec:background} provides background on LLMs, the
-prompt engineering design space, and the four metric families that
-appear throughout the corpus, including the construct-validity and
-reliability terminology used in the rest of the paper.
+prompt engineering design space, the four metric families that appear
+throughout the corpus, and formal definitions of the five core
+measurement-theory concepts used throughout the paper.
 Section~\ref{sec:taxonomy} introduces the two underlying tensions and
-defines the seven dimensions, including the new D6 (Robustness) and
-D7 (Reproducibility) dimensions added in this version.
+defines the seven dimensions.
 Section~\ref{sec:taxonomy_application} provides worked examples of
 classifying existing papers and a forward-looking design guide.
-Section~\ref{sec:methodology2} describes the systematic review
+Section~\ref{sec:tools} catalogs the evaluation frameworks, judge
+pipelines, dynamic benchmarks, and robustness tools that implement
+each region of the taxonomy.
+Section~\ref{sec:methodology} describes the systematic review
 protocol, the dual-coding procedure, and the sensitivity analysis
 that establish coding reliability.
 Section~\ref{sec:comparison} presents the comparative analysis:
@@ -240,6 +246,8 @@ named tensions and a future research agenda.
 Section~\ref{sec:conclusion} concludes.
 Appendix~\ref{app:checklist} provides an evaluation design checklist
 covering all seven dimensions for study preregistration.
+Appendix~\ref{app:fulltable} presents a representative per-paper
+mapping with all seven dimensions coded.
 
 
 % ---------------------------------------------------------------
@@ -519,17 +527,20 @@ context.
 
 The following five definitions formalize the conceptual vocabulary
 used throughout the rest of the paper. Each definition is tight by
-design; the nuances and operationalizations are developed in
-Sections~\ref{sec:taxonomy}--\ref{sec:tools}.
+design; the operationalizations and their empirical projections are
+developed in Sections~\ref{sec:taxonomy} and~\ref{sec:comparison}.
 
 \begin{definition}[Prompt Engineering Evaluation Framework]
 A prompt engineering evaluation framework $\mathcal{F}$ is a tuple
 $(m,\, t,\, q,\, a,\, s,\, r,\, p)$ where each component
-corresponds to a choice along one of the seven dimensions
-D1\textendash D7 defined in Section~\ref{sec:taxonomy}. Any
-complete instantiation of the tuple defines a valid evaluation
-configuration; the corpus in Section~\ref{sec:comparison} is
-analyzed as a distribution over such configurations.
+corresponds to a choice along one of the seven dimensions defined
+in Section~\ref{sec:taxonomy}: $m$ (evaluation method, D1), $t$
+(task scope, D2), $q$ (metric type, D3), $a$ (automation level,
+D4), $s$ (evaluation scope, D5), $r$ (robustness reporting, D6),
+and $p$ (reproducibility properties, D7). Any complete instantiation
+of the tuple defines a valid evaluation configuration; the corpus
+in Section~\ref{sec:comparison} is analyzed as a distribution over
+such configurations.
 \end{definition}
 
 \begin{definition}[Construct Validity]
@@ -700,10 +711,11 @@ sub-axis of reliability rather than an independent procedural choice.
 The resulting seven-dimensional structure is intended to make the two
 underlying tensions traceable through every coding decision.
 
-We define a \textit{prompt engineering evaluation framework} as the
-combination of choices a study makes along these seven dimensions. The
-dimensions are conceptually distinct - each can vary independently of
-the others - but they are not statistically independent in practice.
+As formalized in Definition~1, a prompt engineering evaluation
+framework is fully specified by a choice along each of the seven
+dimensions D1\textendash D7. The dimensions are conceptually
+distinct---each can vary independently of the others---but they are
+not statistically independent in practice.
 The co-occurrence patterns documented in
 Section~\ref{subsec:cooccurrence} are a finding of this survey, not a
 flaw in the dimensional decomposition. Table~\ref{tab:taxonomy}
@@ -1318,18 +1330,20 @@ also a map to an existing ecosystem of open tools and frameworks that
 operationalize different regions of the validity/reliability design
 space. This section catalogs the most widely used resources in each
 category, mapping each tool to the taxonomy dimensions it directly
-supports. The catalog is not exhaustive---the field moves quickly---
-but covers the tools that appear in or are directly relevant to the
-80-paper corpus. Researchers selecting an evaluation approach can use
-this section alongside the design quick-reference in
-Table~\ref{tab:quickref}.
+supports. The catalog covers tools that appear in or are directly
+relevant to the 80-paper corpus analyzed in
+Section~\ref{sec:comparison}; it is not exhaustive since the
+landscape evolves quickly. Researchers selecting an evaluation
+approach can consult this section alongside the design
+quick-reference in Table~\ref{tab:quickref}.
 
 \subsection{Automated Evaluation Frameworks}
 \label{subsec:tools_auto}
 
-Fully automated evaluation frameworks (Dimension~4 = Automated,
-Dimension~1 = Benchmark) form the infrastructure of Archetype~A.
-Three frameworks dominate the corpus.
+Fully automated evaluation frameworks (D4~=~Automated,
+D1~=~Benchmark) form the infrastructure of the dominant evaluation
+configuration in the corpus (Archetype~A, defined formally in
+Section~\ref{subsec:archetypes}). Three frameworks dominate.
 
 \textbf{EleutherAI lm-evaluation-harness}~\cite{gao2021lmeval} is
 an open-source evaluation harness supporting more than 200 tasks
@@ -1363,7 +1377,8 @@ Section~\ref{subsec:d2dist}).
 \label{subsec:tools_judge}
 
 LLM-as-judge frameworks (D1~=~LLM-as-judge, D3~=~LLM-judge)
-constitute Archetype~B's primary infrastructure.
+constitute the infrastructure of the second major evaluation pattern
+in the corpus (Archetype~B, Section~\ref{subsec:archetypes}).
 
 \textbf{MT-Bench and the FastChat judge}~\cite{zheng2023judging}
 provide the reference implementation of GPT-4 pairwise scoring for
@@ -1401,7 +1416,7 @@ are specifically designed to address D7~=~Contamination-checked.
 evaluation items from real user queries, making it structurally
 harder to contaminate than fixed test sets. Its live leaderboard
 regularly refreshes both the item set and the reference model,
-providing a model for how Archetype~B evaluation can maintain
+providing a model for how LLM-as-judge evaluation can maintain
 across-time reliability (D7) at scale.
 
 \textbf{MMLU-Pro}~\cite{mmluprob2024} replaces MMLU's
@@ -1779,9 +1794,11 @@ genuine methodological mismatch visible.
 Table~\ref{tab:archetype_distribution} previews the analysis: the
 five most common configurations across the seven dimensions, their
 share of the corpus, and the underlying tension each foregrounds.
-The full per-paper mapping is reported as Table~\ref{tab:comparison}
-below for transparency, and is also released in machine-readable
-form at the URL given in Section~\ref{sec:methodology2}.
+A representative per-paper mapping with all seven dimensions coded
+is presented in Appendix~\ref{app:fulltable}; the full 80-paper
+machine-readable dataset is released at the URL given in
+Section~\ref{sec:methodology}. Table~\ref{tab:comparison} below
+summarizes the modal configuration per paper category.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -2788,8 +2805,7 @@ reliability, and reference-anchored vs.\ judgment-anchored
 evaluation. Seven dimensions - evaluation method, task scope, metric
 type, automation level, evaluation scope, robustness, and
 reproducibility / contamination resistance - operationalize those
-tensions. Applied to a PRISMA 2020 systematic review of \TODO{N (80
-in current version; expansion to 120-150 in progress)} papers, the
+tensions. Applied to a PRISMA 2020 systematic review of 80 papers (expansion to 120--150 in progress), the
 taxonomy yields three substantive findings beyond per-dimension
 frequency counts: the corpus resolves into three recurring
 evaluation \textit{archetypes} that occupy distinct regions of the
@@ -2964,7 +2980,7 @@ CD~=~Cross-domain; CDs~=~Cross-dataset; SM~=~Single-model;
 Sng~=~Single-prompt; MAg~=~Multi-prompt aggregate;
 SB~=~Sensitivity-bounded; AI~=~Artifact-incomplete;
 AR~=~Artifact-released; CC~=~Contamination-checked;
-JP~=~Judge-ver-pinned.
+JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 
 \clearpage
 \onecolumn
