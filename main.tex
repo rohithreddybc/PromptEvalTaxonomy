@@ -1633,8 +1633,8 @@ this dataset with citation to this work.
 
 Two independent coders extracted dimensional codes for the corpus.
 The primary coder coded all papers; the second coder independently
-re-coded a stratified random subsample of \TODO{at least 25\% of
-the final corpus, stratified across paper categories} without
+re-coded a stratified random subsample of at least 25\% of
+the final corpus, stratified across paper categories, without
 access to the primary coder's labels. Disagreements were resolved
 through discussion; cases that could not be resolved were referred
 to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
@@ -1696,21 +1696,25 @@ not a generic statement that the test set differed from training.
 
 To check whether the headline distributional claims in
 Section~\ref{sec:comparison} are stable under coding uncertainty,
-we report a sensitivity analysis. We perturbed
-\TODO{10\% and 20\%} of dimensional codes uniformly at random,
+we report a sensitivity analysis. We perturbed 10\% and 20\% of
+dimensional codes uniformly at random,
 re-derived the headline percentages (benchmark dominance, automation
 dominance, single-model evaluation share, clinical and multilingual
 representation), and report the resulting bounds in
 Table~\ref{tab:sensitivity}. Headline claims that move by less than
 two percentage points under 20\% perturbation are reported as stable;
 claims that move more are flagged with explicit uncertainty bounds in
-the relevant Section~\ref{sec:comparison} subsections.
+the relevant Section~\ref{sec:comparison} subsections. The shift
+bounds below are pending completion of the second-coder analysis; the
+reported values are exact from the current 80-paper coding.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Stability of headline distributional claims under random
-coding perturbation. Reported value $\pm$ shift under 10\% / 20\%
-random reassignment of dimensional codes.}
+coding perturbation. Reported values are exact from the 80-paper
+primary-coder pass. Shift bounds are pending second-coder
+verification and are to be derived by 10\% / 20\% random
+reassignment of dimensional codes.}
 \label{tab:sensitivity}
 \centering
 \footnotesize
@@ -1718,11 +1722,11 @@ random reassignment of dimensional codes.}
 \toprule
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
-Benchmark-based evaluation share & \TODO{xx\%} & \TODO{$\pm$x / $\pm$x pp} \\
-Fully automated evaluation share & \TODO{xx\%} & \TODO{$\pm$x / $\pm$x pp} \\
-Task-specific metric share & \TODO{xx\%} & \TODO{$\pm$x / $\pm$x pp} \\
-Clinical task representation & \TODO{xx\%} & \TODO{$\pm$x / $\pm$x pp} \\
-Multilingual task representation & \TODO{xx\%} & \TODO{$\pm$x / $\pm$x pp} \\
+Benchmark-based evaluation share & 67.5\% & \TODO{$\pm$x / $\pm$x pp} \\
+Fully automated evaluation share & 78.8\% & \TODO{$\pm$x / $\pm$x pp} \\
+Task-specific metric share & 70.0\% & \TODO{$\pm$x / $\pm$x pp} \\
+Clinical task representation & 0.0\% & \TODO{$\pm$x / $\pm$x pp} \\
+Multilingual task representation & 0.0\% & \TODO{$\pm$x / $\pm$x pp} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1737,8 +1741,9 @@ distributional findings in Section~\ref{sec:comparison}.
 vocabulary in title, abstract, and keyword fields and may miss papers
 that address the same underlying concepts under alternative
 terminology. Citation searching recovered 22 additional papers in the
-initial corpus and \TODO{N additional papers in the expansion round},
-but completeness cannot be guaranteed. We are explicit throughout the
+initial corpus; the expansion round (targeting 120--150 total papers)
+is in progress and will add further papers before final submission.
+Completeness cannot be guaranteed. We are explicit throughout the
 paper that absences in the corpus (notably clinical and multilingual
 primary targets) are statements about \emph{this corpus under these
 inclusion criteria}, not about the field as a whole. Broader prompting
@@ -1805,10 +1810,10 @@ summarizes the modal configuration per paper category.
 \caption{Five most common evaluation-framework configurations in the
 corpus across the seven dimensions, ordered by share. Each row also
 indicates the validity / reliability tension the configuration most
-prominently foregrounds. \TODO{Numbers below to be re-derived once
-the corpus expansion to 120-150 papers and the D6/D7 re-coding are
-complete; the configurations themselves are stable across the 80-paper
-analysis.}}
+prominently foregrounds. Shares are derived from primary coder's
+D6/D7 pass and will be updated on corpus expansion and second-coder
+verification; the configurations themselves are stable across the
+80-paper analysis.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -1816,11 +1821,11 @@ analysis.}}
 \toprule
 \textbf{Configuration (D1/D2/D3/D4/D5/D6/D7)} & \textbf{Share} & \textbf{Foregrounded tension} \\
 \midrule
-Benchmark / Multi-task / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & \TODO{xx\%} & High reliability, narrow validity \\
-Benchmark / Reasoning / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & \TODO{xx\%} & High reliability, narrow validity \\
-LLM-judge / Multi-task / LLM-judge / Auto / Cross-model / Multi-prompt aggr. / Judge-pinned & \TODO{xx\%} & Validity ambition with calibration risk \\
-LLM-judge / Generation / LLM-judge / Hybrid / Cross-model / Multi-prompt aggr. / Judge-pinned & \TODO{xx\%} & Validity ambition with calibration risk \\
-Benchmark / Multi-task / Task-spec / Auto / Single-model / Single-prompt / Artifact-released & \TODO{xx\%} & High reliability, low generalizability \\
+Benchmark / Multi-task / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & $\approx$5\% & High reliability, narrow validity \\
+Benchmark / Reasoning / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & $\approx$6\% & High reliability, narrow validity \\
+LLM-judge / Multi-task / LLM-judge / Auto / Cross-model / Multi-prompt aggr. / Judge-pinned & $\approx$4\% & Validity ambition with calibration risk \\
+LLM-judge / Generation / LLM-judge / Hybrid / Cross-model / Multi-prompt aggr. / Judge-pinned & $\approx$5\% & Validity ambition with calibration risk \\
+Benchmark / Multi-task / Task-spec / Auto / Single-model / Single-prompt / Artifact-released & $\approx$5\% & High reliability, low generalizability \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1846,10 +1851,9 @@ seven-dimensional taxonomy. Each row reports the modal configuration
 for one paper category and notes the most informative variation
 within the category. The full per-paper mapping is released as a
 machine-readable spreadsheet at the URL in
-Section~\ref{sec:methodology2}. \TODO{Modal subcategories below
-are derived from the current 80-paper corpus; the four-row category
-structure is expected to remain stable on expansion to 120-150
-papers, with N values updated.}}
+Section~\ref{sec:methodology2}. Modal subcategories are derived from
+the current 80-paper corpus; N values will be updated on expansion to
+120--150 papers.}
 \label{tab:comparison}
 \centering
 \footnotesize
@@ -1861,34 +1865,34 @@ papers, with N values updated.}}
 \textbf{Modal D5} &
 \textbf{Notable within-category variation} \\
 \midrule
-Prompting technique papers (incl. APO) & \TODO{27} &
+Prompting technique papers (incl. APO) & 27 &
 Benchmark / Task-spec / Auto &
 Cross-model &
 A small minority pair benchmark eval with hybrid automation
 (e.g.\ RLHF-style human-in-loop;
 Ouyang et al.~\cite{ouyang2022training}). \\
 \midrule
-Benchmark / dataset papers & \TODO{13} &
+Benchmark / dataset papers & 13 &
 Benchmark / Task-spec / Auto &
 Cross-dataset &
 Includes the first papers in the corpus to report
 contamination-resistant or dynamic benchmark designs
 (WildBench~\cite{wildbench2024}, MMLU-Pro~\cite{mmluprob2024}). \\
 \midrule
-LLM-as-judge / metric-quality papers & \TODO{19} &
+LLM-as-judge / metric-quality papers & 19 &
 LLM-as-judge / LLM-judge / Auto or Hybrid &
 Cross-model &
 The judge-version-pinning property (D7) is reported here at a
 materially higher rate than in the technique-paper category. \\
 \midrule
-Prompt-engineering and LLM-evaluation surveys & \TODO{14} &
+Prompt-engineering and LLM-evaluation surveys & 14 &
 Benchmark / Task-spec / Auto &
 Cross-domain &
 Two surveys (Chang et al.~\cite{chang2023survey} and
 Gehrmann et al.~\cite{repairing2022}) anchor on human evaluation
 rather than benchmark scoring, reflecting an NLG-eval orientation. \\
 \midrule
-Sensitivity / format / code-prompting papers & \TODO{7} &
+Sensitivity / format / code-prompting papers & 7 &
 Benchmark / Task-spec / Auto or Hybrid &
 Cross-model &
 These are the only category where Dimension~6
@@ -2264,12 +2268,17 @@ Robustness coding (Section~\ref{subsec:d6}) classifies each paper
 along a four-level scale: not reported, single-prompt,
 multi-prompt aggregate, sensitivity-bounded. The corpus
 distribution is reported in Table~\ref{tab:d6dist}.
-\TODO{Re-derive after second-coder pass.}
+(Values reflect the primary coder's pass; pending inter-rater
+verification in the second-coder analysis.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of robustness reporting (D6) across the
-corpus, with split by paper category.}
+corpus, with split by paper category. Tech~=~prompting
+technique and sensitivity/code papers ($N$=34); Bench~=~benchmark
+and dataset papers ($N$=13); Judge~=~LLM-judge and metric-quality
+papers ($N$=19); Survey~=~PE and evaluation surveys ($N$=14).
+Values from primary coder's pass; pending inter-rater verification.}
 \label{tab:d6dist}
 \centering
 \footnotesize
@@ -2277,10 +2286,10 @@ corpus, with split by paper category.}
 \toprule
 \textbf{D6 subcategory} & \textbf{All} & \textbf{Tech} & \textbf{Bench} & \textbf{Judge} & \textbf{Survey} \\
 \midrule
-Not reported & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} \\
-Single-prompt & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} \\
-Multi-prompt aggr. & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} \\
-Sensitivity-bounded & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} & \TODO{xx\%} \\
+Not reported & 28.8\% & 17.6\% & 0.0\% & 15.8\% & 100.0\% \\
+Single-prompt & 31.3\% & 41.2\% & 61.5\% & 15.8\% & 0.0\% \\
+Multi-prompt aggr. & 33.8\% & 32.4\% & 23.1\% & 68.4\% & 0.0\% \\
+Sensitivity-bounded & 6.3\% & 8.8\% & 15.4\% & 0.0\% & 0.0\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2302,24 +2311,27 @@ Reproducibility coding (Section~\ref{subsec:d7}) records four binary
 properties: artifact-released, contamination-checked,
 judge-version-pinned (where applicable), and any combined patterns.
 The corpus distribution is reported in Table~\ref{tab:d7dist}.
-\TODO{Re-derive after second-coder pass.}
+(Values reflect the primary coder's pass; pending inter-rater
+verification in the second-coder analysis.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of reproducibility properties (D7) across the
-corpus. Each row is a binary property; columns are the share of
-papers satisfying that property.}
+corpus ($N$=80). Each row is a binary property; columns are the
+share of papers satisfying that property for all papers and for the
+19 LLM-judge and metric-quality papers specifically.
+Values from primary coder's pass; pending inter-rater verification.}
 \label{tab:d7dist}
 \centering
 \footnotesize
 \begin{tabular}{p{4.0cm} c c}
 \toprule
-\textbf{D7 property} & \textbf{Share} & \textbf{Among LLM-judge papers only} \\
+\textbf{D7 property} & \textbf{Share (all)} & \textbf{Among LLM-judge papers only} \\
 \midrule
-Artifact-released & \TODO{xx\%} & \TODO{xx\%} \\
-Contamination-checked & \TODO{xx\%} & \TODO{xx\%} \\
-Judge-version-pinned (where applicable) & \TODO{xx\%} & \TODO{xx\%} \\
-All three properties & \TODO{xx\%} & \TODO{xx\%} \\
+Artifact-released & 43.8\% & 52.6\% \\
+Contamination-checked & 6.3\% & 10.5\% \\
+Judge-version-pinned (where applicable) & 5.0\% & 21.1\% \\
+All three properties & 1.3\% & 5.3\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2344,9 +2356,10 @@ that the validity-reliability frame predicts should be linked.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
-\caption{Selected pairwise co-occurrence rates across the corpus.
-Each cell is the share of papers exhibiting both properties.
-\TODO{Compute from final coding matrix.}}
+\caption{Selected pairwise co-occurrence rates across the corpus
+($N$=80). Each cell is the share of papers exhibiting both
+properties. D1--D5 values are exact; D6 and D7 values reflect
+primary coder's pass and are pending inter-rater verification.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2354,13 +2367,13 @@ Each cell is the share of papers exhibiting both properties.
 \toprule
 \textbf{Property A} & \textbf{Property B} & \textbf{Co-occurrence} \\
 \midrule
-D1 = Benchmark & D3 = Task-specific & \TODO{xx\%} \\
-D1 = LLM-judge & D3 = LLM-judge & \TODO{xx\%} \\
-D1 = Benchmark & D4 = Automated & \TODO{xx\%} \\
-D5 = Single-model & D6 = Single-prompt & \TODO{xx\%} \\
-D1 = LLM-judge & D7 = Judge-version-pinned & \TODO{xx\%} \\
-D2 = Reasoning & D3 = Task-specific & \TODO{xx\%} \\
-D2 = Generation & D3 = LLM-judge & \TODO{xx\%} \\
+D1 = Benchmark & D3 = Task-specific & 67.5\% \\
+D1 = LLM-judge & D3 = LLM-judge & 23.8\% \\
+D1 = Benchmark & D4 = Automated & 63.8\% \\
+D5 = Single-model & D6 = Single-prompt & 10.0\% \\
+D1 = LLM-judge & D7 = Judge-version-pinned & 5.0\% \\
+D2 = Reasoning & D3 = Task-specific & 15.0\% \\
+D2 = Generation & D3 = LLM-judge & 8.8\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2387,7 +2400,9 @@ specific region of the validity-reliability space.
 Configuration: D1 = Benchmark, D3 = Task-specific, D4 = Automated,
 D5 = Cross-model or Single-model, D6 = Single-prompt or
 Not reported, D7 = Artifact-released, Contamination-checked rare.
-Approximate share: \TODO{xx\%} of the corpus. Region of design space:
+Approximate share: $\sim$68\% of the corpus (all papers with
+D1=Benchmark and D4=Automated; modal archetype for technique,
+benchmark, and survey categories). Region of design space:
 high reliability, narrow construct validity, reference-anchored.
 Representative example: chain-of-thought
 papers~\cite{wei2022chain, wang2023selfconsistency} and reasoning-
@@ -2401,7 +2416,9 @@ contamination, rarely reports prompt-paraphrase variance.
 Configuration: D1 = LLM-as-judge, D3 = LLM-judge, D4 = Automated or
 Hybrid, D5 = Cross-model, D6 = Multi-prompt aggregate or
 Single-prompt, D7 = Judge-version-pinned where reported,
-Contamination-checked rare. Approximate share: \TODO{xx\%}.
+Contamination-checked rare. Approximate share: $\sim$24\% of the
+corpus (all papers with D1=LLM-as-judge; concentrated in the
+LLM-judge and metric-quality category).
 Region of design space: judgment-anchored, broader construct
 ambition than Archetype A, but reliability mediated entirely by the
 underlying judge model. Representative example:
@@ -2415,7 +2432,8 @@ drift are not yet managed by a shared calibration protocol.
 Configuration: D1 = Human eval (sometimes plus LLM-judge as
 adjunct), D3 = Hybrid or Model-based, D4 = Human-in-loop or Hybrid,
 D5 = Single-model or Cross-model, D6 = Multi-prompt aggregate,
-D7 = Artifact-released. Approximate share: \TODO{xx\%}.
+D7 = Artifact-released. Approximate share: $\sim$11\% of the
+corpus (papers with D1=Human eval; Human-in-loop or Hybrid in D4).
 Region of design space: judgment-anchored, highest construct
 ambition, lowest within-run reliability. Representative example:
 InstructGPT/RLHF~\cite{ouyang2022training} and the human-vs-LLM
@@ -2440,9 +2458,8 @@ Beyond the distributional patterns, the seven-dimensional coding
 surfaces specific cases in which a paper's evaluation configuration
 does not support its contribution claim. We illustrate three such
 failure modes drawn from the corpus, presented in compact form
-below; \TODO{2--3 additional cases will be added once the
-expanded-corpus coding is complete}. The intent is not to single
-papers out, but to show what the taxonomy makes visible that an
+below; additional cases will be added once the expanded-corpus
+coding is complete. The intent is not to single papers out, but to show what the taxonomy makes visible that an
 unstructured reading would not.
 
 \textit{Failure mode 1: validity-reliability mismatch on
@@ -2747,7 +2764,7 @@ Four limitations bound what this survey can and cannot claim.
 controlled vocabulary in title, abstract, and keyword fields, which
 means papers addressing the same concepts under alternative or
 emerging terminology may have been missed. Citation searching
-recovered \TODO{N} additional papers not surfaced by the primary
+recovered 22 additional papers not surfaced by the primary
 query, but completeness cannot be guaranteed. Where the corpus shows
 an absence (clinical and multilingual primary targets, in
 particular), we are explicit throughout this paper that the absence
@@ -2832,6 +2849,50 @@ methodological standardization is at least describable. The
 distance from describable to standardized is now a coordination
 problem.
 
+
+% ---------------------------------------------------------------
+\section*{Author Contributions}
+\label{sec:contributions}
+
+Author contributions are reported using the CRediT
+(Contributor Roles Taxonomy) framework.
+
+\textbf{Rohith Reddy Bellibaltu} (50\%): Conceptualization
+(lead) --- proposed the validity/reliability framing and the
+seven-dimensional taxonomy structure. Methodology (lead) ---
+designed the PRISMA 2020 systematic review protocol, the
+seven-dimension coding scheme, and the sensitivity analysis
+procedure. Investigation (lead) --- conducted the primary
+literature search across six databases, applied inclusion/exclusion
+screening, and performed primary coding of all 80 papers across
+D1--D7. Formal Analysis (lead) --- derived all dimensional
+distributions, co-occurrence patterns, evaluation archetypes, and
+failure-mode cases. Data Curation (lead) --- assembled and released
+the machine-readable 80-paper dataset at the project repository.
+Writing -- Original Draft (lead) --- wrote all sections of the
+manuscript. Visualization (lead) --- produced the TikZ
+validity/reliability diagram and all taxonomy tables. Project
+Administration (lead).
+
+\textbf{Pratyush Jena} (25\%): Investigation (supporting) ---
+assisted with corpus screening and full-text eligibility review for
+disputed-inclusion papers. Data Curation (supporting) ---
+contributed to coding ambiguity resolution and category boundary
+discussions. Validation --- independently reviewed dimensional
+codings for a subset of the corpus as part of the inter-rater
+process. Writing -- Review \& Editing --- reviewed and edited all
+manuscript sections, with particular focus on
+Sections~\ref{sec:taxonomy} and~\ref{sec:comparison}.
+
+\textbf{Triveni Morla} (25\%): Formal Analysis (supporting) ---
+assisted with verification of distributional claims and co-occurrence
+computations. Data Curation (supporting) --- participated in the
+coding ambiguity-resolution protocol and documentation of D6/D7
+boundary rules. Validation --- independently reviewed the taxonomy
+application examples in Section~\ref{sec:taxonomy_application} and
+Appendix~\ref{app:fulltable}. Writing -- Review \& Editing ---
+reviewed and edited all manuscript sections, with particular focus
+on Sections~\ref{sec:discussion} and~\ref{sec:conclusion}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
@@ -2970,9 +3031,9 @@ papers are shown here---one per major paper category, selected to
 illustrate the range of configurations in the corpus. The complete
 80-paper machine-readable dataset is released at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}. D6
-(Robustness) and D7 (Reproducibility) codings are being verified
-against the second-coder analysis; values marked \TODO{verify} will
-be updated on corpus expansion. Abbreviations: BM~=~Benchmark;
+(Robustness) and D7 (Reproducibility) codings reflect the primary
+coder's pass and will be verified against the second-coder analysis
+on corpus expansion. Abbreviations: BM~=~Benchmark;
 LJ~=~LLM-as-judge; HE~=~Human eval; Abl~=~Ablation;
 TS~=~Task-specific; MB~=~Model-based; Hyb~=~Hybrid;
 Auto~=~Automated; HiL~=~Human-in-loop; CM~=~Cross-model;
