@@ -2174,14 +2174,26 @@ almost entirely in the open-ended generation and instruction-following
 subgroups. Zheng et al.~\cite{zheng2023judging} introduced the MT-Bench
 framework for this purpose and were candid about its limitations alongside
 its strengths. Gu et al.~\cite{gu2025llmjudge} and Feng et al.~\cite{feng2025sage}
-have since documented the reliability concerns more systematically. LLM judges
-address a genuine need: many tasks have no gold reference to score against.
-But adoption has clearly outpaced the research into when and how much to
+have since documented the reliability concerns more systematically. The
+corpus also includes the fine-tuned scalable judges of Zhu et
+al.~\cite{zhu2023judgelm} (JudgeLM), the panel-of-judges approach by Verga
+et al.~\cite{verga2024replacing}, and the agent-debate meta-evaluation
+framework of Chern et al.~\cite{chern2024scaleeval} (ScaleEval). Recent
+work by Ye et al.~\cite{ye2024justice} and Wataoka et
+al.~\cite{wataoka2024selfpreference} quantifies the bias profile of LLM
+judges directly. LLM judges address a genuine need: many tasks have no
+gold reference to score against. But adoption has clearly outpaced the
+research into when and how much to
 trust them.
 
 Human evaluation appears in only 10 papers (10.0\%), and ablation
 studies in 2 (2.0\%). No paper in the corpus employs a user study as
-its primary method. Human evaluation remains the acknowledged
+its primary method. Jang and Lukasiewicz~\cite{jang2023consistency}
+represent the human-evaluation tradition with their consistency
+analysis of ChatGPT, while the LLMBar meta-evaluation benchmark by
+Zeng et al.~\cite{zeng2024llmbar} provides a complementary measurement
+of how well LLM judges substitute for human raters on
+instruction-following. Human evaluation remains the acknowledged
 standard for tasks involving subjective quality
 judgments~\cite{chang2023survey}, but its share in this corpus is
 small. Read against the overall distribution, the pattern is
@@ -2213,7 +2225,12 @@ Generation tasks appear in 11 papers (11.0\%), code tasks in 8
 (8.0\%), and QA tasks in 6 (6.0\%). One paper in this corpus --
 Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- takes clinical
 NLP tasks as its primary evaluation target, representing 1.0\% of the
-corpus. Multilingual tasks remain absent as primary evaluation targets
+corpus. The corpus also includes representative work in adjacent
+settings such as instruction-following benchmarks
+(Zhou et al.~\cite{zhou2023instruction}, IFEval), sentiment-style
+reasoning (Qin et al.~\cite{qin2024chatgpt}), and the multimodal
+evaluation benchmark MME by Fu et al.~\cite{fu2023mme}.
+Multilingual tasks remain absent as primary evaluation targets
 under our inclusion criteria. We are deliberately careful with this
 point: an extensive body of domain-specific prompting work
 exists in the broader literature, including medical
@@ -2246,8 +2263,10 @@ summarization and dialogue tasks, and the field has shifted toward
 LLM-based scoring for open-ended outputs in response.
 
 Hybrid metric approaches appear in 5 papers (5.0\%). Model-based
-metrics such as BERTScore appear in just 2 papers (2.0\%), including
-the NLG evaluation framework of Leiter et al.~\cite{leiter2024towards}.
+metrics such as BERTScore appear in just 2 papers (2.0\%), with the
+recent LLM-based NLG evaluation survey by Li et al.~\cite{li2024leveraging}
+documenting how model-based scoring is gradually shifting toward
+LLM-judge configurations.
 Reference-based metrics (BLEU, ROUGE) serve as the \emph{primary}
 measure in zero papers in the corpus. This is a notable reversal of
 their historical dominance. It does not mean they are absent from the
@@ -2343,12 +2362,14 @@ Sensitivity-bounded & 7.0\% & 10.5\% & 13.0\% & 0.0\% & 0.0\% \\
 \end{table}
 
 The substantive observation is that the sensitivity literature itself
-- Sclar et al.~\cite{sclar2023formatting}, Mizrahi et
+-- Sclar et al.~\cite{sclar2023formatting}, Mizrahi et
 al.~\cite{butterfly2024}, Razavi et al.~\cite{promptsensitivity2025},
-and the Judge Sensitivity work~\cite{bellibatlu2026judgesense} -
-documents large variances under semantically equivalent paraphrases,
-yet these findings have not propagated into the rest of the
-evaluation literature as a routine reporting requirement. Most
+the multi-prompt evaluation work of Mizrahi et al.~\cite{mizrahi2024state}
+and Polo et al.~\cite{polo2024promptseval} (PromptEval), and the Judge
+Sensitivity work~\cite{bellibatlu2026judgesense} -- documents large
+variances under semantically equivalent paraphrases, yet these
+findings have not propagated into the rest of the evaluation
+literature as a routine reporting requirement. Most
 technique-comparison papers still report a single point estimate
 without paraphrase variance.
 
@@ -2389,9 +2410,16 @@ The asymmetry to highlight is between the artifact-released share
 share (typically low). A paper that releases its prompts and seeds
 but does not verify that its test set is uncontaminated has provided
 the artifacts needed to reproduce its scores while leaving open the
-question of what those scores actually measure. Reproducibility in
-the strong sense - same scores, same construct, same underlying
-data conditions - requires both.
+question of what those scores actually measure. The corpus papers
+that do address this gap directly -- Sainz et al.~\cite{sainz2023nlp},
+Deng et al.~\cite{deng2023investigating}, Yang et
+al.~\cite{yang2023rethinking}, and the dynamic benchmark proposal of
+Wang et al.~\cite{wang2024benchmark} -- are concentrated in the
+benchmark-and-dataset paper category. McIntosh et
+al.~\cite{mcintosh2024inadequacies} provide a broader critique of
+current benchmark designs. Reproducibility in the strong sense, that
+is the same scores, same construct, same underlying data conditions,
+requires both artifact release and contamination verification.
 
 \subsection{Co-occurrence Patterns Across Dimensions}
 \label{subsec:cooccurrence}
