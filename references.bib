@@ -1192,38 +1192,41 @@
                D7=Not reported.}
 }
 
-@inproceedings{errica2024did,
-  author    = {Errica, Federico and Quattrini, Luca and Sicard, Gianluca and Podda, Marco and Bacciu, Davide},
-  title     = {Did I Follow Instructions? Rethinking Evaluation of Instruction-Tuned Models},
-  booktitle = {Proceedings of the 2025 Annual Conference of the North American Chapter of the Association for Computational Linguistics},
-  year      = {2025},
-  note      = {Corpus paper 91. D1=Benchmark, D2=Multi-task, D3=Task-specific,
-               D4=Automated, D5=Cross-model, D6=Sensitivity-bounded,
-               D7=Artifact-released.}
-}
-
-@misc{he2024scalable,
-  author        = {He, Xinxi and Qin, Yinghao and Ding, Ziren and Yuan, Shuai and Guo, Lanqing and Xu, Chenghua and Lam, Wai and Cheng, Yu},
-  title         = {Scalable Meta-Evaluation of {LLMs} as Evaluators via Measuring Judgment Validity and Reliability},
-  year          = {2024},
-  eprint        = {2401.03729},
+@misc{zeng2024llmbar,
+  author        = {Zeng, Zhiyuan and Yu, Jiatong and Gao, Tianyu and Meng, Yu and Goyal, Tanya and Chen, Danqi},
+  title         = {Evaluating Large Language Models at Evaluating Instruction Following},
+  year          = {2023},
+  eprint        = {2310.07641},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  note          = {Corpus paper 92. D1=Benchmark, D2=Multi-task, D3=Task-specific,
-                   D4=Automated, D5=Cross-model, D6=Multi-prompt aggr.,
-                   D7=Not reported.}
+  note          = {Corpus paper 91 (revised). LLMBar meta-evaluation benchmark for
+                   LLM judges of instruction-following. D1=LLM-judge,
+                   D2=Multi-task, D3=LLM-judge, D4=Automated, D5=Cross-model,
+                   D6=Single-prompt, D7=Artifact-released.}
 }
 
-@misc{leiter2024towards,
-  author        = {Leiter, Christoph and Belouadi, Jonas and Larionov, Daniil and Faber, Yanran and Zhao, Yanran and Eger, Steffen},
-  title         = {Towards a Unified Framework for Evaluating Natural Language Generation},
+@misc{chern2024scaleeval,
+  author        = {Chern, Steffi and Chern, Ethan and Liu, Pengfei},
+  title         = {Can Large Language Models be Trusted for Evaluation? {S}calable Meta-Evaluation of {LLMs} as Evaluators via Agent Debate},
   year          = {2024},
-  eprint        = {2406.18528},
+  eprint        = {2401.16788},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  note          = {Corpus paper 93. D1=Benchmark, D2=NLG, D3=Model-based,
-                   D4=Automated, D5=Cross-model, D6=Sensitivity-bounded,
-                   D7=Artifact-released.}
+  note          = {Corpus paper 92 (revised). ScaleEval framework. D1=LLM-judge,
+                   D2=Multi-task, D3=LLM-judge, D4=Automated, D5=Cross-model,
+                   D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{li2024leveraging,
+  author        = {Li, Zhen and Xu, Xiaohan and Shen, Tao and Xu, Can and Gu, Jia-Chen and Lai, Yuxuan and Tao, Chongyang and Ma, Shuai},
+  title         = {Leveraging Large Language Models for {NLG} Evaluation: {A} Survey},
+  year          = {2024},
+  eprint        = {2401.07103},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 93 (revised). Survey of LLM-based NLG evaluation.
+                   D1=Benchmark, D2=NLG, D3=Model-based, D4=Automated,
+                   D5=Cross-model, D6=Not reported, D7=Not reported.}
 }
 
 @misc{zhou2023instruction,
@@ -1275,27 +1278,27 @@
                D7=Not reported.}
 }
 
-@misc{mou2024individual,
-  author        = {Mou, Xinpeng and Li, Chenglong and Chen, Jinghan and Zou, Jipeng and Gui, Tao and Zhang, Qi and Huang, Xuanjing},
-  title         = {Individual Prompt Optimization Can Fail to Realize the Full Potential of Collective Prompting},
+@misc{polo2024promptseval,
+  author        = {Polo, Felipe Maia and Xu, Ronald and Weber, Lucas and Silva, M{\'{i}}rian and Bhardwaj, Onkar and Choshen, Leshem and de Oliveira, Allysson Flavio Melo and Sun, Yuekai and Yurochkin, Mikhail},
+  title         = {Efficient Multi-Prompt Evaluation of {LLMs}},
   year          = {2024},
-  eprint        = {2410.21965},
+  eprint        = {2405.17202},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  note          = {Corpus paper 98. D1=Benchmark, D2=Multi-task, D3=Task-specific,
-                   D4=Automated, D5=Cross-model, D6=Multi-prompt aggr.,
-                   D7=Artifact-released.}
+  note          = {Corpus paper 98 (revised). PromptEval estimates performance
+                   distributions across prompt templates. D1=Benchmark,
+                   D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model,
+                   D6=Sensitivity-bounded, D7=Artifact-released.}
 }
 
-@misc{abercrombie2023consistency,
-  author        = {Abercrombie, Gavin and Hovy, Dirk and Nakov, Preslav and Pavlick, Ellie},
+@article{jang2023consistency,
+  author        = {Jang, Myeongjun and Lukasiewicz, Thomas},
   title         = {Consistency Analysis of {ChatGPT}},
+  journal       = {arXiv preprint arXiv:2303.06273},
   year          = {2023},
-  eprint        = {2303.06273},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CL},
-  note          = {Corpus paper 99. D1=Human eval, D2=Multi-task, D3=Hybrid,
-                   D4=Manual, D5=Cross-domain, D6=Not reported,
+  note          = {Corpus paper 99 (revised attribution). Investigates logical
+                   consistency of ChatGPT/GPT-4. D1=Human eval, D2=Multi-task,
+                   D3=Hybrid, D4=Manual, D5=Cross-domain, D6=Not reported,
                    D7=Not reported.}
 }
 

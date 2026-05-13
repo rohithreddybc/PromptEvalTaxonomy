@@ -1730,9 +1730,9 @@ reassignment of dimensional codes.}
 \toprule
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
-Benchmark-based evaluation share & 68.0\% & \TODO{$\pm$x / $\pm$x pp} \\
+Benchmark-based evaluation share & 66.0\% & \TODO{$\pm$x / $\pm$x pp} \\
 Fully automated evaluation share & 82.0\% & \TODO{$\pm$x / $\pm$x pp} \\
-Task-specific metric share & 68.0\% & \TODO{$\pm$x / $\pm$x pp} \\
+Task-specific metric share & 66.0\% & \TODO{$\pm$x / $\pm$x pp} \\
 Clinical task representation & 1.0\% & \TODO{$\pm$x / $\pm$x pp} \\
 Multilingual task representation & 0.0\% & \TODO{$\pm$x / $\pm$x pp} \\
 \bottomrule
@@ -1879,7 +1879,7 @@ A small minority pair benchmark eval with hybrid automation
 (e.g.\ RLHF-style human-in-loop;
 Ouyang et al.~\cite{ouyang2022training}). \\
 \midrule
-Benchmark / dataset papers & 23 &
+Benchmark / dataset papers & 21 &
 Benchmark / Task-spec / Auto &
 Cross-dataset &
 Expansion round added contamination-focused papers. Includes
@@ -1887,7 +1887,7 @@ contamination-resistant and dynamic benchmark designs
 (WildBench~\cite{wildbench2024}, MMLU-Pro~\cite{mmluprob2024},
 IFEval~\cite{zhou2023instruction}). \\
 \midrule
-LLM-as-judge / metric-quality papers & 24 &
+LLM-as-judge / metric-quality papers & 26 &
 LLM-as-judge / LLM-judge / Auto or Hybrid &
 Cross-model &
 Expansion round added judge-bias papers (Koo et al.~\cite{koo2023benchmarking},
@@ -2134,10 +2134,10 @@ worth highlighting in the discussion
 89 & Wang et al.~\cite{wang2024benchmark} & Benchmark Self-Evolving & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 90 & McIntosh et al.~\cite{mcintosh2024inadequacies} & LLM Benchmark Inadequacies & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
 \rowcolor{rowgray}
-91 & Errica et al.~\cite{errica2024did} & Instruction-Following Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-92 & He et al.~\cite{he2024scalable} & Scalable Meta-Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
+91 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
+92 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
 \rowcolor{rowgray}
-93 & Leiter et al.~\cite{leiter2024towards} & Unified NLG Evaluation Framework & Benchmark & NLG & Model-based & Automated & Cross-model \\
+93 & Li et al.~\cite{li2024leveraging} & LLM-based NLG Evaluation Survey & Benchmark & NLG & Model-based & Automated & Cross-model \\
 94 & Zhou et al.~\cite{zhou2023instruction} & Instruction-Following Eval (IFEval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \rowcolor{rowgray}
 95 & Qin et al.~\cite{qin2024chatgpt} & ChatGPT Sentiment Reasoning & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
@@ -2146,9 +2146,9 @@ worth highlighting in the discussion
 96 & Mizrahi et al.~\cite{mizrahi2024state} & State of What Art (TACL) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \rowcolor{rowgray}
 97 & Sivarajkumar et al.~\cite{sivarajkumar2024empirical} & Clinical Prompting Evaluation (JMIR) & Benchmark & Clinical & Task-specific & Automated & Cross-model \\
-98 & Mou et al.~\cite{mou2024individual} & Individual vs.\ Collective Prompting & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
+98 & Polo et al.~\cite{polo2024promptseval} & PromptEval (Multi-Prompt Eval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \rowcolor{rowgray}
-99 & Abercrombie et al.~\cite{abercrombie2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain \\
+99 & Jang \& Lukasiewicz~\cite{jang2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain \\
 100 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \end{longtable}
 }
@@ -2158,8 +2158,8 @@ worth highlighting in the discussion
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
 
-Benchmark-based evaluation accounts for 68 of the 100 papers in the
-corpus (68.0\%), establishing it as the default across every subgroup
+Benchmark-based evaluation accounts for 66 of the 100 papers in the
+corpus (66.0\%), establishing it as the default across every subgroup
 in the review. Representative examples include Wei et al.~\cite{wei2022chain} on
 chain-of-thought prompting and Hendrycks et al.~\cite{hendrycks2021measuring}
 on multitask language understanding. Both studies report accuracy against
@@ -2169,7 +2169,7 @@ comparable across labs, and inexpensive to compute at scale. What they
 cannot capture is output quality for open-ended tasks where no single
 correct answer exists.
 
-LLM-as-judge evaluation appears in 24 papers (24.0\%), concentrated
+LLM-as-judge evaluation appears in 26 papers (26.0\%), concentrated
 almost entirely in the open-ended generation and instruction-following
 subgroups. Zheng et al.~\cite{zheng2023judging} introduced the MT-Bench
 framework for this purpose and were candid about its limitations alongside
@@ -2230,7 +2230,7 @@ coverage of clinical or multilingual settings.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 68 papers (68.0\%). This is the
+Task-specific metrics dominate at 66 papers (66.0\%). This is the
 largest concentration observed across any single subcategory in the
 entire taxonomy. Pass@$k$, exact match, F1, and accuracy scores are all
 task-specific, and their prevalence closely mirrors the dominance of
@@ -2238,7 +2238,7 @@ benchmark evaluation in Dimension~1. The two dimensions are mutually
 reinforcing: papers that adopt standard benchmarks naturally follow the
 task-specific metrics those benchmarks prescribe.
 
-LLM-judge metrics appear in 24 papers (24.0\%), essentially the same
+LLM-judge metrics appear in 26 papers (26.0\%), essentially the same
 set of papers that use LLM-as-judge evaluation in Dimension~1.
 Liu et al.~\cite{liu2023geval} showed that G-Eval with GPT-4
 achieves stronger alignment with human judgment than BLEU or ROUGE on
@@ -2324,8 +2324,8 @@ verification in the second-coder analysis.)
 \caption{Distribution of robustness reporting (D6) across the
 corpus ($N$=100), with split by paper category. Tech~=~prompting
 technique and sensitivity/code papers ($N$=38); Bench~=~benchmark
-and dataset papers ($N$=23); Judge~=~LLM-judge and metric-quality
-papers ($N$=24); Survey~=~PE and evaluation surveys ($N$=15).
+and dataset papers ($N$=21); Judge~=~LLM-judge and metric-quality
+papers ($N$=26); Survey~=~PE and evaluation surveys ($N$=15).
 Values from primary coder's pass; pending inter-rater verification.}
 \label{tab:d6dist}
 \centering
@@ -2367,7 +2367,7 @@ verification in the second-coder analysis.)
 \caption{Distribution of reproducibility properties (D7) across the
 corpus ($N$=100). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
-24 LLM-judge and metric-quality papers specifically.
+26 LLM-judge and metric-quality papers specifically.
 Values from primary coder's pass; pending inter-rater verification.}
 \label{tab:d7dist}
 \centering
@@ -2415,9 +2415,9 @@ primary coder's pass and are pending inter-rater verification.}
 \toprule
 \textbf{Property A} & \textbf{Property B} & \textbf{Co-occurrence} \\
 \midrule
-D1 = Benchmark & D3 = Task-specific & 67.0\% \\
-D1 = LLM-judge & D3 = LLM-judge & 24.0\% \\
-D1 = Benchmark & D4 = Automated & 64.0\% \\
+D1 = Benchmark & D3 = Task-specific & 65.0\% \\
+D1 = LLM-judge & D3 = LLM-judge & 26.0\% \\
+D1 = Benchmark & D4 = Automated & 62.0\% \\
 D5 = Single-model & D6 = Single-prompt & 9.0\% \\
 D1 = LLM-judge & D7 = Judge-version-pinned & 4.0\% \\
 D2 = Reasoning & D3 = Task-specific & 12.0\% \\
@@ -2656,7 +2656,7 @@ drift, and missing calibration.
 The LLM-as-judge cluster (Archetype B) is the corpus's attempt to
 preserve the throughput advantages of automation while moving from
 reference-anchored to judgment-anchored scoring. The attempt is not
-finished. The 24 papers in the cluster draw from at least six
+finished. The 26 papers in the cluster draw from at least six
 distinct judge configurations -- different judge models, different
 prompt templates, different scoring rubrics, different tie-handling
 protocols - and few report a calibration experiment establishing
