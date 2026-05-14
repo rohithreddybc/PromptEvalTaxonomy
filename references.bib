@@ -300,7 +300,7 @@
 @article{bellibatlu2026judgesense,
   title   = {{JudgeSense}: A Benchmark for Prompt Sensitivity in
              {LLM}-as-a-Judge Systems},
-  author  = {Bellibatlu, Rohith Reddy},
+  author  = {Bellibatlu, Rohith Reddy and Raff, Edward and Zhang, Wenbin},
   journal = {arXiv preprint arXiv:2604.23478},
   year    = {2026},
   doi     = {10.48550/arXiv.2604.23478}
@@ -1312,4 +1312,145 @@
   note          = {Corpus paper 100. D1=Benchmark, D2=Multi-task, D3=Task-specific,
                    D4=Automated, D5=Cross-model, D6=Single-prompt,
                    D7=Artifact-released.}
+}
+
+%% ---------------------------------------------------------------
+%% Papers 102-111: Second Expansion Round (added 2026-05-14)
+%% Targeting agentic, multilingual, prompt-injection safety, and
+%% reasoning-faithfulness work identified through Consensus.
+%% Paper 101 is bellibatlu2026judgesense (defined earlier).
+%% ---------------------------------------------------------------
+
+@misc{vatsal2025multilingual,
+  author        = {Vatsal, Shubham and Singh, Harsh},
+  title         = {Multilingual Prompt Engineering in Large Language Models: {A} Survey Across {NLP} Tasks},
+  year          = {2025},
+  eprint        = {2505.01007},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 102. Multilingual PE survey across 250 languages
+                   and 36 papers. D1=Benchmark, D2=Multilingual, D3=Task-specific,
+                   D4=Automated, D5=Cross-domain, D6=Not reported,
+                   D7=Not reported.}
+}
+
+@misc{liu2023agentbench,
+  author        = {Liu, Xiao and Yu, Hao and Zhang, Hanchen and Xu, Yifan and Lei, Xuanyu and Lai, Hanyu and Gu, Yu and Ding, Hangliang and Men, Kaiwen and Yang, Kejuan and Zhang, Shudan and Deng, Xiang and Zeng, Aohan and Du, Zhengxiao and Zhang, Chenhui and Shen, Sheng and Zhang, Tianjun and Su, Yu and Sun, Huan and Huang, Minlie and Dong, Yuxiao and Tang, Jie},
+  title         = {{AgentBench}: Evaluating {LLMs} as Agents},
+  year          = {2023},
+  eprint        = {2308.03688},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {Corpus paper 103. Multi-environment agent benchmark; 498
+                   citations. D1=Benchmark, D2=Agentic, D3=Task-specific,
+                   D4=Automated, D5=Cross-model, D6=Single-prompt,
+                   D7=Artifact-released.}
+}
+
+@misc{ma2024agentboard,
+  author        = {Ma, Chang and Zhang, Junlei and Zhu, Zhihao and Yang, Cheng and Yang, Yujiu and Jin, Yaohui and Lan, Zhenzhong and Kong, Lingpeng and He, Junxian},
+  title         = {{AgentBoard}: An Analytical Evaluation Board of Multi-Turn {LLM} Agents},
+  year          = {2024},
+  eprint        = {2401.13178},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 104. Multi-turn agent benchmark with progress-rate
+                   metric. D1=Benchmark, D2=Agentic, D3=Task-specific,
+                   D4=Automated, D5=Cross-model, D6=Multi-prompt aggr.,
+                   D7=Artifact-released.}
+}
+
+@misc{liu2023houyi,
+  author        = {Liu, Yi and Deng, Gelei and Li, Yuekang and Wang, Kailong and Wang, Zihao and Wang, Xiaofeng and Zhang, Tianwei and Liu, Yepang and Wang, Haoyu and Zheng, Yan and Liu, Yang},
+  title         = {Prompt Injection Attack against {LLM}-integrated Applications},
+  year          = {2023},
+  eprint        = {2306.05499},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note          = {Corpus paper 105. HouYi prompt-injection attack and benchmark
+                   on 36 real applications; 562 citations. D1=Benchmark,
+                   D2=Multi-task, D3=Task-specific, D4=Automated,
+                   D5=Cross-model, D6=Multi-prompt aggr.,
+                   D7=Artifact-released.}
+}
+
+@misc{maloyan2025judgevuln,
+  author        = {Maloyan, Narek and Nutfullin, Bulat and Ilyushin, Eugene},
+  title         = {Investigating the Vulnerability of {LLM}-as-a-Judge Architectures to Prompt-Injection Attacks},
+  year          = {2025},
+  eprint        = {2505.13348},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note          = {Corpus paper 106. Adversarial attacks on LLM-as-Judge
+                   systems via prompt injection. D1=LLM-judge,
+                   D2=Multi-task, D3=LLM-judge, D4=Automated,
+                   D5=Cross-model, D6=Multi-prompt aggr.,
+                   D7=Artifact-released.}
+}
+
+@misc{lanham2023faithfulness,
+  author        = {Lanham, Tamera and Chen, Anna and Radhakrishnan, Ansh and Steiner, Benoit and Denison, Carson and Hernandez, Danny and Li, Dustin and Durmus, Esin and Hubinger, Evan and Kernion, Jackson and Lukosiute, Kamile and Nguyen, Karina and Cheng, Newton and Joseph, Nicholas and Schiefer, Nicholas and Rausch, Oliver and Larson, Robin and McCandlish, Sam and Kundu, Sandipan and Kadavath, Saurav and Yang, Shannon and Henighan, Thomas and Maxwell, Timothy and Telleen-Lawton, Timothy and Hume, Tristan and Hatfield-Dodds, Zac and Kaplan, Jared and Brauner, Jan and Bowman, Samuel R. and Perez, Ethan},
+  title         = {Measuring Faithfulness in Chain-of-Thought Reasoning},
+  year          = {2023},
+  eprint        = {2307.13702},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {Corpus paper 107. Intervention-based faithfulness study;
+                   308 citations. D1=Benchmark, D2=Reasoning,
+                   D3=Task-specific, D4=Automated, D5=Cross-model,
+                   D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{chen2025reasoningmodels,
+  author        = {Chen, Yanda and Benton, Joe and Radhakrishnan, Ansh and Uesato, Jonathan and Denison, Carson and Schulman, John and Somani, Arushi and Hase, Peter and Wagner, Misha and Roger, Fabien and Mikulik, Vlad and Bowman, Samuel R. and Leike, Jan and Kaplan, Jared and Perez, Ethan},
+  title         = {Reasoning Models Don't Always Say What They Think},
+  year          = {2025},
+  eprint        = {2505.05410},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 108. CoT faithfulness across 6 hint types;
+                   179 citations. D1=Benchmark, D2=Reasoning,
+                   D3=Task-specific, D4=Automated, D5=Cross-model,
+                   D6=Sensitivity-bounded, D7=Artifact-released.}
+}
+
+@misc{akbar2024hallumeasure,
+  author        = {Akbar, Shayan A. and Ghaffarzadegan, Mahmoud and Habibi, Maryam},
+  title         = {{HalluMeasure}: Fine-Grained Hallucination Measurement Using Chain-of-Thought Reasoning},
+  year          = {2024},
+  eprint        = {2410.04339},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 109. CoT-based hallucination detector with
+                   atomic-claim decomposition. D1=LLM-judge, D2=Generation,
+                   D3=LLM-judge, D4=Automated, D5=Cross-model,
+                   D6=Single-prompt, D7=Artifact-released.}
+}
+
+@misc{liu2025multimodalhallu,
+  author        = {Liu, Chengzhi and Liang, Zhongxing and Tian, Yifei and Sun, Xueqian and Tong, Zhuoxiao and Liu, Yu and Liu, Yi and Cao, Hejia and Zhou, Pan and Sun, Lichao},
+  title         = {More Thinking, Less Seeing? {A}ssessing Amplified Hallucination in Multimodal Reasoning Models},
+  year          = {2025},
+  eprint        = {2505.21523},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  note          = {Corpus paper 110. RH-AUC metric and RH-Bench diagnostic;
+                   trade-off between reasoning length and visual grounding.
+                   D1=Benchmark, D2=Multi-task, D3=Task-specific,
+                   D4=Automated, D5=Cross-model, D6=Multi-prompt aggr.,
+                   D7=Artifact-released.}
+}
+
+@misc{son2024mmeval,
+  author        = {Son, Guijin and Yoon, Dongkeun and Suk, Juyoung and Aula-Blasco, Javier and Aslan, Mano and Kim, Vu Trong and Islam, Shayekh Bin and Prats-Cristia, Jaume and Hurtado, Lucia Tormo and Gehrmann, Sebastian and Heintz-Buschart, Anna and Cho, Hyeong-Jin and Kim, Jiwoo and Choi, Sangha and Lim, Hyunwoo},
+  title         = {{MM-Eval}: A Multilingual Meta-Evaluation Benchmark for {LLM}-as-a-Judge and Reward Models},
+  year          = {2024},
+  eprint        = {2410.17578},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {Corpus paper 111. Multilingual meta-evaluation of LLM-judges
+                   covering 18 languages and Language Consistency subset over
+                   122 languages. D1=LLM-judge, D2=Multilingual,
+                   D3=LLM-judge, D4=Automated, D5=Cross-model,
+                   D6=Multi-prompt aggr., D7=Artifact-released.}
 }
