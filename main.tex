@@ -77,6 +77,15 @@ Evaluation Frameworks for Large Language Models}
   \country{USA}
 }
 
+\author{Wenbin Zhang}
+\affiliation{%
+  \institution{Florida International University}
+  \city{Miami}
+  \state{Florida}
+  \country{USA}
+}
+\email{wenbin.zhang@fiu.edu}
+
 \renewcommand{\shortauthors}{Bellibaltu et al.}
 
 % ---------------------------------------------------------------
@@ -3096,6 +3105,17 @@ Appendix~\ref{app:fulltable}. Writing -- Review \& Editing --
 reviewed and edited all manuscript sections, with particular focus
 on Sections~\ref{sec:discussion} and~\ref{sec:conclusion}.
 
+\textbf{Wenbin Zhang}: Supervision (lead) -- provided overall
+research direction, guided the validity/reliability theoretical
+framing, and reviewed the systematic survey methodology against ACM
+Computing Surveys structural standards. Conceptualization
+(supporting) -- contributed to the formulation of the seven
+taxonomy dimensions and the differentiation from prior surveys.
+Writing -- Review \& Editing -- reviewed the manuscript at multiple
+stages and provided guidance on positioning, framing, and
+presentation for the CSUR audience. Resources -- provided access
+to advising and reviewing infrastructure throughout the work.
+
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 
@@ -3526,7 +3546,7 @@ satisfied.
 79 & Hou et al.~\cite{advancedllmsse2024} & LLMs for SE Survey & Benchmark & Code & Task-specific & Automated & Cross-model & NR & NR \\
 80 & Khojah et al.~\cite{impactpromptprogramming2024} & CodePromptEval & Benchmark & Code & Task-specific & Hybrid & Single-model & Sng & AR \\
 \midrule
-\multicolumn{10}{l}{\textit{LLM-as-Judge Quality and Bias Papers (Expansion Round)}} \\ \midrule
+\multicolumn{10}{l}{\textit{LLM-as-Judge Bias and Reliability Studies}} \\ \midrule
 \rowcolor{rowgray}
 81 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 82 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
@@ -3536,7 +3556,7 @@ satisfied.
 \rowcolor{rowgray}
 85 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & NR \\
 \midrule
-\multicolumn{10}{l}{\textit{Benchmark Contamination and Dynamic Benchmarking Papers (Expansion Round)}} \\ \midrule
+\multicolumn{10}{l}{\textit{Benchmark Contamination and Dynamic Benchmarking Papers}} \\ \midrule
 86 & Sainz et al.~\cite{sainz2023nlp} & NLP Evaluation in Trouble & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
 \rowcolor{rowgray}
 87 & Deng et al.~\cite{deng2023investigating} & Investigating Data Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
@@ -3553,7 +3573,7 @@ satisfied.
 \rowcolor{rowgray}
 95 & Qin et al.~\cite{qin2024chatgpt} & ChatGPT Sentiment Reasoning & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
-\multicolumn{10}{l}{\textit{Multi-Prompt, Clinical, and Multimodal Papers (Expansion Round)}} \\ \midrule
+\multicolumn{10}{l}{\textit{Multi-Prompt, Clinical, and Multimodal Evaluation Papers}} \\ \midrule
 96 & Mizrahi et al.~\cite{mizrahi2024state} & State of What Art (TACL) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
 97 & Sivarajkumar et al.~\cite{sivarajkumar2024empirical} & Clinical Prompting Evaluation (JMIR) & Benchmark & Clinical & Task-specific & Automated & Cross-model & MAg & NR \\
@@ -3562,22 +3582,28 @@ satisfied.
 99 & Jang \& Lukasiewicz~\cite{jang2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain & NR & NR \\
 100 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
-\multicolumn{10}{l}{\textit{Second Expansion Round: Sensitivity, Agentic, Multilingual, Safety, and Faithfulness Papers}} \\ \midrule
+\multicolumn{10}{l}{\textit{Judge Sensitivity and Multilingual Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
 101 & Bellibatlu et al.~\cite{bellibatlu2026judgesense} & JudgeSense (Judge Sensitivity) & Benchmark & Multi-task & LLM-judge & Automated & Cross-model & SB & AR \\
 102 & Vatsal \& Singh~\cite{vatsal2025multilingual} & Multilingual PE Survey & Benchmark & Multilingual & Task-specific & Automated & Cross-domain & NR & NR \\
+\midrule
+\multicolumn{10}{l}{\textit{Agentic, Tool-Use, and Safety Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
 103 & Liu et al.~\cite{liu2023agentbench} & AgentBench & Benchmark & Agentic & Task-specific & Automated & Cross-model & Sng & AR \\
 104 & Ma et al.~\cite{ma2024agentboard} & AgentBoard & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
 105 & Liu et al.~\cite{liu2023houyi} & HouYi (Prompt Injection) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 106 & Maloyan et al.~\cite{maloyan2025judgevuln} & Judge Vulnerability to Injection & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+\midrule
+\multicolumn{10}{l}{\textit{Chain-of-Thought Faithfulness and Hallucination Studies}} \\ \midrule
 \rowcolor{rowgray}
 107 & Lanham et al.~\cite{lanham2023faithfulness} & CoT Faithfulness Measurement & Benchmark & Reasoning & Task-specific & Automated & Cross-model & MAg & AR \\
 108 & Chen et al.~\cite{chen2025reasoningmodels} & Reasoning Models Faithfulness & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
 \rowcolor{rowgray}
 109 & Akbar et al.~\cite{akbar2024hallumeasure} & HalluMeasure & LLM-judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
 110 & Liu et al.~\cite{liu2025multimodalhallu} & RH-Bench (Multimodal Hallu.) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+\midrule
+\multicolumn{10}{l}{\textit{Multilingual LLM-as-Judge Meta-Evaluation}} \\ \midrule
 \rowcolor{rowgray}
 111 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
 \end{longtable}
