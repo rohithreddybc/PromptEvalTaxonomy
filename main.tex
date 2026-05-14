@@ -1,27 +1,21 @@
-% NOTE: IEEEtran is used for drafting. Convert to acmart (sigconf or
-% acmsmall style) before ACM CSUR submission. The taxonomy tables use
-% \textwidth-based column widths that will need adjustment.
-\documentclass[journal]{IEEEtran}
+% ACM Computing Surveys (CSUR) submission template (acmsmall).
+% nonacm disables the conference/copyright block during pre-submission
+% review; the ACM Editorial Office sets the final block at acceptance.
+\documentclass[acmsmall, nonacm, screen]{acmart}
 
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
+% Document-specific packages (acmart already loads amsmath, amssymb,
+% graphicx, xcolor, hyperref, cite, amsthm internally).
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{array}
-\usepackage{url}
-\usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{rotating}
 \usepackage{longtable}
 \usepackage{colortbl}
-\usepackage{orcidlink}
+\usepackage{pdflscape}
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
-\usepackage{amsthm}
+
 \newtheorem{definition}{Definition}
 
 % Placeholder marker for items that depend on the second-coder /
@@ -35,33 +29,59 @@
 \definecolor{d3col}{RGB}{125,60,152}
 \definecolor{d4col}{RGB}{183,119,13}
 \definecolor{d5col}{RGB}{176,58,46}
+\definecolor{d6col}{RGB}{17,122,139}
+\definecolor{d7col}{RGB}{99,57,116}
 \definecolor{rowgray}{gray}{0.94}
 
-\title{A Systematic Survey and Taxonomy of Prompt Engineering Evaluation
-Frameworks for Large Language Models}
+% ---------------------------------------------------------------
+% ACM Journal metadata
+% ---------------------------------------------------------------
+\acmJournal{CSUR}
+\acmVolume{XX}
+\acmNumber{X}
+\acmArticle{X}
+\acmYear{2026}
+\acmMonth{5}
 
-\author{Rohith~Reddy~Bellibaltu~\orcidlink{0009-0003-6083-0364},~
-        Pratyush~Jena~\orcidlink{0009-0002-5910-9847},~and~
-        Triveni~Morla~\orcidlink{0009-0007-2485-1909}
-  \thanks{Manuscript received April 2, 2026. This work was conducted
-  independently by the authors. Corresponding author:
-  \href{mailto:rohithreddybc@gmail.com}{rohithreddybc@gmail.com}.
-  ORCID (Rohith~Reddy~Bellibaltu):
-  \href{https://orcid.org/0009-0003-6083-0364}{0009-0003-6083-0364}.
-  ORCID (Pratyush~Jena):
-  \href{https://orcid.org/0009-0002-5910-9847}{0009-0002-5910-9847}.
-  ORCID (Triveni~Morla):
-  \href{https://orcid.org/0009-0007-2485-1909}{0009-0007-2485-1909}.}
+% ---------------------------------------------------------------
+% Title and authors
+% ---------------------------------------------------------------
+\title{A Systematic Survey and Taxonomy of Prompt Engineering
+Evaluation Frameworks for Large Language Models}
+
+\author{Rohith Reddy Bellibaltu}
+\orcid{0009-0003-6083-0364}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Miami}
+  \state{Florida}
+  \country{USA}
+}
+\email{rohithreddybc@gmail.com}
+
+\author{Pratyush Jena}
+\orcid{0009-0002-5910-9847}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Miami}
+  \state{Florida}
+  \country{USA}
 }
 
-%\markboth{IEEE ACCESS, VOL.~XX, NO.~XX, 2025}%
-%{Bellibaltu: Prompt Engineering Evaluation Frameworks Survey}
+\author{Triveni Morla}
+\orcid{0009-0007-2485-1909}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Miami}
+  \state{Florida}
+  \country{USA}
+}
+
+\renewcommand{\shortauthors}{Bellibaltu et al.}
 
 % ---------------------------------------------------------------
 \begin{document}
 % ---------------------------------------------------------------
-
-\maketitle
 
 % ---------------------------------------------------------------
 \begin{abstract}
@@ -105,12 +125,37 @@ their interactions visible to both the researcher designing a study
 and the reader interpreting its results.
 \end{abstract}
 
-\begin{IEEEkeywords}
-prompt engineering; large language models; evaluation frameworks; taxonomy;
-systematic review; LLM evaluation; benchmark evaluation; LLM-as-judge;
-evaluation design; evaluation checklist; NLP benchmarks; automation level;
-task scope; metric selection; evaluation reproducibility
-\end{IEEEkeywords}
+\keywords{prompt engineering, large language models, evaluation
+frameworks, taxonomy, systematic review, LLM evaluation, benchmark
+evaluation, LLM-as-judge, evaluation design, evaluation checklist,
+NLP benchmarks, automation level, task scope, metric selection,
+evaluation reproducibility}
+
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10010147.10010178.10010187</concept_id>
+       <concept_desc>Computing methodologies~Natural language processing</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010147.10010257.10010282</concept_id>
+       <concept_desc>Computing methodologies~Language resources</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10002951.10003317.10003331</concept_id>
+       <concept_desc>Information systems~Evaluation of retrieval results</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Natural language processing}
+\ccsdesc[300]{Computing methodologies~Language resources}
+\ccsdesc[300]{Information systems~Evaluation of retrieval results}
+
+\maketitle
 
 % ---------------------------------------------------------------
 \section{Introduction}
@@ -356,7 +401,7 @@ Section~\ref{sec:taxonomy}.}
 \label{tab:differentiation}
 \centering
 \footnotesize
-\begin{tabular}{p{3.0cm} p{1.5cm} p{2.0cm} p{0.6cm} p{0.6cm} p{0.6cm} p{0.6cm} p{0.6cm} p{0.6cm} p{0.6cm}}
+\begin{tabular}{p{2.6cm} p{1.4cm} p{1.9cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm}}
 \toprule
 \textbf{Survey} & \textbf{Primary scope} & \textbf{Theoretical framing} &
 \textbf{D1} & \textbf{D2} & \textbf{D3} & \textbf{D4} & \textbf{D5} &
@@ -867,7 +912,7 @@ Section~\ref{subsec:cooccurrence}.}
 \label{tab:taxonomy}
 \centering
 \footnotesize
-\begin{tabular}{p{2.0cm} p{3.0cm} p{0.7cm} p{4.6cm} p{4.0cm}}
+\begin{tabular}{p{1.8cm} p{2.7cm} p{0.6cm} p{3.8cm} p{3.4cm}}
 \toprule
 \textbf{Dimension} & \textbf{Subcategories} & \textbf{Axis} &
 \textbf{What it captures} & \textbf{Representative example} \\
@@ -919,6 +964,7 @@ WildBench: contamination-resistant dynamic benchmark~\cite{wildbench2024} \\
 
 \begin{figure*}[!t]
 \centering
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[
   font=\small,
   axis/.style={->, thick, gray!70!black, line width=0.8pt},
@@ -978,7 +1024,8 @@ WildBench: contamination-resistant dynamic benchmark~\cite{wildbench2024} \\
 \draw[->, d3col!70, line width=0.5pt, dashed] (D6.south east) -- (B.north west);
 \draw[->, d5col!70, line width=0.5pt, dashed] (D2.east) -- (C.south west);
 
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{Seven-dimensional taxonomy of prompt engineering evaluation
 frameworks positioned on the two underlying tensions introduced in
 Section~\ref{subsec:tensions}. The horizontal axis is the validity /
@@ -1213,10 +1260,11 @@ are reported, but per-prompt sensitivity bounds are not).
 D7\,=\,Judge-version-pinned (GPT-4 snapshot is identified) but not
 contamination-checked.
 
-The compact notation
-D1\,=\,Benchmark\,/\,D2\,=\,Reasoning\,/\,D3\,=\,Task-specific\,/\,D4\,=\,Automated\,/\,D5\,=\,Cross-model\,/\,D6\,=\,Single-prompt\,/\,D7\,=\,Artifact-released
-can be embedded directly in a citing paper's methodology section to
-describe its evaluation configuration relative to this taxonomy.
+The compact notation D1\,=\,Benchmark / D2\,=\,Reasoning /
+D3\,=\,Task-specific / D4\,=\,Automated / D5\,=\,Cross-model /
+D6\,=\,Single-prompt / D7\,=\,Artifact-released can be embedded
+directly in a citing paper's methodology section to describe its
+evaluation configuration relative to this taxonomy.
 
 \subsection{Designing a New Evaluation}
 \label{subsec:design}
@@ -1625,7 +1673,7 @@ Figure~\ref{fig:prisma} shows the complete screening flowchart.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{prisma_flowchart}
+\includegraphics[width=0.85\linewidth,height=0.7\textheight,keepaspectratio]{prisma_flowchart}
 \caption{PRISMA 2020 flowchart showing the paper screening and selection
 process. Records retrieved from arXiv, ACM Digital Library, IEEE Xplore,
 Semantic Scholar, Scopus, and Web of Science. An additional 22 papers
@@ -1968,7 +2016,7 @@ worth highlighting in the discussion
 
 \iffalse
 \clearpage
-\onecolumn
+% \onecolumn (removed for acmsmall)
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.10}
 \setlength{\LTleft}{0pt}
@@ -2185,7 +2233,7 @@ worth highlighting in the discussion
 100 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \end{longtable}
 }
-\twocolumn
+% \twocolumn (removed for acmsmall)
 \fi
 
 \subsection{Distribution across Evaluation Method (Dimension 1)}
@@ -3048,7 +3096,7 @@ Appendix~\ref{app:fulltable}. Writing -- Review \& Editing --
 reviewed and edited all manuscript sections, with particular focus
 on Sections~\ref{sec:discussion} and~\ref{sec:conclusion}.
 
-\bibliographystyle{IEEEtran}
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 
 % ---------------------------------------------------------------
@@ -3197,8 +3245,7 @@ SB~=~Sensitivity-bounded; AI~=~Artifact-incomplete;
 AR~=~Artifact-released; CC~=~Contamination-checked;
 JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 
-\clearpage
-\onecolumn
+\begin{landscape}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.10}
 
@@ -3213,8 +3260,8 @@ JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 \cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
 \cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
 \cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
-\textbf{D6 Robust.} &
-\textbf{D7 Reprod.} \\
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Robust.}} &
+\cellcolor{d7col}\textcolor{white}{\textbf{D7 Reprod.}} \\
 \midrule
 \endfirsthead
 \multicolumn{8}{l}{\textit{Table~\ref{tab:fulltable} (continued)}}\\
@@ -3225,8 +3272,8 @@ JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 \cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
 \cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
 \cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
-\textbf{D6 Robust.} &
-\textbf{D7 Reprod.} \\
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Robust.}} &
+\cellcolor{d7col}\textcolor{white}{\textbf{D7 Reprod.}} \\
 \midrule
 \endhead
 \midrule \multicolumn{8}{r}{\textit{Continued on next page}}\\ \endfoot
@@ -3271,8 +3318,7 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 
 \end{longtable}
 }
-
-\twocolumn
+\end{landscape}
 
 % ---------------------------------------------------------------
 \section{Comprehensive Per-Paper Mapping (111 Papers, All Seven Dimensions)}
@@ -3298,13 +3344,12 @@ JP (Judge-version-pinned), NR (Not reported); combined codes such
 as ``CC+AR'' or ``JP+AR'' indicate that both properties are
 satisfied.
 
-\clearpage
-\onecolumn
+\begin{landscape}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.10}
 \setlength{\LTleft}{0pt}
 \setlength{\LTright}{0pt}
-\setlength{\LTcapwidth}{\textwidth}
+\setlength{\LTcapwidth}{\linewidth}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -3318,7 +3363,7 @@ satisfied.
 \cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
 \cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto.}} &
 \cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
-\textbf{D6 Rob.} & \textbf{D7 Repro.} \\
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Rob.}} & \cellcolor{d7col}\textcolor{white}{\textbf{D7 Repro.}} \\
 \midrule
 \multicolumn{10}{l}{\textit{Core Prompting Technique Papers}} \\
 \midrule
@@ -3332,7 +3377,7 @@ satisfied.
 \cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
 \cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto.}} &
 \cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
-\textbf{D6 Rob.} & \textbf{D7 Repro.} \\
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Rob.}} & \cellcolor{d7col}\textcolor{white}{\textbf{D7 Repro.}} \\
 \midrule
 \endhead
 
@@ -3537,7 +3582,6 @@ satisfied.
 111 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
 \end{longtable}
 }
-
-\twocolumn
+\end{landscape}
 
 \end{document}
