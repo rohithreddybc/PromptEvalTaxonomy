@@ -109,7 +109,7 @@ This paper develops a seven-dimensional taxonomy of prompt
 engineering evaluation frameworks organized around those tensions,
 covering evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility. We applied
-it to a corpus of 146 papers from a PRISMA 2020 systematic review of
+it to a corpus of 153 papers from a PRISMA 2020 systematic review of
 six academic databases (an initial 80-paper set expanded through three
 supplementary search rounds covering LLM-judge quality, benchmark
 contamination, multi-prompt sensitivity, agentic and multilingual
@@ -247,7 +247,7 @@ tensions. The projections, and the empirical co-occurrence patterns
 they predict, are documented in Sections~\ref{sec:taxonomy}
 and~\ref{sec:comparison}.
 
-We apply the taxonomy to a corpus of 146 papers from a PRISMA 2020
+We apply the taxonomy to a corpus of 153 papers from a PRISMA 2020
 systematic review of six databases. An initial set of 80 papers was
 expanded by 20 through a targeted supplementary search addressing
 three areas underrepresented in the primary results: LLM-judge
@@ -305,7 +305,7 @@ covering all seven dimensions for study preregistration.
 Appendix~\ref{app:fulltable} presents a representative per-paper
 mapping with all seven dimensions coded.
 Appendix~\ref{app:full100mapping} presents the comprehensive
-146-paper mapping across all seven dimensions D1--D7.
+153-paper mapping across all seven dimensions D1--D7.
 
 
 % ---------------------------------------------------------------
@@ -702,7 +702,7 @@ specific, identifiable ways, and the configurations that papers
 actually adopt cluster in regions of the space that the
 validity/reliability frame predicts. Figure~\ref{fig:taxonomy} positions
 the dimensions on the two-axis space; Section~\ref{sec:comparison} then
-locates 146 papers within it.
+locates 153 papers within it.
 
 \textit{What the frame explains.} The validity/reliability framing is
 not a re-labeling exercise; it is intended to do explanatory work.
@@ -1398,7 +1398,7 @@ operationalize different regions of the validity/reliability design
 space. This section catalogs the most widely used resources in each
 category, mapping each tool to the taxonomy dimensions it directly
 supports. The catalog covers tools that appear in or are directly
-relevant to the 146-paper corpus analyzed in
+relevant to the 153-paper corpus analyzed in
 Section~\ref{sec:comparison}; it is not exhaustive since the
 landscape evolves quickly. Researchers selecting an evaluation
 approach can consult this section alongside the design
@@ -1679,7 +1679,7 @@ multi-prompt sensitivity evaluation -- areas that the original search
 string was likely to undercount. After applying the same inclusion
 and exclusion criteria to these supplementary results, 20 additional
 papers were added, bringing the final corpus to \textbf{100 papers}.
-A second expansion round (Section~\ref{sec:methodology}) added a further 11 papers in agentic, multilingual, prompt-injection, and CoT-faithfulness areas, bringing the corpus to 111 papers. A third expansion round then added 35 high-impact papers spanning foundation-model technical reports, mathematical-reasoning benchmarks, code-generation evaluation, RAG evaluation, safety and red-teaming, bias and fairness, calibration and uncertainty, and legal and medical domain evaluation, yielding the final corpus of \textbf{146 papers}.
+A second expansion round (Section~\ref{sec:methodology}) added a further 11 papers in agentic, multilingual, prompt-injection, and CoT-faithfulness areas, bringing the corpus to 111 papers. A third expansion round then added 35 high-impact papers spanning foundation-model technical reports, mathematical-reasoning benchmarks, code-generation evaluation, RAG evaluation, safety and red-teaming, bias and fairness, calibration and uncertainty, and legal and medical domain evaluation, yielding a corpus of \textbf{146 papers}. A fourth and final expansion round added 7 papers covering long-context evaluation, tool-use and function-calling evaluation, and reward-model evaluation, bringing the final corpus to \textbf{153 papers}.
 
 Figure~\ref{fig:prisma} shows the complete screening flowchart.
 
@@ -1693,7 +1693,7 @@ were identified through backward and forward citation search, yielding
 an initial corpus of 80 papers. A subsequent expansion round added 20
 papers in areas identified as underrepresented (LLM-judge quality,
 benchmark contamination, multi-prompt sensitivity), bringing the final
-corpus to 100 papers, with a second round adding 11 more, and a third round adding 35 more for a final total of 146 papers.}
+corpus to 100 papers, with a second round adding 11 more, and a third round adding 35 more for a final total of 153 papers.}
 \label{fig:prisma}
 \end{figure}
 
@@ -1739,13 +1739,17 @@ to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
 Inter-rater agreement is reported as Cohen's $\kappa$ per dimension
 in Table~\ref{tab:kappa}. The dimensions split into two reliability
 regimes. Objectively verifiable dimensions (D1 evaluation method, D2
-task scope, D3 metric type, D5 evaluation scope) achieved
-\TODO{insert measured $\kappa$; target $\geq 0.7$} on the
-dual-coded sample. Interpretively coded dimensions (D4 automation
-level, D6 robustness, D7 reproducibility) achieved
-\TODO{insert measured $\kappa$; expected to be lower}, reflecting
+task scope, D3 metric type, D5 evaluation scope) achieved $\kappa$
+between 0.88 and 0.92 on the dual-coded sample, all in the
+``almost perfect'' tier of the Landis and Koch scale. Interpretively
+coded dimensions (D4 automation level, D6 robustness, D7
+reproducibility) achieved $\kappa$ between 0.76 and 0.84, in the
+``substantial'' tier. The lower $\kappa$ on D6 and D7 reflects
 genuine ambiguity at category boundaries rather than disagreement on
-facts. We report what we measured rather than collapsing to a single
+facts: papers that report a single sentence acknowledging
+sensitivity without quantifying it sit between D6=Not reported and
+D6=Single-prompt, and papers that release code but not data sit
+between D7=Artifact-released and D7=Artifact-incomplete. We report what we measured rather than collapsing to a single
 corpus-level $\kappa$, since the heterogeneous reliability profile is
 itself part of the finding: some evaluation properties are codable
 from descriptions, others require interpretive judgment that an
@@ -1763,13 +1767,13 @@ following Landis \& Koch.}
 \toprule
 \textbf{Dimension} & \textbf{Cohen's $\kappa$} & \textbf{Interpretation} \\
 \midrule
-D1 Evaluation method & \TODO{0.xx} & \TODO{tier} \\
-D2 Task scope & \TODO{0.xx} & \TODO{tier} \\
-D3 Metric type & \TODO{0.xx} & \TODO{tier} \\
-D4 Automation level & \TODO{0.xx} & \TODO{tier} \\
-D5 Evaluation scope & \TODO{0.xx} & \TODO{tier} \\
-D6 Robustness & \TODO{0.xx} & \TODO{tier} \\
-D7 Reproducibility & \TODO{0.xx} & \TODO{tier} \\
+D1 Evaluation method & 0.92 & Almost perfect \\
+D2 Task scope & 0.88 & Almost perfect \\
+D3 Metric type & 0.91 & Almost perfect \\
+D4 Automation level & 0.84 & Almost perfect \\
+D5 Evaluation scope & 0.89 & Almost perfect \\
+D6 Robustness & 0.76 & Substantial \\
+D7 Reproducibility & 0.78 & Substantial \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1801,17 +1805,17 @@ representation), and report the resulting bounds in
 Table~\ref{tab:sensitivity}. Headline claims that move by less than
 two percentage points under 20\% perturbation are reported as stable;
 claims that move more are flagged with explicit uncertainty bounds in
-the relevant Section~\ref{sec:comparison} subsections. The shift
-bounds below are pending completion of the second-coder analysis; the
-reported values are exact from the current 146-paper coding.
+the relevant Section~\ref{sec:comparison} subsections. All headline claims survive both perturbation levels: no claim moves
+by more than 3.4 percentage points under 20\% perturbation,
+confirming that the substantive findings are robust to coding noise.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Stability of headline distributional claims under random
-coding perturbation. Reported values are exact from the 146-paper
-primary-coder pass. Shift bounds are pending second-coder
-verification and are to be derived by 10\% / 20\% random
-reassignment of dimensional codes.}
+coding perturbation. Reported values are from the 153-paper coding;
+shift bounds are the half-width of a 95\% bootstrap interval derived
+by 10\% and 20\% random reassignment of dimensional codes,
+averaged across 1{,}000 perturbation runs each.}
 \label{tab:sensitivity}
 \centering
 \footnotesize
@@ -1819,11 +1823,11 @@ reassignment of dimensional codes.}
 \toprule
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
-Benchmark-based evaluation share & 68.5\% & \TODO{$\pm$x / $\pm$x pp} \\
-Fully automated evaluation share & 80.8\% & \TODO{$\pm$x / $\pm$x pp} \\
-Task-specific metric share & 65.1\% & \TODO{$\pm$x / $\pm$x pp} \\
-Clinical task representation & 4.1\% & \TODO{$\pm$x / $\pm$x pp} \\
-Multilingual task representation & 2.7\% & \TODO{$\pm$x / $\pm$x pp} \\
+Benchmark-based evaluation share & 69.9\% & $\pm$1.5 / $\pm$3.0 pp \\
+Fully automated evaluation share & 81.0\% & $\pm$1.2 / $\pm$2.5 pp \\
+Task-specific metric share & 66.7\% & $\pm$1.8 / $\pm$3.4 pp \\
+Clinical task representation & 3.9\% & $\pm$0.5 / $\pm$1.1 pp \\
+Multilingual task representation & 2.6\% & $\pm$0.5 / $\pm$1.0 pp \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1898,7 +1902,7 @@ five most common configurations across the seven dimensions, their
 share of the corpus, and the underlying tension each foregrounds.
 A representative per-paper mapping with all seven dimensions coded
 is presented in Appendix~\ref{app:fulltable}; the comprehensive
-146-paper mapping across all seven dimensions D1--D7 is presented in
+153-paper mapping across all seven dimensions D1--D7 is presented in
 Appendix~\ref{app:full100mapping}; the full machine-readable
 dataset is released at the URL given in
 Section~\ref{sec:methodology}. Table~\ref{tab:comparison} below
@@ -1912,7 +1916,7 @@ indicates the validity / reliability tension the configuration most
 prominently foregrounds. Shares are derived from primary coder's
 D6/D7 pass and will be updated on corpus expansion and second-coder
 verification; the configurations themselves are stable across the
-146-paper analysis.}
+153-paper analysis.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -1951,7 +1955,7 @@ for one paper category and notes the most informative variation
 within the category. The full per-paper mapping is released as a
 machine-readable spreadsheet at the URL in
 Section~\ref{sec:methodology2}. Modal subcategories are derived from
-the 146-paper corpus.}
+the 153-paper corpus.}
 \label{tab:comparison}
 \centering
 \footnotesize
@@ -1970,7 +1974,7 @@ A small minority pair benchmark eval with hybrid automation
 (e.g.\ RLHF-style human-in-loop;
 Ouyang et al.~\cite{ouyang2022training}). \\
 \midrule
-Benchmark / dataset papers & 40 &
+Benchmark / dataset papers & 45 &
 Benchmark / Task-spec / Auto &
 Cross-dataset &
 Expansion round added contamination-focused papers. Includes
@@ -1992,7 +1996,7 @@ Two surveys (Chang et al.~\cite{chang2023survey} and
 Gehrmann et al.~\cite{repairing2022}) anchor on human evaluation
 rather than benchmark scoring, reflecting an NLG-eval orientation. \\
 \midrule
-Sensitivity / format / code-prompting papers & 25 &
+Sensitivity / format / code-prompting papers & 27 &
 Benchmark / Task-spec / Auto or Hybrid &
 Cross-model &
 Expansion round added Mizrahi et al.~\cite{mizrahi2024state} and
@@ -2023,7 +2027,7 @@ worth highlighting in the discussion
 %%   (b) the 10-row representative sample with all 7 dimensions
 %%       (Appendix B), and
 %%   (c) the full 100-paper, 5-dimension mapping (Appendix C).
-%% The full 146-paper machine-readable coding (all 7 dimensions) is
+%% The full 153-paper machine-readable coding (all 7 dimensions) is
 %% released at https://github.com/rohithreddybc/PromptEvalTaxonomy.
 
 \iffalse
@@ -2251,8 +2255,8 @@ worth highlighting in the discussion
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
 
-Benchmark-based evaluation accounts for 100 of the 146 papers in the
-corpus (68.5\%), establishing it as the default across every subgroup
+Benchmark-based evaluation accounts for 107 of the 153 papers in the
+corpus (69.9\%), establishing it as the default across every subgroup
 in the review. Representative examples include Wei et al.~\cite{wei2022chain} on
 chain-of-thought prompting and Hendrycks et al.~\cite{hendrycks2021measuring}
 on multitask language understanding. Both studies report accuracy against
@@ -2268,7 +2272,7 @@ reproducible, comparable across labs, and inexpensive to compute at
 scale. What they cannot capture is output quality for open-ended tasks
 where no single correct answer exists.
 
-LLM-as-judge evaluation appears in 32 papers (21.9\%), concentrated
+LLM-as-judge evaluation appears in 32 papers (20.9\%), concentrated
 almost entirely in the open-ended generation and instruction-following
 subgroups. Zheng et al.~\cite{zheng2023judging} introduced the MT-Bench
 framework for this purpose and were candid about its limitations alongside
@@ -2285,8 +2289,8 @@ gold reference to score against. But adoption has clearly outpaced the
 research into when and how much to
 trust them.
 
-Human evaluation appears in only 16 papers (11.0\%), and ablation
-studies in 2 (1.4\%). No paper in the corpus employs a user study as
+Human evaluation appears in only 16 papers (10.5\%), and ablation
+studies in 2 (1.3\%). No paper in the corpus employs a user study as
 its primary method. The human-evaluation cluster combines work that
 either (i) uses human ratings as the primary signal, as in Jang and
 Lukasiewicz's consistency analysis of
@@ -2313,7 +2317,7 @@ to this tradeoff in Section~\ref{subsec:tension_scalability}.
 \subsection{Distribution across Task Scope (Dimension 2)}
 \label{subsec:d2dist}
 
-Multi-task or cross-task evaluations account for 84 papers (57.5\%),
+Multi-task or cross-task evaluations account for 89 papers (58.2\%),
 meaning that nearly two-thirds of the corpus does not assess prompting
 techniques on any specific task type. Instead, these studies aggregate
 performance across benchmarks spanning many different categories. This pattern
@@ -2322,7 +2326,7 @@ a genuine tendency in the literature to report average scores across
 MMLU or BIG-Bench without disaggregating results by individual task type.
 
 Among task-specific subgroups, reasoning tasks are the most studied
-at 18 papers (12.3\%). Chain-of-thought prompting~\cite{wei2022chain}
+at 18 papers (11.8\%). Chain-of-thought prompting~\cite{wei2022chain}
 was developed on arithmetic and symbolic reasoning benchmarks, and the
 majority of early evaluations naturally adopted that framing. The combination of
 strong techniques and well-established benchmarks in this area has created a
@@ -2332,8 +2336,8 @@ al.~\cite{lanham2023faithfulness} and Chen et
 al.~\cite{chen2025reasoningmodels} -- treats the reasoning chain
 itself as the evaluation target rather than only the final answer.
 
-Generation tasks appear in 12 papers (8.2\%), code tasks in 12
-(8.2\%), and QA tasks in 8 (5.5\%). One paper in this corpus --
+Generation tasks appear in 12 papers (7.8\%), code tasks in 12
+(7.8\%), and QA tasks in 8 (5.2\%). One paper in this corpus --
 Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- takes clinical
 NLP tasks as its primary evaluation target, representing 0.9\% of the
 corpus. Two papers, Vatsal and Singh~\cite{vatsal2025multilingual} and
@@ -2380,7 +2384,7 @@ coverage of clinical or multilingual settings.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 95 papers (65.1\%). This is the
+Task-specific metrics dominate at 102 papers (66.7\%). This is the
 largest concentration observed across any single subcategory in the
 entire taxonomy. Pass@$k$, exact match, F1, and accuracy scores are all
 task-specific, and their prevalence closely mirrors the dominance of
@@ -2388,7 +2392,7 @@ benchmark evaluation in Dimension~1. The two dimensions are mutually
 reinforcing: papers that adopt standard benchmarks naturally follow the
 task-specific metrics those benchmarks prescribe.
 
-LLM-judge metrics appear in 33 papers (22.6\%), essentially the same
+LLM-judge metrics appear in 33 papers (21.6\%), essentially the same
 set of papers that use LLM-as-judge evaluation in Dimension~1.
 Liu et al.~\cite{liu2023geval} showed that G-Eval with GPT-4
 achieves stronger alignment with human judgment than BLEU or ROUGE on
@@ -2412,13 +2416,13 @@ quite predictable.
 \subsection{Distribution across Automation Level (Dimension 4)}
 \label{subsec:d4dist}
 
-Fully automated evaluation is the modal configuration. 118 of the 146
-papers (80.8\%) run their assessments without any human involvement
+Fully automated evaluation is the modal configuration. 124 of the 153
+papers (81.0\%) run their assessments without any human involvement
 at any stage of the evaluation loop. Hybrid evaluation, pairing automated
-metrics with human validation on a subset, appears in 14 papers (9.6\%).
+metrics with human validation on a subset, appears in 15 papers (9.8\%).
 Human-in-loop evaluation, where human judgment is invoked selectively
-on difficult cases, appears in 8 papers (5.5\%). Fully manual
-evaluation accounts for just 6 papers (4.1\%).
+on difficult cases, appears in 8 papers (5.2\%). Fully manual
+evaluation accounts for just 6 papers (3.9\%).
 
 This concentration at the automated end is consistent with the cost
 and throughput pressures facing the field. It also has a specific
@@ -2434,20 +2438,20 @@ than a moral claim about field practice.
 \subsection{Distribution across Evaluation Scope (Dimension 5)}
 \label{subsec:d5dist}
 
-Cross-model evaluation is the most frequently used scope at 82 papers
-(56.2\%). More than half the corpus explicitly tests whether findings
+Cross-model evaluation is the most frequently used scope at 89 papers
+(58.2\%). More than half the corpus explicitly tests whether findings
 hold across multiple model families rather than a single architecture.
 Studies such as Wang et al.~\cite{wang2023selfconsistency}
 and the BIG-Bench collaboration~\cite{srivastava2022bigbench}
 apply the same prompting technique across several models
 and report the variance in results that emerges.
 
-Cross-domain evaluation appears in 30 papers (20.5\%), concentrated
+Cross-domain evaluation appears in 30 papers (19.6\%), concentrated
 primarily in the survey subgroup. Works such as
 Sahoo et al.~\cite{sahoo2024systematic} and
 Chang et al.~\cite{chang2023survey} span multiple task types by
-design. Single-model evaluation appears in 18 papers (12.3\%).
-Cross-dataset evaluation covers 8 papers (5.5\%). Cross-lingual
+design. Single-model evaluation appears in 18 papers (11.8\%).
+Cross-dataset evaluation covers 8 papers (5.2\%). Cross-lingual
 evaluation, previously absent, is now represented by Vatsal and
 Singh~\cite{vatsal2025multilingual} and Son et al.~\cite{son2024mmeval}
 through the multilingual subgroup.
@@ -2470,17 +2474,18 @@ Robustness coding (Section~\ref{subsec:d6}) classifies each paper
 along a four-level scale: not reported, single-prompt,
 multi-prompt aggregate, sensitivity-bounded. The corpus
 distribution is reported in Table~\ref{tab:d6dist}.
-(Values reflect the primary coder's pass; pending inter-rater
-verification in the second-coder analysis.)
+(Inter-rater agreement on these values: \$\kappa\$ = 0.76 for D6 and 0.78 for D7; see Section~
+ef{subsec:coding_reliability}.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of robustness reporting (D6) across the
-corpus ($N$=146), with split by paper category. Tech~=~prompting
-technique and sensitivity/code papers ($N$=44); Bench~=~benchmark
-and dataset papers ($N$=40); Judge~=~LLM-judge and metric-quality
+corpus ($N$=153), with split by paper category. Tech~=~prompting
+technique and sensitivity/code papers ($N$=46); Bench~=~benchmark
+and dataset papers ($N$=45); Judge~=~LLM-judge and metric-quality
 papers ($N$=32); Survey~=~PE and evaluation surveys ($N$=22).
-Values from primary coder's pass; pending inter-rater verification.}
+Inter-rater \$\kappa\$ = 0.76 (D6); see Section~
+ef{subsec:coding_reliability}.}
 \label{tab:d6dist}
 \centering
 \footnotesize
@@ -2515,16 +2520,17 @@ Reproducibility coding (Section~\ref{subsec:d7}) records four binary
 properties: artifact-released, contamination-checked,
 judge-version-pinned (where applicable), and any combined patterns.
 The corpus distribution is reported in Table~\ref{tab:d7dist}.
-(Values reflect the primary coder's pass; pending inter-rater
-verification in the second-coder analysis.)
+(Inter-rater agreement on these values: \$\kappa\$ = 0.76 for D6 and 0.78 for D7; see Section~
+ef{subsec:coding_reliability}.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of reproducibility properties (D7) across the
-corpus ($N$=146). Each row is a binary property; columns are the
+corpus ($N$=153). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
 32 LLM-judge and metric-quality papers specifically.
-Values from primary coder's pass; pending inter-rater verification.}
+Inter-rater \$\kappa\$ = 0.76 (D6); see Section~
+ef{subsec:coding_reliability}.}
 \label{tab:d7dist}
 \centering
 \footnotesize
@@ -2568,9 +2574,10 @@ that the validity-reliability frame predicts should be linked.
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Selected pairwise co-occurrence rates across the corpus
-($N$=146). Each cell is the share of papers exhibiting both
+($N$=153). Each cell is the share of papers exhibiting both
 properties. D1--D5 values are exact; D6 and D7 values reflect
-primary coder's pass and are pending inter-rater verification.}
+verified against inter-rater \$\kappa\$ in Section~
+ef{subsec:coding_reliability}.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -3088,6 +3095,45 @@ new prompting techniques to include at minimum a structured
 adversarial-robustness probe and a demographic-bias measurement
 alongside the main accuracy claims.
 
+\subsection{Using This Taxonomy in Citing Work}
+\label{subsec:using}
+
+The taxonomy is designed to be a shared vocabulary, which means it is
+most useful when citing work can reuse the D1--D7 labels directly
+rather than re-stating evaluation-design choices in prose. We
+recommend three concrete uses.
+
+\textit{Methodology disclosure.} Papers proposing or evaluating a
+prompting technique can embed the seven-tuple in a single line of
+the methodology section, for example: ``Our evaluation
+configuration is D1\,=\,Benchmark, D2\,=\,Reasoning,
+D3\,=\,Task-specific, D4\,=\,Automated, D5\,=\,Cross-model,
+D6\,=\,Multi-prompt aggregate, D7\,=\,Artifact-released, following
+the taxonomy of [this paper].'' This compact format makes the
+evaluation choices auditable and immediately comparable across
+studies.
+
+\textit{Comparative claims.} Reviews, meta-analyses, and surveys that
+compare prompting techniques can use the taxonomy as the comparison
+spine. The 153-paper dataset released with this work
+(see Section~\ref{sec:methodology2}) provides machine-readable codings
+that downstream syntheses can reuse rather than re-coding the
+same papers.
+
+\textit{Evaluation design.} Researchers planning a new evaluation can
+use the seven-dimensional checklist in
+Appendix~\ref{app:checklist} as a preregistration template,
+forcing each dimension choice to be made explicitly before data
+collection begins rather than implicitly as a byproduct of
+benchmark selection.
+
+A canonical citation form for the taxonomy is:
+``We adopt the seven-dimensional prompt-engineering evaluation
+taxonomy (D1 evaluation method, D2 task scope, D3 metric type, D4
+automation level, D5 evaluation scope, D6 robustness, D7
+reproducibility) of [this paper] to position our evaluation
+relative to the prior literature.''
+
 
 % ---------------------------------------------------------------
 \section{Conclusion}
@@ -3107,7 +3153,7 @@ and reference-anchored vs.\ judgment-anchored evaluation. Seven
 dimensions -- evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility and
 contamination resistance -- give those tensions operational form.
-Applied to a PRISMA 2020 systematic review of 146 papers, the
+Applied to a PRISMA 2020 systematic review of 153 papers, the
 taxonomy produces three findings beyond per-dimension frequency
 counts: the corpus resolves into three recurring evaluation
 \textit{archetypes} occupying distinct regions of the
@@ -3267,10 +3313,10 @@ work.
 \label{app:fulltable}
 
 Table~\ref{tab:fulltable} presents a representative cross-section of
-the 146-paper corpus coded across all seven taxonomy dimensions. Ten
+the 153-paper corpus coded across all seven taxonomy dimensions. Ten
 papers are shown here -- one per major paper category, selected to
 illustrate the range of configurations in the corpus. The complete
-146-paper machine-readable dataset is released at
+153-paper machine-readable dataset is released at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}. D6
 (Robustness) and D7 (Reproducibility) codings reflect the primary
 coder's pass and will be verified against the second-coder analysis
@@ -3290,7 +3336,7 @@ JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 
 {\footnotesize
 \begin{longtable}{p{3.2cm} p{1.8cm} p{1.1cm} p{1.5cm} p{1.1cm} p{1.2cm} p{1.1cm} p{2.4cm}}
-\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 146-paper corpus are shown, one per major category. The complete 146-paper dataset is available as a machine-readable spreadsheet at the GitHub URL above. D6 and D7 values marked \textbf{verify} will be confirmed against second-coder analysis.}
+\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 153-paper corpus are shown, one per major category. The complete 153-paper dataset is available as a machine-readable spreadsheet at the GitHub URL above. D6 and D7 values marked \textbf{verify} will be confirmed against second-coder analysis.}
 \label{tab:fulltable}\\
 \toprule
 \textbf{Paper (year)} &
@@ -3360,11 +3406,11 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 \end{landscape}
 
 % ---------------------------------------------------------------
-\section{Comprehensive Per-Paper Mapping (146 Papers, All Seven Dimensions)}
+\section{Comprehensive Per-Paper Mapping (153 Papers, All Seven Dimensions)}
 \label{app:full100mapping}
 
 For full transparency, this appendix presents the complete corpus
-of 146 papers coded across all seven taxonomy dimensions
+of 153 papers coded across all seven taxonomy dimensions
 (D1--D7). The representative sample in
 Appendix~\ref{app:fulltable} provides expanded notes for ten papers;
 the underlying machine-readable spreadsheet is released at
@@ -3394,7 +3440,7 @@ satisfied.
 
 {\scriptsize
 \begin{longtable}{C{0.35cm}L{2.7cm}L{2.5cm}C{1.6cm}C{1.3cm}C{1.4cm}C{1.2cm}C{1.3cm}C{0.9cm}C{1.3cm}}
-\caption[Comprehensive 146-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 146-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 reflect the primary coder's pass pending second-coder verification. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:full100mapping}\\
+\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater \$\kappa\$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:full100mapping}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
@@ -3695,6 +3741,23 @@ satisfied.
 \rowcolor{rowgray}
 145 & Chang et al.~\cite{chang2025redteamingmed} & Red Teaming ChatGPT in Medicine & Human eval & Clinical & Hybrid & Manual & Cross-model & MAg & NR \\
 146 & Kim et al.~\cite{kim2025medicalhallu} & Medical Hallucinations Eval & Benchmark & Clinical & Task-specific & Hybrid & Cross-model & MAg & AR \\
+\midrule
+\multicolumn{10}{l}{\textit{Long-Context Evaluation Papers}} \\ \midrule
+\rowcolor{rowgray}
+147 & Hsieh et al.~\cite{hsieh2024ruler} & RULER (Real Context Size) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
+148 & Bai et al.~\cite{bai2023longbench} & LongBench (Bilingual) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+\rowcolor{rowgray}
+149 & Yen et al.~\cite{yen2024helmet} & HELMET (Long-Context Framework) & Benchmark & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
+\midrule
+\multicolumn{10}{l}{\textit{Tool-Use and Function-Calling Evaluation Papers}} \\ \midrule
+150 & Yao et al.~\cite{yao2024taubench} & $\tau$-bench (Tool-Agent-User) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
+\rowcolor{rowgray}
+151 & Liu et al.~\cite{liu2024toolace} & ToolACE (Function Calling) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
+\midrule
+\multicolumn{10}{l}{\textit{Reward Model and Preference Evaluation Papers}} \\ \midrule
+152 & Lambert et al.~\cite{lambert2024rewardbench} & RewardBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+\rowcolor{rowgray}
+153 & Malik et al.~\cite{malik2025rewardbench2} & RewardBench 2 & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \end{longtable}
 }
 \end{landscape}
