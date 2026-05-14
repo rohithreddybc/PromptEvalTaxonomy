@@ -1466,3 +1466,327 @@
                    D3=LLM-judge, D4=Automated, D5=Cross-model,
                    D6=Multi-prompt aggr., D7=Artifact-released.}
 }
+
+%% ---------------------------------------------------------------
+%% Papers 112-146: Third Expansion Round (added 2026-05-14)
+%% Targeting foundation-model technical reports, reasoning benchmarks,
+%% code-generation eval, RAG eval, safety / red-teaming, bias and
+%% fairness, calibration / uncertainty, legal domain, and medical
+%% domain. All papers verified via Consensus academic search.
+%% ---------------------------------------------------------------
+
+%% --- Foundation-model technical reports ---
+
+@misc{achiam2023gpt4,
+  author        = {Achiam, Josh and Adler, Steven and Agarwal, Sandhini and Ahmad, Lama and Akkaya, Ilge and Aleman, Florencia Leoni and Almeida, Diogo and Altenschmidt, Janko and Altman, Sam and Anadkat, Shyamal and others},
+  title         = {{GPT-4} Technical Report},
+  year          = {2023},
+  eprint        = {2303.08774},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 112. OpenAI GPT-4 multimodal model. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-domain, D6=Single-prompt, D7=Not reported.}
+}
+
+@article{touvron2023llama,
+  author    = {Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timoth{\'e}e and Rozi{\`e}re, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and Rodriguez, Aurelien and Joulin, Armand and Grave, Edouard and Lample, Guillaume},
+  title     = {{LLaMA}: Open and Efficient Foundation Language Models},
+  journal   = {arXiv preprint arXiv:2302.13971},
+  year      = {2023},
+  codingnote = {Corpus paper 113. LLaMA family 7B-65B. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+@article{touvron2023llama2,
+  author    = {Touvron, Hugo and Martin, Louis and Stone, Kevin and Albert, Peter and Almahairi, Amjad and Babaei, Yasmine and Bashlykov, Nikolay and Batra, Soumya and Bhargava, Prajjwal and Bhosale, Shruti and others},
+  title     = {{Llama 2}: Open Foundation and Fine-Tuned Chat Models},
+  journal   = {arXiv preprint arXiv:2307.09288},
+  year      = {2023},
+  codingnote = {Corpus paper 114. Llama 2 7B-70B with RLHF. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Hybrid, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{hurst2024gpt4o,
+  author        = {Hurst, Aaron and Lerer, Adam and Goucher, Adam P. and Perelman, Adam and Ramesh, Aditya and Clark, Aidan and Ostrow, AJ and Welihinda, Akila and Hayes, Alan and Radford, Alec and others},
+  title         = {{GPT-4o} System Card},
+  year          = {2024},
+  eprint        = {2410.21276},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 115. Omni-modal GPT-4o. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Automated, D5=Cross-domain, D6=Single-prompt, D7=Not reported.}
+}
+
+@article{bubeck2023sparks,
+  author    = {Bubeck, S{\'{e}}bastien and Chandrasekaran, Varun and Eldan, Ronen and Gehrke, Johannes and Horvitz, Eric and Kamar, Ece and Lee, Peter and Lee, Yin Tat and Li, Yuanzhi and Lundberg, Scott and Nori, Harsha and Palangi, Hamid and Ribeiro, Marco Tulio and Zhang, Yi},
+  title     = {Sparks of Artificial General Intelligence: Early Experiments with {GPT-4}},
+  journal   = {arXiv preprint arXiv:2303.12712},
+  year      = {2023},
+  codingnote = {Corpus paper 116. Microsoft Research GPT-4 capability study. D1=Human eval, D2=Multi-task, D3=Hybrid, D4=Manual, D5=Cross-domain, D6=Single-prompt, D7=Not reported.}
+}
+
+%% --- Mathematical and reasoning benchmarks ---
+
+@article{cobbe2021gsm8k,
+  author    = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  title     = {Training Verifiers to Solve Math Word Problems},
+  journal   = {arXiv preprint arXiv:2110.14168},
+  year      = {2021},
+  codingnote = {Corpus paper 117. GSM8K grade-school math benchmark. D1=Benchmark, D2=Reasoning, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+@article{lin2021truthfulqa,
+  author    = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},
+  title     = {{TruthfulQA}: Measuring How Models Mimic Human Falsehoods},
+  journal   = {arXiv preprint arXiv:2109.07958},
+  year      = {2021},
+  codingnote = {Corpus paper 118. Truthfulness benchmark 817 questions. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Hybrid, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+@misc{mirzadeh2024gsmsymbolic,
+  author        = {Mirzadeh, Iman and Alizadeh, Keivan and Shahrokhi, Hooman and Tuzel, Oncel and Bengio, Samy and Farajtabar, Mehrdad},
+  title         = {{GSM-Symbolic}: Understanding the Limitations of Mathematical Reasoning in Large Language Models},
+  year          = {2024},
+  eprint        = {2410.05229},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  codingnote    = {Corpus paper 119. Apple math-reasoning robustness study. D1=Benchmark, D2=Reasoning, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Sensitivity-bounded, D7=Artifact-released.}
+}
+
+@article{shi2022mgsm,
+  author    = {Shi, Freda and Suzgun, Mirac and Freitag, Markus and Wang, Xuezhi and Srivats, Suraj and Vosoughi, Soroush and Chung, Hyung Won and Tay, Yi and Ruder, Sebastian and Zhou, Denny and Das, Dipanjan and Wei, Jason},
+  title     = {Language Models are Multilingual Chain-of-Thought Reasoners},
+  journal   = {arXiv preprint arXiv:2210.03057},
+  year      = {2022},
+  codingnote = {Corpus paper 120. MGSM benchmark across 10 languages. D1=Benchmark, D2=Multilingual, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+%% --- Code generation evaluation ---
+
+@misc{jimenez2023swebench,
+  author        = {Jimenez, Carlos E. and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik},
+  title         = {{SWE-bench}: Can Language Models Resolve Real-World {GitHub} Issues?},
+  year          = {2023},
+  eprint        = {2310.06770},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 121. 2294 real GitHub issues. D1=Benchmark, D2=Code, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+@article{liu2023evalplus,
+  author    = {Liu, Jiawei and Xia, Chunqiu Steven and Wang, Yuyao and Zhang, Lingming},
+  title     = {Is Your Code Generated by {ChatGPT} Really Correct? {R}igorous Evaluation of Large Language Models for Code Generation},
+  journal   = {arXiv preprint arXiv:2305.01210},
+  year      = {2023},
+  codingnote = {Corpus paper 122. EvalPlus and HumanEval+. D1=Benchmark, D2=Code, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{jain2024livecodebench,
+  author        = {Jain, Naman and Han, King and Gu, Alex and Li, Wen-Ding and Yan, Fanjia and Zhang, Tianjun and Wang, Sida and Solar-Lezama, Armando and Sen, Koushik and Stoica, Ion},
+  title         = {{LiveCodeBench}: Holistic and Contamination Free Evaluation of Large Language Models for Code},
+  year          = {2024},
+  eprint        = {2403.07974},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 123. Contamination-free code benchmark. D1=Benchmark, D2=Code, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Contamination-checked+Artifact-released.}
+}
+
+@article{roziere2023codellama,
+  author    = {Rozi{\`e}re, Baptiste and Gehring, Jonas and Gloeckle, Fabian and Sootla, Sten and Gat, Itai and Tan, Xiaoqing Ellen and Adi, Yossi and Liu, Jingyu and Remez, Tal and Rapin, J{\'e}r{\'e}my and others},
+  title     = {{Code Llama}: Open Foundation Models for Code},
+  journal   = {arXiv preprint arXiv:2308.12950},
+  year      = {2023},
+  codingnote = {Corpus paper 124. Code Llama 7B-70B. D1=Benchmark, D2=Code, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+%% --- RAG evaluation ---
+
+@article{saadfalcon2023ares,
+  author    = {Saad-Falcon, Jon and Khattab, Omar and Potts, Christopher and Zaharia, Matei},
+  title     = {{ARES}: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems},
+  journal   = {arXiv preprint arXiv:2311.09476},
+  year      = {2023},
+  codingnote = {Corpus paper 125. Automated RAG eval framework. D1=LLM-judge, D2=QA, D3=LLM-judge, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{yu2024ragsurvey,
+  author        = {Yu, Hao and Gan, Aoran and Zhang, Kai and Tong, Shiwei and Liu, Qi and Liu, Zhaofeng},
+  title         = {Evaluation of Retrieval-Augmented Generation: A Survey},
+  year          = {2024},
+  eprint        = {2405.07437},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 126. Auepora RAG evaluation framework survey. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Automated, D5=Cross-domain, D6=Not reported, D7=Not reported.}
+}
+
+@article{chen2023rgb,
+  author    = {Chen, Jiawei and Lin, Hongyu and Han, Xianpei and Sun, Le},
+  title     = {Benchmarking Large Language Models in Retrieval-Augmented Generation},
+  journal   = {arXiv preprint arXiv:2309.01431},
+  year      = {2023},
+  codingnote = {Corpus paper 127. RGB English and Chinese RAG benchmark. D1=Benchmark, D2=QA, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{xiong2024medrag,
+  author    = {Xiong, Guangzhi and Jin, Qiao and Lu, Zhiyong and Zhang, Aidong},
+  title     = {Benchmarking Retrieval-Augmented Generation for Medicine},
+  journal   = {arXiv preprint arXiv:2402.13178},
+  year      = {2024},
+  codingnote = {Corpus paper 128. MIRAGE and MedRAG medical RAG benchmark. D1=Benchmark, D2=Clinical, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{zhao2024aigcrag,
+  author    = {Zhao, Penghao and Zhang, Hailin and Yu, Qinhan and Wang, Zhengren and Geng, Yunteng and Fu, Fangcheng and Yang, Ling and Zhang, Wentao and Cui, Bin},
+  title     = {Retrieval-Augmented Generation for {AI}-Generated Content: A Survey},
+  journal   = {arXiv preprint arXiv:2402.19473},
+  year      = {2024},
+  codingnote = {Corpus paper 129. Comprehensive RAG-for-AIGC survey. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Automated, D5=Cross-domain, D6=Not reported, D7=Not reported.}
+}
+
+%% --- Safety, red-teaming, jailbreak ---
+
+@article{wei2023jailbroken,
+  author    = {Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob},
+  title     = {Jailbroken: How Does {LLM} Safety Training Fail?},
+  journal   = {arXiv preprint arXiv:2307.02483},
+  year      = {2023},
+  codingnote = {Corpus paper 130. Two failure modes of safety training. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{yu2023gptfuzzer,
+  author    = {Yu, Jiahao and Lin, Xingwei and Yu, Zheng and Xing, Xinyu},
+  title     = {{GPTFuzzer}: Red Teaming Large Language Models with Auto-Generated Jailbreak Prompts},
+  journal   = {arXiv preprint arXiv:2309.10253},
+  year      = {2023},
+  codingnote = {Corpus paper 131. Automated jailbreak fuzzing framework. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{bhardwaj2023redeval,
+  author    = {Bhardwaj, Rishabh and Poria, Soujanya},
+  title     = {Red-Teaming Large Language Models using Chain of Utterances for Safety-Alignment},
+  journal   = {arXiv preprint arXiv:2308.09662},
+  year      = {2023},
+  codingnote = {Corpus paper 132. RED-EVAL benchmark and Starling alignment. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{huang2023catastrophic,
+  author    = {Huang, Yangsibo and Gupta, Samyak and Xia, Mengzhou and Li, Kai and Chen, Danqi},
+  title     = {Catastrophic Jailbreak of Open-source {LLMs} via Exploiting Generation},
+  journal   = {arXiv preprint arXiv:2310.06987},
+  year      = {2023},
+  codingnote = {Corpus paper 133. Generation-strategy attack across 11 LLMs. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@misc{sharma2025constitutional,
+  author        = {Sharma, Mrinank and Tong, Meg and Mu, Jesse and Wei, Jerry and Kruthoff, Jorrit and Goodfriend, Scott and Ong, Euan and Peng, Alwin and Agarwal, Raj and Anil, Cem and others},
+  title         = {Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming},
+  year          = {2025},
+  eprint        = {2501.18837},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  codingnote    = {Corpus paper 134. Anthropic safeguards against universal jailbreaks. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Sensitivity-bounded, D7=Artifact-released.}
+}
+
+@article{yi2024jailbreaksurvey,
+  author    = {Yi, Sibo and Liu, Yule and Sun, Zhen and Cong, Tianshuo and He, Xinlei and Song, Jiaxing and Xu, Ke and Li, Qi},
+  title     = {Jailbreak Attacks and Defenses Against Large Language Models: A Survey},
+  journal   = {arXiv preprint arXiv:2407.04295},
+  year      = {2024},
+  codingnote = {Corpus paper 135. Comprehensive jailbreak attack and defense survey. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-domain, D6=Not reported, D7=Not reported.}
+}
+
+%% --- Bias and fairness ---
+
+@article{gallegos2023bias,
+  author    = {Gallegos, Isabel O. and Rossi, Ryan A. and Barrow, Joe and Tanjim, Md Mehrab and Kim, Sungchul and Dernoncourt, Franck and Yu, Tong and Zhang, Ruiyi and Ahmed, Nesreen K.},
+  title     = {Bias and Fairness in Large Language Models: A Survey},
+  journal   = {Computational Linguistics},
+  year      = {2024},
+  note      = {arXiv:2309.00770},
+  codingnote = {Corpus paper 136. Comprehensive bias and fairness survey. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Hybrid, D5=Cross-domain, D6=Not reported, D7=Not reported.}
+}
+
+@article{esiobu2023robbie,
+  author    = {Esiobu, David and Tan, Xiaoqing and Hosseini, Saghar and Ung, Megan and Zhang, Yuchen and Fernandes, Jude and Dwivedi-Yu, Jane and Presani, Eleonora and Williams, Adina and Smith, Eric Michael},
+  title     = {{ROBBIE}: Robust Bias Evaluation of Large Generative Language Models},
+  journal   = {arXiv preprint arXiv:2311.18140},
+  year      = {2023},
+  codingnote = {Corpus paper 137. AdvPromptSet and HolisticBiasR benchmarks. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+%% --- Calibration and uncertainty ---
+
+@article{xiong2023uncertainty,
+  author    = {Xiong, Miao and Hu, Zhiyuan and Lu, Xinyang and Li, Yifei and Fu, Jie and He, Junxian and Hooi, Bryan},
+  title     = {Can {LLMs} Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in {LLMs}},
+  journal   = {arXiv preprint arXiv:2306.13063},
+  year      = {2023},
+  codingnote = {Corpus paper 138. Confidence-elicitation systematic study. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{geng2023calibration,
+  author    = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},
+  title     = {A Survey of Confidence Estimation and Calibration in Large Language Models},
+  journal   = {arXiv preprint arXiv:2311.08298},
+  year      = {2023},
+  codingnote = {Corpus paper 139. Survey of LLM confidence estimation. D1=Benchmark, D2=Multi-task, D3=Hybrid, D4=Automated, D5=Cross-domain, D6=Not reported, D7=Not reported.}
+}
+
+@article{steyvers2024calibgap,
+  author    = {Steyvers, Mark and Tejeda, Heliodoro and Kumar, Aakriti and Belem, Catarina and Karny, Sheer and Hu, Xinyue and Mayer, Lukas W. and Smyth, Padhraic},
+  title     = {What Large Language Models Know and What People Think They Know},
+  journal   = {Nature Machine Intelligence},
+  year      = {2024},
+  doi       = {10.1038/s42256-024-00976-7},
+  codingnote = {Corpus paper 140. Calibration gap between LLMs and users. D1=Human eval, D2=Multi-task, D3=Hybrid, D4=Hybrid, D5=Cross-model, D6=Multi-prompt aggr., D7=Not reported.}
+}
+
+%% --- Legal domain ---
+
+@article{guha2023legalbench,
+  author    = {Guha, Neel and Nyarko, Julian and Ho, Daniel E. and R{\'e}, Christopher and Chilton, Adam and Narayana, Aditya and Chohlas-Wood, Alex and Peters, Austin and Waldon, Brandon and Rockmore, Daniel N. and Zambrano, Diego and Talisman, Dmitry and Hoque, Enam and Surani, Faiz and Fagan, Frank and Sarfaty, Galit and Dickinson, Gregory M. and Porat, Haggai and Hegland, Jason and others},
+  title     = {{LegalBench}: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models},
+  journal   = {arXiv preprint arXiv:2308.11462},
+  year      = {2023},
+  codingnote = {Corpus paper 141. 162 legal-reasoning tasks. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+@article{fei2023lawbench,
+  author    = {Fei, Zhiwei and Shen, Xiaoyu and Zhu, Dawei and Zhou, Fengzhe and Han, Zhuo and Zhang, Songyang and Chen, Kai and Shen, Zongwen and Ge, Jidong},
+  title     = {{LawBench}: Benchmarking Legal Knowledge of Large Language Models},
+  journal   = {arXiv preprint arXiv:2309.16289},
+  year      = {2023},
+  codingnote = {Corpus paper 142. Chinese legal benchmark across 20 tasks. D1=Benchmark, D2=Multi-task, D3=Task-specific, D4=Automated, D5=Cross-model, D6=Single-prompt, D7=Artifact-released.}
+}
+
+%% --- Domain-specific: medical and cognitive ---
+
+@article{nori2023gpt4medical,
+  author    = {Nori, Harsha and King, Nicholas and McKinney, Scott Mayer and Carignan, Dean and Horvitz, Eric},
+  title     = {Capabilities of {GPT-4} on Medical Challenge Problems},
+  journal   = {arXiv preprint arXiv:2303.13375},
+  year      = {2023},
+  codingnote = {Corpus paper 143. GPT-4 USMLE evaluation. D1=Benchmark, D2=Clinical, D3=Task-specific, D4=Hybrid, D5=Single-model, D6=Multi-prompt aggr., D7=Not reported.}
+}
+
+@article{strachan2024theoryofmind,
+  author    = {Strachan, James W. A. and Albergo, Dalila and Borghini, Giulia and Pansardi, Oriana and Scaliti, Eugenio and Gupta, Saurabh and Saxena, Krati and Rufo, Alessandro and Panzeri, Stefano and Manzi, Guido and Graziano, Michael S. A. and Becchio, Cristina},
+  title     = {Testing Theory of Mind in Large Language Models and Humans},
+  journal   = {Nature Human Behaviour},
+  year      = {2024},
+  doi       = {10.1038/s41562-024-01882-z},
+  codingnote = {Corpus paper 144. ToM evaluation of GPT and Llama families. D1=Human eval, D2=Multi-task, D3=Hybrid, D4=Hybrid, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
+
+@article{chang2025redteamingmed,
+  author    = {Chang, Crystal T. and Farah, Hodan and Gui, Haiwen and Rezaei, Shiavax Justin and Bou-Khalil, Charbel and Park, Yu-Jiu and Raj, Akshay and Pope, Saakshi and others},
+  title     = {Red Teaming {ChatGPT} in Medicine to Yield Real-World Insights on Model Behavior},
+  journal   = {NPJ Digital Medicine},
+  year      = {2025},
+  doi       = {10.1038/s41746-025-01486-5},
+  codingnote = {Corpus paper 145. Medical red-teaming with 80 participants. D1=Human eval, D2=Clinical, D3=Hybrid, D4=Manual, D5=Cross-model, D6=Multi-prompt aggr., D7=Not reported.}
+}
+
+@article{kim2025medicalhallu,
+  author    = {Kim, Yubin and Jeong, Hyewon and Chen, Shan and Li, Shuyue Stella and Lu, Mingyu and Alhamoud, Kumail and Mun, Jimin and Grau, Cristina and Jung, Minseok and Gameiro, Rodrigo R. and others},
+  title     = {Medical Hallucinations in Foundation Models and Their Impact on Healthcare},
+  journal   = {arXiv preprint arXiv:2503.05777},
+  year      = {2025},
+  codingnote = {Corpus paper 146. Medical hallucination evaluation across 11 models. D1=Benchmark, D2=Clinical, D3=Task-specific, D4=Hybrid, D5=Cross-model, D6=Multi-prompt aggr., D7=Artifact-released.}
+}
