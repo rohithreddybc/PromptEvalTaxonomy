@@ -1052,9 +1052,15 @@ that delimiter and formatting changes shift accuracy by margins large
 enough to reverse leaderboard rankings. Mizrahi et al.'s butterfly-effect
 study~\cite{butterfly2024} documents similar variance under paraphrase.
 Razavi et al.'s PromptSET~\cite{promptsensitivity2025} provides a
-sensitivity benchmark explicitly. Bellibatlu's Judge Sensitivity
+sensitivity benchmark explicitly. Bellibatlu et al.'s Judge Sensitivity
 Score~\cite{bellibatlu2026judgesense} extends sensitivity reporting to
-LLM-as-judge pipelines themselves. Yet the corpus we surveyed treats
+LLM-as-judge pipelines themselves, defining JSS over 500 hand-validated
+paraphrase pairs across four evaluation tasks (factuality, coherence,
+relevance, preference) and reporting it for 13 judge models. They
+find that even GPT-4o flips its coherence rating on 8.5\% of paraphrase
+pairs and that smaller instruction-tuned judges flip on more than 60\%,
+and crucially that model scale is not a reliable proxy for stability.
+Yet the corpus we surveyed treats
 sensitivity as a finding rather than a dimension: papers rarely report
 performance bounds across paraphrases, and reviewers rarely require
 them.
@@ -1445,9 +1451,29 @@ perturbation levels rather than a single-prompt point estimate.
 paraphrase-based sensitivity benchmark designed specifically for PE
 evaluation: it generates semantically equivalent prompt variants and
 measures the spread of model performance across them. PromptSET is
-the primary reference for D6 in the taxonomy and the tool most
-directly relevant to closing the robustness gap identified in
-Section~\ref{subsec:d6dist}.
+the primary reference for D6 in the taxonomy for task-solving
+models and the tool most directly relevant to closing the
+robustness gap identified in Section~\ref{subsec:d6dist}.
+
+\textbf{JudgeSense}~\cite{bellibatlu2026judgesense} is the
+counterpart of PromptSET for the LLM-as-Judge side of evaluation.
+Where PromptSET measures the sensitivity of task-solver outputs to
+prompt rephrasing, JudgeSense measures the sensitivity of judge
+verdicts under paraphrased rubric instructions. The benchmark
+releases 500 hand-validated prompt-paraphrase pairs across four
+judge tasks and reports the Judge Sensitivity Score (JSS) for 13
+judge models. Together with PromptBench and PromptSET, JudgeSense
+forms the small set of tools that allow a study to occupy
+D6~=~Sensitivity-bounded for the judge component of an evaluation
+pipeline rather than only the task-solver component.
+
+\textbf{PromptEval}~\cite{polo2024promptseval} is a third
+sensitivity-oriented tool that estimates a full performance
+distribution across many prompt templates at a budget comparable to
+two single-prompt evaluations. It is complementary to PromptBench
+and PromptSET: those tools surface variance under specific
+perturbation families, while PromptEval estimates the entire
+prompt-induced distribution.
 
 % ---------------------------------------------------------------
 \section{Methodology: Systematic Literature Review}
@@ -2883,14 +2909,23 @@ sclar2023formatting, promptsensitivity2025, butterfly2024}.
 \label{subsubsec:fd_robustness}
 The sensitivity literature has established that paraphrase-induced
 variance is often large enough to reverse study conclusions, and the
-Judge Sensitivity Score work~\cite{bellibatlu2026judgesense} extends
-this concern to the evaluation infrastructure itself. Reporting
-sensitivity bounds alongside point estimates, that is the
-distinction between D6 = Single-prompt and D6 = Sensitivity-bounded
-in our taxonomy, is a practical change that does not require new
-theory. The PromptEval framework of Polo et
-al.~\cite{polo2024promptseval} is a worked example of how such
-sensitivity-bounded evaluation can be made budget-efficient.
+Judge Sensitivity Score (JSS) work of Bellibatlu et
+al.~\cite{bellibatlu2026judgesense} extends this concern to the
+evaluation infrastructure itself. JSS is defined as the share of
+hand-validated paraphrase pairs on which a judge returns the same
+verdict, with companion metrics of flip rate, Cohen's $\kappa$, and
+bootstrap 95\% confidence intervals; the released benchmark contains
+500 paraphrase pairs across four evaluation tasks (factuality,
+coherence, relevance, preference) and is reported for 13 judge
+models. The empirical result that model scale fails to predict
+consistency on this benchmark is the kind of finding the field
+currently lacks the conventions to report. Reporting sensitivity
+bounds alongside point estimates, that is the distinction between
+D6 = Single-prompt and D6 = Sensitivity-bounded in our taxonomy, is
+a practical change that does not require new theory. The PromptEval
+framework of Polo et al.~\cite{polo2024promptseval} is a companion
+example of how such sensitivity-bounded evaluation can be made
+budget-efficient for the task-solver side of the same problem.
 
 \subsubsection{Multimodal and Agentic PE Evaluation Frameworks}
 \label{subsubsec:fd_multimodal}
