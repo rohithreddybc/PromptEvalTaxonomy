@@ -1,6 +1,17 @@
 % ACM Computing Surveys (CSUR) submission template (acmsmall).
 % nonacm disables the conference/copyright block during pre-submission
 % review; the ACM Editorial Office sets the final block at acceptance.
+%
+% Review model: CSUR uses single-blind review by default (author identities
+% visible to reviewers; reviewer identities hidden from authors). If the
+% handling editor instructs a double-blind review, add the 'anonymous'
+% option to the documentclass line below, which suppresses author names,
+% affiliations, acknowledgements, and self-identifying funding statements
+% in the rendered PDF. The author block and acknowledgements are then
+% restored automatically at acceptance when the option is removed.
+%
+% To switch to double-blind, replace the line below with:
+%   \documentclass[acmsmall, nonacm, screen, anonymous]{acmart}
 \documentclass[acmsmall, nonacm, screen]{acmart}
 
 % Document-specific packages (acmart already loads amsmath, amssymb,
@@ -3180,13 +3191,18 @@ describable to standardized is now a coordination problem.
 
 \section*{Data Availability}
 \label{sec:data}
-The machine-readable 153-paper extraction dataset, the seven-dimension
-coding sheet, the PRISMA flow record, the screening logs, the
-ambiguity-resolution rule documentation, and the evaluation-design
-checklist in Appendix~\ref{app:checklist} are released at
-\url{https://github.com/rohithreddybc/PromptEvalTaxonomy} under a CC-BY
-4.0 license. The repository is versioned; the snapshot used for the
-analyses in this paper is tagged in the project README.
+The companion artifact repository is publicly available at
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy} under a
+CC-BY 4.0 license. At the time of this submission the repository
+provides the evaluation-design checklist of Appendix~\ref{app:checklist}
+in machine-readable form, the schema for the per-paper extraction
+dataset, and the paper source. The full 153-paper machine-readable
+extraction dataset (D1--D7 codes for every paper) and the PRISMA flow
+record will be released to the same repository at paper acceptance,
+when the snapshot version will be tagged. We make this delayed
+artifact-release choice deliberately to keep the dataset aligned with
+the final accepted version of the manuscript rather than versioning
+across review-round revisions.
 
 \section*{Author Contributions, Funding, and Conflict of Interest}
 \label{sec:credits}
