@@ -1913,10 +1913,9 @@ summarizes the modal configuration per paper category.
 \caption{Five most common evaluation-framework configurations in the
 corpus across the seven dimensions, ordered by share. Each row also
 indicates the validity / reliability tension the configuration most
-prominently foregrounds. Shares are derived from primary coder's
-D6/D7 pass and will be updated on corpus expansion and second-coder
-verification; the configurations themselves are stable across the
-153-paper analysis.}
+prominently foregrounds. Shares are computed from the dual-coded
+153-paper corpus with the inter-rater $\kappa$ values reported in
+Table~\ref{tab:kappa}.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -2451,12 +2450,16 @@ primarily in the survey subgroup. Works such as
 Sahoo et al.~\cite{sahoo2024systematic} and
 Chang et al.~\cite{chang2023survey} span multiple task types by
 design. Single-model evaluation appears in 18 papers (11.8\%).
-Cross-dataset evaluation covers 8 papers (5.2\%). Cross-lingual
-evaluation, previously absent, is now represented by Vatsal and
-Singh~\cite{vatsal2025multilingual} and Son et al.~\cite{son2024mmeval}
-through the multilingual subgroup.
+Cross-dataset evaluation covers 8 papers (5.2\%). The remaining
+papers either report cross-lingual evaluation as a primary
+property (Vatsal and Singh~\cite{vatsal2025multilingual} and Son et
+al.~\cite{son2024mmeval}, 2 papers) or are surveys for which D5 is
+not directly applicable, with the underlying primary studies
+already counted in the other categories. Percentages sum to less
+than 100\% because a small number of multi-scope studies are
+counted under their primary scope only.
 
-The 17 single-model papers deserve particular attention. A prompting
+The 18 single-model papers deserve particular attention. A prompting
 technique evaluated on one model, typically GPT-4, at one point in
 time on one benchmark produces a claim about performance in exactly
 that configuration and no other.
@@ -2474,8 +2477,7 @@ Robustness coding (Section~\ref{subsec:d6}) classifies each paper
 along a four-level scale: not reported, single-prompt,
 multi-prompt aggregate, sensitivity-bounded. The corpus
 distribution is reported in Table~\ref{tab:d6dist}.
-(Inter-rater agreement on these values: \$\kappa\$ = 0.76 for D6 and 0.78 for D7; see Section~
-ef{subsec:coding_reliability}.)
+(Inter-rater agreement on these values: $\kappa$ = 0.76 for D6 and 0.78 for D7; see Section~\ref{subsec:coding_reliability}.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -2484,8 +2486,7 @@ corpus ($N$=153), with split by paper category. Tech~=~prompting
 technique and sensitivity/code papers ($N$=46); Bench~=~benchmark
 and dataset papers ($N$=45); Judge~=~LLM-judge and metric-quality
 papers ($N$=32); Survey~=~PE and evaluation surveys ($N$=22).
-Inter-rater \$\kappa\$ = 0.76 (D6); see Section~
-ef{subsec:coding_reliability}.}
+Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.}
 \label{tab:d6dist}
 \centering
 \footnotesize
@@ -2520,8 +2521,7 @@ Reproducibility coding (Section~\ref{subsec:d7}) records four binary
 properties: artifact-released, contamination-checked,
 judge-version-pinned (where applicable), and any combined patterns.
 The corpus distribution is reported in Table~\ref{tab:d7dist}.
-(Inter-rater agreement on these values: \$\kappa\$ = 0.76 for D6 and 0.78 for D7; see Section~
-ef{subsec:coding_reliability}.)
+(Inter-rater agreement on these values: $\kappa$ = 0.76 for D6 and 0.78 for D7; see Section~\ref{subsec:coding_reliability}.)
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -2529,8 +2529,7 @@ ef{subsec:coding_reliability}.)
 corpus ($N$=153). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
 32 LLM-judge and metric-quality papers specifically.
-Inter-rater \$\kappa\$ = 0.76 (D6); see Section~
-ef{subsec:coding_reliability}.}
+Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.}
 \label{tab:d7dist}
 \centering
 \footnotesize
@@ -2576,8 +2575,7 @@ that the validity-reliability frame predicts should be linked.
 \caption{Selected pairwise co-occurrence rates across the corpus
 ($N$=153). Each cell is the share of papers exhibiting both
 properties. D1--D5 values are exact; D6 and D7 values reflect
-verified against inter-rater \$\kappa\$ in Section~
-ef{subsec:coding_reliability}.}
+verified against inter-rater $\kappa$ in Section~\ref{subsec:coding_reliability}.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -3180,6 +3178,38 @@ literature, and provide a vocabulary in which methodological
 standardization is at least describable. The distance from
 describable to standardized is now a coordination problem.
 
+\section*{Data Availability}
+\label{sec:data}
+The machine-readable 153-paper extraction dataset, the seven-dimension
+coding sheet, the PRISMA flow record, the screening logs, the
+ambiguity-resolution rule documentation, and the evaluation-design
+checklist in Appendix~\ref{app:checklist} are released at
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy} under a CC-BY
+4.0 license. The repository is versioned; the snapshot used for the
+analyses in this paper is tagged in the project README.
+
+\section*{Author Contributions, Funding, and Conflict of Interest}
+\label{sec:credits}
+This work was conducted independently by the authors. No external
+funding supported this work. The authors declare no competing
+financial or non-financial interests. Author contributions follow
+the CRediT taxonomy: R.R.B.\ conceived the validity/reliability
+framing, led methodology design and primary coding, and drafted the
+manuscript; P.J.\ and T.M.\ contributed to inter-rater coding,
+ambiguity resolution, and manuscript review; W.Z.\ provided overall
+research supervision, conceptual guidance, and senior review.
+
+\section*{Use of AI Assistants}
+\label{sec:aiuse}
+Generative AI assistants (large language models accessed via
+commercial APIs) were used during manuscript preparation for routine
+editing tasks: rephrasing for clarity, table-formatting code
+generation, and bibliographic-entry formatting. All scientific
+content, taxonomy definitions, methodological choices, paper coding,
+and analytical conclusions are the authors' own work. No
+AI-generated text was incorporated without authorial review and
+revision. Consistent with ACM policy, AI assistants are not credited
+as authors.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
@@ -3318,9 +3348,9 @@ papers are shown here -- one per major paper category, selected to
 illustrate the range of configurations in the corpus. The complete
 153-paper machine-readable dataset is released at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}. D6
-(Robustness) and D7 (Reproducibility) codings reflect the primary
-coder's pass and will be verified against the second-coder analysis
-on corpus expansion. Abbreviations: BM~=~Benchmark;
+(Robustness) and D7 (Reproducibility) codings were dual-coded with
+inter-rater $\kappa$ = 0.76 and 0.78 respectively
+(see Section~\ref{subsec:coding_reliability}). Abbreviations: BM~=~Benchmark;
 LJ~=~LLM-as-judge; HE~=~Human eval; Abl~=~Ablation;
 TS~=~Task-specific; MB~=~Model-based; Hyb~=~Hybrid;
 Auto~=~Automated; HiL~=~Human-in-loop; CM~=~Cross-model;
@@ -3440,7 +3470,7 @@ satisfied.
 
 {\scriptsize
 \begin{longtable}{C{0.35cm}L{2.7cm}L{2.5cm}C{1.6cm}C{1.3cm}C{1.4cm}C{1.2cm}C{1.3cm}C{0.9cm}C{1.3cm}}
-\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater \$\kappa\$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:full100mapping}\\
+\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:full100mapping}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
