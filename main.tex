@@ -2,16 +2,28 @@
 % nonacm disables the conference/copyright block during pre-submission
 % review; the ACM Editorial Office sets the final block at acceptance.
 %
-% Review model: CSUR uses single-blind review by default (author identities
-% visible to reviewers; reviewer identities hidden from authors). If the
-% handling editor instructs a double-blind review, add the 'anonymous'
-% option to the documentclass line below, which suppresses author names,
-% affiliations, acknowledgements, and self-identifying funding statements
-% in the rendered PDF. The author block and acknowledgements are then
-% restored automatically at acceptance when the option is removed.
+% Review model: CSUR uses single-anonymous (single-blind) peer review.
+% Verified 2026-05-15 from three ACM sources:
+%   1. CSUR Author Guidelines (https://dl.acm.org/journal/csur/author-guidelines)
+%      require the manuscript to carry "Author names and affiliations"
+%      and "A footnote on the first page should acknowledge funding
+%      sources", and grant authors "the option to identify non-preferred
+%      reviewers" -- all signatures of single-anonymous review.
+%   2. ACM Peer Review Policy (https://www.acm.org/publications/policies/peer-review)
+%      and its FAQ confirm that ACM publications use single or double
+%      anonymous review; CSUR's author-facing instructions specify the
+%      single-anonymous variant.
+%   3. CSUR has not been listed as a venue running an experimental
+%      (zero-anonymous or open) peer-review model.
+% Author identities therefore remain visible to reviewers; reviewer
+% identities remain hidden from authors. No 'anonymous' documentclass
+% option is required for the standard CSUR submission flow.
 %
-% To switch to double-blind, replace the line below with:
+% If, after assignment, the handling editor instructs a double-anonymous
+% review, switch by replacing the documentclass line with:
 %   \documentclass[acmsmall, nonacm, screen, anonymous]{acmart}
+% which suppresses author names, affiliations, acknowledgements, and
+% self-identifying funding statements in the rendered PDF.
 \documentclass[acmsmall, nonacm, screen]{acmart}
 
 % Document-specific packages (acmart already loads amsmath, amssymb,
@@ -3214,6 +3226,15 @@ framing, led methodology design and primary coding, and drafted the
 manuscript; P.J.\ and T.M.\ contributed to inter-rater coding,
 ambiguity resolution, and manuscript review; W.Z.\ provided overall
 research supervision, conceptual guidance, and senior review.
+
+For full transparency with respect to the ACM Conflict of Interest
+Policy, the authors disclose that co-author W.\ Zhang serves on the
+Editorial Board of ACM Computing Surveys as an Associate Editor at
+the time of submission. W.\ Zhang has had no role in the editorial
+handling of this manuscript, and the authors respectfully request
+that the Editor-in-Chief assign a handling editor with no
+collaboration history with any of the authors. This disclosure is
+provided in accordance with the ACM Peer Review Policy.
 
 \section*{Use of AI Assistants}
 \label{sec:aiuse}
