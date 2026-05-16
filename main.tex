@@ -327,7 +327,7 @@ Appendix~\ref{app:checklist} provides an evaluation design checklist
 covering all seven dimensions for study preregistration.
 Appendix~\ref{app:fulltable} presents a representative per-paper
 mapping with all seven dimensions coded.
-Appendix~\ref{app:full100mapping} presents the comprehensive
+Appendix~\ref{app:fullmapping} presents the comprehensive
 153-paper mapping across all seven dimensions D1--D7.
 
 
@@ -1380,9 +1380,9 @@ confront.
 \centering
 \footnotesize
 \begin{tabular}{p{0.42\columnwidth} p{0.50\columnwidth}}
-\hline
+\toprule
 \textbf{Evaluation Design Question} & \textbf{Taxonomy Dimension + Key Trade-off} \\
-\hline
+\midrule
 How will model outputs be scored? &
   D1 - Evaluation Method: precision of human judgment vs.\ scalability
   of automated pipelines (judgment-anchored vs. reference-anchored) \\
@@ -1407,7 +1407,7 @@ Will third parties be able to reproduce the result? &
   D7 - Reproducibility: cost of pinning judge versions, releasing
   artifacts, and checking contamination vs.\ exposure to silent
   infrastructure drift and benchmark leakage \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -1561,7 +1561,6 @@ prompt-induced distribution.
 % ---------------------------------------------------------------
 \section{Methodology: Systematic Literature Review}
 \label{sec:methodology}
-\label{sec:methodology2}
 
 This survey follows the PRISMA 2020 guidelines for systematic
 review reporting~\cite{page2021prisma}. The protocol covers
@@ -1708,15 +1707,16 @@ Figure~\ref{fig:prisma} shows the complete screening flowchart.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.85\linewidth,height=0.7\textheight,keepaspectratio]{prisma_flowchart}
+\includegraphics[width=0.78\linewidth,height=0.55\textheight,keepaspectratio]{prisma_flowchart}
 \caption{PRISMA 2020 flowchart showing the paper screening and selection
 process. Records retrieved from arXiv, ACM Digital Library, IEEE Xplore,
 Semantic Scholar, Scopus, and Web of Science. An additional 22 papers
 were identified through backward and forward citation search, yielding
-an initial corpus of 80 papers. A subsequent expansion round added 20
-papers in areas identified as underrepresented (LLM-judge quality,
-benchmark contamination, multi-prompt sensitivity), bringing the final
-corpus to 100 papers, with a second round adding 11 more, and a third round adding 35 more for a final total of 153 papers.}
+an initial corpus of 80 papers. Three subsequent expansion rounds
+targeted underrepresented areas (LLM-judge quality, benchmark
+contamination, multi-prompt sensitivity, agentic, multilingual,
+clinical, prompt-injection, and CoT-faithfulness), bringing the final
+corpus to 153 papers.}
 \label{fig:prisma}
 \end{figure}
 
@@ -1926,7 +1926,7 @@ share of the corpus, and the underlying tension each foregrounds.
 A representative per-paper mapping with all seven dimensions coded
 is presented in Appendix~\ref{app:fulltable}; the comprehensive
 153-paper mapping across all seven dimensions D1--D7 is presented in
-Appendix~\ref{app:full100mapping}; the full machine-readable
+Appendix~\ref{app:fullmapping}; the full machine-readable
 dataset is released at the URL given in
 Section~\ref{sec:methodology}. Table~\ref{tab:comparison} below
 summarizes the modal configuration per paper category.
@@ -1969,14 +1969,14 @@ Benchmark / Multi-task / Task-spec / Auto / Single-model / Single-prompt / Artif
 % conveys the same information per category in a single column-width
 % table.
 
-\begin{table}[!t]
-\renewcommand{\arraystretch}{1.20}
+\begin{table}[!htbp]
+\renewcommand{\arraystretch}{1.05}
 \caption{Category-aggregated mapping of the corpus to the
 seven-dimensional taxonomy. Each row reports the modal configuration
 for one paper category and notes the most informative variation
 within the category. The full per-paper mapping is released as a
 machine-readable spreadsheet at the URL in
-Section~\ref{sec:methodology2}. Modal subcategories are derived from
+Section~\ref{sec:methodology}. Modal subcategories are derived from
 the 153-paper corpus.}
 \label{tab:comparison}
 \centering
@@ -2065,7 +2065,7 @@ worth highlighting in the discussion
 
 {\footnotesize
 \begin{longtable}{C{0.50cm}L{3.20cm}L{3.10cm}C{2.35cm}C{1.85cm}C{1.95cm}C{1.95cm}C{1.85cm}}
-\caption[Archival per-paper longtable]{\raggedright Archival copy. The visible version of this table is in Appendix~\ref{app:full100mapping} as Table~\ref{tab:full100mapping}.}\label{tab:comparison_archive}\\
+\caption[Archival per-paper longtable]{\raggedright Archival copy (suppressed via \texttt{\textbackslash iffalse}; retained for historical reference). The visible version of this table is in Appendix~\ref{app:fullmapping} as Table~\ref{tab:fullmapping}.}\label{tab:comparison_archive}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Evaluation Method}} &
@@ -2396,7 +2396,7 @@ exists in the broader literature, including medical
 QA~\cite{clinicalnlp2024}, clinical note
 processing~\cite{medicalcot2025}, and multilingual
 evaluation~\cite{vatsal2024survey}, and our screening filter
-(Section~\ref{sec:methodology2}) excluded papers that used prompting
+(Section~\ref{sec:methodology}) excluded papers that used prompting
 as a tool without analyzing the prompting approach itself. The
 finding is therefore best read as: the corpus of papers that propose
 or evaluate \emph{prompt engineering techniques themselves} remains
@@ -2502,7 +2502,7 @@ multi-prompt aggregate, sensitivity-bounded. The corpus
 distribution is reported in Table~\ref{tab:d6dist}.
 (Inter-rater agreement on these values: $\kappa$ = 0.76 for D6 and 0.78 for D7; see Section~\ref{subsec:coding_reliability}.)
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of robustness reporting (D6) across the
 corpus ($N$=153), with split by paper category. Tech~=~prompting
@@ -2546,13 +2546,13 @@ judge-version-pinned (where applicable), and any combined patterns.
 The corpus distribution is reported in Table~\ref{tab:d7dist}.
 (Inter-rater agreement on these values: $\kappa$ = 0.76 for D6 and 0.78 for D7; see Section~\ref{subsec:coding_reliability}.)
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of reproducibility properties (D7) across the
 corpus ($N$=153). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
 32 LLM-judge and metric-quality papers specifically.
-Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.}
+Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.}
 \label{tab:d7dist}
 \centering
 \footnotesize
@@ -2593,12 +2593,12 @@ statistically independent in practice. Table~\ref{tab:cooccurrence}
 reports pairwise co-occurrence between selected subcategory pairs
 that the validity-reliability frame predicts should be linked.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
 \caption{Selected pairwise co-occurrence rates across the corpus
 ($N$=153). Each cell is the share of papers exhibiting both
-properties. D1--D5 values are exact; D6 and D7 values reflect
-verified against inter-rater $\kappa$ in Section~\ref{subsec:coding_reliability}.}
+properties. D1--D5 values are exact; D6 and D7 values are subject to
+the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -3137,7 +3137,7 @@ studies.
 \textit{Comparative claims.} Reviews, meta-analyses, and surveys that
 compare prompting techniques can use the taxonomy as the comparison
 spine. The 153-paper dataset released with this work
-(see Section~\ref{sec:methodology2}) provides machine-readable codings
+(see Section~\ref{sec:methodology}) provides machine-readable codings
 that downstream syntheses can reuse rather than re-coding the
 same papers.
 
@@ -3412,7 +3412,7 @@ JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 
 {\footnotesize
 \begin{longtable}{p{3.2cm} p{1.8cm} p{1.1cm} p{1.5cm} p{1.1cm} p{1.2cm} p{1.1cm} p{2.4cm}}
-\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 153-paper corpus are shown, one per major category. The complete 153-paper dataset is available as a machine-readable spreadsheet at the GitHub URL above. D6 and D7 values marked \textbf{verify} will be confirmed against second-coder analysis.}
+\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 153-paper corpus are shown, one per major category. The complete 153-paper mapping is given in Appendix~\ref{app:fullmapping}; the machine-readable spreadsheet is released at the GitHub URL above. D6 and D7 codings reflect the dual-coded inter-rater agreement reported in Section~\ref{subsec:coding_reliability} ($\kappa$ = 0.76 and 0.78 respectively).}
 \label{tab:fulltable}\\
 \toprule
 \textbf{Paper (year)} &
@@ -3483,7 +3483,7 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 
 % ---------------------------------------------------------------
 \section{Comprehensive Per-Paper Mapping (153 Papers, All Seven Dimensions)}
-\label{app:full100mapping}
+\label{app:fullmapping}
 
 For full transparency, this appendix presents the complete corpus
 of 153 papers coded across all seven taxonomy dimensions
@@ -3516,7 +3516,7 @@ satisfied.
 
 {\scriptsize
 \begin{longtable}{C{0.35cm}L{2.7cm}L{2.5cm}C{1.6cm}C{1.3cm}C{1.4cm}C{1.2cm}C{1.3cm}C{0.9cm}C{1.3cm}}
-\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:full100mapping}\\
+\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, 101--111 in the second, 112--146 in the third, and 147--153 in the fourth, targeting agentic, multilingual, clinical, prompt-injection, contamination-resistant, and CoT-faithfulness gaps.}\label{tab:fullmapping}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
@@ -3530,7 +3530,7 @@ satisfied.
 \midrule
 \endfirsthead
 
-\multicolumn{10}{l}{\textit{Table~\ref{tab:full100mapping} (continued)}}\\
+\multicolumn{10}{l}{\textit{Table~\ref{tab:fullmapping} (continued)}}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
