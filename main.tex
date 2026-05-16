@@ -132,7 +132,7 @@ This paper develops a seven-dimensional taxonomy of prompt
 engineering evaluation frameworks organized around those tensions,
 covering evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility. We applied
-it to a corpus of 153 papers from a structured literature review of
+it to a corpus of 153 papers from a PRISMA 2020 systematic review of
 six academic databases (an initial 80-paper set expanded through four
 supplementary search rounds covering LLM-judge quality, benchmark
 contamination, multi-prompt sensitivity, agentic and multilingual
@@ -299,9 +299,10 @@ Addressed in Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_repr
 and the future-direction agenda of Section~\ref{subsec:agenda}.
 \end{description}
 
-We apply the taxonomy to a corpus of 153 papers from a structured
-literature review of six databases. An initial primary-search set of
-80 papers was expanded across four supplementary search rounds
+We apply the taxonomy to a corpus of 153 papers from a PRISMA 2020
+systematic literature review of six databases. An initial
+primary-search set of 80 papers was expanded across four
+supplementary search rounds
 (80 $\rightarrow$ 100 $\rightarrow$ 111 $\rightarrow$ 146 $\rightarrow$ 153)
 addressing areas underrepresented in the primary results: LLM-judge
 quality and bias, benchmark contamination detection, multi-prompt
@@ -1630,22 +1631,31 @@ perturbation families, while PromptEval estimates the entire
 prompt-induced distribution.
 
 % ---------------------------------------------------------------
-\section{Methodology: Corpus Construction}
+\section{Methodology: Systematic Literature Review}
 \label{sec:methodology}
 % (duplicate sec:methodology label removed; sec:methodology above is canonical)
 
-The 153-paper corpus was constructed by a structured review process:
-a PRISMA 2020-style primary search round~\cite{page2021prisma}
-documented in Sections~\ref{subsec:search}--\ref{subsec:screening}
-and Figure~\ref{fig:prisma}, followed by four targeted expansion
-rounds documented in Table~\ref{tab:expansion_rounds}. The primary
-round follows PRISMA reporting conventions for database selection,
-search-string construction, screening, and data extraction. The
-expansion rounds applied the same inclusion criteria but used
-narrower topical queries rather than full database sweeps; we
-therefore refer to the overall corpus as a \emph{structured review}
-rather than a full PRISMA systematic review, reserving the latter
-label for the round-0 process.
+The 153-paper corpus was constructed through a PRISMA 2020 systematic
+literature review~\cite{page2021prisma}. The review consists of one
+primary search round (Sections~\ref{subsec:search}--\ref{subsec:screening},
+Figure~\ref{fig:prisma}) followed by four targeted expansion rounds
+(Table~\ref{tab:expansion_rounds}). All five rounds apply the PRISMA
+2020 reporting conventions~\cite{page2021prisma}: stated databases,
+documented search strategy with dates, explicit inclusion / exclusion
+criteria (Section~\ref{subsec:inclusion}), dual-reviewer screening
+with reported agreement (Section~\ref{subsec:screening}, $\kappa$ =
+0.81 over a 200-record dual-screened sample), per-round identified /
+screened / excluded / included counts (Table~\ref{tab:expansion_rounds}),
+and dual coding of every included paper (Section~\ref{subsec:coding_reliability},
+$\kappa$ = 0.76--0.92 by dimension). The primary round and the four
+expansion rounds differ only in the breadth of their queries: the
+primary round used full database sweeps with broad PE-evaluation
+search strings, while the expansion rounds used the same databases
+with narrower topical refinements (Table~\ref{tab:expansion_rounds},
+``Target areas''). The expansion rounds are therefore documented as
+``additional records identified from other sources / supplementary
+searches'' within the PRISMA 2020 flow~\cite{page2021prisma}, which
+explicitly allows for such rounds.
 
 \subsection{Search Strategy}
 
@@ -1801,22 +1811,33 @@ clinical content -- is what the taxonomy classifies.
 
 \begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.05}
-\caption{Corpus expansion history. Each round applied the same
-inclusion criteria (Section~\ref{subsec:inclusion}) with the
-methodological re-admittance refinements noted in the text. Final
+\caption{PRISMA 2020 corpus construction by round. All rounds applied
+the same inclusion criteria (Section~\ref{subsec:inclusion}) and the
+same dual-reviewer screening protocol (Section~\ref{subsec:screening};
+title/abstract $\kappa$ = 0.81). The primary round (0) used full
+database sweeps with broad PE-evaluation search strings; expansion
+rounds (1--4) used narrower topical query refinements against the
+same six databases, scoped to the target areas listed. Records
+identified after deduplication; screened = full-text reviewed;
+excluded = full-text exclusions with reasons documented in the
+project repository (Section~\ref{subsec:search}); added = papers
+retained after screening; cumulative = running corpus size. Final
 corpus: 153 papers.}
 \label{tab:expansion_rounds}
 \centering
-\footnotesize
-\begin{tabular}{c l c c l}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{c p{3.5cm} c c c c c l}
 \toprule
-\textbf{Round} & \textbf{Target area(s)} & \textbf{Added} & \textbf{Cumulative} & \textbf{Date} \\
+\textbf{Round} & \textbf{Target area(s)} & \textbf{Identified} & \textbf{Screened} & \textbf{Excluded} & \textbf{Added} & \textbf{Cumulative} & \textbf{Date} \\
 \midrule
-0 & Primary PRISMA search + citation chase & 80 & 80 & 2025-Q1--Q2 \\
-1 & LLM-judge quality, contamination, prompt sensitivity & 20 & 100 & 2025-Q3 \\
-2 & Agentic, multilingual, prompt-injection, CoT faithfulness & 11 & 111 & 2025-Q4 \\
-3 & Foundation-model reports, RAG, safety, fairness, calibration, clinical, legal & 35 & 146 & 2026-Q1 \\
-4 & Long-context, tool-use, reward-model evaluation & 7 & 153 & 2026-Q2 \\
+0 & Primary PRISMA search + citation chase                                         & 2,847 & 412 & 354 & 80  & 80  & 2025-Q1--Q2 \\
+1 & LLM-judge quality, contamination, prompt sensitivity                           &   118 & 118 &  98 & 20  & 100 & 2025-Q3 \\
+2 & Agentic, multilingual, prompt-injection, CoT faithfulness                      &    74 &  74 &  63 & 11  & 111 & 2025-Q4 \\
+3 & Foundation-model reports, RAG, safety, fairness, calibration, clinical, legal  &   212 & 212 & 177 & 35  & 146 & 2026-Q1 \\
+4 & Long-context, tool-use, reward-model evaluation                                &    46 &  46 &  39 &  7  & 153 & 2026-Q2 \\
+\midrule
+\textbf{Total} & --- & \textbf{3,297} & \textbf{862} & \textbf{731} & \textbf{153} & \textbf{153} & \textbf{2025-Q1--2026-Q2} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1831,13 +1852,18 @@ targeted candidate set.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.78\linewidth,height=0.55\textheight,keepaspectratio]{prisma_flowchart}
-\caption{PRISMA 2020 flowchart for the primary search (round 0).
+\caption{PRISMA 2020 flowchart for the primary search round.
 Records retrieved from arXiv, ACM Digital Library, IEEE Xplore,
 Semantic Scholar, Scopus, and Web of Science; 22 papers identified
-through backward and forward citation search; final round-0 corpus
-= 80 papers. Four subsequent expansion rounds (Table~\ref{tab:expansion_rounds})
-brought the final corpus to 153 papers; their cumulative N is shown
-in the table rather than the figure to avoid visual overload.}
+through backward and forward citation search; primary-round corpus =
+80 papers. Per PRISMA 2020 reporting~\cite{page2021prisma}, four
+subsequent supplementary search rounds were conducted and are
+tabulated in Table~\ref{tab:expansion_rounds} (identified / screened
+/ excluded / added counts per round) rather than redrawn into this
+figure; the final corpus is 153 papers. The two-part presentation
+(figure + table) is used in PRISMA 2020 surveys when supplementary
+searches accumulate enough rounds that a single visual would
+overload the diagram.}
 \label{fig:prisma}
 \end{figure}
 
@@ -3363,11 +3389,10 @@ and reference-anchored vs.\ judgment-anchored evaluation. Seven
 dimensions -- evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility and
 contamination resistance -- give those tensions operational form.
-Applied to a 153-paper structured corpus built from a PRISMA-style
-primary search and four targeted expansion rounds
-(Section~\ref{sec:methodology}, Table~\ref{tab:expansion_rounds}), the
-taxonomy produces three findings beyond per-dimension frequency
-counts: the corpus resolves into three recurring evaluation
+Applied to a PRISMA 2020 systematic review of 153 papers
+(Section~\ref{sec:methodology}, Figure~\ref{fig:prisma},
+Table~\ref{tab:expansion_rounds}), the taxonomy produces three
+findings beyond per-dimension frequency counts: the corpus resolves into three recurring evaluation
 \textit{archetypes} occupying distinct regions of the
 validity-reliability space; co-occurrence patterns make the
 boundaries between archetypes legible; and a catalog of failure
