@@ -1020,7 +1020,7 @@ The procedure used to assess prompting technique performance &
 MT-Bench: LLM-as-judge on open-ended tasks~\cite{zheng2023judging} \\
 \midrule
 D2 Task scope &
-Reasoning, NLG, Code, QA, Clinical, Multilingual, Multi-task &
+Reasoning, NLG, Code, QA, Clinical, Multilingual, Agentic, Multimodal, Multi-task &
 mod &
 The task domain that moderates the validity/reliability tradeoff &
 GSM8K: arithmetic reasoning~\cite{wei2022chain} \\
@@ -1277,11 +1277,18 @@ robustness coding.
 
 \textit{Why not include deployment realism (interactive use, latency
 constraints, multi-turn dynamics) as a separate dimension?} Deployment
-realism is partially captured by D1 subcategory \textit{user study} and
-by D2 subcategory \textit{clinical and domain-specific}. The corpus
-does not contain a population of deployment-realism-focused evaluations
-large enough to support its own dimension; if such studies become
-prevalent, a future revision of the taxonomy could promote them.
+realism is partially captured by D1 subcategory \textit{user study},
+by D2 subcategories \textit{clinical and domain-specific} and
+\textit{Agentic}, and by D5 subcategory \textit{cross-domain}. The
+recently expanded Agentic subcategory in D2 (added in expansion rounds
+2--3 with the entry of $\tau$-bench, AgentBench, AgentBoard, and
+related work) is the current proxy for the deployment-realism corner
+of the design space. We do not promote deployment realism to a
+separate dimension because the agentic population, though now
+present, is still small and overlaps substantially with the existing
+D2 / D5 coding; if agentic and multi-turn evaluation continues to
+grow as a primary PE deployment context, a future revision of the
+taxonomy could promote it.
 
 The seven dimensions are therefore not the only conceivable
 decomposition, but they correspond to choices the corpus actually makes,
@@ -1370,7 +1377,7 @@ evaluation configuration relative to this taxonomy.
 
 Consider a researcher evaluating a new retrieval-augmented generation (RAG)
 prompting technique for clinical question answering. Before any data
-collection begins, the taxonomy requires five explicit design decisions.
+collection begins, the taxonomy requires seven explicit design decisions.
 
 \textit{D1 - Which evaluation method?} Benchmark evaluation assumes a
 curated test set with gold reference answers. For clinical QA, such sets
@@ -1432,7 +1439,7 @@ prior work.
 \subsection{Evaluation Design Quick Reference}
 \label{subsec:quickref}
 
-Table~\ref{tab:quickref} consolidates the five design decisions into a
+Table~\ref{tab:quickref} consolidates the seven design decisions into a
 form that can be consulted during study design. Each row identifies the
 central trade-off that the corresponding dimension forces a researcher to
 confront.
@@ -1623,15 +1630,22 @@ perturbation families, while PromptEval estimates the entire
 prompt-induced distribution.
 
 % ---------------------------------------------------------------
-\section{Methodology: Systematic Literature Review}
+\section{Methodology: Corpus Construction}
 \label{sec:methodology}
 % (duplicate sec:methodology label removed; sec:methodology above is canonical)
 
-This survey follows the PRISMA 2020 guidelines for systematic
-review reporting~\cite{page2021prisma}. The protocol covers
-database selection, search string construction, screening criteria,
-and data extraction. Figure~\ref{fig:prisma} shows the complete
-screening flowchart.
+The 153-paper corpus was constructed by a structured review process:
+a PRISMA 2020-style primary search round~\cite{page2021prisma}
+documented in Sections~\ref{subsec:search}--\ref{subsec:screening}
+and Figure~\ref{fig:prisma}, followed by four targeted expansion
+rounds documented in Table~\ref{tab:expansion_rounds}. The primary
+round follows PRISMA reporting conventions for database selection,
+search-string construction, screening, and data extraction. The
+expansion rounds applied the same inclusion criteria but used
+narrower topical queries rather than full database sweeps; we
+therefore refer to the overall corpus as a \emph{structured review}
+rather than a full PRISMA systematic review, reserving the latter
+label for the round-0 process.
 
 \subsection{Search Strategy}
 
@@ -1849,11 +1863,15 @@ survey) - used for the per-category splits in
 Section~\ref{sec:comparison}
 \end{enumerate}
 
-The complete extraction dataset - all papers mapped to their
-seven-dimensional taxonomy codes - is available as a machine-readable
-spreadsheet at \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}.
-Researchers extending this corpus or conducting meta-analyses may use
-this dataset with citation to this work.
+The complete extraction dataset -- all papers mapped to their
+seven-dimensional taxonomy codes -- will be released as a
+machine-readable spreadsheet at acceptance to
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}; at the time
+of submission the repository carries the dataset schema, the
+evaluation-design checklist (Appendix~\ref{app:checklist}), and the
+paper source (see the Data Availability statement). Researchers
+extending this corpus or conducting meta-analyses may use the
+released dataset with citation to this work.
 
 \subsection{Coding Reliability}
 \label{subsec:coding_reliability}
@@ -2006,12 +2024,30 @@ that uncertainty propagates to the headline claims.
 
 Mapping the corpus against the seven-dimensional taxonomy serves
 three purposes. First, it tests whether the taxonomy is expressive
-enough to characterize the full range of evaluation choices observed
-in the literature. Second, it derives co-occurrence patterns, recurring
-\textit{evaluation archetypes}, and a catalog of failure modes that go
-beyond per-dimension frequency counts. Third, it generates the
-empirical foundation for the synthesis in
-Section~\ref{sec:discussion}.
+enough to characterize the range of evaluation choices observed in
+the literature within our inclusion criteria. Second, it derives
+co-occurrence patterns, recurring \textit{evaluation archetypes},
+and a catalog of failure modes that go beyond per-dimension frequency
+counts. Third, it generates the empirical foundation for the
+synthesis in Section~\ref{sec:discussion}.
+
+\paragraph{PE-core papers vs.\ evaluation infrastructure.} The
+corpus deliberately contains two overlapping populations: \emph{PE-core
+papers} (prompt-engineering technique papers, sensitivity / code
+prompting studies, and PE-specific evaluation surveys -- 76 papers
+total in the categories of Table~\ref{tab:comparison}) and
+\emph{evaluation infrastructure papers} (benchmarks, datasets,
+LLM-judge frameworks, and metric-quality studies -- 77 papers
+total). Together they constitute the 153-paper corpus. The mixed
+inclusion is justified in Section~\ref{subsec:inclusion}: technique
+papers consume infrastructure and infrastructure papers shape what
+techniques can be evaluated, so the two populations participate in
+shared PE evaluation practice. We retain the mixed corpus for the
+aggregate distributional findings below, but where a claim is
+sensitive to the split we report it separately by paper category
+(D-distributions in Section~\ref{subsec:d6dist} are an example).
+Readers who want a PE-technique-only view can filter
+Appendix~\ref{app:fullmapping} on the per-paper category column.
 
 We organize the analysis as follows. Sections~\ref{subsec:d1dist}
 through~\ref{subsec:d7dist} report per-dimension distributions, both
@@ -2042,23 +2078,28 @@ per paper category.
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
 \caption{Five most common evaluation-framework configurations in the
-corpus across the seven dimensions, ordered by share. Each row also
-indicates the validity / reliability tension the configuration most
-prominently foregrounds. Shares are computed from the dual-coded
-153-paper corpus with the inter-rater $\kappa$ values reported in
-Table~\ref{tab:kappa}.}
+corpus across the seven dimensions, ordered by share. Counts are
+raw paper counts; percentages are normalized to the 153-paper corpus.
+Each row also indicates the validity / reliability tension the
+configuration most prominently foregrounds. Shares were computed
+from the dual-coded corpus with the inter-rater $\kappa$ values
+reported in Table~\ref{tab:kappa}. The Judge-pinned property
+(D7=Judge-version-pinned) appears in only 4 papers
+($\approx$2.7\% of the corpus, Table~\ref{tab:d7dist}), so the
+LLM-judge archetypes below do not list JP as part of their modal
+D7 configuration.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
-\begin{tabular}{p{5.5cm} c p{1.8cm}}
+\begin{tabular}{p{5.5cm} c c p{1.8cm}}
 \toprule
-\textbf{Configuration (D1/D2/D3/D4/D5/D6/D7)} & \textbf{Share} & \textbf{Foregrounded tension} \\
+\textbf{Configuration (D1/D2/D3/D4/D5/D6/D7)} & \textbf{n} & \textbf{Share} & \textbf{Foregrounded tension} \\
 \midrule
-Benchmark / Multi-task / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & $\approx$5\% & High reliability, narrow validity \\
-Benchmark / Reasoning / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & $\approx$6\% & High reliability, narrow validity \\
-LLM-judge / Multi-task / LLM-judge / Auto / Cross-model / Multi-prompt aggr. / Judge-pinned & $\approx$4\% & Validity ambition with calibration risk \\
-LLM-judge / Generation / LLM-judge / Hybrid / Cross-model / Multi-prompt aggr. / Judge-pinned & $\approx$5\% & Validity ambition with calibration risk \\
-Benchmark / Multi-task / Task-spec / Auto / Single-model / Single-prompt / Artifact-released & $\approx$5\% & High reliability, low generalizability \\
+Benchmark / Reasoning / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & 14 & 9.2\% & High reliability, narrow validity \\
+Benchmark / Multi-task / Task-spec / Auto / Cross-model / Single-prompt / Artifact-released & 11 & 7.2\% & High reliability, narrow validity \\
+Benchmark / Multi-task / Task-spec / Auto / Single-model / Single-prompt / Artifact-released & 8 & 5.2\% & High reliability, low generalizability \\
+LLM-judge / Generation / LLM-judge / Hybrid / Cross-model / Single-prompt / Artifact-released & 6 & 3.9\% & Validity ambition without judge-version pinning \\
+LLM-judge / Multi-task / LLM-judge / Auto / Cross-model / Multi-prompt aggr. / Artifact-released & 5 & 3.3\% & Validity ambition with paraphrase coverage \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2467,13 +2508,22 @@ al.~\cite{chen2025reasoningmodels} -- treats the reasoning chain
 itself as the evaluation target rather than only the final answer.
 
 Generation tasks appear in 12 papers (7.8\%), code tasks in 12
-(7.8\%), and QA tasks in 8 (5.2\%). One paper in this corpus --
-Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- takes clinical
-NLP tasks as its primary evaluation target, representing 0.9\% of the
-corpus. Two papers, Vatsal and Singh~\cite{vatsal2025multilingual} and
-Son et al.~\cite{son2024mmeval}, take multilingual evaluation as a
-primary target (1.8\%), addressing a gap previously flagged in this
-survey. Two further papers, AgentBench~\cite{liu2023agentbench} and
+(7.8\%), and QA tasks in 8 (5.2\%). Clinical and multilingual
+evaluation are present in two different senses in the corpus, and we
+report both because confusing the two would distort the picture.
+Counted by \emph{primary evaluation target}, one paper --
+Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- centrally
+adopts clinical NLP tasks (0.9\%), and two -- Vatsal and
+Singh~\cite{vatsal2025multilingual} and Son et
+al.~\cite{son2024mmeval} -- centrally adopt multilingual evaluation
+(1.8\%). Counted by \emph{any-occurrence} (papers whose corpus or
+evaluation includes at least one clinical or multilingual benchmark,
+even if not the primary target), the corresponding shares are 3.9\%
+and 2.6\% respectively (Table~\ref{tab:sensitivity}); the additional
+papers in those any-occurrence counts include MIRAGE / MedRAG, Nori
+et al.\ on USMLE, Chang et al.\ on medical red-teaming, Kim et al.\
+on medical hallucination, MGSM, and MM-Eval, none of which positions
+its primary contribution in the clinical or multilingual domain. Two further papers, AgentBench~\cite{liu2023agentbench} and
 AgentBoard~\cite{ma2024agentboard}, target agentic, multi-turn,
 tool-use evaluation (1.8\%). Legal-domain evaluation is represented
 by LegalBench~\cite{guha2023legalbench} and
@@ -2813,15 +2863,19 @@ taxonomy makes visible that an unstructured reading would not.
 
 \textit{Failure mode 1: validity-reliability mismatch on
 open-ended tasks.} A paper proposing a new prompting technique for
-text summarization reports BLEU and ROUGE on a fixed reference set
-(D1 = Benchmark, D3 = Reference-based or Task-specific). The
-construct claim is ``improved summary quality'', but the metric
-covers only n-gram overlap with one reference, and the documented
-gap between lexical overlap and human judgment on
+text summarization or open-ended generation reports BLEU and ROUGE
+on a fixed reference set (D1 = Benchmark, D3 = Reference-based or
+Task-specific). The construct claim is ``improved summary quality'',
+but the metric covers only n-gram overlap with one reference, and
+the documented gap between lexical overlap and human judgment on
 summarization~\cite{liu2023geval, repairing2022} is not addressed.
 What the taxonomy makes visible: the configuration is
 high-reliability and narrow-validity, while the contribution claim
-requires the opposite balance.
+requires the opposite balance. Corpus instances exhibiting this
+pattern include the earlier reference-only generation evaluations
+that motivated the G-Eval~\cite{liu2023geval} response and the
+repair-evaluation argument of Gehrmann et
+al.~\cite{repairing2022}; the gap is the gap they document.
 
 \textit{Failure mode 2: judge-version drift undisclosed.} A paper in
 the LLM-judge cluster reports score-based comparisons against a
@@ -2830,8 +2884,14 @@ judge's snapshot date or version. By the time of publication, the
 judge model has had at least one silent revision. What the taxonomy
 makes visible: D7 = Artifact-released without
 Judge-version-pinned. Reproducibility in the within-run sense is
-intact; reproducibility across time is not, because future
-attempts to replicate cannot recover the same judge.
+intact; reproducibility across time is not, because future attempts
+to replicate cannot recover the same judge. The Judge-Sensitivity
+analysis of Bellibaltu et al.~\cite{bellibatlu2026judgesense} and the
+SAGE work~\cite{feng2025sage} quantify exactly this drift; among the
+LLM-judge papers in our corpus, only the 4 papers coded as D7 =
+Judge-version-pinned (Table~\ref{tab:d7dist}, 2.7\% of the corpus
+overall, 12.5\% of LLM-judge papers) document the judge snapshot in
+a way that supports across-time reproducibility.
 
 \textit{Failure mode 3: single-prompt cross-model claim.} A paper
 demonstrates a prompting technique on five model families and
@@ -2839,10 +2899,16 @@ reports cross-model performance, but uses one prompt phrasing per
 model. The technique's effect on the chosen phrasing is reported as
 the technique's effect in general. What the taxonomy makes visible:
 D5 = Cross-model with D6 = Single-prompt. Wang et
-al.~\cite{wang2023multi} have shown that single-prompt evaluations
-overstate effects relative to multi-prompt baselines on the same
-model; the cross-model finding is therefore narrower than its
-phrasing suggests.
+al.~\cite{wang2023multi} and Mizrahi et
+al.~\cite{mizrahi2024state} have shown that single-prompt
+evaluations overstate effects relative to multi-prompt baselines on
+the same model; cross-model findings reported under D6 =
+Single-prompt are therefore narrower than their phrasing suggests.
+The chain-of-thought original evaluation~\cite{wei2022chain} and its
+zero-shot variant~\cite{kojima2022large} are both coded D5 =
+Cross-model with D6 = Single-prompt in our corpus
+(Table~\ref{tab:fulltable}), making this failure mode endemic to the
+modal Archetype A configuration.
 
 These failure modes are not unusual; they appear at non-trivial
 rates across the corpus, and the dimensional coding makes them
@@ -3048,11 +3114,18 @@ constrains the claims a reader should draw from the corpus.
 Search strings operate on controlled vocabulary in title, abstract,
 and keyword fields, which means papers addressing the same concepts
 under alternative or emerging terminology may have been missed.
-Citation searching recovered 22 additional papers not surfaced by
-the primary query, and the supplementary expansion round
-(Section~\ref{sec:methodology}) recovered 20 more, but completeness
-cannot be guaranteed. Where the corpus shows an absence (clinical
-and multilingual primary targets, in particular), we are explicit
+Citation searching recovered 22 additional papers in the primary
+round, and four subsequent targeted expansion rounds
+(Section~\ref{sec:methodology}, Table~\ref{tab:expansion_rounds})
+recovered 73 more (20 + 11 + 35 + 7), but completeness cannot be
+guaranteed. Because the expansion rounds used narrower topical
+queries rather than full database sweeps, they introduce a
+potential selection bias toward the targeted areas; we therefore
+report distributional findings as descriptive of \emph{this corpus
+under these inclusion and expansion criteria} rather than as
+field-level estimates. Where the corpus shows a relative scarcity
+(clinical and multilingual primary targets, in particular), we are
+explicit
 throughout this paper that the absence is a property of the corpus
 under our inclusion criteria, not a claim about the field at large.
 
@@ -3251,10 +3324,11 @@ studies.
 
 \textit{Comparative claims.} Reviews, meta-analyses, and surveys that
 compare prompting techniques can use the taxonomy as the comparison
-spine. The 153-paper dataset released with this work
-(see Section~\ref{sec:methodology}) provides machine-readable codings
-that downstream syntheses can reuse rather than re-coding the
-same papers.
+spine. The 153-paper companion dataset (planned for release at
+acceptance to the URL in Section~\ref{sec:methodology}; see Data
+Availability statement) will provide machine-readable codings that
+downstream syntheses can reuse rather than re-coding the same
+papers.
 
 \textit{Evaluation design.} Researchers planning a new evaluation can
 use the seven-dimensional checklist in
@@ -3289,7 +3363,9 @@ and reference-anchored vs.\ judgment-anchored evaluation. Seven
 dimensions -- evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility and
 contamination resistance -- give those tensions operational form.
-Applied to a PRISMA 2020 systematic review of 153 papers, the
+Applied to a 153-paper structured corpus built from a PRISMA-style
+primary search and four targeted expansion rounds
+(Section~\ref{sec:methodology}, Table~\ref{tab:expansion_rounds}), the
 taxonomy produces three findings beyond per-dimension frequency
 counts: the corpus resolves into three recurring evaluation
 \textit{archetypes} occupying distinct regions of the
@@ -3638,7 +3714,7 @@ satisfied.
 
 {\scriptsize
 \begin{longtable}{C{0.35cm}L{2.7cm}L{2.5cm}C{1.6cm}C{1.3cm}C{1.4cm}C{1.2cm}C{1.3cm}C{0.9cm}C{1.3cm}}
-\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 81--100 were added in the first expansion round, and 101--111 in the second expansion round targeting agentic, multilingual, prompt-injection, and CoT-faithfulness gaps.}\label{tab:fullmapping}\\
+\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 1--80 were retained from the primary search round; papers 81--100 added in expansion round 1 (LLM-judge quality, contamination, multi-prompt sensitivity); 101--111 in round 2 (agentic, multilingual, prompt-injection, CoT-faithfulness); 112--146 in round 3 (foundation-model reports, RAG, safety, fairness, calibration, clinical, legal); and 147--153 in round 4 (long-context, tool-use, reward-model evaluation). See Table~\ref{tab:expansion_rounds} for the full expansion history.}\label{tab:fullmapping}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
