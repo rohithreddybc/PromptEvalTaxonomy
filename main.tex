@@ -230,25 +230,16 @@ results transfer across labs. Providing that vocabulary -- a
 seven-dimensional taxonomy grounded in measurement theory -- is the
 primary contribution of this paper.
 
-The scenario is not unusual. The same prompting strategy can be
-assessed using benchmark accuracy on one model, human preference
+The scenario is not unusual: the same prompting strategy can be
+assessed with benchmark accuracy on one model, human preference
 ratings on another, LLM-judge scoring on a third, and pass@$k$ on
-code generation tasks for a fourth. Each evaluation is internally
-consistent. None is directly comparable to the others.
-Researchers deciding which technique to apply to a new problem have
-no principled basis for interpreting results across studies, because
-the evaluation frameworks underlying those results are organized
-along different, unstated, and mutually incompatible
-assumptions~\cite{chang2023survey, guo2023evaluating}.
-
-This has practical consequences. Prompt engineering claims
-underpin design decisions in commercial systems, clinical tools, and
-automated software pipelines. When those claims rest on evaluation
-setups that cannot be compared or reproduced across labs, the
-inferences they support are difficult to evaluate. The field needs a
-shared vocabulary for describing evaluation frameworks - not a single
+code tasks for a fourth. Each is internally consistent; none is
+directly comparable~\cite{chang2023survey, guo2023evaluating}.
+Because PE claims underpin design decisions in commercial systems,
+clinical tools, and automated software pipelines, the field needs a
+shared vocabulary for describing evaluation frameworks -- not a
 mandated protocol, but a structure that makes the relevant choices
-visible so researchers can reason about them explicitly.
+explicit so researchers can reason about them.
 
 \subsection*{Contribution}
 
@@ -289,15 +280,6 @@ pipelines do not treat these checks as standard practice. We discuss
 the boundary of this claim and its dependence on inclusion criteria
 in Section~\ref{sec:comparison}.
 
-The taxonomy's contribution is not a new evaluation method but a
-shared conceptual frame for reasoning about evaluation design. It
-makes the tradeoffs between validity and reliability visible at the
-level of individual coding choices, identifies recurring evaluation
-\textit{archetypes} (Section~\ref{subsec:archetypes}) that describe
-how those choices co-vary in the literature, and exposes the specific
-points at which current practice trades validity for reliability or
-vice versa.
-
 \subsection*{Paper Organization}
 
 Section~\ref{sec:related_work} reviews three streams of related work
@@ -325,10 +307,10 @@ named tensions and a future research agenda.
 Section~\ref{sec:conclusion} concludes.
 Appendix~\ref{app:checklist} provides an evaluation design checklist
 covering all seven dimensions for study preregistration.
-Appendix~\ref{app:fulltable} presents a representative per-paper
-mapping with all seven dimensions coded.
-Appendix~\ref{app:fullmapping} presents the comprehensive
-153-paper mapping across all seven dimensions D1--D7.
+Within Section~\ref{sec:comparison}, Table~\ref{tab:fulltable} gives
+a representative ten-paper mapping across all seven dimensions.
+Appendix~\ref{app:fullmapping} presents the comprehensive 153-paper
+mapping across all seven dimensions D1--D7.
 
 
 % ---------------------------------------------------------------
@@ -675,31 +657,25 @@ feng2025sage}.
 \subsection{Two Underlying Tensions in Evaluation Design}
 \label{subsec:tensions}
 
-A useful taxonomy of evaluation frameworks should do more than catalog the
-choices researchers make. It should explain why those choices cluster the
-way they do. We argue that the configuration space of prompt engineering
-evaluation is structured by two largely orthogonal tensions, each
-inherited from the broader measurement literature and each visible in the
-distribution of practice across our corpus
-(Section~\ref{sec:comparison}).
+The configuration space of prompt engineering evaluation is
+structured by two largely orthogonal tensions from measurement
+theory, both visible in our corpus (Section~\ref{sec:comparison}).
 
 The first tension is between \textit{construct validity} and
-\textit{measurement reliability}. Construct validity asks whether a measurement
-captures the property it is intended to capture; reliability asks whether
-the same measurement, applied repeatedly, yields the same
+\textit{measurement reliability}: validity asks whether a measurement
+captures the property it is intended to capture; reliability asks
+whether repeated application yields the same
 result~\cite{cronbach1955construct, messick1995validity}. The two
-properties are not equivalent and frequently pull in opposite directions.
-A pass@$k$ score against a fixed test suite is highly reliable
-- a second run on the same model and the same suite will return the same
-number - but its construct validity for ``code quality'' is narrow, since
-unit tests do not capture readability, maintainability, or security. A
-panel of expert clinicians scoring open-ended medical answers can pursue
-construct validity at the level the deployment context demands, but the
-panel cannot be replicated cheaply or at scale, and inter-rater agreement
-is rarely perfect~\cite{chang2023survey}. Recent work in machine learning
-evaluation explicitly translates this validity-reliability framing into
-the ML setting~\cite{jacobs2021measurement, subramonian2023takeoneforteam,
-liao2023designing}, and we adopt it here as the spine of the taxonomy.
+frequently pull in opposite directions. A pass@$k$ score against a
+fixed test suite is highly reliable but narrow on construct validity
+for ``code quality'': unit tests miss readability, maintainability,
+and security. A clinician panel scoring open-ended medical answers
+pursues construct validity at the level the deployment context
+demands but cannot be replicated cheaply, and inter-rater agreement
+is rarely perfect~\cite{chang2023survey}. Recent ML-evaluation work
+translates this framing into the ML
+setting~\cite{jacobs2021measurement, subramonian2023takeoneforteam,
+liao2023designing}; we adopt it as the spine of the taxonomy.
 
 The second tension is between \textit{reference-anchored} and
 \textit{judgment-anchored} evaluation. Reference-anchored evaluation
@@ -727,70 +703,52 @@ validity/reliability frame predicts. Figure~\ref{fig:taxonomy} positions
 the dimensions on the two-axis space; Section~\ref{sec:comparison} then
 locates 153 papers within it.
 
-\textit{What the frame explains.} The validity/reliability framing is
-not a re-labeling exercise; it is intended to do explanatory work.
-Three behaviors of the literature follow directly from the two
-tensions and would be left unexplained by a flat taxonomy:
+\textit{What the frame explains.} Three behaviors of the literature
+follow from the two tensions and would be left unexplained by a flat
+taxonomy:
 
-(a) \emph{Why D1 and D3 are entangled.} A paper that anchors
-scoring to a stored gold answer (D1 = Benchmark) almost always
-adopts the metric the benchmark prescribes (D3 = Task-specific or
-Reference-based). The entanglement is not a coding artifact; it
-reflects the fact that choosing a judgment locus largely determines
-the metric family. The frame predicts the joint distribution
-observed in Section~\ref{subsec:cooccurrence}.
+(a) \emph{Why D1 and D3 are entangled.} A paper that anchors scoring
+to a stored gold answer (D1 = Benchmark) almost always adopts the
+metric the benchmark prescribes (D3 = Task-specific or
+Reference-based). Choosing a judgment locus largely determines the
+metric family, which is why the joint distribution shows up in
+Section~\ref{subsec:cooccurrence}.
 
 (b) \emph{Why benchmark-automation is the modal configuration.}
-The reliability axis is the only axis on which automation pays
-near-zero validity cost \emph{when the task admits a single correct
-answer}. For closed-form reasoning, arithmetic, and code-execution
-tasks, the construct is well-approximated by the reference, so the
+Reliability is the only axis on which automation pays near-zero
+validity cost \emph{when the task admits a single correct answer}.
+For closed-form reasoning, arithmetic, and code-execution tasks the
+construct is well-approximated by the reference, so the
 high-reliability end of the axis is also the high-construct-fidelity
-end. For open-ended generation tasks the same configuration pays
-significant construct validity for the same reliability. The frame
-predicts that Archetype A (benchmark-automation) will dominate
-the corpus and will fail in a specific direction
+end; for open-ended generation the same configuration pays
+significant construct validity. This is why Archetype A dominates
+the corpus and fails in a specific direction
 (Section~\ref{subsec:tension_scalability}).
 
 (c) \emph{Why LLM-judge adoption fragments.} Moving from
 reference-anchored to judgment-anchored scoring (D1 = LLM-as-judge)
 preserves throughput but introduces a new reliability concern at the
-judge model itself. Without calibration evidence (a sub-property of
-D3) and judge-version pinning (D7), the within-paper reliability
-the configuration retains does not transfer to across-paper
-comparability. The frame predicts both the empirical concentration
-of LLM-judge papers in Archetype B and the fragmentation documented
-in Section~\ref{subsec:tension_reference}.
-
-The frame is therefore not just a way of organizing the dimensions;
-it is a low-parameter account of why the literature distributes
-itself the way it does.
+judge itself. Without calibration evidence (a sub-property of D3) and
+judge-version pinning (D7), within-paper reliability does not transfer
+to across-paper comparability -- hence the concentration of LLM-judge
+papers in Archetype B and the fragmentation documented in
+Section~\ref{subsec:tension_reference}.
 
 \subsection{From Five Dimensions to Seven}
 \label{subsec:fivetoseven}
 
-An earlier formulation of this taxonomy used five dimensions:
-evaluation method, task scope, metric type, automation level, and
-evaluation scope. Application to the corpus revealed two limitations
-of the five-dimensional version. First, the five dimensions
-captured \emph{procedural} choices but did not name two properties
-that the literature itself treats as first-class evaluation concerns:
-robustness to prompt rephrasing~\cite{sclar2023formatting,
-promptsensitivity2025, butterfly2024} and reproducibility under judge
-drift, API change, and benchmark contamination~\cite{ni2025benchmarks,
-feng2025sage}. Second, the five dimensions did not place automation
-level in its proper relation to reliability. Automation is not an
-independent property of evaluation; it is a particular operationalization
-of the reliability axis, and treating it as a peer to evaluation method
-or metric type misrepresents the conceptual structure.
-
-The current version of the taxonomy retains the five original dimensions
-but adds two: \textit{Dimension~6 (Robustness)} and
-\textit{Dimension~7 (Reproducibility and Contamination Resistance)}. It
-also reframes \textit{Dimension~4 (Automation Level)} explicitly as a
-sub-axis of reliability rather than an independent procedural choice.
-The resulting seven-dimensional structure is intended to make the two
-underlying tensions traceable through every coding decision.
+An earlier five-dimensional version (method, task scope, metric,
+automation, evaluation scope) had two limitations. First, it omitted
+properties the literature treats as first-class: robustness to prompt
+rephrasing~\cite{sclar2023formatting, promptsensitivity2025,
+butterfly2024} and reproducibility under judge drift, API change, and
+benchmark contamination~\cite{ni2025benchmarks, feng2025sage}.
+Second, it treated automation as a peer to method and metric rather
+than as an operationalization of the reliability axis. The current
+taxonomy adds D6 (Robustness) and D7 (Reproducibility and
+Contamination Resistance), and reframes D4 (Automation Level) as a
+sub-axis of reliability, so that the two underlying tensions are
+traceable through every coding decision.
 
 As formalized in Definition~1, a prompt engineering evaluation
 framework is fully specified by a choice along each of the seven
@@ -1219,23 +1177,13 @@ does not contain a population of deployment-realism-focused evaluations
 large enough to support its own dimension; if such studies become
 prevalent, a future revision of the taxonomy could promote them.
 
-The seven dimensions are therefore not the only conceivable
-decomposition, but they correspond to choices the corpus actually makes,
-project cleanly onto the two underlying tensions, and avoid trivial
-codings on the bulk of the literature.
-
 \subsection{Taxonomy Summary}
 \label{subsec:taxsummary}
 
-The seven dimensions, the underlying tension each projects onto, and
-representative examples appear in Table~\ref{tab:taxonomy}.
-Figure~\ref{fig:taxonomy} positions the dimensions on the
-validity-reliability and reference-judgment axes; the empirical
-distribution of papers across the resulting space is reported in
-Section~\ref{sec:comparison}. We use the dimensions to classify two
-representative papers in Section~\ref{subsec:classify} and to walk a
-new evaluation through the design space in
-Section~\ref{subsec:design}.
+Table~\ref{tab:taxonomy} summarizes the seven dimensions and
+Figure~\ref{fig:taxonomy} positions them on the two tensions;
+Section~\ref{sec:taxonomy_application} works through application
+examples.
 
 % ---------------------------------------------------------------
 \section{Applying the Taxonomy: Worked Examples and Design Guidance}
@@ -1657,24 +1605,18 @@ reporting or analyzing the evaluation of the prompting approach
 in any systematic way. Those papers were excluded because they do not contribute
 meaningfully to understanding evaluation frameworks.
 
-\textbf{On mixing paper types.} The corpus deliberately includes four
-overlapping paper categories: (1) prompt engineering technique
-papers, (2) benchmark and dataset papers, (3) LLM-as-judge and
-metric-quality papers, and (4) prompt engineering and LLM evaluation
-surveys. A reviewer may reasonably ask whether mixing these categories
-into one analytical corpus is methodologically defensible. Our
-position is that all four categories \emph{participate in PE
-evaluation infrastructure}: technique papers consume benchmarks and
-metrics, benchmark and metric papers shape what techniques can be
-evaluated, and surveys recapitulate practice and influence its
-direction. The unifying inclusion principle is participation in
-evaluation infrastructure, not paper genre. To allow auditable
-claims, however, we report all major distributions in
-Section~\ref{sec:comparison} both in aggregate and split by paper
-category, and we do not aggregate across categories where the
-category is itself the moderator of interest (for instance,
+\textbf{On mixing paper types.} The corpus includes four overlapping
+categories: technique, benchmark and dataset, LLM-as-judge and
+metric-quality, and survey papers. All four \emph{participate in PE
+evaluation infrastructure} -- technique papers consume benchmarks and
+metrics; benchmark and metric papers shape what techniques can be
+evaluated; surveys influence practice -- so the unifying inclusion
+principle is infrastructure participation, not genre. To keep claims
+auditable, Section~\ref{sec:comparison} reports distributions both in
+aggregate and split by category, and does not aggregate across
+categories where the category is itself the moderator (e.g.,
 LLM-as-judge configurations are reported separately for the
-LLM-as-judge methodology subgroup).
+LLM-as-judge subgroup).
 
 \subsection{Screening Process}
 
@@ -1760,23 +1702,19 @@ through discussion; cases that could not be resolved were referred
 to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
 
 Inter-rater agreement is reported as Cohen's $\kappa$ per dimension
-in Table~\ref{tab:kappa}. The dimensions split into two reliability
-regimes. Objectively verifiable dimensions (D1 evaluation method, D2
-task scope, D3 metric type, D5 evaluation scope) achieved $\kappa$
-between 0.88 and 0.92 on the dual-coded sample, all in the
-``almost perfect'' tier of the Landis and Koch scale. Interpretively
-coded dimensions (D4 automation level, D6 robustness, D7
-reproducibility) achieved $\kappa$ between 0.76 and 0.84, in the
-``substantial'' tier. The lower $\kappa$ on D6 and D7 reflects
-genuine ambiguity at category boundaries rather than disagreement on
-facts: papers that report a single sentence acknowledging
-sensitivity without quantifying it sit between D6=Not reported and
-D6=Single-prompt, and papers that release code but not data sit
-between D7=Artifact-released and D7=Artifact-incomplete. We report what we measured rather than collapsing to a single
-corpus-level $\kappa$, since the heterogeneous reliability profile is
-itself part of the finding: some evaluation properties are codable
-from descriptions, others require interpretive judgment that an
-evaluation reporting standard could substantially reduce.
+in Table~\ref{tab:kappa}. Objectively verifiable dimensions (D1, D2,
+D3, D5) achieved $\kappa$ = 0.88--0.92 (``almost perfect'' on
+Landis--Koch); interpretively coded dimensions (D4, D6, D7) achieved
+$\kappa$ = 0.76--0.84 (``substantial''). The lower D6/D7 values
+reflect boundary ambiguity, not factual disagreement: papers that
+mention sensitivity without quantifying it sit between D6=Not
+reported and D6=Single-prompt, and papers releasing code but not data
+sit between D7=Artifact-released and D7=Artifact-incomplete. We
+report dimension-level $\kappa$ rather than a corpus-level summary
+because the heterogeneous profile is itself a finding: some
+properties are codable from descriptions while others require
+interpretive judgment that an evaluation reporting standard could
+substantially reduce.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -1825,12 +1763,11 @@ dimensional codes uniformly at random,
 re-derived the headline percentages (benchmark dominance, automation
 dominance, single-model evaluation share, clinical and multilingual
 representation), and report the resulting bounds in
-Table~\ref{tab:sensitivity}. Headline claims that move by less than
-two percentage points under 20\% perturbation are reported as stable;
-claims that move more are flagged with explicit uncertainty bounds in
-the relevant Section~\ref{sec:comparison} subsections. All headline claims survive both perturbation levels: no claim moves
-by more than 3.4 percentage points under 20\% perturbation,
-confirming that the substantive findings are robust to coding noise.
+Table~\ref{tab:sensitivity}. Claims moving more than two percentage
+points under 20\% perturbation would be flagged in
+Section~\ref{sec:comparison}; in practice all headline claims survive
+both perturbation levels (maximum shift 3.4\,pp), confirming
+robustness to coding noise.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -1905,30 +1842,20 @@ beyond per-dimension frequency counts. Third, it generates the
 empirical foundation for the synthesis in
 Section~\ref{sec:discussion}.
 
-We organize the analysis as follows. Sections~\ref{subsec:d1dist}
-through~\ref{subsec:d7dist} report per-dimension distributions, both
-in aggregate and split by paper category (technique, benchmark,
-LLM-judge / metric, survey) so that aggregate claims can be audited
-against the categories that drive them. Section~\ref{subsec:cooccurrence}
-reports the dimension co-occurrence matrix and identifies the small
-number of configurations that account for the bulk of the corpus.
-Section~\ref{subsec:archetypes} names the recurring evaluation
-archetypes that emerge from those configurations and locates each on
-the validity-reliability frame from Section~\ref{subsec:tensions}.
-Section~\ref{subsec:failuremodes} then walks through three to five
-worked examples in which a paper's evaluation configuration does not
-support its contribution claim - cases where the taxonomy makes a
-genuine methodological mismatch visible.
-
-Table~\ref{tab:archetype_distribution} previews the analysis: the
-five most common configurations across the seven dimensions, their
-share of the corpus, and the underlying tension each foregrounds.
-A representative per-paper mapping with all seven dimensions coded
-is presented in Appendix~\ref{app:fulltable}; the comprehensive
-153-paper mapping across all seven dimensions D1--D7 is presented in
-Appendix~\ref{app:fullmapping}; the full machine-readable
-dataset is released at the URL given in
-Section~\ref{sec:methodology}. Table~\ref{tab:comparison} below
+Sections~\ref{subsec:d1dist}--\ref{subsec:d7dist} report
+per-dimension distributions split by paper category (technique,
+benchmark, LLM-judge / metric, survey) so aggregate claims can be
+audited against the categories that drive them.
+Section~\ref{subsec:cooccurrence} reports the dimension co-occurrence
+matrix; Section~\ref{subsec:archetypes} names the recurring
+archetypes and locates each on the validity-reliability frame;
+Section~\ref{subsec:representative_examples} grounds the archetypes
+in a ten-paper sample (Table~\ref{tab:fulltable});
+Section~\ref{subsec:failuremodes} walks through worked failure-mode
+examples. Table~\ref{tab:archetype_distribution} previews the five
+most common configurations; the comprehensive 153-paper mapping is
+in Appendix~\ref{app:fullmapping} (also released at the URL in
+Section~\ref{sec:methodology}); Table~\ref{tab:comparison} below
 summarizes the modal configuration per paper category.
 
 \begin{table}[!t]
@@ -2029,18 +1956,14 @@ non-trivial reporting share in this category. \\
 \end{tabular}
 \end{table}
 
-The five-row category aggregation foregrounds two patterns that the
-80-row enumeration obscured by repetition. First, the dimensional
-profile is largely set by paper category: technique papers, benchmark
-papers, and surveys converge on Archetype A (Benchmark-Automation),
-while LLM-judge papers converge on Archetype B, and sensitivity
-papers cluster around higher D6 reporting. Second, the per-category
-modal configuration is informative \emph{because} of the within-category
-variations noted in the right-hand column - each variation is a
-candidate failure-mode example
-(Section~\ref{subsec:failuremodes}) or a methodological development
-worth highlighting in the discussion
-(Section~\ref{sec:discussion}).
+The category aggregation foregrounds two patterns. First, dimensional
+profile is largely set by category: technique, benchmark, and survey
+papers converge on Archetype A; LLM-judge papers converge on
+Archetype B; sensitivity papers report higher D6. Second, the
+within-category variations (right-hand column) are each candidate
+failure-mode examples (Section~\ref{subsec:failuremodes}) or
+methodological developments revisited in
+Section~\ref{sec:discussion}.
 
 %% Legacy per-paper longtable (D1-D5 only, 100 rows) moved to
 %% Appendix C as a comprehensive visible reference, following the
@@ -2587,11 +2510,9 @@ requires both artifact release and contamination verification.
 \subsection{Co-occurrence Patterns Across Dimensions}
 \label{subsec:cooccurrence}
 
-The seven dimensions are conceptually independent (any combination
-of subcategories is a valid configuration), but they are far from
-statistically independent in practice. Table~\ref{tab:cooccurrence}
-reports pairwise co-occurrence between selected subcategory pairs
-that the validity-reliability frame predicts should be linked.
+Table~\ref{tab:cooccurrence} reports pairwise co-occurrence between
+selected subcategory pairs that the validity-reliability frame
+predicts should be linked.
 
 \begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
@@ -2617,15 +2538,11 @@ D2 = Generation & D3 = LLM-judge & 8.2\% \\
 \end{tabular}
 \end{table}
 
-The interpretation is that D1 / D3 entanglement and D5 / D6
-entanglement are not coding artifacts: they are properties of the
-literature that the dimensional structure makes visible. A paper
-that adopts a benchmark also typically adopts that benchmark's
-metric and forgoes paraphrase-variance reporting because the
-benchmark does not call for it. The validity-reliability frame
-predicts these clusters and explains why they are stable: each
-cluster occupies a coherent region of the design space and pays
-the same tradeoffs.
+D1/D3 and D5/D6 entanglements are properties of the literature, not
+coding artifacts: a paper that adopts a benchmark typically also
+adopts the benchmark's metric and forgoes paraphrase-variance
+reporting. Each cluster occupies a coherent region of the design
+space and accepts the same tradeoffs.
 
 \subsection{Three Recurring Evaluation Archetypes}
 \label{subsec:archetypes}
@@ -2689,6 +2606,102 @@ and they cover the three coherent regions of the validity-reliability
 space. The taxonomy makes the archetype boundaries identifiable, the
 tradeoffs each archetype pays explicit, and the design choices that
 move a study from one archetype to another visible.
+
+\subsection{Representative Per-Paper Mapping Across Archetypes}
+\label{subsec:representative_examples}
+
+Table~\ref{tab:fulltable} grounds the archetype discussion in concrete
+papers by mapping ten representative entries from the 153-paper corpus
+across all seven taxonomy dimensions, with one paper per major
+category. The complete 153-paper machine-readable dataset is released
+at \url{https://github.com/rohithreddybc/PromptEvalTaxonomy};
+Appendix~\ref{app:fullmapping} carries the full visible version.
+D6 (Robustness) and D7 (Reproducibility) codings were dual-coded with
+inter-rater $\kappa$ = 0.76 and 0.78 respectively
+(Section~\ref{subsec:coding_reliability}). Abbreviations:
+BM = Benchmark; LJ = LLM-as-judge; HE = Human eval; Abl = Ablation;
+TS = Task-specific; MB = Model-based; Hyb = Hybrid; Auto = Automated;
+HiL = Human-in-loop; CM = Cross-model; CD = Cross-domain;
+CDs = Cross-dataset; SM = Single-model; Sng = Single-prompt;
+MAg = Multi-prompt aggregate; SB = Sensitivity-bounded;
+AI = Artifact-incomplete; AR = Artifact-released;
+CC = Contamination-checked; JP = Judge-version-pinned;
+CC+JP = both properties satisfied.
+
+\begin{landscape}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+
+{\footnotesize
+\begin{longtable}{p{3.2cm} p{1.8cm} p{1.1cm} p{1.5cm} p{1.1cm} p{1.2cm} p{1.1cm} p{2.4cm}}
+\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 153-paper corpus are shown, one per major category. The complete 153-paper mapping is given in Appendix~\ref{app:fullmapping}; the machine-readable spreadsheet is released at the GitHub URL above. D6 and D7 codings reflect the dual-coded inter-rater agreement reported in Section~\ref{subsec:coding_reliability} ($\kappa$ = 0.76 and 0.78 respectively).}
+\label{tab:fulltable}\\
+\toprule
+\textbf{Paper (year)} &
+\cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
+\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task}} &
+\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
+\cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
+\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Robust.}} &
+\cellcolor{d7col}\textcolor{white}{\textbf{D7 Reprod.}} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\textit{Table~\ref{tab:fulltable} (continued)}}\\
+\toprule
+\textbf{Paper (year)} &
+\cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
+\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task}} &
+\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric}} &
+\cellcolor{d4col}\textcolor{white}{\textbf{D4 Auto}} &
+\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} &
+\cellcolor{d6col}\textcolor{white}{\textbf{D6 Robust.}} &
+\cellcolor{d7col}\textcolor{white}{\textbf{D7 Reprod.}} \\
+\midrule
+\endhead
+\midrule \multicolumn{8}{r}{\textit{Continued on next page}}\\ \endfoot
+\bottomrule \endlastfoot
+
+\multicolumn{8}{l}{\textit{Prompting Technique Papers}} \\ \midrule
+\rowcolor{rowgray}
+Wei et al.~\cite{wei2022chain} (2022) Chain-of-Thought &
+BM & Reasoning & TS & Auto & CM & Sng & AR \\
+Kojima et al.~\cite{kojima2022large} (2022) Zero-Shot CoT &
+BM & Reasoning & TS & Auto & CM & Sng & AR \\
+\rowcolor{rowgray}
+Ouyang et al.~\cite{ouyang2022training} (2022) InstructGPT/RLHF &
+HE & Multi-task & Hyb & HiL & SM & Sng & AI \\
+\midrule
+\multicolumn{8}{l}{\textit{Automated Prompt Optimization Papers}} \\ \midrule
+Zhou et al.~\cite{zhou2022ape} (2022) APE &
+BM & Multi-task & TS & Auto & CM & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{LLM-as-Judge / Metric Papers}} \\ \midrule
+\rowcolor{rowgray}
+Zheng et al.~\cite{zheng2023judging} (2023) MT-Bench &
+LJ & Multi-task & LJ & Auto & CM & MAg & JP \\
+Liu et al.~\cite{liu2023geval} (2023) G-Eval &
+LJ & Generation & LJ & Hyb & CM & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{Benchmark / Dynamic Benchmark Papers}} \\ \midrule
+\rowcolor{rowgray}
+Lin et al.~\cite{wildbench2024} (2024) WildBench &
+LJ & Multi-task & LJ & Auto & CM & Sng & CC+JP \\
+Wang et al.~\cite{wang2018glue} (2018) GLUE &
+BM & Multi-task & TS & Auto & CDs & Sng & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{Robustness / Sensitivity Papers}} \\ \midrule
+\rowcolor{rowgray}
+Zhu et al.~\cite{promptbench2023} (2023) PromptBench &
+BM & Multi-task & TS & Auto & CM & SB & AR \\
+\midrule
+\multicolumn{8}{l}{\textit{LLM Evaluation Survey Papers}} \\ \midrule
+Chang et al.~\cite{chang2023survey} (2023) LLM Eval Survey &
+HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
+
+\end{longtable}
+}
+\end{landscape}
 
 \subsection{Failure-Mode Catalog}
 \label{subsec:failuremodes}
@@ -2799,30 +2812,20 @@ Section~\ref{subsec:surveylimits}.
 \subsection{Tension 1: Scalability vs.\ Construct Validity}
 \label{subsec:tension_scalability}
 
-The first tension is the most visible in the corpus. Archetype A
-(Benchmark-Automation) maximizes within-run reliability and
-throughput by anchoring evaluation to a fixed gold reference and a
-deterministic scoring function. Archetype C (Expert-Anchored)
-maximizes construct validity by anchoring evaluation to human
-judgment, at the cost of throughput, replication speed, and
-cross-paper comparability. The corpus is heavily weighted toward
-Archetype A: the configuration share is consistent with the
-distribution reported in Sections~\ref{subsec:d1dist}
-and~\ref{subsec:d4dist}, and the relative scarcity of human
-evaluation is consistent with Section~\ref{subsec:d1dist}.
+Archetypes A and C (Section~\ref{subsec:archetypes}) sit at opposite
+ends of this tension: A maximizes within-run reliability via a fixed
+gold reference; C maximizes construct validity via human judgment
+at the cost of throughput and cross-paper comparability. The corpus
+is heavily weighted toward A
+(Sections~\ref{subsec:d1dist}, \ref{subsec:d4dist}).
 
-The taxonomy clarifies what the tradeoff is and is not. It is not a
-choice between rigorous and lazy evaluation - both archetypes are
-internally rigorous in their own terms. It is a choice between
-\textit{construct fidelity at the deployment context} and
-\textit{measurement consistency across runs}. For tasks where the
+The tradeoff is between \textit{construct fidelity at the deployment
+context} and \textit{measurement consistency across runs}. Where the
 construct is well-approximated by an exact-match score (arithmetic,
-factual retrieval, code execution against unit tests), Archetype A
-loses very little construct validity in exchange for very high
-reliability. For tasks where the construct is not well-approximated
-by exact-match (open-ended generation, clinical decision support,
-multilingual fluency), Archetype A pays significant construct
-validity for the same reliability, and the resulting score
+factual retrieval, code execution), Archetype A loses very little
+validity for high reliability. Where it is not (open-ended generation,
+clinical decision support, multilingual fluency), Archetype A pays
+significant construct validity for the same reliability and the score
 under-determines what it claims to measure.
 
 The implication is not that the field should adopt Archetype C
@@ -2868,27 +2871,18 @@ more than a research one.
 \subsection{Tension 3: Reliability Within a Run vs.\ Reliability Across Time}
 \label{subsec:tension_reproducibility}
 
-The third tension is the one D7 (Reproducibility and Contamination
-Resistance) most directly captures. A pipeline can be highly
-reliable in the within-run sense (the same input returns the same
-score) and fragile in the across-time sense (the score depends on
-infrastructure that drifts silently between API revisions, or on
-test data that may have leaked into pretraining). Section~\ref{subsec:d7dist}
-documents the asymmetry: artifact release is relatively common,
-contamination checking and judge-version pinning are not.
-
-This tension is structural rather than discretionary. As long as
-benchmark evaluation depends on static test sets that grow more
-likely to be contaminated as models train on more web-scale data,
-and as long as LLM-judge evaluation depends on proprietary judge
-models that the evaluation pipeline cannot pin or reproduce,
-within-run reliability and across-time reliability will pull
-against each other. Recent work on contamination-resistant dynamic
-benchmarks~\cite{wildbench2024} and on judge-sensitivity
+D7 most directly captures this tension.
+Section~\ref{subsec:d7dist} documents the asymmetry: artifact release
+is relatively common; contamination checking and judge-version
+pinning are not. The tension is structural -- static test sets grow
+more likely to be contaminated as models train on web-scale data,
+and proprietary judge models cannot be pinned or reproduced -- so
+within-run and across-time reliability pull against each other.
+Recent work on contamination-resistant dynamic
+benchmarks~\cite{wildbench2024} and judge-sensitivity
 quantification~\cite{bellibatlu2026judgesense, feng2025sage}
-suggests that the tension is at least partially addressable with
-infrastructure changes; what is missing is widespread adoption of
-those changes within the PE evaluation literature itself.
+partially addresses this, but adoption within the PE evaluation
+literature remains sparse.
 
 \subsection{Open Problems by Tension}
 \label{subsec:open_problems}
@@ -3385,6 +3379,14 @@ preregistration or supplementary materials, with citation to this
 work.
 
 % ---------------------------------------------------------------
+% NOTE (2026-05-16): The 10-row representative per-paper mapping that
+% formerly lived in this appendix has been moved into Section 8 as
+% \subsection{Representative Per-Paper Mapping Across Archetypes}
+% (Table~\ref{tab:fulltable}). The old appendix shell is left as a
+% commented stub so that the surrounding appendix divider structure
+% stays intact; the only remaining per-paper appendix is the
+% Comprehensive 153-paper mapping in Appendix~\ref{app:fullmapping}.
+\iffalse
 \section{Representative Per-Paper Taxonomy Mapping (All Seven Dimensions)}
 \label{app:fulltable}
 
@@ -3480,25 +3482,28 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 \end{longtable}
 }
 \end{landscape}
+\fi
 
 % ---------------------------------------------------------------
 \section{Comprehensive Per-Paper Mapping (153 Papers, All Seven Dimensions)}
 \label{app:fullmapping}
 
 For full transparency, this appendix presents the complete corpus
-of 153 papers coded across all seven taxonomy dimensions
-(D1--D7). The representative sample in
-Appendix~\ref{app:fulltable} provides expanded notes for ten papers;
-the underlying machine-readable spreadsheet is released at
+of 153 papers coded across all seven taxonomy dimensions (D1--D7).
+The representative ten-paper sample in Table~\ref{tab:fulltable}
+(Section~\ref{subsec:representative_examples}) gives expanded category
+context; the machine-readable spreadsheet is released at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}. Papers
-81--100 were added in the corpus expansion round
-(Section~\ref{sec:methodology}) targeting LLM-judge quality,
-benchmark contamination, and multi-prompt sensitivity work
-underrepresented in the primary search results. D6 and D7 entries
-reflect the primary coder's pass and will be re-verified once the
-second-coder analysis is complete (see
+81--100 were added in the first expansion round, 101--111 in the
+second, 112--146 in the third, and 147--153 in the fourth
+(Section~\ref{sec:methodology}), targeting LLM-judge quality,
+benchmark contamination, multi-prompt sensitivity, agentic,
+multilingual, clinical, prompt-injection, and CoT-faithfulness work
+underrepresented in the primary search results. D6 and D7 codings
+reflect the dual-coded inter-rater agreement
+($\kappa$ = 0.76 and 0.78 respectively;
 Section~\ref{subsec:coding_reliability}). Abbreviations follow those
-used in Appendix~\ref{app:fulltable}: D6 = Sng (Single-prompt),
+used in Table~\ref{tab:fulltable}: D6 = Sng (Single-prompt),
 MAg (Multi-prompt aggregate), SB (Sensitivity-bounded), NR (Not
 reported); D7 = AR (Artifact-released), CC (Contamination-checked),
 JP (Judge-version-pinned), NR (Not reported); combined codes such
