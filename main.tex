@@ -480,7 +480,8 @@ paradigm, or a measurement-theoretic axis) rather than a flat
 taxonomy. \checkmark{} = covered as a primary axis;
 $\circ$ = mentioned but not classified along; \textendash{} = not
 covered. ``This work'' uses the seven dimensions defined in
-Section~\ref{sec:taxonomy}.}
+Section~\ref{sec:taxonomy}.
+\textit{Takeaway:} This paper is the only surveyed work to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame, making its coverage structurally distinct from all six prior surveys.}
 \label{tab:differentiation}
 \centering
 \footnotesize
@@ -1025,7 +1026,8 @@ projects onto a third, largely orthogonal generalizability axis (G).
 Any combination of subcategories across dimensions is a valid
 evaluation framework configuration; co-occurrence patterns observed
 in practice are reported in
-Section~\ref{subsec:cooccurrence}.}
+Section~\ref{subsec:cooccurrence}.
+\textit{Takeaway:} The seven dimensions are non-redundant: each enforces a distinct design choice that prior surveys either collapse into a single axis or omit entirely, giving this taxonomy finer discriminating power over evaluation configurations.}
 \label{tab:taxonomy}
 \centering
 \footnotesize
@@ -1157,7 +1159,8 @@ not placed on the validity-reliability plane. The three shaded
 regions correspond to the recurring evaluation \emph{archetypes}
 identified in Section~\ref{subsec:archetypes}; the empirical
 distribution of papers across them is reported in
-Table~\ref{tab:archetype_distribution}.}
+Table~\ref{tab:archetype_distribution}.
+\textit{Takeaway:} The majority of the corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), revealing a field-wide structural preference for measurement convenience over construct coverage.}
 \label{fig:taxonomy}
 \end{figure*}
 
@@ -1467,7 +1470,8 @@ confront.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
-\caption{Evaluation Design Quick Reference: One Question per Dimension. Each row names the central tradeoff the dimension forces a researcher to confront.}
+\caption{Evaluation Design Quick Reference: One Question per Dimension. Each row names the central tradeoff the dimension forces a researcher to confront.
+\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier but must be accompanied by explicit justification; absent that, the corresponding dimension is decided implicitly by benchmark choice rather than deliberate evaluation design.}
 \label{tab:quickref}
 \centering
 \footnotesize
@@ -1521,7 +1525,8 @@ Table~\ref{tab:quickref}.
 \caption{Key evaluation tools and their dimensional coverage.
 D-dims: taxonomy dimensions directly operationalized. Archetype: A =
 Benchmark-Automation, B = Judge-Mediated, C = Expert-Anchored, R =
-Robustness tools (cross-archetype). See Section~\ref{subsec:archetypes}.}
+Robustness tools (cross-archetype). See Section~\ref{subsec:archetypes}.
+\textit{Takeaway:} No single tool covers all seven dimensions; D6 (robustness) and D7 (reproducibility) are the most commonly unaddressed dimensions across all tools, confirming that researchers must combine frameworks or accept systematic gaps in their evaluation design.}
 \label{tab:tools}
 \centering
 \footnotesize
@@ -1789,7 +1794,8 @@ separate title/abstract exclusion stage. Records identified after
 deduplication; screened = full-text reviewed; excluded = full-text
 exclusions with reasons documented in the project repository
 (Section~\ref{subsec:search}); added = papers retained after
-screening; cumulative = running corpus size. Final corpus: 153 papers.}
+screening; cumulative = running corpus size. Final corpus: 153 papers.
+\textit{Takeaway:} Expansion rounds 1--4 contributed 73 of the 153 final papers (47.7\%), demonstrating that a single broad primary search substantially underestimates coverage for rapidly evolving topics such as LLM-judge quality, contamination resistance, and agentic evaluation.}
 \label{tab:expansion_rounds}
 \centering
 \scriptsize
@@ -1828,7 +1834,8 @@ search (round 0) and the targeted-expansion passes to yield the
 final corpus of 153 papers. The expanded identification and
 per-round screening counts are tabulated in
 Table~\ref{tab:expansion_rounds}; the figure integrates all five
-rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.}
+rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
+\textit{Takeaway:} Of 3,297 records initially identified, only 4.6\% (153 papers) met all inclusion criteria, reflecting strict quality and relevance thresholds; the high exclusion rate at full-text (731 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
 \label{fig:prisma}
 \end{figure}
 
@@ -1898,7 +1905,8 @@ evaluation reporting standard could substantially reduce.
 \renewcommand{\arraystretch}{1.2}
 \caption{Inter-rater agreement on dimensional codings, dual-coded
 subsample. Cohen's $\kappa$ per dimension, with interpretation
-following Landis \& Koch.}
+following Landis \& Koch.
+\textit{Takeaway:} All seven dimensions reach at least ``substantial'' agreement ($\kappa \geq 0.76$), and D1--D3 reach ``almost perfect'' agreement ($\kappa \geq 0.88$), confirming that the taxonomy can be applied reliably by independent coders without extended calibration.}
 \label{tab:kappa}
 \centering
 \footnotesize
@@ -1957,7 +1965,8 @@ All other claims move by less than 2~pp, confirming stability.
 coding perturbation. Reported values are from the 153-paper coding;
 shift bounds are the half-width of a 95\% bootstrap interval derived
 by 10\% and 20\% random reassignment of dimensional codes,
-averaged across 1{,}000 perturbation runs each.}
+averaged across 1{,}000 perturbation runs each.
+\textit{Takeaway:} All headline distributional claims survive perturbation with shifts $\leq$3.4 pp under 20\% random reassignment, confirming that corpus-level findings are robust to individual coding uncertainty and not artefacts of borderline cases.}
 \label{tab:sensitivity}
 \centering
 \footnotesize
@@ -2081,7 +2090,8 @@ reported in Table~\ref{tab:kappa}. The Judge-pinned property
 (D7=Judge-version-pinned) appears in only 5 papers
 ($\approx$3.3\% of the corpus, Table~\ref{tab:d7dist}), so the
 LLM-judge archetypes below do not list JP as part of their modal
-D7 configuration.}
+D7 configuration.
+\textit{Takeaway:} The Benchmark-Automation archetype accounts for over 68\% of the corpus; the LLM-as-judge cluster is the only other substantial group at 24\%, making the choice between these two archetypes the most consequential evaluation design decision in the field.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -2120,7 +2130,8 @@ for one paper category and notes the most informative variation
 within the category. The full per-paper mapping will be released as
 a machine-readable spreadsheet at acceptance to the URL in
 Section~\ref{sec:methodology} (see Data Availability statement).
-Modal subcategories are derived from the 153-paper corpus.}
+Modal subcategories are derived from the 153-paper corpus.
+\textit{Takeaway:} All paper categories default to automated evaluation and cross-model scope; the primary differentiators across categories are metric type (D3) and artifact release (D7), with LLM-judge papers being the only group where released artifacts are the majority norm.}
 \label{tab:comparison}
 \centering
 \footnotesize
@@ -2667,7 +2678,8 @@ and dataset papers ($N$=45); Judge~=~LLM-judge and metric-quality
 papers ($N$=32); Survey~=~PE and evaluation surveys ($N$=22).
 Category $N$s sum to 153. Percentages are column-wise within each
 category; raw counts for Tech are $n$~=~8, 20, 19, 7 respectively.
-Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.}
+Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.
+\textit{Takeaway:} Single-prompt-only evaluation (D6=Sng) is the default across all paper categories; the 14.8\% of technique papers reporting multi-prompt aggregate results represents the current ceiling for robustness testing -- far below what the sensitivity literature recommends.}
 \label{tab:d6dist}
 \centering
 \footnotesize
@@ -2710,7 +2722,8 @@ The corpus distribution is reported in Table~\ref{tab:d7dist}.
 corpus ($N$=153). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
 32 LLM-judge and metric-quality papers specifically.
-Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.}
+Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
+\textit{Takeaway:} Artifact release is approaching a majority norm (56.2\%) but contamination checking (8.2\%) and judge-version pinning (3.3\%) remain rare -- a reproducibility gap that will compound as LLM-as-judge usage grows and model versions diverge from those used at publication time.}
 \label{tab:d7dist}
 \centering
 \footnotesize
@@ -2759,7 +2772,8 @@ properties. D1--D5 values are exact; D6 and D7 values are subject to
 the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
-available in the machine-readable dataset.}
+available in the machine-readable dataset.
+\textit{Takeaway:} The strongest co-occurrence (D1=LLM-judge \& D3=LLM-judge at 20.9\%) confirms that evaluation-method choice cascades through metric choice; the taxonomy dimensions are therefore predictively useful -- knowing D1 substantially constrains the likely values of D3, D4, and D7.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
