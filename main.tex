@@ -367,8 +367,10 @@ that establish coding reliability.
 Section~\ref{sec:comparison} presents the comparative analysis:
 per-dimension distributions, co-occurrence patterns, recurring
 archetypes, and a failure-mode catalog.
-Section~\ref{sec:discussion} synthesizes the findings around three
-named tensions and a future research agenda.
+Section~\ref{sec:discussion} synthesizes the findings around the
+two named tensions -- including a within-run vs.\ across-time
+reliability refinement of the first tension -- and a future research
+agenda.
 Section~\ref{sec:conclusion} concludes.
 The Electronic Supplement (Appendix~A) provides an evaluation design checklist
 covering all seven dimensions for study preregistration.
@@ -1219,7 +1221,7 @@ chain-of-thought prompting'' includes the assumption that
 The empirical case for treating robustness as a first-class dimension is
 already in the literature. Sclar et al.~\cite{sclar2023formatting} showed
 that delimiter and formatting changes shift accuracy by margins large
-enough to reverse leaderboard rankings. Mizrahi et al.'s butterfly-effect
+enough to reverse leaderboard rankings. Salinas and Morstatter's butterfly-effect
 study~\cite{butterfly2024} documents similar variance under paraphrase.
 Razavi et al.'s PromptSET~\cite{promptsensitivity2025} provides a
 sensitivity benchmark explicitly. Bellibaltu et al.'s Judge Sensitivity
@@ -1906,7 +1908,7 @@ evaluation reporting standard could substantially reduce.
 \caption{Inter-rater agreement on dimensional codings, dual-coded
 subsample. Cohen's $\kappa$ per dimension, with interpretation
 following Landis \& Koch.
-\textit{Takeaway:} All seven dimensions reach at least ``substantial'' agreement ($\kappa \geq 0.76$), and D1--D3 reach ``almost perfect'' agreement ($\kappa \geq 0.88$), confirming that the taxonomy can be applied reliably by independent coders without extended calibration.}
+\textit{Takeaway:} D1--D5 all reach ``almost perfect'' agreement ($\kappa \geq 0.84$, well above the Landis \& Koch 0.81 threshold), and D6--D7 reach ``substantial'' agreement ($\kappa = 0.76$ and $0.78$); the taxonomy can therefore be applied reliably by independent coders without extended calibration.}
 \label{tab:kappa}
 \centering
 \footnotesize
@@ -2326,7 +2328,7 @@ worth highlighting in the discussion
 44 & Suzgun et al.~\cite{cot_benchmark2022} & BIG-Bench Hard & Benchmark & Reasoning & Task-specific & Automated & Cross-dataset \\
 \rowcolor{rowgray}
 45 & Zhu et al.~\cite{promptbench2023} & PromptBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-46 & Wang et al.~\cite{wang2023multi} & Multi-Prompt Eval & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
+46 & Mizrahi et al.~\cite{wang2023multi} & Multi-Prompt Eval & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
 \rowcolor{rowgray}
 47 & Wang et al.~\cite{mmluprob2024} & MMLU-Pro & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
 48 & Lin et al.~\cite{wildbench2024} & WildBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model \\
@@ -2467,7 +2469,15 @@ trust them.
 
 Human evaluation appears in only 16 papers (10.5\%), and ablation
 studies in 2 (1.3\%). No paper in the corpus employs a user study as
-its primary method. The human-evaluation cluster combines work that
+its primary method. (Four papers in the LLM-judge-and-human cluster
+\textemdash{} Ye et al.~\cite{llmvshuman2024},
+Calderon et al.~\cite{alternativeannotator2025},
+Ye et al.~\cite{humansorllm2024},
+and Chiang et al.~\cite{canlllmsreplace2023}~\textemdash{} are
+coded under both D1=LLM-judge and D1=Human, so the four D1 subcategory
+counts sum to 157 rather than 153; the headline frequencies above
+are computed on the 153-paper denominator, not the 157-method
+denominator.) The human-evaluation cluster combines work that
 either (i) uses human ratings as the primary signal, as in Jang and
 Lukasiewicz's consistency analysis of
 ChatGPT~\cite{jang2023consistency} and the Bubeck et al.\ ``Sparks of
@@ -2566,7 +2576,14 @@ as a tool without analyzing the prompting approach itself. The
 finding is therefore best read as: the corpus of papers that propose
 or evaluate \emph{prompt engineering techniques themselves} remains
 strongly concentrated on multi-task benchmarks, with very limited
-coverage of clinical or multilingual settings.
+coverage of clinical or multilingual settings. The named D2 subcategories
+above (Multi-task, Reasoning, Generation, Code, QA, Clinical,
+Multilingual, Agentic, Legal, and Medical) sum to less than 153
+because additional papers fall into instruction-following,
+multimodal, and reward-model evaluation niches that this analysis
+absorbs under the Multi-task umbrella when no single primary task
+type predominates; full per-paper D2 codings are in the Electronic
+Supplement (Appendix~C).
 
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
@@ -2598,7 +2615,11 @@ literature; it means they are no longer considered sufficient as
 standalone signals, and the field has moved beyond treating them as
 the primary evaluation instrument. The documented gap between lexical
 overlap and human judgment~\cite{repairing2022} made this shift
-quite predictable.
+quite predictable. The remaining 11 papers (7.2\%) are PE and
+LLM-evaluation surveys, prompt-pattern catalogs, and taxonomy
+papers that review rather than apply a primary metric, so D3 is
+coded NR; together with the four named categories above the
+distribution sums to the 153-paper corpus.
 
 \subsection{Distribution across Automation Level (Dimension 4)}
 \label{subsec:d4dist}
@@ -2651,7 +2672,7 @@ The 18 single-model papers deserve particular attention. A prompting
 technique evaluated on one model, typically GPT-4, at one point in
 time on one benchmark produces a claim about performance in exactly
 that configuration and no other.
-Wang et al.~\cite{wang2023multi} documented this brittleness
+Mizrahi et al.~\cite{wang2023multi} documented this brittleness
 directly, showing that single-prompt, single-model evaluations
 routinely overstate technique performance relative to multi-prompt
 baselines run on the same model. The implication is that a
@@ -2696,8 +2717,8 @@ Sensitivity-bounded & 8.2\% & 13.0\% & 12.5\% & 0.0\% & 0.0\% \\
 \end{table}
 
 The substantive observation is that the sensitivity literature itself
--- Sclar et al.~\cite{sclar2023formatting}, Mizrahi et
-al.~\cite{butterfly2024}, Razavi et al.~\cite{promptsensitivity2025},
+-- Sclar et al.~\cite{sclar2023formatting}, Salinas and
+Morstatter~\cite{butterfly2024}, Razavi et al.~\cite{promptsensitivity2025},
 the multi-prompt evaluation work of Mizrahi et al.~\cite{mizrahi2024state}
 and Polo et al.~\cite{polo2024promptseval} (PromptEval), and the Judge
 Sensitivity work~\cite{bellibatlu2026judgesense} -- documents large
@@ -2912,8 +2933,7 @@ demonstrates a prompting technique on five model families and
 reports cross-model performance, but uses one prompt phrasing per
 model. The technique's effect on the chosen phrasing is reported as
 the technique's effect in general. What the taxonomy makes visible:
-D5 = Cross-model with D6 = Single-prompt. Wang et
-al.~\cite{wang2023multi} and Mizrahi et
+D5 = Cross-model with D6 = Single-prompt. Mizrahi et
 al.~\cite{mizrahi2024state} have shown that single-prompt
 evaluations overstate effects relative to multi-prompt baselines on
 the same model; cross-model findings reported under D6 =
@@ -2979,11 +2999,15 @@ assumption goes unaddressed across the corpus.
 
 The per-dimension distributions and the archetype analysis in
 Section~\ref{sec:comparison} are best read not as a series of
-independent findings but as evidence of three underlying tensions
-that structure prompt engineering evaluation. We name and analyze
-each tension in turn, locate the empirical evidence for it in the
-corpus, and identify the implications for evaluation design. A
-future research agenda follows in
+independent findings but as evidence of the two underlying tensions
+introduced in Section~\ref{subsec:tensions} (construct validity
+vs.\ measurement reliability, and reference-anchored vs.\
+judgment-anchored evaluation), together with a within-run vs.\
+across-time reliability refinement of the first tension that
+Definition~3 already singles out as two distinct sub-properties.
+We name and analyze each tension in turn, locate the empirical
+evidence for it in the corpus, and identify the implications for
+evaluation design. A future research agenda follows in
 Section~\ref{subsec:agenda}, and limitations are stated in
 Section~\ref{subsec:surveylimits}.
 
@@ -3057,11 +3081,13 @@ reporting norms. Neither has been adopted at scale within the PE
 evaluation literature. Closing this gap requires community adoption of existing standards
 more than new technical development.
 
-\subsection{Tension 3: Reliability Within a Run vs.\ Reliability Across Time}
+\subsection{Refining Tension 1: Within-Run vs.\ Across-Time Reliability}
 \label{subsec:tension_reproducibility}
 
-The third tension is the one D7 (Reproducibility and Contamination
-Resistance) most directly captures. A pipeline can be highly
+Definition~3 distinguished two sub-properties of measurement
+reliability: within-run reliability and across-time reliability.
+This refinement of Tension~1 is the one D7 (Reproducibility and
+Contamination Resistance) most directly captures. A pipeline can be highly
 reliable in the within-run sense (the same input returns the same
 score) and fragile in the across-time sense (the score depends on
 infrastructure that drifts silently between API revisions, or on
