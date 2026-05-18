@@ -2550,15 +2550,13 @@ to this tradeoff in Section~\ref{subsec:tension_scalability}.
 \subsection{Distribution across Task Scope (Dimension 2)}
 \label{subsec:d2dist}
 
-Multi-task or cross-task evaluations account for 89 papers (58.2\%),
+Multi-task or cross-task evaluations account for 90 papers (58.8\%),
 meaning that more than half the corpus does not assess prompting
 techniques on any specific task type. These studies aggregate
 performance across benchmarks spanning many different categories. This pattern
 is partly an artifact of how surveys and taxonomy papers are classified, but it also reflects
 a genuine tendency in the literature to report average scores across
 MMLU or BIG-Bench without disaggregating results by individual task type.
-(D5 Cross-model also counts 89 papers independently; the coincidence
-in raw count reflects orthogonal classification dimensions, not duplicate coding.)
 
 Among task-specific subgroups, reasoning tasks are the most studied
 at 18 papers (11.8\%). Chain-of-thought prompting~\cite{wei2022chain}
@@ -2571,7 +2569,7 @@ al.~\cite{lanham2023faithfulness} and Chen et
 al.~\cite{chen2025reasoningmodels} -- treats the reasoning chain
 itself as the evaluation target rather than only the final answer.
 
-Generation tasks appear in 12 papers (7.8\%), code tasks in 12
+Generation tasks appear in 10 papers (6.5\%), code tasks in 12
 (7.8\%), and QA tasks in 8 (5.2\%). Clinical and multilingual
 evaluation are present in two different senses in the corpus, and we
 report both because confusing the two would distort the picture.
@@ -2867,8 +2865,8 @@ D1 = LLM-judge & D3 = LLM-judge & 20.9\% \\
 D1 = Benchmark & D4 = Automated & 63.0\% \\
 D5 = Single-model & D6 = Single-prompt & 7.5\% \\
 D1 = LLM-judge & D7 = Judge-version-pinned & 3.3\% \\
-D2 = Reasoning & D3 = Task-specific & 12.3\% \\
-D2 = Generation & D3 = LLM-judge & 8.2\% \\
+D2 = Reasoning & D3 = Task-specific & 11.8\% \\
+D2 = Generation & D3 = LLM-judge & 4.6\% \\
 \bottomrule
 \end{tabular}
 \end{table}
