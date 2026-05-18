@@ -1,4 +1,4 @@
-﻿% ACM Computing Surveys (CSUR) submission template (acmsmall).
+% ACM Computing Surveys (CSUR) submission template (acmsmall).
 % nonacm disables the conference/copyright block during pre-submission
 % review; the ACM Editorial Office sets the final block at acceptance.
 %
@@ -402,8 +402,21 @@ accuracy on arithmetic and commonsense tasks~\cite{wei2022chain}. Zero-shot
 CoT achieves a similar effect without any examples, relying on
 a single instructional cue~\cite{kojima2022large}. Later contributions include
 self-consistency decoding~\cite{wang2023selfconsistency}, tree-of-thought
-prompting~\cite{yao2023tree}, and retrieval-augmented generation, which
-fetches relevant external documents at inference time~\cite{lewis2020retrieval}.
+prompting~\cite{yao2023tree}, graph-of-thoughts
+\cite{graphofthoughts2023}, the demystification of
+chain/tree/graph variants by Besta et al.~\cite{demystifying2024},
+least-to-most decomposition~\cite{leasttomost2022}, plan-and-solve
+prompting~\cite{plansolve2023}, faithfulness-preserving CoT
+\cite{faithfulcot2023}, many-shot in-context learning at long
+contexts~\cite{manyshot2024}, AutoPrompt's
+gradient-search-based discrete prompts~\cite{shin2020autoprompt},
+the FLAN instruction-tuning paradigm~\cite{wei2022flan}, White et
+al.'s prompt-pattern catalog~\cite{white2023prompt}, the manual-prompt
+study of Ferr\~{a}o et al.~\cite{manualpromptnotdead2025}, and
+retrieval-augmented generation, which fetches relevant external
+documents at inference time~\cite{lewis2020retrieval}; recent
+automated prompt-optimization work continues this line via
+GEPA~\cite{gepa2025} and PromptWizard~\cite{promptwizard2024}.
 
 More recent surveys have tried to bring order to this space. Li
 et al.~\cite{li2025autoprompt} frame automated prompt optimization as a
@@ -418,11 +431,23 @@ and by what standard?~\cite{schulhoff2024prompt,sahoo2024systematic}
 LLM evaluation developed along its own trajectory. GLUE~\cite{wang2018glue} and
 SuperGLUE~\cite{wang2019superglue} established widely used baselines for natural language
 understanding. BIG-Bench~\cite{srivastava2022bigbench} targeted harder
-reasoning tasks that earlier models could not handle. MMLU~\cite{hendrycks2021measuring}
+reasoning tasks that earlier models could not handle, and
+BIG-Bench~Hard~\cite{cot_benchmark2022} carved out the
+chain-of-thought-amenable subset that drove much later
+benchmark-evaluation work. MMLU~\cite{hendrycks2021measuring}
 assessed multitask knowledge at scale across dozens of subject areas. MT-Bench and
 AlpacaEval~\cite{zheng2023judging, dubois2024alpacaeval} redirected focus
 to open-ended instruction following, using LLM-based judges rather than
-fixed answer keys. Ni et al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and found recurring problems across the board: data contamination, cultural bias, and static test sets that models can eventually memorize.
+fixed answer keys. Reference-free and model-based scoring developed
+alongside these benchmarks: Multi-Dimensional
+Evaluator~\cite{multidimeval2022},
+InstructScore~\cite{instructscore2023},
+DeCE~\cite{beyondpointwise2025}, and the NLG-evaluation status review
+of Gao et al.~\cite{nlgevalstatus2024} catalog the resulting design
+choices. Retrieval-augmented evaluation has its own line of work,
+including in-context-retrieval LMs~\cite{incalm2023}, and prompt
+formatting/representation has been studied directly by Zhao et
+al.~\cite{promptformat2024}. Ni et al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and found recurring problems across the board: data contamination, cultural bias, and static test sets that models can eventually memorize.
 
 Human evaluation retains the highest credibility for open-ended
 tasks, but its cost and latency push most studies toward automated
@@ -447,9 +472,22 @@ vocabulary, and contributing a meta-analysis of the literature, but the work is 
 techniques rather than a framework for evaluating them. Sahoo
 et al.~\cite{sahoo2024systematic} and Vatsal and
 Dubey~\cite{vatsal2024survey} take similar approaches, organizing methods
-by application domain and NLP task type respectively. On the evaluation
+by application domain and NLP task type respectively. Wen et
+al.~\cite{pettax2025} construct an alternative PE taxonomy emphasizing
+template structure; Ahmad et al.~\cite{petaxse2025} catalog PE patterns
+specifically for software engineering tasks; Tian et
+al.~\cite{petaxdefects2025} taxonomize prompt defects observed across
+PE-for-code studies; and He et al.~\cite{contextengineer2025} situate
+PE within a broader ``context engineering'' framing. Dong et
+al.'s in-context-learning survey~\cite{dong2022survey} predates and
+informs much of this catalog-style literature. On the evaluation
 side, Chang et al.~\cite{chang2023survey} organize LLM evaluation around
-what, where, and how to evaluate. Ni et al.~\cite{ni2025benchmarks} sort 283 benchmarks into a three-tier taxonomy. Mohammadi
+what, where, and how to evaluate; Zhao et
+al.~\cite{explainabilityllm2023} survey explainability evaluation;
+Hou et al.~\cite{advancedllmsse2024} survey LLM-for-SE evaluation; and
+Gururangan et al.~\cite{inadequatebenchmarks2024} critically examine
+benchmark adequacy. Ni et al.~\cite{ni2025benchmarks} sort 283
+benchmarks into a three-tier taxonomy. Mohammadi
 et al.~\cite{mohammadi2025agents} propose a two-dimensional taxonomy for
 agent evaluation.
 
@@ -2459,11 +2497,19 @@ its strengths. Gu et al.~\cite{gu2025llmjudge} and Feng et al.~\cite{feng2025sag
 have since documented the reliability concerns more systematically. The
 corpus also includes the fine-tuned scalable judges of Zhu et
 al.~\cite{zhu2023judgelm} (JudgeLM), the panel-of-judges approach by Verga
-et al.~\cite{verga2024replacing}, and the agent-debate meta-evaluation
-framework of Chern et al.~\cite{chern2024scaleeval} (ScaleEval). Recent
-work by Ye et al.~\cite{ye2024justice} and Wataoka et
-al.~\cite{wataoka2024selfpreference} quantifies the bias profile of LLM
-judges directly. LLM judges address a genuine need: many tasks have no
+et al.~\cite{verga2024replacing}, the agent-debate meta-evaluation
+framework of Chern et al.~\cite{chern2024scaleeval} (ScaleEval), and the
+multi-agent ensemble of Chen et al.~\cite{multiagentjudge2025} (MAJ-EVAL).
+Two recent surveys -- Li et al.~\cite{li2024llmsjudges} on
+LLM-as-judge methodology and the empirical study of Yang et
+al.~\cite{llmjudgestudy2024} -- catalog the resulting design space, and
+Panickssery et al.'s ``Judging the Judges'' work~\cite{judgingjudges2024}
+and JudgeBench~\cite{judgebench2024} provide benchmarks of judge
+quality itself. Recent work by Ye et al.~\cite{ye2024justice} and
+Wataoka et al.~\cite{wataoka2024selfpreference} quantifies the bias
+profile of LLM judges directly, and HalluMeasure
+\cite{akbar2024hallumeasure} applies the judge framing to
+hallucination detection. LLM judges address a genuine need: many tasks have no
 gold reference to score against. But adoption has clearly outpaced the
 research into when and how much to
 trust them.
@@ -2543,7 +2589,12 @@ et al.\ on USMLE, Chang et al.\ on medical red-teaming, Kim et al.\
 on medical hallucination, MGSM, and MM-Eval, none of which positions
 its primary contribution in the clinical or multilingual domain. Two further papers, AgentBench~\cite{liu2023agentbench} and
 AgentBoard~\cite{ma2024agentboard}, target agentic, multi-turn,
-tool-use evaluation (1.8\%). Legal-domain evaluation is represented
+tool-use evaluation (1.8\%), with ToolACE~\cite{liu2024toolace}
+extending this line to function-calling evaluation specifically.
+Safety- and prompt-injection-focused evaluation appears in HouYi
+\cite{liu2023houyi} and the Judge-Vulnerability work of Maloyan et
+al.~\cite{maloyan2025judgevuln}.
+Legal-domain evaluation is represented
 by LegalBench~\cite{guha2023legalbench} and
 LawBench~\cite{fei2023lawbench}; medical-domain evaluation by Nori et
 al.'s GPT-4 USMLE study~\cite{nori2023gpt4medical}, the medical
@@ -2563,7 +2614,15 @@ truthfulness probing. Code-generation evaluation is represented by
 SWE-bench~\cite{jimenez2023swebench},
 EvalPlus~\cite{liu2023evalplus},
 LiveCodeBench~\cite{jain2024livecodebench}, and Code
-Llama~\cite{roziere2023codellama}.
+Llama~\cite{roziere2023codellama}; complementary code-prompting work
+includes the secure-code-generation evaluation of He et
+al.~\cite{promptingsecurecode2024} and the CodePromptEval study of
+Khojah et al.~\cite{impactpromptprogramming2024}.
+Long-context evaluation is represented by
+RULER~\cite{hsieh2024ruler}, LongBench~\cite{bai2023longbench}, and
+HELMET~\cite{yen2024helmet}; reward-model and preference evaluation by
+RewardBench~\cite{lambert2024rewardbench} and its updated variant
+RewardBench~2~\cite{malik2025rewardbench2}.
 Beyond these new entries, broader multilingual and clinical
 coverage remains limited under our inclusion criteria. We are
 deliberately careful with this point: an extensive body of
@@ -3513,10 +3572,6 @@ AI-generated text was incorporated without authorial review and
 revision. Consistent with ACM policy, AI assistants are not credited
 as authors.
 
-% Force every paper in the 153-paper systematic-review corpus to appear in
-% the main reference list, including those discussed only by category in
-% the body and tabulated in full in the Electronic Supplement (Appendix~C).
-\nocite{achiam2023gpt4,advancedllmsse2024,akbar2024hallumeasure,alternativeannotator2025,bai2023longbench,bellibatlu2026judgesense,benchmark2sq2026,beyondpointwise2025,bhardwaj2023redeval,bubeck2023sparks,butterfly2024,canlllmsreplace2023,chang2023survey,chang2025redteamingmed,chen2023rgb,chen2025reasoningmodels,chern2024scaleeval,cobbe2021gsm8k,contextengineer2025,cot_benchmark2022,demystifying2024,deng2023investigating,dong2022survey,dubois2024alpacaeval,esiobu2023robbie,explainabilityllm2023,factscore2023,faithfulcot2023,fei2023lawbench,feng2025sage,fu2023mme,gallegos2023bias,geng2023calibration,gepa2025,graphofthoughts2023,gu2025llmjudge,guha2023legalbench,guo2023evaluating,hendrycks2021measuring,hsieh2024ruler,huang2023catastrophic,humansorllm2024,hurst2024gpt4o,impactpromptprogramming2024,inadequatebenchmarks2024,incalm2023,instructscore2023,jain2024livecodebench,jang2023consistency,jimenez2023swebench,judgebench2024,judgingjudges2024,kim2025medicalhallu,kojima2022large,koo2023benchmarking,lambert2024rewardbench,lanham2023faithfulness,leasttomost2022,lewis2020retrieval,li2024leveraging,li2024llmsjudges,li2025autoprompt,lin2021truthfulqa,liu2023agentbench,liu2023evalplus,liu2023geval,liu2023houyi,liu2024toolace,liu2025multimodalhallu,llmjudgestudy2024,llmvshuman2024,ma2024agentboard,malik2025rewardbench2,maloyan2025judgevuln,manualpromptnotdead2025,manyshot2024,mcintosh2024inadequacies,mirzadeh2024gsmsymbolic,mizrahi2024state,mmluprob2024,mohammadi2025agents,multiagentjudge2025,multidimeval2022,ni2025benchmarks,nlgevalstatus2024,nori2023gpt4medical,ouyang2022training,petaxdefects2025,petaxse2025,pettax2025,plansolve2023,polo2024promptseval,promptalchemy2025,promptbench2023,promptformat2024,promptingsecurecode2024,promptsensitivity2025,promptwizard2024,pryzant2023apo,qin2024chatgpt,rageval2024,ragsurvey2023,ramnath2025apo,repairing2022,rlprompt2022,roziere2023codellama,saadfalcon2023ares,sahoo2024systematic,sainz2023nlp,schulhoff2024prompt,sclar2023formatting,scoT2023,semanticentropy2024,sharma2025constitutional,shi2022mgsm,shin2020autoprompt,sivarajkumar2024empirical,son2024mmeval,srivastava2022bigbench,steyvers2024calibgap,strachan2024theoryofmind,touvron2023llama,touvron2023llama2,vatsal2024survey,vatsal2025multilingual,verga2024replacing,wang2018glue,wang2019superglue,wang2023multi,wang2023selfconsistency,wang2024benchmark,wataoka2024selfpreference,wei2022chain,wei2022flan,wei2023jailbroken,white2023prompt,wildbench2024,xiong2023uncertainty,xiong2024medrag,yang2023rethinking,yao2023tree,yao2024taubench,ye2024justice,yen2024helmet,yi2024jailbreaksurvey,yu2023gptfuzzer,yu2024ragsurvey,zeng2024llmbar,zhao2024aigcrag,zheng2023judging,zhou2022ape,zhou2023instruction,zhu2023judgelm}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
