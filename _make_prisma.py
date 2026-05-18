@@ -1,7 +1,7 @@
 ﻿"""
 Generate a PRISMA 2020 flowchart PNG in the same visual format as
 prisma_flowchart_OLD_backup.png, but with the updated Claude Code
-content/counts for all five rounds, ending with 153 papers.
+content/counts for all five rounds, ending with 152 papers.
 
 Output:
   prisma_flowchart.png
@@ -43,30 +43,31 @@ CONTENT = {
     ],
     "full_text_excluded": [
         "Reports excluded at full-text",
-        "(n = 731):",
+        "(n = 732):",
         "- Prompting as tool: 181",
         "- Domain-specific: 64",
         "- No full text: 24",
         "- Non-English: 14",
         "- Venue filter (Rnd 0): 71",
         "- Expansion rounds: 377",
+        "- Duplicate (Rnd 0 & Rnd 1): 1",
     ],
     "passed": [
         "Reports passing full-text review",
-        "Round 0: 58    Rounds 1-4: 73",
-        "Total: n = 131",
+        "Round 0: 57    Rounds 1-4: 73",
+        "Total: n = 130",
     ],
     "venue_filter": [
         "Round-0 venue filter",
         "(peer-review / tier):",
-        "Excluded: 71    Retained: 58",
+        "Excluded: 71    Retained: 57",
         "Rounds 1-4: venue-filtered at intake; all 73 retained",
     ],
     "included": [
         "Total reports for inclusion",
-        "Round 0: venue-filtered (58) + citation search (22) = 80",
+        "Round 0: venue-filtered (57) + citation search (22) = 79",
         "Rounds 1-4 targeted expansions: 20 + 11 + 35 + 7 = 73",
-        "Total eligible: n = 153",
+        "Total eligible: n = 152",
     ],
     "citation": [
         "Round-0 citation search",
@@ -75,7 +76,7 @@ CONTENT = {
     ],
     "final": [
         "FINAL CORPUS",
-        "n = 153 papers",
+        "n = 152 papers",
     ],
 }
 
@@ -298,7 +299,7 @@ draw_center_block(b3, CONTENT["full_text"], [F_BOLD_23, F_REG_22, F_REG_17, F_RE
 draw_center_block(
     r3,
     CONTENT["full_text_excluded"],
-    [F_BOLD_21, F_BOLD_21, F_REG_19, F_REG_19, F_REG_19, F_REG_19, F_REG_19],
+    [F_BOLD_21, F_BOLD_21, F_REG_19, F_REG_19, F_REG_19, F_REG_19, F_REG_19, F_REG_19],
     line_gap=2,
 )
 draw_center_block(b4, CONTENT["passed"], [F_BOLD_24, F_REG_22, F_REG_20])

@@ -53,6 +53,7 @@ Evaluation Frameworks for Large Language Models}
   \state{Florida}
   \country{USA}
 }
+\email{pjena001@fiu.edu}
 
 \author{Triveni Morla}
 \orcid{0009-0007-2485-1909}
@@ -224,10 +225,10 @@ work.
 \label{app:fulltable}
 
 Table~\ref{tab:fulltable} presents a representative cross-section of
-the 153-paper corpus coded across all seven taxonomy dimensions. Ten
+the 152-paper corpus coded across all seven taxonomy dimensions. Ten
 papers are shown here -- one per major paper category, selected to
 illustrate the range of configurations in the corpus. The complete
-153-paper machine-readable dataset will be released at acceptance to
+152-paper machine-readable dataset will be released at acceptance to
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy};
 the companion artifact repository today carries the evaluation checklist
 and the dataset schema (see the Data Availability statement in the main
@@ -249,7 +250,7 @@ JP~=~Judge-ver-pinned; CC+JP~=~both properties satisfied.
 
 {\footnotesize
 \begin{longtable}{p{3.2cm} p{1.8cm} p{1.1cm} p{1.5cm} p{1.1cm} p{1.2cm} p{1.1cm} p{2.4cm}}
-\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 153-paper corpus are shown, one per major category, selected to span the three archetypes (Section~8.9 of the main paper) and the five paper categories of Table~8 of the main paper. The complete 153-paper machine-readable dataset will be released at acceptance to the GitHub URL above (see Data Availability statement in the main paper). D6 and D7 codings reflect the dual-coded inter-rater agreement of Section~7.5 of the main paper ($\kappa$ = 0.76 and 0.78 respectively).}
+\caption[Representative corpus mapping to all seven taxonomy dimensions]{Representative per-paper mapping to all seven taxonomy dimensions (D1--D7). Ten papers from the 152-paper corpus are shown, one per major category, selected to span the three archetypes (Section~8.9 of the main paper) and the five paper categories of Table~8 of the main paper. The complete 152-paper machine-readable dataset will be released at acceptance to the GitHub URL above (see Data Availability statement in the main paper). D6 and D7 codings reflect the dual-coded inter-rater agreement of Section~7.5 of the main paper ($\kappa$ = 0.76 and 0.78 respectively).}
 \label{tab:fulltable}\\
 \toprule
 \textbf{Paper (year)} &
@@ -319,19 +320,19 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 \end{landscape}
 
 % ---------------------------------------------------------------
-\section{Comprehensive Per-Paper Mapping (153 Papers, All Seven Dimensions)}
+\section{Comprehensive Per-Paper Mapping (152 Papers, All Seven Dimensions)}
 \label{app:fullmapping}
 
 For full transparency, this appendix presents the complete corpus
-of 153 papers coded across all seven taxonomy dimensions
+of 152 papers coded across all seven taxonomy dimensions
 (D1--D7). The representative ten-paper sample in
 Appendix~B above (Table~B.1) provides
 category-grouped expanded notes; the underlying machine-readable
 spreadsheet will be released at acceptance to
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy} (see Data
-Availability statement in the main paper). Papers 81--100 were added in the first
-expansion round, 101--111 in the second, 112--146 in the third, and
-147--153 in the fourth
+Availability statement in the main paper). Papers 80--99 were added in the first
+expansion round, 100--110 in the second, 111--145 in the third, and
+146--152 in the fourth
 (Section~7 of the main paper, Table~4 therein),
 targeting LLM-judge quality, benchmark contamination,
 multi-prompt sensitivity, agentic, multilingual, clinical,
@@ -358,7 +359,7 @@ satisfied.
 
 {\scriptsize
 \begin{longtable}{C{0.35cm}L{2.7cm}L{2.5cm}C{1.6cm}C{1.3cm}C{1.4cm}C{1.2cm}C{1.3cm}C{0.9cm}C{1.3cm}}
-\caption[Comprehensive 153-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 153-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 1--80 were retained from the primary search round; papers 81--100 added in expansion round 1 (LLM-judge quality, contamination, multi-prompt sensitivity); 101--111 in round 2 (agentic, multilingual, prompt-injection, CoT-faithfulness); 112--146 in round 3 (foundation-model reports, RAG, safety, fairness, calibration, clinical, legal); and 147--153 in round 4 (long-context, tool-use, reward-model evaluation). See Table~4 of the main paper for the full expansion history.}\label{tab:fullmapping}\\
+\caption[Comprehensive 152-paper mapping across all seven dimensions]{\raggedright Comprehensive per-paper mapping of the 152-paper corpus across all seven taxonomy dimensions. D1 (Evaluation Method), D2 (Task Scope), D3 (Metric Type), D4 (Automation Level), D5 (Evaluation Scope), D6 (Robustness), D7 (Reproducibility). D6 and D7 inter-rater $\kappa$ = 0.76 and 0.78 respectively. Papers 1--79 were retained from the primary search round; papers 80--99 added in expansion round 1 (LLM-judge quality, contamination, multi-prompt sensitivity); 100--110 in round 2 (agentic, multilingual, prompt-injection, CoT-faithfulness); 111--145 in round 3 (foundation-model reports, RAG, safety, fairness, calibration, clinical, legal); and 146--152 in round 4 (long-context, tool-use, reward-model evaluation). See Table~4 of the main paper for the full expansion history.}\label{tab:fullmapping}\\
 \toprule
 \textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
 \cellcolor{d1col}\textcolor{white}{\textbf{D1 Method}} &
@@ -467,215 +468,213 @@ satisfied.
 44 & Suzgun et al.~\cite{cot_benchmark2022} & BIG-Bench Hard & Benchmark & Reasoning & Task-specific & Automated & Cross-dataset & Sng & AR \\
 \rowcolor{rowgray}
 45 & Zhu et al.~\cite{promptbench2023} & PromptBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
-46 & Mizrahi et al.~\cite{wang2023multi} & Multi-Prompt Eval & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+46 & Wang et al.~\cite{mmluprob2024} & MMLU-Pro & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & Sng & AR \\
+47 & Lin et al.~\cite{wildbench2024} & WildBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & CC+AR \\
 \rowcolor{rowgray}
-47 & Wang et al.~\cite{mmluprob2024} & MMLU-Pro & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & Sng & AR \\
-48 & Lin et al.~\cite{wildbench2024} & WildBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & CC+AR \\
-\rowcolor{rowgray}
-49 & Gao et al.~\cite{ragsurvey2023} & RAG Survey & Benchmark & QA & Task-specific & Automated & Cross-domain & NR & NR \\
-50 & Zheng et al.~\cite{zheng2023judging} & MT-Bench / Chatbot Arena & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & JP+AR \\
+48 & Gao et al.~\cite{ragsurvey2023} & RAG Survey & Benchmark & QA & Task-specific & Automated & Cross-domain & NR & NR \\
+49 & Zheng et al.~\cite{zheng2023judging} & MT-Bench / Chatbot Arena & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & JP+AR \\
 \midrule
 \multicolumn{10}{l}{\textit{LLM-as-Judge Papers}} \\ \midrule
 \rowcolor{rowgray}
-51 & Dubois et al.~\cite{dubois2024alpacaeval} & AlpacaEval 2.0 & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model & Sng & JP+AR \\
-52 & Liu et al.~\cite{liu2023geval} & G-Eval & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model & Sng & JP+AR \\
+50 & Dubois et al.~\cite{dubois2024alpacaeval} & AlpacaEval 2.0 & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model & Sng & JP+AR \\
+51 & Liu et al.~\cite{liu2023geval} & G-Eval & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model & Sng & JP+AR \\
 \rowcolor{rowgray}
-53 & Gu et al.~\cite{gu2025llmjudge} & LLM-as-Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & NR & NR \\
-54 & Li et al.~\cite{li2024llmsjudges} & LLM Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & NR & NR \\
+52 & Gu et al.~\cite{gu2025llmjudge} & LLM-as-Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & NR & NR \\
+53 & Li et al.~\cite{li2024llmsjudges} & LLM Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
-55 & Feng et al.~\cite{feng2025sage} & SAGE & LLM-as-Judge & Multi-task & LLM-judge & Hybrid & Cross-model & MAg & JP+AR \\
-56 & Tan et al.~\cite{judgebench2024} & JudgeBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & JP+AR \\
+54 & Feng et al.~\cite{feng2025sage} & SAGE & LLM-as-Judge & Multi-task & LLM-judge & Hybrid & Cross-model & MAg & JP+AR \\
+55 & Tan et al.~\cite{judgebench2024} & JudgeBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & JP+AR \\
 \rowcolor{rowgray}
-57 & Ye et al.~\cite{llmvshuman2024} & LLMs vs.\ Humans Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & Sng & AR \\
-58 & Calderon et al.~\cite{alternativeannotator2025} & Alternative Annotator & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & MAg & AR \\
+56 & Ye et al.~\cite{llmvshuman2024} & LLMs vs.\ Humans Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & Sng & AR \\
+57 & Calderon et al.~\cite{alternativeannotator2025} & Alternative Annotator & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-59 & Chen et al.~\cite{multiagentjudge2025} & MAJ-EVAL & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & MAg & AR \\
-60 & Yang et al.~\cite{llmjudgestudy2024} & LLM Judge Empirical & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+58 & Chen et al.~\cite{multiagentjudge2025} & MAJ-EVAL & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain & MAg & AR \\
+59 & Yang et al.~\cite{llmjudgestudy2024} & LLM Judge Empirical & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-61 & Ye et al.~\cite{humansorllm2024} & Judgement Bias Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & Sng & AR \\
-62 & Panickssery et al.~\cite{judgingjudges2024} & Judging the Judges & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
+60 & Ye et al.~\cite{humansorllm2024} & Judgement Bias Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model & Sng & AR \\
+61 & Panickssery et al.~\cite{judgingjudges2024} & Judging the Judges & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-63 & Chiang et al.~\cite{canlllmsreplace2023} & Can LLMs Replace Humans & LLM-as-Judge, Human & Generation & LLM-judge & Hybrid & Single-model & Sng & AR \\
-64 & Min et al.~\cite{factscore2023} & FActScore & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model & Sng & AR \\
+62 & Chiang et al.~\cite{canlllmsreplace2023} & Can LLMs Replace Humans & LLM-as-Judge, Human & Generation & LLM-judge & Hybrid & Single-model & Sng & AR \\
+63 & Min et al.~\cite{factscore2023} & FActScore & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Metric and Evaluation Quality Papers}} \\ \midrule
 \rowcolor{rowgray}
-65 & Xu et al.~\cite{instructscore2023} & InstructScore & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
-66 & Es et al.~\cite{rageval2024} & RAGAs & Benchmark & QA & Task-specific & Automated & Single-model & Sng & AR \\
+64 & Xu et al.~\cite{instructscore2023} & InstructScore & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
+65 & Es et al.~\cite{rageval2024} & RAGAs & Benchmark & QA & Task-specific & Automated & Single-model & Sng & AR \\
 \rowcolor{rowgray}
-67 & Gehrmann et al.~\cite{repairing2022} & NLG Eval.\ Survey & Human eval & Generation & Model-based & Human-in-loop & Cross-domain & NR & NR \\
-68 & Zhong et al.~\cite{multidimeval2022} & Multi-Dim.\ Evaluator & Human eval & Generation & Hybrid & Hybrid & Cross-model & Sng & AR \\
+66 & Gehrmann et al.~\cite{repairing2022} & NLG Eval.\ Survey & Human eval & Generation & Model-based & Human-in-loop & Cross-domain & NR & NR \\
+67 & Zhong et al.~\cite{multidimeval2022} & Multi-Dim.\ Evaluator & Human eval & Generation & Hybrid & Hybrid & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-69 & Yu et al.~\cite{beyondpointwise2025} & DeCE & LLM-as-Judge & QA & LLM-judge & Automated & Cross-model & Sng & AR \\
-70 & Farquhar et al.~\cite{semanticentropy2024} & Semantic Entropy & Benchmark & QA & Task-specific & Automated & Cross-model & Sng & AR \\
+68 & Yu et al.~\cite{beyondpointwise2025} & DeCE & LLM-as-Judge & QA & LLM-judge & Automated & Cross-model & Sng & AR \\
+69 & Farquhar et al.~\cite{semanticentropy2024} & Semantic Entropy & Benchmark & QA & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-71 & Gao et al.~\cite{nlgevalstatus2024} & NLG Eval Status & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-domain & NR & NR \\
-72 & Ram et al.~\cite{incalm2023} & In-Context RAG & Benchmark & QA & Task-specific & Automated & Cross-model & Sng & AR \\
+70 & Gao et al.~\cite{nlgevalstatus2024} & NLG Eval Status & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-domain & NR & NR \\
+71 & Ram et al.~\cite{incalm2023} & In-Context RAG & Benchmark & QA & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-73 & Sclar et al.~\cite{sclar2023formatting} & Prompt Format Sensitivity & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
+72 & Sclar et al.~\cite{sclar2023formatting} & Prompt Format Sensitivity & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Prompt Sensitivity and Format Papers}} \\ \midrule
 \rowcolor{rowgray}
-74 & Razavi et al.~\cite{promptsensitivity2025} & PromptSET & Benchmark & QA & Task-specific & Automated & Cross-model & SB & AR \\
-75 & Zhao et al.~\cite{promptformat2024} & Prompt Formatting Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+73 & Razavi et al.~\cite{promptsensitivity2025} & PromptSET & Benchmark & QA & Task-specific & Automated & Cross-model & SB & AR \\
+74 & Zhao et al.~\cite{promptformat2024} & Prompt Formatting Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-76 & Salinas \& Morstatter~\cite{butterfly2024} & Butterfly Effect Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
-77 & Jiang et al.~\cite{promptalchemy2025} & Prompt Alchemy & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
+75 & Salinas \& Morstatter~\cite{butterfly2024} & Butterfly Effect Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+76 & Jiang et al.~\cite{promptalchemy2025} & Prompt Alchemy & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-78 & He et al.~\cite{promptingsecurecode2024} & Secure Code Prompting & Benchmark & Code & Task-specific & Hybrid & Cross-model & Sng & AR \\
+77 & He et al.~\cite{promptingsecurecode2024} & Secure Code Prompting & Benchmark & Code & Task-specific & Hybrid & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Code and Software Engineering Papers}} \\ \midrule
 \rowcolor{rowgray}
-79 & Hou et al.~\cite{advancedllmsse2024} & LLMs for SE Survey & Benchmark & Code & Task-specific & Automated & Cross-model & NR & NR \\
-80 & Khojah et al.~\cite{impactpromptprogramming2024} & CodePromptEval & Benchmark & Code & Task-specific & Hybrid & Single-model & Sng & AR \\
+78 & Hou et al.~\cite{advancedllmsse2024} & LLMs for SE Survey & Benchmark & Code & Task-specific & Automated & Cross-model & NR & NR \\
+79 & Khojah et al.~\cite{impactpromptprogramming2024} & CodePromptEval & Benchmark & Code & Task-specific & Hybrid & Single-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{LLM-as-Judge Bias and Reliability Studies}} \\ \midrule
 \rowcolor{rowgray}
-81 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
-82 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+80 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+81 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-83 & Zhu et al.~\cite{zhu2023judgelm} & JudgeLM & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
-84 & Verga et al.~\cite{verga2024replacing} & Panel-of-Judges Evaluation & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+82 & Zhu et al.~\cite{zhu2023judgelm} & JudgeLM & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+83 & Verga et al.~\cite{verga2024replacing} & Panel-of-Judges Evaluation & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-85 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & NR \\
+84 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Benchmark Contamination and Dynamic Benchmarking Papers}} \\ \midrule
-86 & Sainz et al.~\cite{sainz2023nlp} & NLP Evaluation in Trouble & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
+85 & Sainz et al.~\cite{sainz2023nlp} & NLP Evaluation in Trouble & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
 \rowcolor{rowgray}
-87 & Deng et al.~\cite{deng2023investigating} & Investigating Data Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
-88 & Yang et al.~\cite{yang2023rethinking} & Rethinking Benchmark Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & CC \\
+86 & Deng et al.~\cite{deng2023investigating} & Investigating Data Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
+87 & Yang et al.~\cite{yang2023rethinking} & Rethinking Benchmark Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & CC \\
 \rowcolor{rowgray}
-89 & Wang et al.~\cite{wang2024benchmark} & Benchmark Self-Evolving & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & CC+AR \\
-90 & McIntosh et al.~\cite{mcintosh2024inadequacies} & LLM Benchmark Inadequacies & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & NR & NR \\
+88 & Wang et al.~\cite{wang2024benchmark} & Benchmark Self-Evolving & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & CC+AR \\
+89 & McIntosh et al.~\cite{mcintosh2024inadequacies} & LLM Benchmark Inadequacies & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
-91 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
-92 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+90 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
+91 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-93 & Li et al.~\cite{li2024leveraging} & LLM-based NLG Evaluation Survey & Benchmark & Generation & Model-based & Automated & Cross-model & NR & NR \\
-94 & Zhou et al.~\cite{zhou2023instruction} & Instruction-Following Eval (IFEval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+92 & Li et al.~\cite{li2024leveraging} & LLM-based NLG Evaluation Survey & Benchmark & Generation & Model-based & Automated & Cross-model & NR & NR \\
+93 & Zhou et al.~\cite{zhou2023instruction} & Instruction-Following Eval (IFEval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-95 & Qin et al.~\cite{qin2024chatgpt} & ChatGPT Sentiment Reasoning & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+94 & Qin et al.~\cite{qin2024chatgpt} & ChatGPT Sentiment Reasoning & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Multi-Prompt, Clinical, and Multimodal Evaluation Papers}} \\ \midrule
-96 & Mizrahi et al.~\cite{mizrahi2024state} & State of What Art (TACL) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+95 & Mizrahi et al.~\cite{mizrahi2024state} & State of What Art (TACL) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-97 & Sivarajkumar et al.~\cite{sivarajkumar2024empirical} & Clinical Prompting Evaluation (JMIR) & Benchmark & Clinical & Task-specific & Automated & Cross-model & MAg & NR \\
-98 & Polo et al.~\cite{polo2024promptseval} & PromptEval (Multi-Prompt Eval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
+96 & Sivarajkumar et al.~\cite{sivarajkumar2024empirical} & Clinical Prompting Evaluation (JMIR) & Benchmark & Clinical & Task-specific & Automated & Cross-model & MAg & NR \\
+97 & Polo et al.~\cite{polo2024promptseval} & PromptEval (Multi-Prompt Eval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
 \rowcolor{rowgray}
-99 & Jang \& Lukasiewicz~\cite{jang2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain & NR & NR \\
-100 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+98 & Jang \& Lukasiewicz~\cite{jang2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain & NR & NR \\
+99 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Judge Sensitivity and Multilingual Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-101 & Bellibaltu et al.~\cite{bellibatlu2026judgesense} & JudgeSense (Judge Sensitivity) & Benchmark & Multi-task & LLM-judge & Automated & Cross-model & SB & AR \\
-102 & Vatsal \& Singh~\cite{vatsal2025multilingual} & Multilingual PE Survey & Benchmark & Multilingual & Task-specific & Automated & Cross-domain & NR & NR \\
+100 & Bellibaltu et al.~\cite{bellibatlu2026judgesense} & JudgeSense (Judge Sensitivity) & Benchmark & Multi-task & LLM-judge & Automated & Cross-model & SB & AR \\
+101 & Vatsal \& Singh~\cite{vatsal2025multilingual} & Multilingual PE Survey & Benchmark & Multilingual & Task-specific & Automated & Cross-domain & NR & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Agentic, Tool-Use, and Safety Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-103 & Liu et al.~\cite{liu2023agentbench} & AgentBench & Benchmark & Agentic & Task-specific & Automated & Cross-model & Sng & AR \\
-104 & Ma et al.~\cite{ma2024agentboard} & AgentBoard & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
+102 & Liu et al.~\cite{liu2023agentbench} & AgentBench & Benchmark & Agentic & Task-specific & Automated & Cross-model & Sng & AR \\
+103 & Ma et al.~\cite{ma2024agentboard} & AgentBoard & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-105 & Liu et al.~\cite{liu2023houyi} & HouYi (Prompt Injection) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
-106 & Maloyan et al.~\cite{maloyan2025judgevuln} & Judge Vulnerability to Injection & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+104 & Liu et al.~\cite{liu2023houyi} & HouYi (Prompt Injection) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+105 & Maloyan et al.~\cite{maloyan2025judgevuln} & Judge Vulnerability to Injection & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Chain-of-Thought Faithfulness and Hallucination Studies}} \\ \midrule
 \rowcolor{rowgray}
-107 & Lanham et al.~\cite{lanham2023faithfulness} & CoT Faithfulness Measurement & Benchmark & Reasoning & Task-specific & Automated & Cross-model & MAg & AR \\
-108 & Chen et al.~\cite{chen2025reasoningmodels} & Reasoning Models Faithfulness & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
+106 & Lanham et al.~\cite{lanham2023faithfulness} & CoT Faithfulness Measurement & Benchmark & Reasoning & Task-specific & Automated & Cross-model & MAg & AR \\
+107 & Chen et al.~\cite{chen2025reasoningmodels} & Reasoning Models Faithfulness & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
 \rowcolor{rowgray}
-109 & Akbar et al.~\cite{akbar2024hallumeasure} & HalluMeasure & LLM-judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
-110 & Liu et al.~\cite{liu2025multimodalhallu} & RH-Bench (Multimodal Hallu.) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+108 & Akbar et al.~\cite{akbar2024hallumeasure} & HalluMeasure & LLM-judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
+109 & Liu et al.~\cite{liu2025multimodalhallu} & RH-Bench (Multimodal Hallu.) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Multilingual LLM-as-Judge Meta-Evaluation}} \\ \midrule
 \rowcolor{rowgray}
-111 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
+110 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Foundation-Model Technical Reports}} \\ \midrule
-112 & Achiam et al.~\cite{achiam2023gpt4} & GPT-4 Technical Report & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & Sng & NR \\
+111 & Achiam et al.~\cite{achiam2023gpt4} & GPT-4 Technical Report & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & Sng & NR \\
 \rowcolor{rowgray}
-113 & Touvron et al.~\cite{touvron2023llama} & LLaMA Foundation Models & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
-114 & Touvron et al.~\cite{touvron2023llama2} & Llama 2 Open Foundation Models & Benchmark & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
+112 & Touvron et al.~\cite{touvron2023llama} & LLaMA Foundation Models & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+113 & Touvron et al.~\cite{touvron2023llama2} & Llama 2 Open Foundation Models & Benchmark & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-115 & Hurst et al.~\cite{hurst2024gpt4o} & GPT-4o System Card & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & Sng & NR \\
-116 & Bubeck et al.~\cite{bubeck2023sparks} & Sparks of AGI (GPT-4 study) & Human eval & Multi-task & Hybrid & Manual & Cross-domain & Sng & NR \\
+114 & Hurst et al.~\cite{hurst2024gpt4o} & GPT-4o System Card & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & Sng & NR \\
+115 & Bubeck et al.~\cite{bubeck2023sparks} & Sparks of AGI (GPT-4 study) & Human eval & Multi-task & Hybrid & Manual & Cross-domain & Sng & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Mathematical Reasoning Benchmarks}} \\ \midrule
 \rowcolor{rowgray}
-117 & Cobbe et al.~\cite{cobbe2021gsm8k} & GSM8K Grade-School Math & Benchmark & Reasoning & Task-specific & Automated & Cross-model & Sng & AR \\
-118 & Lin et al.~\cite{lin2021truthfulqa} & TruthfulQA & Benchmark & Multi-task & Task-specific & Hybrid & Cross-model & Sng & AR \\
+116 & Cobbe et al.~\cite{cobbe2021gsm8k} & GSM8K Grade-School Math & Benchmark & Reasoning & Task-specific & Automated & Cross-model & Sng & AR \\
+117 & Lin et al.~\cite{lin2021truthfulqa} & TruthfulQA & Benchmark & Multi-task & Task-specific & Hybrid & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-119 & Mirzadeh et al.~\cite{mirzadeh2024gsmsymbolic} & GSM-Symbolic & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
-120 & Shi et al.~\cite{shi2022mgsm} & MGSM (Multilingual CoT) & Benchmark & Multilingual & Task-specific & Automated & Cross-model & Sng & AR \\
+118 & Mirzadeh et al.~\cite{mirzadeh2024gsmsymbolic} & GSM-Symbolic & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
+119 & Shi et al.~\cite{shi2022mgsm} & MGSM (Multilingual CoT) & Benchmark & Multilingual & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Code Generation Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-121 & Jimenez et al.~\cite{jimenez2023swebench} & SWE-bench & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
-122 & Liu et al.~\cite{liu2023evalplus} & EvalPlus / HumanEval+ & Benchmark & Code & Task-specific & Automated & Cross-model & MAg & AR \\
+120 & Jimenez et al.~\cite{jimenez2023swebench} & SWE-bench & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
+121 & Liu et al.~\cite{liu2023evalplus} & EvalPlus / HumanEval+ & Benchmark & Code & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-123 & Jain et al.~\cite{jain2024livecodebench} & LiveCodeBench & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & CC+AR \\
-124 & Rozi\`ere et al.~\cite{roziere2023codellama} & Code Llama & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
+122 & Jain et al.~\cite{jain2024livecodebench} & LiveCodeBench & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & CC+AR \\
+123 & Rozi\`ere et al.~\cite{roziere2023codellama} & Code Llama & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Retrieval-Augmented Generation Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-125 & Saad-Falcon et al.~\cite{saadfalcon2023ares} & ARES & LLM-judge & QA & LLM-judge & Automated & Cross-model & MAg & AR \\
-126 & Yu et al.~\cite{yu2024ragsurvey} & Auepora RAG Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
+124 & Saad-Falcon et al.~\cite{saadfalcon2023ares} & ARES & LLM-judge & QA & LLM-judge & Automated & Cross-model & MAg & AR \\
+125 & Yu et al.~\cite{yu2024ragsurvey} & Auepora RAG Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
-127 & Chen et al.~\cite{chen2023rgb} & RGB (RAG Benchmark) & Benchmark & QA & Task-specific & Automated & Cross-model & MAg & AR \\
-128 & Xiong et al.~\cite{xiong2024medrag} & MIRAGE / MedRAG (Medical) & Benchmark & Clinical & Task-specific & Automated & Cross-model & MAg & AR \\
+126 & Chen et al.~\cite{chen2023rgb} & RGB (RAG Benchmark) & Benchmark & QA & Task-specific & Automated & Cross-model & MAg & AR \\
+127 & Xiong et al.~\cite{xiong2024medrag} & MIRAGE / MedRAG (Medical) & Benchmark & Clinical & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-129 & Zhao et al.~\cite{zhao2024aigcrag} & RAG-for-AIGC Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
+128 & Zhao et al.~\cite{zhao2024aigcrag} & RAG-for-AIGC Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Safety, Red-Teaming, and Jailbreak Evaluation Papers}} \\ \midrule
-130 & Wei et al.~\cite{wei2023jailbroken} & Jailbroken (Safety Failure Modes) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+129 & Wei et al.~\cite{wei2023jailbroken} & Jailbroken (Safety Failure Modes) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-131 & Yu et al.~\cite{yu2023gptfuzzer} & GPTFuzzer & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
-132 & Bhardwaj \& Poria~\cite{bhardwaj2023redeval} & RED-EVAL (Chain of Utterances) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+130 & Yu et al.~\cite{yu2023gptfuzzer} & GPTFuzzer & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+131 & Bhardwaj \& Poria~\cite{bhardwaj2023redeval} & RED-EVAL (Chain of Utterances) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-133 & Huang et al.~\cite{huang2023catastrophic} & Catastrophic Jailbreak & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
-134 & Sharma et al.~\cite{sharma2025constitutional} & Constitutional Classifiers & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
+132 & Huang et al.~\cite{huang2023catastrophic} & Catastrophic Jailbreak & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+133 & Sharma et al.~\cite{sharma2025constitutional} & Constitutional Classifiers & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
 \rowcolor{rowgray}
-135 & Yi et al.~\cite{yi2024jailbreaksurvey} & Jailbreak Attacks \& Defenses Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & NR & NR \\
+134 & Yi et al.~\cite{yi2024jailbreaksurvey} & Jailbreak Attacks \& Defenses Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & NR & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Bias and Fairness Evaluation Papers}} \\ \midrule
-136 & Gallegos et al.~\cite{gallegos2023bias} & Bias \& Fairness in LLMs Survey & Benchmark & Multi-task & Hybrid & Hybrid & Cross-domain & NR & NR \\
+135 & Gallegos et al.~\cite{gallegos2023bias} & Bias \& Fairness in LLMs Survey & Benchmark & Multi-task & Hybrid & Hybrid & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
-137 & Esiobu et al.~\cite{esiobu2023robbie} & ROBBIE (Bias Evaluation) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+136 & Esiobu et al.~\cite{esiobu2023robbie} & ROBBIE (Bias Evaluation) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Calibration and Uncertainty Quantification Papers}} \\ \midrule
-138 & Xiong et al.~\cite{xiong2023uncertainty} & LLM Confidence Elicitation & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+137 & Xiong et al.~\cite{xiong2023uncertainty} & LLM Confidence Elicitation & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-139 & Geng et al.~\cite{geng2023calibration} & Confidence Calibration Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
-140 & Steyvers et al.~\cite{steyvers2024calibgap} & Calibration Gap (Nature MI) & Human eval & Multi-task & Hybrid & Hybrid & Cross-model & MAg & NR \\
+138 & Geng et al.~\cite{geng2023calibration} & Confidence Calibration Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
+139 & Steyvers et al.~\cite{steyvers2024calibgap} & Calibration Gap (Nature MI) & Human eval & Multi-task & Hybrid & Hybrid & Cross-model & MAg & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Legal Domain Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-141 & Guha et al.~\cite{guha2023legalbench} & LegalBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
-142 & Fei et al.~\cite{fei2023lawbench} & LawBench (Chinese Legal) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+140 & Guha et al.~\cite{guha2023legalbench} & LegalBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+141 & Fei et al.~\cite{fei2023lawbench} & LawBench (Chinese Legal) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Medical and Cognitive Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-143 & Nori et al.~\cite{nori2023gpt4medical} & GPT-4 on Medical Challenges & Benchmark & Clinical & Task-specific & Hybrid & Single-model & MAg & NR \\
-144 & Strachan et al.~\cite{strachan2024theoryofmind} & Theory of Mind (Nature HB) & Human eval & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
+142 & Nori et al.~\cite{nori2023gpt4medical} & GPT-4 on Medical Challenges & Benchmark & Clinical & Task-specific & Hybrid & Single-model & MAg & NR \\
+143 & Strachan et al.~\cite{strachan2024theoryofmind} & Theory of Mind (Nature HB) & Human eval & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-145 & Chang et al.~\cite{chang2025redteamingmed} & Red Teaming ChatGPT in Medicine & Human eval & Clinical & Hybrid & Manual & Cross-model & MAg & NR \\
-146 & Kim et al.~\cite{kim2025medicalhallu} & Medical Hallucinations Eval & Benchmark & Clinical & Task-specific & Hybrid & Cross-model & MAg & AR \\
+144 & Chang et al.~\cite{chang2025redteamingmed} & Red Teaming ChatGPT in Medicine & Human eval & Clinical & Hybrid & Manual & Cross-model & MAg & NR \\
+145 & Kim et al.~\cite{kim2025medicalhallu} & Medical Hallucinations Eval & Benchmark & Clinical & Task-specific & Hybrid & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Long-Context Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-147 & Hsieh et al.~\cite{hsieh2024ruler} & RULER (Real Context Size) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
-148 & Bai et al.~\cite{bai2023longbench} & LongBench (Bilingual) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+146 & Hsieh et al.~\cite{hsieh2024ruler} & RULER (Real Context Size) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & SB & AR \\
+147 & Bai et al.~\cite{bai2023longbench} & LongBench (Bilingual) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-149 & Yen et al.~\cite{yen2024helmet} & HELMET (Long-Context Framework) & Benchmark & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
+148 & Yen et al.~\cite{yen2024helmet} & HELMET (Long-Context Framework) & Benchmark & Multi-task & Hybrid & Hybrid & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Tool-Use and Function-Calling Evaluation Papers}} \\ \midrule
-150 & Yao et al.~\cite{yao2024taubench} & $\tau$-bench (Tool-Agent-User) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
+149 & Yao et al.~\cite{yao2024taubench} & $\tau$-bench (Tool-Agent-User) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-151 & Liu et al.~\cite{liu2024toolace} & ToolACE (Function Calling) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
+150 & Liu et al.~\cite{liu2024toolace} & ToolACE (Function Calling) & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Reward Model and Preference Evaluation Papers}} \\ \midrule
-152 & Lambert et al.~\cite{lambert2024rewardbench} & RewardBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
+151 & Lambert et al.~\cite{lambert2024rewardbench} & RewardBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-153 & Malik et al.~\cite{malik2025rewardbench2} & RewardBench 2 & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
+152 & Malik et al.~\cite{malik2025rewardbench2} & RewardBench 2 & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \end{longtable}
 }
 \end{landscape}
