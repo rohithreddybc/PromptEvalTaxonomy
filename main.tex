@@ -135,7 +135,7 @@ engineering evaluation frameworks organized around those tensions,
 covering evaluation method, task scope, metric type, automation
 level, evaluation scope, robustness, and reproducibility. We applied
 it to a corpus of 152 papers from a PRISMA 2020 systematic review of
-six academic databases (an initial 80-paper set expanded through four
+six academic databases (an initial 79-paper set expanded through four
 supplementary search rounds covering LLM-judge quality, benchmark
 contamination, multi-prompt sensitivity, agentic and multilingual
 evaluation, prompt-injection safety, CoT faithfulness,
@@ -315,7 +315,7 @@ and the future-direction agenda of Section~\ref{subsec:agenda}.
 
 We apply the taxonomy to a corpus of 152 papers from a PRISMA 2020
 systematic literature review of six databases. An initial
-primary-search set of 80 papers was expanded across four
+primary-search set of 79 papers was expanded across four
 supplementary search rounds
 (79 $\rightarrow$ 99 $\rightarrow$ 110 $\rightarrow$ 145 $\rightarrow$ 152)
 addressing areas underrepresented in the primary results: LLM-judge
@@ -447,8 +447,8 @@ DeCE~\cite{beyondpointwise2025}, and the NLG-evaluation status review
 of Gao et al.~\cite{nlgevalstatus2024} catalog the resulting design
 choices. Retrieval-augmented evaluation has its own line of work,
 including in-context-retrieval LMs~\cite{incalm2023}, and prompt
-formatting/representation has been studied directly by Zhao et
-al.~\cite{promptformat2024}. Ni et al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and found recurring problems across the board: data contamination, cultural bias, and static test sets that models can eventually memorize.
+formatting/representation has been studied directly by Salinas and
+Gama~\cite{promptformat2024}. Ni et al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and found recurring problems across the board: data contamination, cultural bias, and static test sets that models can eventually memorize.
 
 Human evaluation retains the highest credibility for open-ended
 tasks, but its cost and latency push most studies toward automated
@@ -475,7 +475,7 @@ et al.~\cite{sahoo2024systematic} and Vatsal and
 Dubey~\cite{vatsal2024survey} take similar approaches, organizing methods
 by application domain and NLP task type respectively. Wen et
 al.~\cite{pettax2025} construct an alternative PE taxonomy emphasizing
-template structure; Ahmad et al.~\cite{petaxse2025} catalog PE patterns
+template structure; Sasaki et al.~\cite{petaxse2025} catalog PE patterns
 specifically for software engineering tasks; Tian et
 al.~\cite{petaxdefects2025} taxonomize prompt defects observed across
 PE-for-code studies; and He et al.~\cite{contextengineer2025} situate
@@ -1809,9 +1809,10 @@ full text, and 14 were non-English. The remaining 129 papers passed
 full-text screening. Among papers without peer review, retention was
 conditioned on venue: only papers at recognized NLP/AI venues (ACL,
 EMNLP, NeurIPS, ICLR, IEEE, or ACM proceedings) or indexed journals
-were retained, reducing the set to 58 papers. The 22 papers recovered
-through citation searching then brought the initial corpus to
-\textbf{80 papers}. Four supplementary expansion rounds then added
+were retained, reducing the set to 57 papers (one cross-round
+duplicate subsequently removed during deduplication against Round~1).
+The 22 papers recovered through citation searching then brought the
+initial corpus to \textbf{79 papers}. Four supplementary expansion rounds then added
 papers in areas the original search string was likely to undercount
 (Table~\ref{tab:expansion_rounds}). The same inclusion and exclusion
 criteria were applied at each round, with two refinements documented
@@ -1846,13 +1847,13 @@ screening; cumulative = running corpus size. Final corpus: 152 papers.
 \toprule
 \textbf{Round} & \textbf{Target area(s)} & \textbf{Identified} & \textbf{Screened} & \textbf{Excluded} & \textbf{Added} & \textbf{Cumulative} & \textbf{Date} \\
 \midrule
-0 & Primary PRISMA search + citation chase                                         & 2,847 & 412 & 354 & 79  & 79  & 2025-Q1--Q2 \\
+0 & Primary PRISMA search + citation chase                                         & 2,847 & 412 & 355 & 79  & 79  & 2025-Q1--Q2 \\
 1 & LLM-judge quality, contamination, prompt sensitivity                           &   118 & 118 &  98 & 20  &  99 & 2025-Q3 \\
 2 & Agentic, multilingual, prompt-injection, CoT faithfulness                      &    74 &  74 &  63 & 11  & 110 & 2025-Q4 \\
 3 & Foundation-model reports, RAG, safety, fairness, calibration, clinical, legal  &   212 & 212 & 177 & 35  & 145 & 2026-Q1 \\
 4 & Long-context, tool-use, reward-model evaluation                                &    46 &  46 &  39 &  7  & 152 & 2026-Q2 \\
 \midrule
-\textbf{Total} & --- & \textbf{3,297} & \textbf{862} & \textbf{731} & \textbf{152} & \textbf{152} & \textbf{2025-Q1--2026-Q2} \\
+\textbf{Total} & --- & \textbf{3,297} & \textbf{862} & \textbf{732} & \textbf{152} & \textbf{152} & \textbf{2025-Q1--2026-Q2} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1870,14 +1871,14 @@ candidate set.
 \caption{PRISMA 2020 flowchart for all five search rounds combined.
 Of 3,297 total records identified across six databases (arXiv, ACM
 Digital Library, IEEE Xplore, Semantic Scholar, Scopus, Web of
-Science), 862 were assessed for eligibility at full text; 731 were
-excluded leaving 131 papers, augmented by 22 papers from citation
-search (round 0) and the targeted-expansion passes to yield the
-final corpus of 152 papers. The expanded identification and
-per-round screening counts are tabulated in
-Table~\ref{tab:expansion_rounds}; the figure integrates all five
-rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
-\textit{Takeaway:} Of 3,297 records initially identified, only 4.6\% (152 papers) met all inclusion criteria, reflecting strict quality and relevance thresholds; the high exclusion rate at full-text (731 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
+Science), 862 were assessed for eligibility at full text; 732 were
+excluded (including one cross-round duplicate) leaving 130 papers,
+augmented by 22 papers from citation searching in round 0 to yield
+the final corpus of 152 papers.
+The expanded identification and per-round screening counts are
+tabulated in Table~\ref{tab:expansion_rounds}; the figure integrates
+all five rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
+\textit{Takeaway:} Of 3,297 records initially identified, only 4.6\% (152 papers) met all inclusion criteria, reflecting strict quality and relevance thresholds; the high exclusion rate at full-text (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
 \label{fig:prisma}
 \end{figure}
 
@@ -2016,9 +2017,9 @@ averaged across 1{,}000 perturbation runs each.
 \toprule
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
-Benchmark-based evaluation share & 69.9\% & $\pm$1.5 / $\pm$3.0 pp \\
-Fully automated evaluation share & 81.0\% & $\pm$1.2 / $\pm$2.5 pp \\
-Task-specific metric share & 66.7\% & $\pm$1.8 / $\pm$3.4 pp \\
+Benchmark-based evaluation share & 69.7\% & $\pm$1.5 / $\pm$3.0 pp \\
+Fully automated evaluation share & 80.9\% & $\pm$1.2 / $\pm$2.5 pp \\
+Task-specific metric share & 66.4\% & $\pm$1.8 / $\pm$3.4 pp \\
 Clinical task representation & 3.9\% & $\pm$0.5 / $\pm$1.1 pp \\
 Multilingual task representation & 2.6\% & $\pm$0.5 / $\pm$1.0 pp \\
 \bottomrule
@@ -2035,7 +2036,7 @@ distributional findings in Section~\ref{sec:comparison}.
 vocabulary in title, abstract, and keyword fields and may miss papers
 that address the same underlying concepts under alternative
 terminology. Citation searching recovered 22 additional papers in the
-primary round (bringing the initial corpus to 80); four subsequent
+primary round (bringing the initial corpus to 79); four subsequent
 expansion rounds then added 20, 11, 35, and 7 papers, bringing the
 final corpus to 152 (Section~\ref{subsec:screening}).
 Completeness cannot be guaranteed. We are explicit throughout the
@@ -2226,7 +2227,7 @@ non-trivial reporting share in this category. \\
 \end{table}
 
 The five-row category aggregation foregrounds two patterns that the
-80-row enumeration obscured by repetition. First, the dimensional
+full per-paper enumeration obscured by repetition. First, the dimensional
 profile is largely set by paper category: technique papers, benchmark
 papers, and surveys converge on Archetype A (Benchmark-Automation),
 while LLM-judge papers converge on Archetype B, and sensitivity
@@ -2767,7 +2768,7 @@ Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.
 \toprule
 \textbf{D6 subcategory} & \textbf{All} & \textbf{Tech} & \textbf{Bench} & \textbf{Judge} & \textbf{Survey} \\
 \midrule
-Not reported & 25.0\% & 14.8\% & 4.5\% & 18.8\% & 100.0\% \\
+Not reported & 25.0\% & 14.8\% & 4.5\% & 18.7\% & 100.0\% \\
 Single-prompt & 29.6\% & 37.0\% & 47.7\% & 12.5\% & 0.0\% \\
 Multi-prompt aggr. & 36.8\% & 35.2\% & 34.1\% & 68.8\% & 0.0\% \\
 Sensitivity-bounded & 8.6\% & 13.0\% & 13.6\% & 0.0\% & 0.0\% \\
@@ -2910,7 +2911,7 @@ contamination, rarely reports prompt-paraphrase variance.
 Configuration: D1 = LLM-as-judge, D3 = LLM-judge, D4 = Automated or
 Hybrid, D5 = Cross-model, D6 = Multi-prompt aggregate or
 Single-prompt, D7 = Judge-version-pinned where reported,
-Contamination-checked rare. Approximate share: $\sim$24\% of the
+Contamination-checked rare. Approximate share: $\sim$21\% of the
 corpus (all papers with D1=LLM-as-judge; concentrated in the
 LLM-judge and metric-quality category).
 Region of design space: judgment-anchored, broader construct
@@ -3507,7 +3508,9 @@ rigorous protocols in specialized settings. What it does is name
 the tradeoffs that currently go unnamed, locate them in the
 literature, and provide a vocabulary in which methodological
 standardization is at least describable. The distance from
-describable to standardized is now a coordination problem.
+describable to standardized is a coordination problem --- one that
+requires community adoption of shared standards more than new
+technical development.
 
 \section*{Data Availability}
 \label{sec:data}
