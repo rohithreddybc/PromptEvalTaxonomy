@@ -100,6 +100,7 @@ Evaluation Frameworks for Large Language Models}
   \state{Florida}
   \country{USA}
 }
+\email{tmorla@fiu.edu}
 
 \author{Wenbin Zhang}
 \orcid{0000-0003-3024-5415}
@@ -159,7 +160,10 @@ checks are not yet standard.
 The taxonomy is not a new evaluation method. It is a shared
 vocabulary for making evaluation design choices, their tradeoffs, and
 their interactions visible to both the researcher designing a study
-and the reader interpreting its results.
+and the reader interpreting its results. A seven-question evaluation
+design checklist operationalizing the taxonomy across all seven
+dimensions is provided as a companion artifact for immediate use by
+practitioners and reviewers.
 \end{abstract}
 
 \keywords{prompt engineering, large language models, evaluation
@@ -2573,8 +2577,9 @@ itself as the evaluation target rather than only the final answer.
 
 Generation tasks appear in 10 papers (6.6\%), code tasks in 12
 (7.9\%), and QA tasks in 8 (5.3\%). Clinical and multilingual
-evaluation are present in two different senses in the corpus, and we
-report both because confusing the two would distort the picture.
+evaluation appear in two distinct senses in the corpus; we report
+both separately to avoid conflating clinical evaluation (task domain)
+with multilingual evaluation (language scope).
 Counted by \emph{primary evaluation target}, one paper --
 Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- centrally
 adopts clinical NLP tasks (0.9\%), and two -- Vatsal and
@@ -3486,7 +3491,7 @@ Applied to a PRISMA 2020 systematic review of 152 papers
 (Section~\ref{sec:methodology}, Figure~\ref{fig:prisma},
 Table~\ref{tab:expansion_rounds}), the taxonomy produces three
 findings beyond per-dimension frequency counts: the corpus resolves into three recurring evaluation
-\textit{archetypes} occupying loosely defined regions of the
+\textit{archetypes} -- Benchmark-Automation (Archetype~A, $\sim$68\% of papers), Judge-Mediated (Archetype~B, $\sim$21\%), and Expert-Anchored (Archetype~C, $\sim$10\%) -- occupying loosely defined regions of the
 validity-reliability space; co-occurrence patterns make the
 boundaries between archetypes legible; and a catalog of failure
 modes shows where current configurations do not support the
