@@ -1,4 +1,4 @@
-% ACM Computing Surveys (CSUR) submission template (acmsmall).
+﻿% ACM Computing Surveys (CSUR) submission template (acmsmall).
 % nonacm disables the conference/copyright block during pre-submission
 % review; the ACM Editorial Office sets the final block at acceptance.
 %
@@ -190,8 +190,8 @@ evaluation reproducibility}
        <concept_significance>300</concept_significance>
        </concept>
    <concept>
-       <concept_id>10011007.10011074.10011081</concept_id>
-       <concept_desc>Computing methodologies~Evaluation of text retrieval</concept_desc>
+       <concept_id>10002944.10002946</concept_id>
+       <concept_desc>General and reference~Surveys and overviews</concept_desc>
        <concept_significance>300</concept_significance>
        </concept>
    <concept>
@@ -205,7 +205,7 @@ evaluation reproducibility}
 \ccsdesc[500]{Computing methodologies~Natural language processing}
 \ccsdesc[300]{Computing methodologies~Language resources}
 \ccsdesc[300]{Information systems~Evaluation of retrieval results}
-\ccsdesc[300]{Computing methodologies~Evaluation of text retrieval}
+\ccsdesc[300]{General and reference~Surveys and overviews}
 \ccsdesc[100]{Information systems~Test collections}
 
 \maketitle
@@ -936,6 +936,17 @@ tasks, measuring outcomes such as task completion rates, satisfaction, or effici
 in the NLP literature but are important whenever the deployment context
 involves end users rather than benchmark leaderboards~\cite{chang2023survey}.
 
+\textit{Note on LLM self-evaluation and self-refinement.}
+Methods in which an LLM critiques or revises its own output---Constitutional
+AI~\cite{bai2022constitutional}, self-refine~\cite{madaan2023selfrefine}, and
+related work---do not map cleanly onto any single D1 subcategory: the
+evaluator and the evaluated system are the same model, which breaks the
+independence assumption underlying both human evaluation and LLM-as-judge
+scoring. Papers whose primary contribution is a self-evaluation method are
+coded by the dominant external evidence they present (typically Benchmark or
+LLM-as-judge comparisons), with a note that self-evaluation is the mechanism
+under study rather than the evaluation protocol.
+
 \subsection{Dimension 2: Task Scope}
 \label{subsec:d2}
 
@@ -1269,7 +1280,8 @@ enough to reverse leaderboard rankings. Salinas and Morstatter's butterfly-effec
 study~\cite{butterfly2024} documents similar variance under paraphrase.
 Razavi et al.'s PromptSET~\cite{promptsensitivity2025} provides a
 sensitivity benchmark explicitly. Bellibaltu et al.'s Judge Sensitivity
-Score~\cite{bellibatlu2026judgesense} extends sensitivity reporting to
+Score~\cite{bellibatlu2026judgesense} (a 2026 arXiv preprint; findings
+are preliminary) extends sensitivity reporting to
 LLM-as-judge pipelines themselves, defining JSS over 500 hand-validated
 paraphrase pairs across four evaluation tasks (factuality, coherence,
 relevance, preference) and reporting it for 13 judge models. They
@@ -1805,16 +1817,17 @@ were resolved through discussion (percent agreement 94.1\%, $\kappa$
 referred to a third reviewer, as specified in PRISMA 2020
 Item~8~\cite{page2021prisma}.
 
-Title and abstract screening advanced 412 papers to full-text
-review. Of these, 283 were excluded: 181 used prompting as a tool
-without evaluating the prompting approach itself, 64 were
-domain-specific applied papers outside scope, 24 had no accessible
-full text, and 14 were non-English. The remaining 129 papers passed
-full-text screening. Among papers without peer review, retention was
-conditioned on venue: only papers at recognized NLP/AI venues (ACL,
-EMNLP, NeurIPS, ICLR, IEEE, or ACM proceedings) or indexed journals
-were retained, reducing the set to 57 papers (one cross-round
-duplicate subsequently removed during deduplication against Round~1).
+Title and abstract screening excluded 2,435 records; the remaining
+412 papers advanced to full-text review. Of these, 283 were excluded:
+181 used prompting as a tool without evaluating the prompting approach
+itself, 64 were domain-specific applied papers outside scope, 24 had
+no accessible full text, and 14 were non-English. The remaining 129
+papers passed full-text screening. Among papers without peer review,
+retention was conditioned on venue: only papers at recognized NLP/AI
+venues (ACL, EMNLP, NeurIPS, ICLR, IEEE, or ACM proceedings) or
+indexed journals were retained, excluding a further 72 records and
+reducing the set to 57 papers (one cross-round duplicate subsequently
+removed during deduplication against Round~1).
 The 22 papers recovered through citation searching then brought the
 initial corpus to \textbf{79 papers}. Four supplementary expansion rounds then added
 papers in areas the original search string was likely to undercount
@@ -1924,7 +1937,7 @@ released dataset with citation to this work.
 Two independent coders extracted dimensional codes for the corpus.
 The primary coder coded all papers; the second coder independently
 re-coded a stratified random subsample of at least 25\% of
-the final corpus (${\geq}39$ papers), stratified across paper categories, without
+the final corpus (${\geq}38$ papers; 25\% $\times$ 152), stratified across paper categories, without
 access to the primary coder's labels. Disagreements were resolved
 through discussion; cases that could not be resolved were referred
 to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
@@ -2243,237 +2256,12 @@ candidate failure-mode example
 worth highlighting in the discussion
 (Section~\ref{sec:discussion}).
 
-%% Legacy per-paper longtable (D1-D5 only, 100 rows) moved to
-%% Appendix C as a comprehensive visible reference, following the
-%% Edemacu and Wu (CSUR 2025) Table I pattern. The main text reports:
-%%   (a) the 5-row category-aggregated summary (Table II, above),
-%%   (b) the 10-row representative sample with all 7 dimensions
-%%       (Appendix B), and
-%%   (c) the full 100-paper, 5-dimension mapping (Appendix C).
 %% The full 152-paper machine-readable coding (all 7 dimensions) is
 %% released at https://github.com/rohithreddybc/PromptEvalTaxonomy.
+%% The per-paper longtable (D1–D5, 100 rows) appears as Table~C.1 in
+%% the Electronic Supplement; the 10-row representative sample is
+%% Table~B.1 in the Electronic Supplement.
 
-\iffalse
-\clearpage
-% \onecolumn (removed for acmsmall)
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.10}
-\setlength{\LTleft}{0pt}
-\setlength{\LTright}{0pt}
-\setlength{\LTcapwidth}{\textwidth}
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-
-{\footnotesize
-\begin{longtable}{C{0.50cm}L{3.20cm}L{3.10cm}C{2.35cm}C{1.85cm}C{1.95cm}C{1.95cm}C{1.85cm}}
-\caption[Archival per-paper longtable]{\raggedright Archival copy. The visible version of this table is in Appendix~\ref{app:fullmapping} as Table~\ref{tab:fullmapping}.}\label{tab:comparison_archive}\\
-\toprule
-\textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
-\cellcolor{d1col}\textcolor{white}{\textbf{D1 Evaluation Method}} &
-\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task Scope}} &
-\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric Type}} &
-\cellcolor{d4col}\textcolor{white}{\textbf{D4 Automation}} &
-\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} \\
-\midrule
-\multicolumn{8}{l}{\textit{Core Prompting Technique Papers}} \\
-\midrule
-\endfirsthead
-
-\multicolumn{8}{l}{\textit{Table~\ref{tab:comparison} (continued)}}\\
-\toprule
-\textbf{\#} & \textbf{Paper} & \textbf{System / Topic} &
-\cellcolor{d1col}\textcolor{white}{\textbf{D1 Evaluation Method}} &
-\cellcolor{d2col}\textcolor{white}{\textbf{D2 Task Scope}} &
-\cellcolor{d3col}\textcolor{white}{\textbf{D3 Metric Type}} &
-\cellcolor{d4col}\textcolor{white}{\textbf{D4 Automation}} &
-\cellcolor{d5col}\textcolor{white}{\textbf{D5 Scope}} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{8}{r}{\textit{Continued on next page}}\\
-\endfoot
-
-\bottomrule
-\endlastfoot
-\rowcolor{rowgray}
-1 & Wei et al.~\cite{wei2022chain} & Chain-of-Thought & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-2 & Kojima et al.~\cite{kojima2022large} & Zero-Shot CoT & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-3 & Wang et al.~\cite{wang2023selfconsistency} & Self-Consistency & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-4 & Yao et al.~\cite{yao2023tree} & Tree of Thoughts & Benchmark & Reasoning & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-5 & Zhou et al.~\cite{leasttomost2022} & Least-to-Most & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-6 & Besta et al.~\cite{graphofthoughts2023} & Graph of Thoughts & Benchmark & Reasoning & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-7 & Wang et al.~\cite{plansolve2023} & Plan-and-Solve & Benchmark & Reasoning & Task-specific & Automated & Single-model \\
-8 & Lyu et al.~\cite{faithfulcot2023} & Faithful CoT & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-9 & Besta et al.~\cite{demystifying2024} & Chains/Trees/Graphs & Benchmark & Reasoning & Task-specific & Automated & Cross-model \\
-10 & Lewis et al.~\cite{lewis2020retrieval} & RAG & Benchmark & QA & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-11 & Shin et al.~\cite{shin2020autoprompt} & AutoPrompt & Benchmark & QA, Reasoning & Task-specific & Automated & Single-model \\
-12 & Agarwal et al.~\cite{manyshot2024} & Many-Shot ICL & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-13 & Ouyang et al.~\cite{ouyang2022training} & InstructGPT / RLHF & Human eval & Multi-task & Hybrid & Human-in-loop & Single-model \\
-14 & Wei et al.~\cite{wei2022flan} & FLAN & Benchmark & Multi-task & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-15 & Li et al.~\cite{scoT2023} & Structured CoT & Benchmark & Code & Task-specific & Automated & Cross-model \\
-16 & Ferr\~{a}o et al.~\cite{manualpromptnotdead2025} & Manual Prompt Study & Benchmark & Code & Task-specific & Hybrid & Single-model \\
-\rowcolor{rowgray}
-17 & Agrawal et al.~\cite{gepa2025} & GEPA & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-18 & Agarwal et al.~\cite{promptwizard2024} & PromptWizard & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-19 & White et al.~\cite{white2023prompt} & Prompt Pattern Catalog & Ablation & Multi-task & Task-specific & Manual & Single-model \\
-20 & Dong et al.~\cite{dong2022survey} & In-Context Learning & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\midrule
-\multicolumn{8}{l}{\textit{Automated Prompt Optimization Papers}} \\ \midrule
-\rowcolor{rowgray}
-21 & Zhou et al.~\cite{zhou2022ape} & APE & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-22 & Pryzant et al.~\cite{pryzant2023apo} & APO & Benchmark & Multi-task & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-23 & Deng et al.~\cite{rlprompt2022} & RLPrompt & Benchmark & Multi-task & Task-specific & Automated & Single-model \\
-24 & Li et al.~\cite{li2025autoprompt} & Auto Prompt Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-25 & Ramnath et al.~\cite{ramnath2025apo} & Auto Prompt Opt.\ Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-26 & He et al.~\cite{contextengineer2025} & Context Engineering & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-27 & Schulhoff et al.~\cite{schulhoff2024prompt} & The Prompt Report & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\midrule
-\multicolumn{8}{l}{\textit{Prompt Engineering Survey Papers}} \\ \midrule
-\rowcolor{rowgray}
-28 & Sahoo et al.~\cite{sahoo2024systematic} & PE Techniques Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-29 & Vatsal \& Dubey~\cite{vatsal2024survey} & PE Methods Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-30 & Wen et al.~\cite{pettax2025} & PE Taxonomy & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-31 & Ahmad et al.~\cite{petaxse2025} & PE Patterns (SE) & Benchmark & Code & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-32 & Tian et al.~\cite{petaxdefects2025} & Prompt Defect Taxonomy & Ablation & Code & Task-specific & Manual & Single-model \\
-33 & Chang et al.~\cite{chang2023survey} & LLM Evaluation Survey & Human eval & Multi-task & Hybrid & Human-in-loop & Cross-domain \\
-\midrule
-\multicolumn{8}{l}{\textit{LLM Evaluation Survey Papers}} \\ \midrule
-\rowcolor{rowgray}
-34 & Guo et al.~\cite{guo2023evaluating} & LLM Eval.\ Comprehensive & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-35 & Ni et al.~\cite{ni2025benchmarks} & LLM Benchmark Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-36 & Mohammadi et al.~\cite{mohammadi2025agents} & LLM Agent Eval.\ Survey & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-37 & Gururangan et al.~\cite{inadequatebenchmarks2024} & Benchmark Adequacy & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-38 & Polo et al.~\cite{benchmark2sq2026} & Benchmark$^2$ & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-39 & Zhao et al.~\cite{explainabilityllm2023} & LLM Explainability & Human eval & Multi-task & Hybrid & Human-in-loop & Cross-domain \\
-\rowcolor{rowgray}
-40 & Wang et al.~\cite{wang2018glue} & GLUE & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-\midrule
-\multicolumn{8}{l}{\textit{Benchmark Papers}} \\ \midrule
-\rowcolor{rowgray}
-41 & Wang et al.~\cite{wang2019superglue} & SuperGLUE & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-42 & Srivastava et al.~\cite{srivastava2022bigbench} & BIG-Bench & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-43 & Hendrycks et al.~\cite{hendrycks2021measuring} & MMLU & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-44 & Suzgun et al.~\cite{cot_benchmark2022} & BIG-Bench Hard & Benchmark & Reasoning & Task-specific & Automated & Cross-dataset \\
-\rowcolor{rowgray}
-45 & Zhu et al.~\cite{promptbench2023} & PromptBench & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-46 & Mizrahi et al.~\cite{mizrahi2024state} & Multi-Prompt Eval & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-47 & Wang et al.~\cite{mmluprob2024} & MMLU-Pro & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-48 & Lin et al.~\cite{wildbench2024} & WildBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-49 & Gao et al.~\cite{ragsurvey2023} & RAG Survey & Benchmark & QA & Task-specific & Automated & Cross-domain \\
-50 & Zheng et al.~\cite{zheng2023judging} & MT-Bench / Chatbot Arena & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{LLM-as-Judge Papers}} \\ \midrule
-\rowcolor{rowgray}
-51 & Dubois et al.~\cite{dubois2024alpacaeval} & AlpacaEval 2.0 & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model \\
-52 & Liu et al.~\cite{liu2023geval} & G-Eval & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model \\
-\rowcolor{rowgray}
-53 & Gu et al.~\cite{gu2025llmjudge} & LLM-as-Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain \\
-54 & Li et al.~\cite{li2024llmsjudges} & LLM Judge Survey & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain \\
-\rowcolor{rowgray}
-55 & Feng et al.~\cite{feng2025sage} & SAGE & LLM-as-Judge & Multi-task & LLM-judge & Hybrid & Cross-model \\
-56 & Tan et al.~\cite{judgebench2024} & JudgeBench & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-57 & Ye et al.~\cite{llmvshuman2024} & LLMs vs.\ Humans Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model \\
-58 & Calderon et al.~\cite{alternativeannotator2025} & Alternative Annotator & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model \\
-\rowcolor{rowgray}
-59 & Chen et al.~\cite{multiagentjudge2025} & MAJ-EVAL & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-domain \\
-60 & Yang et al.~\cite{llmjudgestudy2024} & LLM Judge Empirical & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-61 & Ye et al.~\cite{humansorllm2024} & Judgement Bias Study & LLM-as-Judge, Human & Multi-task & LLM-judge & Hybrid & Cross-model \\
-62 & Panickssery et al.~\cite{judgingjudges2024} & Judging the Judges & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-63 & Chiang et al.~\cite{canlllmsreplace2023} & Can LLMs Replace Humans & LLM-as-Judge, Human & Generation & LLM-judge & Hybrid & Single-model \\
-64 & Min et al.~\cite{factscore2023} & FActScore & LLM-as-Judge & Generation & LLM-judge & Hybrid & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{Metric and Evaluation Quality Papers}} \\ \midrule
-\rowcolor{rowgray}
-65 & Xu et al.~\cite{instructscore2023} & InstructScore & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model \\
-66 & Es et al.~\cite{rageval2024} & RAGAs & Benchmark & QA & Task-specific & Automated & Single-model \\
-\rowcolor{rowgray}
-67 & Gehrmann et al.~\cite{repairing2022} & NLG Eval.\ Survey & Human eval & Generation & Model-based & Human-in-loop & Cross-domain \\
-68 & Zhong et al.~\cite{multidimeval2022} & Multi-Dim.\ Evaluator & Human eval & Generation & Hybrid & Hybrid & Cross-model \\
-\rowcolor{rowgray}
-69 & Yu et al.~\cite{beyondpointwise2025} & DeCE & LLM-as-Judge & QA & LLM-judge & Automated & Cross-model \\
-70 & Farquhar et al.~\cite{semanticentropy2024} & Semantic Entropy & Benchmark & QA & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-71 & Gao et al.~\cite{nlgevalstatus2024} & NLG Eval Status & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-domain \\
-72 & Ram et al.~\cite{incalm2023} & In-Context RAG & Benchmark & QA & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-73 & Sclar et al.~\cite{sclar2023formatting} & Prompt Format Sensitivity & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{Prompt Sensitivity and Format Papers}} \\ \midrule
-\rowcolor{rowgray}
-74 & Razavi et al.~\cite{promptsensitivity2025} & PromptSET & Benchmark & QA & Task-specific & Automated & Cross-model \\
-75 & Zhao et al.~\cite{promptformat2024} & Prompt Formatting Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-76 & Mizrahi et al.~\cite{butterfly2024} & Butterfly Effect Study & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-77 & Jiang et al.~\cite{promptalchemy2025} & Prompt Alchemy & Benchmark & Code & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-78 & He et al.~\cite{promptingsecurecode2024} & Secure Code Prompting & Benchmark & Code & Task-specific & Hybrid & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{Code and Software Engineering Papers}} \\ \midrule
-\rowcolor{rowgray}
-79 & Hou et al.~\cite{advancedllmsse2024} & LLMs for SE Survey & Benchmark & Code & Task-specific & Automated & Cross-model \\
-80 & Khojah et al.~\cite{impactpromptprogramming2024} & CodePromptEval & Benchmark & Code & Task-specific & Hybrid & Single-model \\
-\midrule
-\multicolumn{8}{l}{\textit{LLM-as-Judge Quality and Bias Papers (Expansion Round)}} \\ \midrule
-\rowcolor{rowgray}
-81 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-82 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-83 & Zhu et al.~\cite{zhu2023judgelm} & JudgeLM & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-84 & Verga et al.~\cite{verga2024replacing} & Panel-of-Judges Evaluation & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-85 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{Benchmark Contamination and Dynamic Benchmarking Papers (Expansion Round)}} \\ \midrule
-86 & Sainz et al.~\cite{sainz2023nlp} & NLP Evaluation in Trouble & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-\rowcolor{rowgray}
-87 & Deng et al.~\cite{deng2023investigating} & Investigating Data Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset \\
-88 & Yang et al.~\cite{yang2023rethinking} & Rethinking Benchmark Contamination & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-89 & Wang et al.~\cite{wang2024benchmark} & Benchmark Self-Evolving & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-90 & McIntosh et al.~\cite{mcintosh2024inadequacies} & LLM Benchmark Inadequacies & Benchmark & Multi-task & Task-specific & Automated & Cross-domain \\
-\rowcolor{rowgray}
-91 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-92 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model \\
-\rowcolor{rowgray}
-93 & Li et al.~\cite{li2024leveraging} & LLM-based NLG Evaluation Survey & Benchmark & NLG & Model-based & Automated & Cross-model \\
-94 & Zhou et al.~\cite{zhou2023instruction} & Instruction-Following Eval (IFEval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-95 & Qin et al.~\cite{qin2024chatgpt} & ChatGPT Sentiment Reasoning & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\midrule
-\multicolumn{8}{l}{\textit{Multi-Prompt, Clinical, and Multimodal Papers (Expansion Round)}} \\ \midrule
-96 & Mizrahi et al.~\cite{mizrahi2024state} & State of What Art (TACL) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-97 & Sivarajkumar et al.~\cite{sivarajkumar2024empirical} & Clinical Prompting Evaluation (JMIR) & Benchmark & Clinical & Task-specific & Automated & Cross-model \\
-98 & Polo et al.~\cite{polo2024promptseval} & PromptEval (Multi-Prompt Eval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\rowcolor{rowgray}
-99 & Jang \& Lukasiewicz~\cite{jang2023consistency} & Consistency Analysis of ChatGPT & Human eval & Multi-task & Hybrid & Manual & Cross-domain \\
-100 & Fu et al.~\cite{fu2023mme} & MME Multimodal Evaluation & Benchmark & Multi-task & Task-specific & Automated & Cross-model \\
-\end{longtable}
-}
-% \twocolumn (removed for acmsmall)
-\fi
 
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
@@ -2932,8 +2720,8 @@ drift are not yet managed by a shared calibration protocol.
 Configuration: D1 = Human eval (sometimes plus LLM-judge as
 adjunct), D3 = Hybrid or Model-based, D4 = Human-in-loop or Hybrid,
 D5 = Single-model or Cross-model, D6 = Multi-prompt aggregate,
-D7 = Artifact-released. Approximate share: $\sim$11\% of the
-corpus (papers with D1=Human eval; Human-in-loop or Hybrid in D4).
+D7 = Artifact-released. Approximate share: $\sim$10\% of the
+corpus (16 papers, 10.5\%; papers with D1=Human eval; Human-in-loop or Hybrid in D4).
 Region of design space: judgment-anchored, highest construct
 ambition, lowest within-run reliability. Representative example:
 InstructGPT/RLHF~\cite{ouyang2022training} and the human-vs-LLM
@@ -3428,6 +3216,34 @@ new prompting techniques to include at minimum a structured
 adversarial-robustness probe and a demographic-bias measurement
 alongside the main accuracy claims.
 
+\subsubsection{Evaluation Frameworks for Reasoning-First Models}
+\label{subsubsec:fd_reasoning}
+The emergence of reasoning-first models---o1, o3, and DeepSeek-R1---
+challenges several baseline assumptions embedded in the taxonomy. For
+D1 (Evaluation Method), the unit of analysis shifts: the prompt is no
+longer the sole vehicle for reasoning, because the model's internal
+chain-of-thought is generated autonomously before any answer is
+committed. Benchmark-based evaluation (D1=Benchmark) therefore
+measures end-to-end accuracy but cannot attribute performance to
+prompt design versus internal deliberation, weakening the construct
+validity of prompt-engineering claims. For D3 (Metric Type), the
+faithfulness of the exposed reasoning trace to the actual computation
+is itself an open measurement problem; task-specific metrics applied
+to the final answer may conceal trace-level errors that peer
+review-quality evaluation should surface. For D6 (Robustness), the
+within-prompt stochasticity from internal chain-of-thought sampling
+adds a new variance source that is invisible to single-prompt
+reporting: semantically identical prompts can elicit different
+reasoning paths and different answers across invocations even at
+temperature zero. Evaluation frameworks designed for instruction-tuned
+models do not account for this variance source, and the robustness
+coding conventions in D6 require extension to cover trace-level
+stability. A priority for the next survey cycle is to capture the
+emerging literature on evaluating reasoning-first models and to
+determine whether the D1/D3/D6 distinctions require new subcategories
+or whether existing codes can accommodate them with updated
+operational definitions.
+
 \subsection{Using This Taxonomy in Citing Work}
 \label{subsec:using}
 
@@ -3517,6 +3333,10 @@ describable to standardized is a coordination problem --- one that
 requires community adoption of shared standards more than new
 technical development.
 
+\section*{Acknowledgments}
+This research received no specific grant from any funding agency in
+the public, commercial, or not-for-profit sectors.
+
 \section*{Data Availability}
 \label{sec:data}
 The companion artifact repository is publicly available at
@@ -3546,11 +3366,11 @@ research supervision, conceptual guidance, and senior review.
 For full transparency with respect to the ACM Conflict of Interest
 Policy, the authors disclose that co-author W.\ Zhang serves on the
 Editorial Board of ACM Computing Surveys as an Associate Editor at
-the time of submission. W.\ Zhang has had no role in the editorial
-handling of this manuscript, and the authors respectfully request
-that the Editor-in-Chief assign a handling editor with no
-collaboration history with any of the authors. This disclosure is
-provided in accordance with the ACM Peer Review Policy.
+the time of submission. W.\ Zhang will not participate in any
+editorial decisions, reviewer selection, or handling of this
+manuscript. The Editor-in-Chief is asked to assign a handling editor
+with no collaboration history with any of the authors. This
+disclosure is provided in accordance with the ACM Peer Review Policy.
 
 \section*{Ethical Considerations}
 \label{sec:ethics}
