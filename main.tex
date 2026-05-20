@@ -224,42 +224,26 @@ optimization, and dozens of related techniques have been proposed,
 evaluated, and deployed across tasks as varied as arithmetic reasoning
 and clinical decision support~\cite{wei2022chain, lewis2020retrieval, sahoo2024systematic}.
 
-To see why evaluation practice matters, consider a concrete scenario.
-A researcher proposes a chain-of-thought variant for medical
-differential diagnosis. Study~A evaluates it on MedQA using
-exact-match accuracy against a fixed answer key (Evaluation Method =
-Benchmark, Metric = Task-specific, Automation = Fully automated).
-Study~B evaluates the same technique using GPT-4 as a clinical
-scoring judge on a different question set (Evaluation Method =
-LLM-as-judge, Metric = LLM-judge, Automation = Fully automated).
-Both studies report improvements over their respective baselines.
-
-A clinician or systems architect choosing between the two techniques
-cannot combine these results. Study~A's accuracy gain does not
-establish clinical utility: exact-match against a multiple-choice
-answer key does not capture the reasoning quality or safety properties
-that clinical deployment requires. Study~B's GPT-4 judge may or may
-not be calibrated to the judgment standard that a domain expert would
-apply; without a calibration experiment, the score is uninterpretable
-relative to clinical ground truth. This is not a failure of rigor
-inside either study. It is the consequence of an evaluation ecosystem
-without a shared vocabulary for describing what each study measured,
-which tradeoffs each configuration accepts, and under what conditions
-results transfer across labs. Providing that vocabulary -- a
-seven-dimensional taxonomy grounded in measurement theory -- is the
-primary contribution of this paper.
-
-The scenario generalizes: the same prompting strategy can be
-assessed using benchmark accuracy on one model, human preference on
-another, LLM-judge scoring on a third, and pass@$k$ on a fourth, with
-each evaluation internally consistent and none directly comparable to
-the others~\cite{chang2023survey, guo2023evaluating}. Because prompt
-engineering claims underpin design decisions in commercial systems,
-clinical tools, and automated software pipelines, a shared vocabulary
-for describing the underlying evaluation frameworks --- not a single
-mandated protocol, but a structure that makes the relevant choices
-visible --- would let researchers reason about cross-study comparison
-explicitly.
+A concrete scenario shows why evaluation practice matters. Consider
+a chain-of-thought variant for medical differential diagnosis.
+Study~A evaluates it on MedQA with exact-match accuracy
+(D1=Benchmark, D3=Task-specific, D4=Automated); Study~B evaluates
+the same technique with GPT-4 as a clinical scoring judge on a
+different question set (D1=LLM-as-judge, D3=LLM-judge, D4=Automated).
+Both report improvements over their baselines, but a clinician
+choosing between them cannot combine the results: Study~A's
+exact-match accuracy does not capture the reasoning quality or
+safety properties clinical deployment requires; Study~B's judge
+score is uninterpretable relative to clinical ground truth without
+a calibration experiment. Neither study fails internally; both
+results are limited by an evaluation ecosystem without a shared
+vocabulary for describing what each measured, which tradeoffs each
+accepts, and under what conditions results transfer across labs.
+The same pattern --- internally consistent, mutually incomparable
+evaluations --- applies across the broader literature
+\cite{chang2023survey, guo2023evaluating}. Providing that vocabulary
+in the form of a seven-dimensional taxonomy grounded in measurement
+theory is the primary contribution of this paper.
 
 \subsection*{Contribution}
 
@@ -400,111 +384,80 @@ contributed and where each falls short.
 
 \subsection{Prompt Engineering Methods and Techniques}
 
-Interest in systematic prompt design grew once researchers confirmed that
-input phrasing alone could meaningfully shift model outputs~\cite{brown2020gpt3}. Early
-work established the foundational paradigms. Few-shot prompting supplies the model
-with worked examples alongside the task description, rather than instructions alone~\cite{brown2020gpt3}.
-Chain-of-thought prompting extends this approach by embedding intermediate reasoning
-steps within those examples. That addition substantially improved
-accuracy on arithmetic and commonsense tasks~\cite{wei2022chain}. Zero-shot
-CoT achieves a similar effect without any examples, relying on
-a single instructional cue~\cite{kojima2022large}. Later contributions include
-self-consistency decoding~\cite{wang2023selfconsistency}, tree-of-thought
-prompting~\cite{yao2023tree}, graph-of-thoughts
-\cite{graphofthoughts2023}, the demystification of
-chain/tree/graph variants by Besta et al.~\cite{demystifying2024},
-least-to-most decomposition~\cite{leasttomost2022}, plan-and-solve
-prompting~\cite{plansolve2023}, faithfulness-preserving CoT
-\cite{faithfulcot2023}, many-shot in-context learning at long
-contexts~\cite{manyshot2024}, AutoPrompt's
-gradient-search-based discrete prompts~\cite{shin2020autoprompt},
-the FLAN instruction-tuning paradigm~\cite{wei2022flan}, White et
-al.'s prompt-pattern catalog~\cite{white2023prompt}, the manual-prompt
-study of Ferr\~{a}o et al.~\cite{manualpromptnotdead2025}, and
-retrieval-augmented generation, which fetches relevant external
-documents at inference time~\cite{lewis2020retrieval}; recent
-automated prompt-optimization work continues this line via
-GEPA~\cite{gepa2025} and PromptWizard~\cite{promptwizard2024}.
-
-More recent surveys have tried to bring order to this space. Li
-et al.~\cite{li2025autoprompt} frame automated prompt optimization as a
-maximization problem over discrete, continuous, and hybrid prompt spaces.
-Ramnath et al.~\cite{ramnath2025apo} organize the same territory around
-a five-part framework. What neither addresses is the evaluation question:
-once you have a prompting method, how do you know it actually worked,
-and by what standard?~\cite{schulhoff2024prompt,sahoo2024systematic}
+Interest in systematic prompt design grew once input phrasing was
+shown to meaningfully shift model
+outputs~\cite{brown2020gpt3}. Few-shot~\cite{brown2020gpt3} and
+chain-of-thought~\cite{wei2022chain} prompting established the
+foundational paradigms; zero-shot CoT~\cite{kojima2022large},
+self-consistency decoding~\cite{wang2023selfconsistency},
+tree-~\cite{yao2023tree} and graph-of-thought~\cite{graphofthoughts2023}
+extensions with the chain/tree/graph
+demystification~\cite{demystifying2024}, least-to-most
+decomposition~\cite{leasttomost2022}, plan-and-solve~\cite{plansolve2023},
+faithful CoT~\cite{faithfulcot2023}, many-shot
+ICL~\cite{manyshot2024}, AutoPrompt's gradient
+search~\cite{shin2020autoprompt}, FLAN instruction
+tuning~\cite{wei2022flan}, prompt-pattern catalogs~\cite{white2023prompt},
+manual-prompt studies~\cite{manualpromptnotdead2025},
+RAG~\cite{lewis2020retrieval}, and automated optimization
+(GEPA~\cite{gepa2025}, PromptWizard~\cite{promptwizard2024}) extend
+the technique catalog. Recent automated-prompt-optimization surveys
+\cite{li2025autoprompt, ramnath2025apo} organize this territory but
+do not address the evaluation question: once a prompting method
+exists, how do you know it worked, and by what standard?
+\cite{schulhoff2024prompt, sahoo2024systematic}.
 
 \subsection{Evaluation Frameworks for Large Language Models}
 
-LLM evaluation developed along its own trajectory. GLUE~\cite{wang2018glue} and
-SuperGLUE~\cite{wang2019superglue} established widely used baselines for natural language
-understanding. BIG-Bench~\cite{srivastava2022bigbench} targeted harder
-reasoning tasks that earlier models could not handle, and
-BIG-Bench~Hard~\cite{cot_benchmark2022} carved out the
-chain-of-thought-amenable subset that drove much later
-benchmark-evaluation work. MMLU~\cite{hendrycks2021measuring}
-assessed multitask knowledge at scale across dozens of subject areas. MT-Bench and
-AlpacaEval~\cite{zheng2023judging, dubois2024alpacaeval} redirected focus
-to open-ended instruction following, using LLM-based judges rather than
-fixed answer keys. Reference-free and model-based scoring developed
-alongside these benchmarks: Multi-Dimensional
-Evaluator~\cite{multidimeval2022},
-InstructScore~\cite{instructscore2023},
-DeCE~\cite{beyondpointwise2025}, and the NLG-evaluation status review
-of Gao et al.~\cite{nlgevalstatus2024} catalog the resulting design
-choices. Retrieval-augmented evaluation has its own line of work,
-including in-context-retrieval LMs~\cite{incalm2023}, and prompt
-formatting/representation has been studied directly by Salinas and
-Gama~\cite{promptformat2024}. Ni et al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and found recurring problems across the board: data contamination, cultural bias, and static test sets that models can eventually memorize.
-
-Human evaluation retains the highest credibility for open-ended
-tasks, but its cost and latency push most studies toward automated
-alternatives such as BLEU~\cite{papineni2002bleu},
-ROUGE~\cite{lin2004rouge}, or an LLM judge. Gu et
-al.~\cite{gu2025llmjudge} document the systematic biases of
-LLM-based judges - positional bias, verbosity preference,
-inconsistency across prompting strategies - and Feng et
-al.~\cite{feng2025sage} showed that even top-performing models fail
-to maintain consistent preferences in roughly a quarter of difficult
-pairwise cases. The available evaluation tools are numerous; what is
-missing is a shared structure for comparing across them.
+LLM evaluation developed along its own trajectory: GLUE
+\cite{wang2018glue} / SuperGLUE \cite{wang2019superglue} for NLU,
+BIG-Bench \cite{srivastava2022bigbench} and BIG-Bench Hard
+\cite{cot_benchmark2022} for reasoning, MMLU
+\cite{hendrycks2021measuring} for multitask knowledge, and MT-Bench /
+AlpacaEval \cite{zheng2023judging, dubois2024alpacaeval} for open-ended
+instruction following with LLM-based judges. Reference-free and
+model-based scoring \cite{multidimeval2022, instructscore2023,
+beyondpointwise2025, nlgevalstatus2024}, in-context retrieval
+\cite{incalm2023}, and prompt-format studies
+\cite{promptformat2024} expand the design space. Ni et
+al.~\cite{ni2025benchmarks} reviewed 283 benchmarks and identified
+recurring problems: contamination, cultural bias, and static test
+sets vulnerable to memorization. LLM-judge biases (positional,
+verbosity, self-enhancement) are documented at scale by Gu et
+al.~\cite{gu2025llmjudge}; Feng et al.~\cite{feng2025sage} report
+that even top-performing judges fail to maintain consistent
+preferences on roughly a quarter of difficult pairwise cases. The
+tools are numerous; what is missing is a shared structure for
+comparing across them.
 
 \subsection{Surveys and Taxonomies in Prompt Engineering and LLM Evaluation}
 
-Across the survey literature, prompting methods and evaluation practice
-have been treated as separate topics with no systematic bridge between
-them. Schulhoff
-et al.~\cite{schulhoff2024prompt} produced the most thorough inventory of
-prompting techniques to date, cataloguing 58 text-only prompting techniques, establishing a standardized
-vocabulary, and contributing a meta-analysis of the literature, but the work is a catalog of
-techniques rather than a framework for evaluating them. Sahoo
-et al.~\cite{sahoo2024systematic} and Vatsal and
-Dubey~\cite{vatsal2024survey} take similar approaches, organizing methods
-by application domain and NLP task type respectively. Wen et
-al.~\cite{pettax2025} construct an alternative PE taxonomy emphasizing
-template structure; Sasaki et al.~\cite{petaxse2025} catalog PE patterns
-specifically for software engineering tasks; Tian et
-al.~\cite{petaxdefects2025} taxonomize prompt defects observed across
-PE-for-code studies; and He et al.~\cite{contextengineer2025} situate
-PE within a broader ``context engineering'' framing. Dong et
-al.'s in-context-learning survey~\cite{dong2022survey} predates and
-informs much of this catalog-style literature. On the evaluation
-side, Chang et al.~\cite{chang2023survey} organize LLM evaluation around
-what, where, and how to evaluate; Zhao et
-al.~\cite{explainabilityllm2023} survey explainability evaluation;
-Hou et al.~\cite{advancedllmsse2024} survey LLM-for-SE evaluation; and
-Gururangan et al.~\cite{inadequatebenchmarks2024} critically examine
-benchmark adequacy. Ni et al.~\cite{ni2025benchmarks} sort 283
-benchmarks into a three-tier taxonomy. Mohammadi
-et al.~\cite{mohammadi2025agents} propose a two-dimensional taxonomy for
-agent evaluation.
-
-The closely related surveys reviewed here do not centrally address
-a question that this work foregrounds: for a researcher evaluating a
-specific prompting technique, which evaluation framework should they
-use, and why? Answering that requires classifying evaluation
-frameworks along dimensions that are meaningful for PE work
-specifically. That classification is what this survey provides.
+Across the survey literature, prompting methods and evaluation
+practice have been treated as separate topics with no systematic
+bridge between them. On the PE methods side, Schulhoff et
+al.~\cite{schulhoff2024prompt} catalog 58 text-only prompting
+techniques with a meta-analysis but no evaluation framework; Sahoo
+et al.~\cite{sahoo2024systematic} and Vatsal \&
+Dubey~\cite{vatsal2024survey} organize methods by application domain
+and NLP task type respectively; Wen et al.~\cite{pettax2025} build a
+template-structure taxonomy; Sasaki et al.~\cite{petaxse2025} cover
+SE-specific patterns; Tian et al.~\cite{petaxdefects2025} taxonomize
+prompt defects in PE-for-code; He et al.~\cite{contextengineer2025}
+situate PE within ``context engineering''; and Dong et
+al.~\cite{dong2022survey} provide the foundational in-context-learning
+survey. On the evaluation side, Chang et al.~\cite{chang2023survey}
+organize LLM evaluation around what/where/how; Zhao et
+al.~\cite{explainabilityllm2023} cover explainability evaluation;
+Hou et al.~\cite{advancedllmsse2024} cover LLM-for-SE evaluation;
+Gururangan et al.~\cite{inadequatebenchmarks2024} critique benchmark
+adequacy; Ni et al.~\cite{ni2025benchmarks} sort 283 benchmarks into
+a three-tier taxonomy; and Mohammadi et al.~\cite{mohammadi2025agents}
+propose a two-dimensional agent-evaluation taxonomy. None of these
+centrally addresses the question we foreground: for a researcher
+evaluating a specific prompting technique, which evaluation framework
+should they use, and why? Answering that requires a classification
+of evaluation frameworks along dimensions meaningful for PE work
+specifically --- which is the contribution of this survey.
 
 \subsection{Differentiation from Prior Surveys}
 \label{subsec:differentiation}
@@ -628,79 +581,46 @@ what this survey provides.
 
 \subsection{Evaluation Metric Families}
 
-Four metric families appear with regularity across the prompt engineering
-evaluation literature. They form the basis of Dimension~3 in the taxonomy, and
-understanding their differences matters directly for the analysis in
-Sections~\ref{sec:comparison} and~\ref{sec:discussion}.
-
-\textbf{Reference-based metrics} score model output by measuring surface
-overlap against a human-written gold reference. BLEU~\cite{papineni2002bleu} counts
-$n$-gram precision; ROUGE~\cite{lin2004rouge} applies recall-oriented overlap
-for summarization tasks. Both are fast and reproducible, but their alignment with human
-judgment is known to be weak on tasks that admit multiple valid
-phrasings~\cite{liu2023geval, repairing2022}. A perfectly correct answer expressed
-in different words will still receive a low score.
-
-\textbf{Model-based metrics} rely on learned semantic representations rather
-than word overlap. They handle paraphrase more gracefully and tend to align more closely
-with human ratings. They still require a reference text, however, and they
-carry forward whatever gaps and biases that reference contains~\cite{chang2023survey}.
-
-\textbf{LLM-as-judge metrics} delegate scoring to a second language model,
-eliminating the need for a gold reference. Liu et al.\ showed that G-Eval, using
-GPT-4 with structured rubric prompts, achieves stronger alignment with
-human judgment than BLEU and ROUGE on
-summarization and dialogue tasks~\cite{liu2023geval}.
-The trade-off is that LLM judges import their own systematic biases:
-positional preference, a tendency to favor longer responses, and
-self-enhancement bias in which a model rates its own outputs higher than
-those produced by other models~\cite{zheng2023judging, gu2025llmjudge}.
-
-\textbf{Task-specific metrics} are purpose-built and generally do not transfer.
-Pass@$k$ tests whether code passes unit tests within $k$ attempts. Exact
-match verifies factual retrieval. RAGAS measures faithfulness and context
-recall for retrieval-augmented pipelines~\cite{rageval2024}. These metrics are
-often the most meaningful available for their intended task. But a paper using pass@$k$
-and a paper using RAGAS share no common ground, which is a core reason why evaluation results across the PE field remain so difficult to compare.
-
-The taxonomy in Section~\ref{sec:taxonomy} organizes these four
-metric families across seven dimensions, anchored to two
-measurement-theory concepts that recur throughout the rest of the
-paper.
+Four metric families recur across PE evaluation. \textbf{Reference-based
+metrics} score model output by surface overlap against a gold
+reference (BLEU~\cite{papineni2002bleu}, ROUGE~\cite{lin2004rouge});
+fast and reproducible, but weakly aligned with human judgment on
+open-ended tasks~\cite{liu2023geval, repairing2022}.
+\textbf{Model-based metrics} use learned semantic representations
+(BERTScore family), handling paraphrase more gracefully but still
+requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-judge
+metrics} delegate scoring to a second language model
+(G-Eval~\cite{liu2023geval}), eliminating the gold-reference
+requirement at the cost of importing judge biases --- positional
+preference, length bias, and self-enhancement
+bias~\cite{zheng2023judging, gu2025llmjudge}. \textbf{Task-specific
+metrics} are purpose-built and generally do not transfer (pass@$k$
+for code, exact match for factual retrieval,
+RAGAS~\cite{rageval2024} for retrieval-augmented pipelines); they
+are often the most meaningful for their intended task but share no
+common ground across tasks. Section~\ref{sec:taxonomy} organizes
+these four families along D3 (Metric Type) and threads them through
+the rest of the taxonomy.
 
 \subsection{Validity and Reliability in Evaluation}
 \label{subsec:validityreliability}
 
-The reliability of a measurement is the consistency with which it
-produces the same value when applied repeatedly under nominally
-identical conditions. The construct validity of a measurement is the
-degree to which it captures the underlying property it is intended to
-capture - the degree to which the score \emph{means what we want it to
-mean}~\cite{cronbach1955construct, messick1995validity}.
-
-The two are not equivalent and frequently pull against each other. A
-fully scripted exact-match comparison against a fixed answer key has
-high reliability: the same input produces the same score on every
-run. Its construct validity for a property like ``answer quality'' is
-narrow, however, because it gives the same score to a brilliant
-restatement and a mechanical reproduction. A panel of human experts
-scoring open-ended outputs can pursue construct validity at whatever
-level the deployment context demands, but inter-rater agreement is
-rarely perfect and the panel cannot be replicated cheaply or
-quickly~\cite{chang2023survey}. Recent work translates this distinction
-into ML and NLP evaluation directly~\cite{jacobs2021measurement,
-subramonian2023takeoneforteam, liao2023designing}: a high score on a
-benchmark whose construct does not match the deployment task is not
-evidence about the deployment property; it is evidence about the
-benchmark.
-
-Section~\ref{sec:taxonomy} uses validity and reliability as the
-spine of the dimensional decomposition. We adopt the terminology in
-its measurement-theory sense throughout: a metric or pipeline is
-\textit{reliable} when it produces consistent scores under repetition,
-and a measurement has \textit{construct validity} when its scores are
-meaningful evidence about the property of interest in the deployment
-context.
+We use \emph{reliability} (the consistency of a measurement under
+repetition) and \emph{construct validity} (the degree to which a
+score is evidence about the property it is intended to
+capture)~\cite{cronbach1955construct, messick1995validity} in their
+measurement-theory sense throughout. The two are not equivalent and
+typically pull against each other: an exact-match comparison against
+a fixed answer key is highly reliable but has narrow construct
+validity for ``answer quality''; an expert panel scoring open-ended
+outputs can pursue higher construct validity but is expensive,
+slow to replicate, and rarely accompanied by strong inter-rater
+agreement~\cite{chang2023survey}. The translation of this distinction
+to ML/NLP evaluation~\cite{jacobs2021measurement,
+subramonian2023takeoneforteam, liao2023designing} is the spine of the
+dimensional decomposition in Section~\ref{sec:taxonomy}: a high score
+on a benchmark whose construct does not match the deployment task is
+evidence about the benchmark, not about the deployment property.
 
 \subsection{Formal Definitions}
 \label{subsec:definitions}
@@ -822,7 +742,7 @@ combination in between. The seven dimensions introduced in
 Sections~\ref{subsec:d1}--\ref{subsec:d7} project onto these axes in
 specific, identifiable ways, and the configurations that papers
 actually adopt cluster in regions of the space that the
-validity/reliability frame predicts. Figure~\ref{fig:taxonomy} positions
+validity/reliability frame anticipates. Figure~\ref{fig:taxonomy} positions
 the dimensions on the two-axis space; Section~\ref{sec:comparison} then
 locates 152 papers within it.
 
@@ -1106,7 +1026,7 @@ regions correspond to the recurring evaluation \emph{archetypes}
 identified in Section~\ref{subsec:archetypes}; the empirical
 distribution of papers across them is reported in
 Table~\ref{tab:archetype_distribution}.
-\textit{Takeaway:} The majority of the corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), revealing a field-wide structural preference for measurement convenience over construct coverage.}
+\textit{Takeaway:} The majority of the corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), suggesting that within this corpus benchmark-automation more often emphasizes measurement convenience and cross-paper comparability than construct coverage.}
 \label{fig:taxonomy}
 \end{figure*}
 
@@ -1346,7 +1266,7 @@ confront.
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
 \caption{Evaluation Design Quick Reference: One Question per Dimension. Each row names the central tradeoff the dimension forces a researcher to confront.
-\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier but must be accompanied by explicit justification; absent that, the corresponding dimension is decided implicitly by benchmark choice rather than deliberate evaluation design.}
+\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier but benefits from explicit justification; without that, the corresponding dimension tends to be decided implicitly by benchmark choice rather than by deliberate evaluation design.}
 \label{tab:quickref}
 \centering
 \footnotesize
@@ -1401,7 +1321,7 @@ Table~\ref{tab:quickref}.
 D-dims: taxonomy dimensions directly operationalized. Archetype: A =
 Benchmark-Automation, B = Judge-Mediated, C = Expert-Anchored, R =
 Robustness tools (cross-archetype). See Section~\ref{subsec:archetypes}.
-\textit{Takeaway:} No single tool covers all seven dimensions; D6 (robustness) and D7 (reproducibility) are the most commonly unaddressed dimensions across all tools, confirming that researchers must combine frameworks or accept systematic gaps in their evaluation design.}
+\textit{Takeaway:} No single tool covers all seven dimensions; D6 (robustness) and D7 (reproducibility) are the most commonly unaddressed dimensions across all tools, suggesting that researchers typically need to combine frameworks or accept systematic gaps in their evaluation design.}
 \label{tab:tools}
 \centering
 \footnotesize
@@ -1657,23 +1577,37 @@ this corpus size, and the dimensional Cohen's $\kappa$ values in
 Table~\ref{tab:kappa} document that coding reliability holds
 throughout.
 
-\textbf{On expansion rounds.} The four supplementary rounds
-(Table~\ref{tab:expansion_rounds}) are not ad hoc. Each was triggered
-by a specific under-coverage gap identified after coding the primary
-search set: LLM-judge quality and bias (round 1) emerged as a gap when
-the primary search returned few papers explicitly studying judge
-reliability despite 32 papers in the corpus using LLM-judge methods;
-agentic and multilingual evaluation (round 2) addressed the absence
-of $\tau$-bench, AgentBench, and multilingual benchmarks; the round
-3 expansion targeted foundation-model technical reports, RAG, safety,
-fairness, calibration, and clinical/legal domain evaluation that the
-broader 2025 literature had developed during the review period; round
-4 covered long-context, tool-use, and reward-model evaluation. Each
-round used the same inclusion and exclusion criteria as the primary
-round; the only methodological difference is the breadth of the search
-string (broad sweep in round 0 versus narrow topical queries in
-rounds 1--4). The expansion-round directional bias is named explicitly
-as a limitation in Section~\ref{subsubsec:lim_expansion}.
+\textbf{On expansion rounds.} The four supplementary rounds were
+each triggered by a specific under-coverage gap identified after
+coding the prior cumulative set, with trigger / role / bias risk
+recorded per round in Table~\ref{tab:expansion_audit}. Each round
+used the same inclusion and exclusion criteria and the same six
+databases as Round~0; the only methodological difference is the
+breadth of the search string (broad sweep in Round~0 versus narrow
+topical queries in Rounds 1--4). The directional bias is named
+explicitly as a limitation in
+Section~\ref{subsubsec:lim_expansion}.
+
+\textbf{Corpus publication-status breakdown.} All 152 corpus papers
+satisfy at least one of the three quality conditions in
+Section~\ref{subsec:inclusion}: peer review, 10+ Google Scholar
+citations at the time of screening, or publication at a recognized
+NLP/AI venue. The corpus contains 2 explicit 2026 arXiv preprints
+(\cite{bellibatlu2026judgesense, benchmark2sq2026}) flagged as
+preliminary; no headline claim in this survey rests solely on either.
+The remaining 150 papers are a mix of peer-reviewed conference and
+journal publications (most of the technique, benchmark, and survey
+categories), foundation-model technical reports, and arXiv preprints
+that met the citation- or venue-criterion threshold. We do not report
+a precise peer-reviewed-vs.-arXiv split because many corpus papers
+were initially posted to arXiv and subsequently accepted at venues
+(NeurIPS, ACL, EMNLP, ICLR, TACL, JMIR, \emph{Nature Machine
+Intelligence}, ACM Computing Surveys, etc.); the BibTeX record for
+each such paper typically retains the arXiv identifier in the
+\texttt{journal} field even after publication, so an automatic count
+from the bibliography would systematically undercount peer-reviewed
+status. The complete bibliography record per paper is in
+\texttt{references.bib} in the artifact repository.
 
 \subsection{Screening Process}
 \label{subsec:screening}
@@ -1741,6 +1675,40 @@ screening; cumulative = running corpus size. Final corpus: 152 papers.
 4 & Long-context, tool-use, reward-model evaluation                                &    46 &  46 &  39 &  7  & 152 & 2026-Q2 \\
 \midrule
 \textbf{Total} & --- & \textbf{3,297} & \textbf{862} & \textbf{732} & \textbf{152} & \textbf{152} & \textbf{2025-Q1--2026-Q2} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\renewcommand{\arraystretch}{1.1}
+\caption{Expansion-round audit: trigger, query scope, role, and
+bias-risk classification for each supplementary round. ``Trigger''
+identifies the gap that prompted the round (observed after coding
+the prior cumulative set); ``Role'' distinguishes exploratory rounds
+(coverage of an emerging topic area) from confirmatory rounds
+(targeted retrieval of work already cited in the prior set);
+``Bias risk'' notes the directional bias the round introduces toward
+its target area. All four expansion rounds used the same six
+databases as Round~0 (arXiv, ACM Digital Library, IEEE Xplore,
+Semantic Scholar, Scopus, Web of Science) and applied the same
+inclusion criteria (§\ref{subsec:inclusion}).
+\textit{Takeaway:} The expansion rounds were prompted by specific
+coverage gaps rather than opportunistic search; each round's role
+and bias risk is stated explicitly so distributional findings can be
+discounted by the reader for the target-area over-representation
+each round introduces.}
+\label{tab:expansion_audit}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{c p{3.0cm} p{2.5cm} c p{2.6cm}}
+\toprule
+\textbf{Round} & \textbf{Trigger (coverage gap identified after prior round)} & \textbf{Role} & \textbf{Records retained} & \textbf{Bias risk} \\
+\midrule
+1 & Few papers explicitly studying judge reliability despite 32 corpus papers using LLM-judge methods & Exploratory & 20 & Over-represents LLM-judge quality and bias literature \\
+2 & Agentic, multilingual, prompt-injection, and CoT-faithfulness work missing from primary set & Exploratory & 11 & Over-represents agentic and multilingual evaluation \\
+3 & Foundation-model technical reports, RAG, safety, fairness, calibration, clinical, legal evaluation under-covered & Confirmatory + exploratory & 35 & Over-represents foundation-model and domain-specific work \\
+4 & Long-context, tool-use, reward-model evaluation emerged as gap during 2026-Q1 coding & Exploratory & 7 & Over-represents 2026-recent benchmark proposals \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2403,7 +2371,7 @@ The seven dimensions are conceptually independent (any combination
 of subcategories is a valid configuration), but they are far from
 statistically independent in practice. Table~\ref{tab:cooccurrence}
 reports pairwise co-occurrence between selected subcategory pairs
-that the validity-reliability frame predicts should be linked.
+that the validity-reliability frame anticipates as linked.
 
 \begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
@@ -2414,7 +2382,7 @@ the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
 available in the machine-readable dataset.
-\textit{Takeaway:} The strongest co-occurrence (D1=LLM-judge \& D3=LLM-judge at 21.1\%) confirms that evaluation-method choice cascades through metric choice; the taxonomy dimensions are therefore predictively useful -- knowing D1 substantially constrains the likely values of D3, D4, and D7.}
+\textit{Takeaway:} The strongest co-occurrence (D1=LLM-judge \& D3=LLM-judge at 21.1\%) is consistent with evaluation-method choice cascading through metric choice; the taxonomy dimensions are therefore informative about one another --- knowing D1 substantially narrows the likely values of D3, D4, and D7 in this corpus.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2439,7 +2407,7 @@ literature that the dimensional structure makes visible. A paper
 that adopts a benchmark also typically adopts that benchmark's
 metric and forgoes paraphrase-variance reporting because the
 benchmark does not call for it. The validity-reliability frame
-predicts these clusters and explains why they are stable: each
+organizes these clusters and helps interpret why they are stable: each
 cluster occupies a coherent region of the design space and pays
 the same tradeoffs.
 
@@ -2468,7 +2436,7 @@ the released machine-readable dataset.
 D1--D4 = 0.605) confirm that evaluation-method choice cascades
 through metric and automation choices in a statistically detectable
 way; the dimensions are non-redundant but not independent, which is
-exactly the pattern the archetype analysis predicts.}
+consistent with the pattern the archetype analysis identifies.}
 \label{tab:cramerv}
 \centering
 \footnotesize
@@ -2492,7 +2460,7 @@ Three observations follow. First, every pair listed clears the
 not a function of one or two unusually strong pairs; rather, the
 seven dimensions form a connected dependency graph. Second, the
 strongest pair (D1--D3) reflects the cascade from judgment locus to
-metric type that the validity-reliability frame predicts: choosing a
+metric type that the validity-reliability frame anticipates: choosing a
 benchmark commits the study to reference-based metrics, choosing an
 LLM-judge commits it to LLM-judge metrics. Third, D5--D6, D5--D7, and
 D6--D7 form a connected cluster, which is consistent with our
@@ -2568,34 +2536,56 @@ rarely strong.
 
 \subsubsection{Cluster Validation: are the archetypes real?}
 \label{subsubsec:clustervalidation}
-A reviewer could reasonably ask whether these three archetypes are
-genuine structure in the data or labels we imposed. To test this we
-encoded each paper's D1--D7 codes as a 35-dimensional one-hot vector
-(one indicator per atomic level of each dimension) and computed
-silhouette coefficients~\cite{rousseeuw1987silhouettes} over Hamming
-distance for the three-archetype labelling versus random labellings
-of the same cardinality. The
-silhouette score for the rule-based three-archetype assignment on the
-140 archetype-fitting papers is \textbf{0.398}, against a mean of
-$-0.037$ for 100 random three-label assignments (best random seed
-$-0.059$; difference $\approx 0.44$). A two-archetype split
-(Archetype A vs.\ rest) yields silhouette 0.327; a four-archetype
-split that treats the residual ``Other'' papers as their own cluster
-yields 0.329. The three-archetype configuration is therefore the
-silhouette-maximising partition. We read this as empirical evidence
-that the archetypes reflect real co-occurrence structure rather than
-projected labels: a random labelling of the same data does not
-recover anything close to the within-cluster cohesion the three
-archetypes show.
+A reviewer could reasonably ask whether the three archetypes reflect
+structure in the data or labels we imposed. We address this with two
+complementary checks --- a silhouette score against random labellings,
+and an unsupervised k-means run that has no knowledge of the
+rule-based labels --- on each paper's D1--D7 codes encoded as a
+35-dimensional one-hot vector (one indicator per atomic level of each
+dimension).
 
-The three archetypes are not exhaustive --- the residual 7.9\% mixed
-configurations and small populations of ablation-driven and
-user-study evaluations remain --- but they cover the three coherent
-regions of the validity-reliability space and the silhouette analysis
-confirms that the boundaries between them are not artefacts of the
-coding. The taxonomy makes those boundaries identifiable, the
-tradeoffs each archetype pays explicit, and the design choices that
-move a study from one archetype to another visible.
+\emph{Check 1: silhouette against random baselines.} The
+silhouette~\cite{rousseeuw1987silhouettes} score for the rule-based
+three-archetype labelling on the 140 archetype-fitting papers is
+\textbf{0.398}, against a mean of $-0.037$ for 100 random three-label
+assignments of the same cardinality (best random seed $-0.059$). The
+three-archetype configuration is silhouette-maximising relative to
+two- and four-archetype variants (silhouette 0.327 and 0.329
+respectively).
+
+\emph{Check 2: agreement with unsupervised k-means.} We additionally
+ran k-means clustering for $k=2,\ldots,6$ on the one-hot vectors,
+with k-means++ initialisation, ten random seeds per $k$, and selection
+of the lowest-SSE solution. The unsupervised algorithm has no
+knowledge of the rule-based archetype labels. Results: $k=3$ is the
+silhouette-maximising unsupervised partition (silhouette $0.440$ vs.\
+$0.421$ at $k=2$ and $0.306$ at $k=4$), and the adjusted Rand index
+between the unsupervised $k=3$ partition and the rule-based
+three-archetype labels is \textbf{0.440} (chance-corrected; $0$ =
+random agreement, $1$ = perfect agreement). At $k=2$, $k=4$, $k=5$,
+$k=6$ the ARI drops to $0.023$, $0.242$, $0.311$, $0.227$
+respectively. Two findings follow: $k=3$ is independently
+silhouette-optimal under unsupervised clustering, and the
+unsupervised $k=3$ partition agrees moderately with the rule-based
+labels rather than recovering a different structure.
+
+\emph{Caveat.} Both checks are computed on a one-hot encoding of the
+same D1--D7 codes used to derive the rule-based labels, so they
+validate cluster separability and recovery under the proposed coding
+representation rather than proving that the archetypes exist
+independent of the coding choices. The ARI of $0.440$ is moderate
+rather than high; it indicates partial agreement between rule-based
+and unsupervised partitions, not equivalence. The substantive
+conclusion we draw is that the three-archetype structure is robust to
+the choice between rule-based and unsupervised labelling under this
+coding, not that it is an unconditional natural-kinds claim.
+
+The three archetypes are therefore not exhaustive --- 7.9\% of the
+corpus carries mixed configurations, plus small populations of
+ablation-driven and user-study evaluations --- but they cover three
+coherent regions of the validity-reliability space, and the cluster
+validation provides convergent evidence that the boundaries between
+them are not solely artefacts of how the codes were assigned.
 
 \subsection{Failure-Mode Catalog}
 \label{subsec:failuremodes}
@@ -3122,16 +3112,27 @@ the public, commercial, or not-for-profit sectors.
 \label{sec:data}
 The companion artifact repository is publicly available at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy} under a
-CC-BY 4.0 license. At the time of this submission the repository
-provides the evaluation-design checklist of the Electronic Supplement (Appendix~A)
-in machine-readable form, the schema for the per-paper extraction
-dataset, and the paper source. The full 152-paper machine-readable
-extraction dataset (D1--D7 codes for every paper) and the PRISMA flow
-record will be released to the same repository at paper acceptance,
-when the snapshot version will be tagged. We make this delayed
-artifact-release choice deliberately to keep the dataset aligned with
-the final accepted version of the manuscript rather than versioning
-across review-round revisions.
+CC-BY 4.0 license. The repository provides the evaluation-design
+checklist of the Electronic Supplement (Appendix~A) in
+machine-readable form, the schema for the per-paper extraction
+dataset, the PowerShell script reproducing the empirical analyses in
+§\ref{subsubsec:cramerv} and §\ref{subsubsec:clustervalidation}, the
+PRISMA flow record, and the paper source.
+
+\textbf{Review-time artifact access.} For peer review, an anonymized
+snapshot of the 152-paper $\times$ D1--D7 coding spreadsheet
+(\texttt{corpus\_d1d7.csv}), the empirical-analysis script
+(\texttt{\_empirical\_analysis.ps1}), and the PRISMA flow record is
+included with the submission package and is available at the
+repository URL above. Reviewers can therefore audit individual paper
+codings, regenerate the silhouette and Cram\'er's $V$ values reported
+in §\ref{sec:comparison}, and verify the per-round PRISMA counts
+during the review period.
+
+The repository will be tagged as a citable snapshot at paper
+acceptance to keep the dataset versioned-aligned with the accepted
+manuscript; the review-time and acceptance-time artifacts will both
+remain accessible.
 
 \section*{Author Contributions, Funding, and Conflict of Interest}
 \label{sec:credits}
