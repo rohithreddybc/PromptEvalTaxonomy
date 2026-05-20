@@ -124,8 +124,8 @@ Prompt engineering evaluation lacks a shared conceptual frame.
 Two studies can report improvements via internally consistent yet
 mutually incomparable methods because no standard governs what to
 measure or how. We trace this to two measurement-theoretic tensions
---- construct validity vs.\ reliability, and reference-anchored
-vs.\ judgment-anchored evaluation --- and develop a seven-dimensional
+(construct validity vs.\ reliability, and reference-anchored
+vs.\ judgment-anchored evaluation) and develop a seven-dimensional
 taxonomy (D1--D7) to operationalize them. Applied to a PRISMA~2020
 corpus of 152 papers, the taxonomy reveals three recurring
 archetypes (validated by silhouette analysis and unsupervised
@@ -208,8 +208,8 @@ a calibration experiment. Neither study fails internally; both
 results are limited by an evaluation ecosystem without a shared
 vocabulary for describing what each measured, which tradeoffs each
 accepts, and under what conditions results transfer across labs.
-The same pattern --- internally consistent, mutually incomparable
-evaluations --- applies across the broader literature
+The same pattern (internally consistent, mutually incomparable
+evaluations) applies across the broader literature
 \cite{chang2023survey, guo2023evaluating}. Providing that vocabulary
 in the form of a seven-dimensional taxonomy grounded in measurement
 theory is the primary contribution of this paper.
@@ -231,10 +231,10 @@ inter-rater Cohen's $\kappa$ of 0.76--0.92 on a dual-coded subsample
 of $\geq38$ papers (Section~\ref{subsec:coding_reliability}).
 
 \item \textit{A measurement-theoretic frame.} The two-tension framing
---- construct validity vs.\ measurement
+(construct validity vs.\ measurement
 reliability~\cite{cronbach1955construct, messick1995validity,
 jacobs2021measurement}, and reference-anchored vs.\ judgment-anchored
-evaluation --- adapts existing constructs from psychometrics and ML
+evaluation) adapts existing constructs from psychometrics and ML
 measurement to the PE evaluation context. The novelty is the
 application and the dimensional projection, not the underlying
 constructs.
@@ -291,14 +291,14 @@ systematic review (six databases, primary-search set of 79 papers
 expanded across four supplementary rounds to 152;
 Section~\ref{sec:methodology}). The data reveal three patterns within
 the inclusion criteria of Section~\ref{subsec:inclusion}. The modal
-configuration --- benchmark-based, task-specific, fully automated ---
+configuration (benchmark-based, task-specific, fully automated)
 occupies the high-reliability, narrow-validity region and works well
 for tasks with ground-truth answers but under-specifies the construct
 on open-ended generation. The LLM-as-judge cluster addresses this
 under-specification at the cost of introducing judge-model reliability
 concerns the corpus does not yet manage with a shared calibration
 protocol. Robustness and contamination-resistant evaluation appear in
-only a small minority of papers --- a reporting pattern documented in
+only a small minority of papers, a reporting pattern documented in
 Section~\ref{sec:comparison} and whose boundary conditions are noted
 there. The contribution is therefore not a new evaluation method but
 a shared conceptual frame: it locates the tradeoffs each coding
@@ -424,7 +424,7 @@ centrally addresses the question we foreground: for a researcher
 evaluating a specific prompting technique, which evaluation framework
 should they use, and why? Answering that requires a classification
 of evaluation frameworks along dimensions meaningful for PE work
-specifically --- which is the contribution of this survey.
+specifically, which is the contribution of this survey.
 
 \subsection{Differentiation from Prior Surveys}
 \label{subsec:differentiation}
@@ -508,8 +508,8 @@ handle broad task ranges without task-specific
 retraining~\cite{devlin2019bert, brown2020gpt3, bommasani2021foundation}.
 Practitioners interact through prompts, and surface phrasing choices
 produce nontrivial output differences~\cite{sclar2023formatting,
-zhou2022ape}. Prompt engineering --- designing inputs to obtain
-reliable, useful outputs without modifying model weights --- has
+zhou2022ape}. Prompt engineering (designing inputs to obtain
+reliable, useful outputs without modifying model weights) has
 developed its own benchmarks, optimization algorithms, and
 taxonomies~\cite{sahoo2024systematic, schulhoff2024prompt}.
 
@@ -521,7 +521,7 @@ prompting~\cite{wei2022chain}, retrieval-augmented
 generation~\cite{lewis2020retrieval}, and automated prompt optimization
 via textual gradient descent~\cite{pryzant2023apo} or LLM-based
 search~\cite{zhou2022ape} represent the range. The question that cuts
-across all of these methods --- how do you know it worked? --- depends
+across all of these methods (how do you know it worked?) depends
 on which evaluation framework you apply, and the field currently has no
 shared vocabulary for classifying those frameworks. That is what this
 survey provides.
@@ -538,7 +538,7 @@ open-ended tasks~\cite{liu2023geval, repairing2022}.
 more gracefully but still requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-judge
 metrics} delegate scoring to a second language model
 (G-Eval~\cite{liu2023geval}), eliminating the gold-reference
-requirement at the cost of importing judge biases --- positional
+requirement at the cost of importing judge biases: positional
 preference, length bias, and self-enhancement
 bias~\cite{zheng2023judging, gu2025llmjudge}. \textbf{Task-specific
 metrics} are purpose-built and generally do not transfer (pass@$k$
@@ -794,11 +794,11 @@ for framework completeness but carries no active corpus instances.
 
 What is being measured, and by what means? D3 is the most direct
 projection of the reference-anchored / judgment-anchored axis: the
-four families introduced in §\ref{sec:background} ---
-reference-based (BLEU~\cite{papineni2002bleu},
+four families introduced in §\ref{sec:background},
+comprising reference-based (BLEU~\cite{papineni2002bleu},
 ROUGE~\cite{lin2004rouge}), model-based (BERTScore), LLM-as-judge
 (G-Eval~\cite{liu2023geval}), and task-specific (pass@$k$, exact
-match, RAGAS~\cite{rageval2024}) --- partition along that axis.
+match, RAGAS~\cite{rageval2024}), partition along that axis.
 Calibration evidence (validation of the metric against a target
 judgment on the specific task) is a D3 sub-property that becomes
 methodologically central for judgment-anchored metrics
@@ -985,8 +985,8 @@ demanding scope and the least common in individual papers, though
 survey works such as Sahoo et al.~\cite{sahoo2024systematic} cover it
 by design); and \emph{Cross-lingual} (performance across
 languages~\cite{vatsal2024survey}). Without explicit scope coding,
-the limits of single-model, single-dataset claims --- which underpin a
-substantial share of PE-literature results --- stay invisible.
+the limits of single-model, single-dataset claims (which underpin a
+substantial share of PE-literature results) stay invisible.
 
 \subsection{Dimension 6: Robustness and Prompt Sensitivity}
 \label{subsec:d6}
@@ -1454,11 +1454,11 @@ Section~\ref{sec:comparison} in aggregate directly from
 verifiable; where a category subgroup is the moderator of interest
 (for instance, LLM-as-judge configurations for the D7 distribution),
 the contrast is noted inline. Recent CSUR systematic reviews of
-adjacent topics adopt the same mixed-category convention --- for
+adjacent topics adopt the same mixed-category convention: for
 example, Edemacu and Wu~\cite{edemacu2024privacysurvey} (privacy
 attacks on LLMs) and Chang et al.~\cite{chang2023survey} (LLM
 evaluation) both combine method, benchmark, and survey papers under a
-shared evaluation-infrastructure framing --- so this design choice is
+shared evaluation-infrastructure framing, so this design choice is
 consistent with venue precedent.
 
 \textbf{On including arXiv preprints.} arXiv preprints are retained
@@ -1483,7 +1483,7 @@ Chang et al.~\cite{chang2023survey} (broader LLM evaluation
 including non-PE topics). The corpus is intentionally narrower than
 omnibus LLM surveys because the dimensional coding (D1--D7) requires
 per-paper full-text review, dual coding, and disagreement
-adjudication --- which limits feasible corpus size at fixed coding
+adjudication, which limits feasible corpus size at fixed coding
 quality. Section~\ref{subsec:sensitivity} provides a perturbation
 analysis showing that headline distributional claims are stable at
 this corpus size, and the dimensional Cohen's $\kappa$ values in
@@ -1587,7 +1587,7 @@ screening; cumulative = running corpus size. Final corpus: 152 papers.
 3 & Foundation-model reports, RAG, safety, fairness, calibration, clinical, legal  &   212 & 212 & 177 & 35  & 145 & 2026-Q1 \\
 4 & Long-context, tool-use, reward-model evaluation                                &    46 &  46 &  39 &  7  & 152 & 2026-Q2 \\
 \midrule
-\textbf{Total} & --- & \textbf{3,297} & \textbf{862} & \textbf{732} & \textbf{152} & \textbf{152} & \textbf{2025-Q1--2026-Q2} \\
+\textbf{Total} & {--} & \textbf{3,297} & \textbf{862} & \textbf{732} & \textbf{152} & \textbf{152} & \textbf{2025-Q1--2026-Q2} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1672,8 +1672,8 @@ survey) - used for the per-category splits in
 Section~\ref{sec:comparison}
 \end{enumerate}
 
-The complete extraction dataset --- all papers mapped to their
-seven-dimensional taxonomy codes --- is included as a review-time
+The complete extraction dataset (all papers mapped to their
+seven-dimensional taxonomy codes) is included as a review-time
 snapshot with the submission (see Data Availability statement);
 a citable tagged version will be released at acceptance to
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}; at the time
@@ -1986,7 +1986,7 @@ the per-paper D1--D7 assignments supporting the aggregate dimensional
 analyses are included in the review-time dataset.
 Second, the per-category modal configuration is informative
 \emph{because} of the within-category variations noted in the
-right-hand column --- each variation is a candidate failure-mode
+right-hand column; each variation is a candidate failure-mode
 example (Section~\ref{subsec:failuremodes}) or a methodological
 development worth highlighting in the discussion
 (Section~\ref{sec:discussion}).
@@ -2055,8 +2055,8 @@ Clinical (5 papers, 3.3\%) and multilingual (3 papers, 2.0\%) are
 small populations; Table~\ref{tab:sensitivity} reports
 perturbation-stability bounds for both categories. The full per-paper breakdown is in
 the Electronic Supplement (Appendix~C). Under our inclusion criteria
---- which excluded papers that use prompting as a tool without
-analyzing it as the studied object --- the corpus is strongly
+(which excluded papers that use prompting as a tool without
+analyzing it as the studied object), the corpus is strongly
 concentrated on multi-task benchmarks; the relative scarcity of
 clinical and multilingual papers is a property of these inclusion
 criteria, not a field-level estimate~\cite{clinicalnlp2024,
@@ -2065,7 +2065,7 @@ vatsal2024survey}.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 103 papers (67.8\%) --- the largest
+Task-specific metrics dominate at 103 papers (67.8\%), the largest
 single-subcategory concentration in the taxonomy. Pass@$k$, exact
 match, F1, and accuracy are all task-specific; their prevalence
 mirrors the dominance of benchmark evaluation in D1, the two
@@ -2077,7 +2077,7 @@ scoring with judge-based assessment across multiple axes;
 model-based metrics (BERTScore family) in 2 (1.3\%), with the
 LLM-based NLG-eval survey \cite{li2024leveraging} documenting the
 gradual shift to LLM-judge configurations. Reference-based metrics
-(BLEU, ROUGE) appear as primary measures in zero corpus papers --- a
+(BLEU, ROUGE) appear as primary measures in zero corpus papers, a
 reversal of historical dominance that follows the
 lexical-overlap-vs.-human-judgment gap documented by Gehrmann et
 al.~\cite{repairing2022}.
@@ -2148,8 +2148,8 @@ Total            & 152 & 100.0\% \\
 
 The substantive observation is that the sensitivity literature
 \cite{sclar2023formatting, butterfly2024, promptsensitivity2025,
-mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense} ---
-which documents large paraphrase-induced variance --- has not
+mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense}
+(which documents large paraphrase-induced variance) has not
 propagated into the rest of the corpus as a routine reporting
 requirement: most technique-comparison papers still report a single
 point estimate without paraphrase variance.
@@ -2190,8 +2190,8 @@ has provided the artifacts to reproduce scores while leaving open
 what those scores measure. The papers that address this gap directly
 \cite{sainz2023nlp, deng2023investigating, yang2023rethinking,
 wang2024benchmark, mcintosh2024inadequacies} are concentrated in the
-benchmark-paper category. Strong reproducibility --- same scores,
-same construct, same data conditions --- requires both.
+benchmark-paper category. Strong reproducibility (same scores,
+same construct, same data conditions) requires both.
 
 \subsection{Cross-Dimensional Patterns}
 \label{subsec:crossdim}
@@ -2215,7 +2215,7 @@ above-average rates.} 54 of 152 papers (35.5\%) report multi-prompt
 aggregate or sensitivity-bounded robustness; 36 of those (66.7\%) are
 coded D1=Benchmark. However, 15 of the 30 LLM-judge papers
 (50.0\%) report multi-prompt or sensitivity-bounded robustness for the
-judge itself --- above the corpus-wide rate (35.5\%) --- reflecting
+judge itself (above the corpus-wide rate of 35.5\%), reflecting
 that the expansion-round papers in this cluster are predominantly
 judge-quality and bias studies that specifically employ multi-prompt
 evaluation designs. Nonetheless, 12 of the 30 (40.0\%) still use a
@@ -2237,7 +2237,7 @@ D7 $\notin$ \{Judge-version-pinned\}.
 \textit{Mode-3 (single-prompt cross-model claim) is endemic.}
 42 papers (27.6\% of the corpus) carry the fingerprint D5=Cross-model
 with D6=Single-prompt that
-Section~\ref{subsec:failuremodes} flags as Failure Mode 3 ---
+Section~\ref{subsec:failuremodes} flags as Failure Mode 3,
 including the original chain-of-thought paper~\cite{wei2022chain},
 zero-shot CoT~\cite{kojima2022large}, and many of the
 technique-papers in the corpus. Cross-model generalization claims
@@ -2419,9 +2419,9 @@ rarely strong.
 \label{subsubsec:clustervalidation}
 A reviewer could reasonably ask whether the three archetypes reflect
 structure in the data or labels we imposed. We address this with two
-complementary checks --- a silhouette score against random labellings,
+complementary checks (a silhouette score against random labellings,
 and an unsupervised k-means run that has no knowledge of the
-rule-based labels --- on each paper's D1--D7 codes encoded as a
+rule-based labels) on each paper's D1--D7 codes encoded as a
 35-dimensional one-hot vector (one indicator per atomic level of each
 dimension).
 
@@ -2461,9 +2461,9 @@ conclusion we draw is that the three-archetype structure is robust to
 the choice between rule-based and unsupervised labelling under this
 coding, not that it is an unconditional natural-kinds claim.
 
-The three archetypes are therefore not exhaustive --- 7.9\% of the
+The three archetypes are therefore not exhaustive (7.9\% of the
 corpus carries mixed configurations, plus small populations of
-ablation-driven and user-study evaluations --- but they cover three
+ablation-driven and user-study evaluations), but they cover three
 coherent regions of the validity-reliability space, and the cluster
 validation provides convergent evidence that the boundaries between
 them are not solely artefacts of how the codes were assigned.
@@ -2533,7 +2533,7 @@ evaluations systematically overstate effects relative to
 multi-prompt baselines on the same model, with documented shifts
 of several percentage points under paraphrase. Cross-model findings
 under D6=Single-prompt therefore support narrower claims than the
-phrasing typically suggests --- a pattern endemic to the modal
+phrasing typically suggests, a pattern endemic to the modal
 Archetype A configuration that affects the bulk of the technique
 papers in the corpus.
 
@@ -2605,8 +2605,8 @@ anchoring scoring to a fixed gold reference; Archetype C maximizes
 construct validity by anchoring scoring to human judgment, at the
 cost of replication speed and cross-paper comparability. Corpus
 weighting is heavily toward Archetype A (65.7\% vs.\ 9.2\%). The
-tradeoff is not rigour-vs.-laziness --- both archetypes are
-internally rigorous --- but between \emph{construct fidelity at the
+tradeoff is not rigour-vs.-laziness (both archetypes are
+internally rigorous), but between \emph{construct fidelity at the
 deployment context} and \emph{measurement consistency across runs}.
 For tasks where the construct is well-approximated by an exact-match
 score (arithmetic, factual retrieval, code execution), Archetype A
@@ -2624,7 +2624,7 @@ evaluation alone.
 
 The second tension organizes the boundary between Archetypes A and
 B. When no gold reference exists, scoring must delegate to a judgment
---- human, expert panel, or LLM --- and the failure modes change:
+(human, expert panel, or LLM), and the failure modes change:
 reference-anchored evaluation fails on under-determined references
 and contamination; judgment-anchored evaluation fails on judge bias,
 judge-version drift, and missing calibration. The 30 LLM-judge papers
@@ -2811,7 +2811,7 @@ Safety \& bias integration & Adversarial and demographic probes as first-class d
 One direction deserves more space. \emph{Evaluation frameworks for
 reasoning-first models} (o1, o3, DeepSeek-R1) challenge three
 baseline assumptions. For D1, the prompt is no longer the sole
-reasoning vehicle --- internal chain-of-thought is generated
+reasoning vehicle; internal chain-of-thought is generated
 autonomously before the answer, so benchmark accuracy cannot
 attribute performance to prompt design versus internal deliberation.
 For D3, the faithfulness of the exposed reasoning trace to actual
@@ -2826,14 +2826,14 @@ survey cycle.
 \label{subsec:using}
 
 The taxonomy is most useful when citing work reuses the D1--D7 labels
-directly. Three applications: (1)~\emph{Methodology disclosure} ---
+directly. Three applications: (1)~\emph{Methodology disclosure}:
 embed the seven-tuple in a single methodology line (e.g., ``D1=Benchmark,
 D2=Reasoning, D3=Task-specific, D4=Automated, D5=Cross-model,
 D6=Multi-prompt aggregate, D7=Artifact-released'');
-(2)~\emph{Comparative claims} --- use the machine-readable corpus
+(2)~\emph{Comparative claims}: use the machine-readable corpus
 dataset (review-time snapshot with submission; see Data Availability)
 as the comparison spine rather than re-coding papers;
-(3)~\emph{Evaluation design} --- use the Electronic Supplement
+(3)~\emph{Evaluation design}: use the Electronic Supplement
 (Appendix~A) checklist as a preregistration template.
 
 A canonical citation form:
@@ -2861,7 +2861,7 @@ dimensions (D1--D7) give those tensions operational form. Applied
 to a PRISMA 2020 systematic review of 152 papers
 (Section~\ref{sec:methodology}), the taxonomy produces four findings
 beyond per-dimension frequency counts: the corpus resolves into three
-recurring evaluation \textit{archetypes} --- Benchmark-Automation
+recurring evaluation \textit{archetypes}: Benchmark-Automation
 (65.7\%, 95\% CI [57.9\%, 73.0\%]), Judge-Mediated (17.2\%
 [11.2\%, 23.7\%]), Expert-Anchored (9.2\% [4.6\%, 13.8\%]), with
 7.9\% in mixed configurations; the three-archetype labelling has
@@ -2892,7 +2892,7 @@ rigorous protocols in specialized settings. What it does is name
 the tradeoffs that currently go unnamed, locate them in the
 literature, and provide a vocabulary in which methodological
 standardization is at least describable. The distance from
-describable to standardized is a coordination problem --- one that
+describable to standardized is a coordination problem, one that
 requires community adoption of shared standards more than new
 technical development.
 
