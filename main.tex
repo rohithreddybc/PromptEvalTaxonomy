@@ -1832,7 +1832,7 @@ papers} (prompt-engineering technique papers, sensitivity / code
 prompting studies, and PE-specific evaluation surveys -- 76 papers
 total in the categories of Table~\ref{tab:comparison}) and
 \emph{evaluation infrastructure papers} (benchmarks, datasets,
-LLM-judge frameworks, and metric-quality studies -- 77 papers
+LLM-judge frameworks, and metric-quality studies -- 76 papers
 total). Together they constitute the 152-paper corpus. The mixed
 inclusion is justified in Section~\ref{subsec:inclusion}: technique
 papers consume infrastructure and infrastructure papers shape what
@@ -2161,7 +2161,7 @@ Table~\ref{tab:d7dist} shows the D7 distribution
 \caption{Distribution of reproducibility properties (D7) across the
 corpus ($N$=152). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
-30 LLM-judge and metric-quality papers specifically.
+30 D1=LLM-as-Judge papers specifically.
 Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
 \textit{Takeaway:} Artifact release is a clear majority norm (70.4\%) but contamination checking (3.9\%) and judge-version pinning (3.3\%) remain rare -- a reproducibility gap that will compound as LLM-as-judge usage grows and model versions diverge from those used at publication time.}
 \label{tab:d7dist}
@@ -2169,7 +2169,7 @@ Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
 \footnotesize
 \begin{tabular}{p{4.0cm} c c}
 \toprule
-\textbf{D7 property} & \textbf{Share (all)} & \textbf{Among LLM-judge papers only} \\
+\textbf{D7 property} & \textbf{Share (all)} & \textbf{Among D1=LLM-as-Judge papers ($N$=30)} \\
 \midrule
 Artifact-released & 70.4\% & 86.7\% \\
 Contamination-checked & 3.9\% & 3.3\% \\
