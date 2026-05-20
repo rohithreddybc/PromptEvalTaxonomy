@@ -1839,17 +1839,15 @@ inclusion is justified in Section~\ref{subsec:inclusion}: technique
 papers consume infrastructure and infrastructure papers shape what
 techniques can be evaluated, so the two populations participate in
 shared PE evaluation practice. We retain the mixed corpus for the
-aggregate distributional findings below, but where a claim is
-sensitive to the split we report it separately by paper category
-(D-distributions in Section~\ref{subsec:d6dist} are an example).
-Readers who want a PE-technique-only view can filter
-the Electronic Supplement (Appendix~C) on the per-paper category column.
+aggregate distributional findings below; the D7 table
+(Section~\ref{subsec:d7dist}) additionally reports the LLM-as-Judge
+subset where the contrast with the aggregate is most pronounced.
 
 We organize the analysis as follows. Sections~\ref{subsec:d1dist}
-through~\ref{subsec:d7dist} report per-dimension distributions, both
-in aggregate and split by paper category (technique, benchmark,
-LLM-judge / metric, survey) so that aggregate claims can be audited
-against the categories that drive them. Section~\ref{subsec:cooccurrence}
+through~\ref{subsec:d7dist} report per-dimension distributions in
+aggregate, so that all values are directly reproducible from
+\texttt{corpus\_d1d7.csv}; where a meaningful subset contrast exists,
+it is noted inline. Section~\ref{subsec:cooccurrence}
 reports the dimension co-occurrence matrix and identifies the small
 number of configurations that account for the bulk of the corpus.
 Section~\ref{subsec:archetypes} names the recurring evaluation
@@ -2118,27 +2116,29 @@ Table~\ref{tab:d6dist} shows the D6 distribution
 \begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
 \caption{Distribution of robustness reporting (D6) across the
-corpus ($N$=152), with split by paper category. Tech~=~prompting
-technique and sensitivity / code-prompting papers
-($N$=54, the 27~prompting-technique + 27~sensitivity/code-prompting
-rows of Table~\ref{tab:comparison}); Bench~=~benchmark
-and dataset papers ($N$=44); Judge~=~LLM-judge and metric-quality
-papers ($N$=32); Survey~=~PE and evaluation surveys ($N$=22).
-Category $N$s sum to 152. Percentages are column-wise within each
-category; raw counts for Tech are $n$~=~8, 20, 19, 7 respectively.
+corpus ($N$=152). Counts are tallied directly from the D6 column of
+\texttt{corpus\_d1d7.csv} and are fully reproducible from the
+released dataset.
 Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.
-\textit{Takeaway:} Single-prompt-only evaluation (D6=Sng) is the default across all paper categories; the 35.2\% of technique papers reporting multi-prompt aggregate results represents the current ceiling for robustness testing -- far below what the sensitivity literature recommends.}
+\textit{Takeaway:} Single-prompt-only evaluation is the most common
+setting (41.4\%), confirming that most papers still report a single
+point estimate without paraphrase variance; multi-prompt aggregate
+and sensitivity-bounded together account for 35.5\% of the corpus, a
+share concentrated in LLM-judge and sensitivity papers
+(Section~\ref{subsec:crossdim}).}
 \label{tab:d6dist}
 \centering
 \footnotesize
-\begin{tabular}{p{3.0cm} c c c c c}
+\begin{tabular}{p{3.5cm} c c}
 \toprule
-\textbf{D6 subcategory} & \textbf{All} & \textbf{Tech} & \textbf{Bench} & \textbf{Judge} & \textbf{Survey} \\
+\textbf{D6 subcategory} & \textbf{\emph{n}} & \textbf{Share} \\
 \midrule
-Not reported & 25.0\% & 14.8\% & 4.5\% & 18.7\% & 100.0\% \\
-Single-prompt & 29.6\% & 37.0\% & 47.7\% & 12.5\% & 0.0\% \\
-Multi-prompt aggr. & 36.8\% & 35.2\% & 34.1\% & 68.8\% & 0.0\% \\
-Sensitivity-bounded & 8.6\% & 13.0\% & 13.6\% & 0.0\% & 0.0\% \\
+Not reported     & 35 & 23.0\% \\
+Single-prompt    & 63 & 41.4\% \\
+Multi-prompt aggr. & 45 & 29.6\% \\
+Sensitivity-bounded & 9 & 5.9\% \\
+\midrule
+Total            & 152 & 100.0\% \\
 \bottomrule
 \end{tabular}
 \end{table}
