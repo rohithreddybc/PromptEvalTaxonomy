@@ -90,6 +90,8 @@ paper'') because this supplement compiles independently.
 
 % ---------------------------------------------------------------
 \appendix
+% Table numbering: B.1, C.1 etc. so cross-refs from main paper are unambiguous
+\renewcommand{\thetable}{\Alph{section}.\arabic{table}}
 
 \begingroup
   \par\vspace{2ex}
@@ -222,18 +224,18 @@ preregistration or supplementary materials, with citation to this
 work.
 
 % ---------------------------------------------------------------
+\setcounter{table}{0}
 \section{Representative Per-Paper Taxonomy Mapping (All Seven Dimensions)}
 \label{app:fulltable}
 
 Table~\ref{tab:fulltable} presents a representative cross-section of
 the 152-paper corpus coded across all seven taxonomy dimensions. Ten
 papers are shown here -- one per major paper category, selected to
-illustrate the range of configurations in the corpus. The complete
-152-paper machine-readable dataset will be released at acceptance to
-\url{https://github.com/rohithreddybc/PromptEvalTaxonomy};
-the companion artifact repository today carries the evaluation checklist
-and the dataset schema (see the Data Availability statement in the main
-paper). D6 (Robustness) and D7 (Reproducibility) codings were
+illustrate the range of configurations in the corpus. The complete 152-paper machine-readable dataset is included as a
+review-time snapshot with the submission; a citable tagged version
+will be released at acceptance to
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}
+(see the Data Availability statement in the main paper). D6 (Robustness) and D7 (Reproducibility) codings were
 dual-coded with inter-rater $\kappa$ = 0.76 and 0.78 respectively
 (see Section~7.5 of the main paper). Abbreviations: BM~=~Benchmark;
 LJ~=~LLM-as-judge; HE~=~Human eval; Abl~=~Ablation;
@@ -321,6 +323,7 @@ HE & Multi-task & Hyb & HiL & CD & Sng & AI \\
 \end{landscape}
 
 % ---------------------------------------------------------------
+\setcounter{table}{0}
 \section{Comprehensive Per-Paper Mapping (152 Papers, All Seven Dimensions)}
 \label{app:fullmapping}
 
@@ -328,10 +331,11 @@ For full transparency, this appendix presents the complete corpus
 of 152 papers coded across all seven taxonomy dimensions
 (D1--D7). The representative ten-paper sample in
 Appendix~B above (Table~B.1) provides
-category-grouped expanded notes; the underlying machine-readable
-spreadsheet will be released at acceptance to
-\url{https://github.com/rohithreddybc/PromptEvalTaxonomy} (see Data
-Availability statement in the main paper). Papers 80--99 were added in the first
+category-grouped expanded notes; the underlying machine-readable spreadsheet is included as a
+review-time snapshot with the submission; a citable tagged version
+will be released at acceptance to
+\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}
+(see Data Availability statement in the main paper). Papers 80--99 were added in the first
 expansion round, 100--110 in the second, 111--145 in the third, and
 146--152 in the fourth
 (Section~7 of the main paper, Table~4 therein),
