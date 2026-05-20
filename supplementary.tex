@@ -289,7 +289,7 @@ Kojima et al.~\cite{kojima2022large} (2022) Zero-Shot CoT &
 BM & Reasoning & TS & Auto & CM & Sng & AR \\
 \rowcolor{rowgray}
 Ouyang et al.~\cite{ouyang2022training} (2022) InstructGPT/RLHF &
-HE & Multi-task & Hyb & HiL & SM & Sng & AI \\
+HE & Multi-task & Hyb & HiL & SM & Sng & NR \\
 \midrule
 \multicolumn{8}{l}{\textit{Automated Prompt Optimization Papers}} \\ \midrule
 Zhou et al.~\cite{zhou2022ape} (2022) APE &
@@ -415,7 +415,7 @@ satisfied.
 11 & Shin et al.~\cite{shin2020autoprompt} & AutoPrompt & Benchmark & QA, Reasoning & Task-specific & Automated & Single-model & Sng & AR \\
 12 & Agarwal et al.~\cite{manyshot2024} & Many-Shot ICL & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
 \rowcolor{rowgray}
-13 & Ouyang et al.~\cite{ouyang2022training} & InstructGPT / RLHF & Human eval & Multi-task & Hybrid & Human-in-loop & Single-model & Sng & AI \\
+13 & Ouyang et al.~\cite{ouyang2022training} & InstructGPT / RLHF & Human eval & Multi-task & Hybrid & Human-in-loop & Single-model & Sng & NR \\
 14 & Wei et al.~\cite{wei2022flan} & FLAN & Benchmark & Multi-task & Task-specific & Automated & Single-model & Sng & AR \\
 \rowcolor{rowgray}
 15 & Li et al.~\cite{scoT2023} & Structured CoT & Benchmark & Code & Task-specific & Automated & Cross-model & Sng & AR \\
@@ -535,13 +535,13 @@ satisfied.
 \midrule
 \multicolumn{10}{l}{\textit{LLM-as-Judge Bias and Reliability Studies}} \\ \midrule
 \rowcolor{rowgray}
-80 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
-81 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+80 & Koo et al.~\cite{koo2023benchmarking} & Cognitive Biases in LLM Judges & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+81 & Ye et al.~\cite{ye2024justice} & Justice or Prejudice & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-82 & Zhu et al.~\cite{zhu2023judgelm} & JudgeLM & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
-83 & Verga et al.~\cite{verga2024replacing} & Panel-of-Judges Evaluation & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+82 & Zhu et al.~\cite{zhu2023judgelm} & JudgeLM & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+83 & Verga et al.~\cite{verga2024replacing} & Panel-of-Judges Evaluation & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
-84 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & NR \\
+84 & Wataoka et al.~\cite{wataoka2024selfpreference} & Self-Preference Bias in LLM-as-Judge & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & NR \\
 \midrule
 \multicolumn{10}{l}{\textit{Benchmark Contamination and Dynamic Benchmarking Papers}} \\ \midrule
 85 & Sainz et al.~\cite{sainz2023nlp} & NLP Evaluation in Trouble & Benchmark & Multi-task & Task-specific & Automated & Cross-dataset & NR & CC \\
@@ -552,8 +552,8 @@ satisfied.
 88 & Wang et al.~\cite{wang2024benchmark} & Benchmark Self-Evolving & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & CC+AR \\
 89 & McIntosh et al.~\cite{mcintosh2024inadequacies} & LLM Benchmark Inadequacies & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
-90 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
-91 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+90 & Zeng et al.~\cite{zeng2024llmbar} & LLMBar (Eval. Instruction Following) & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & Sng & AR \\
+91 & Chern et al.~\cite{chern2024scaleeval} & ScaleEval (Agent Debate) & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
 92 & Li et al.~\cite{li2024leveraging} & LLM-based NLG Evaluation Survey & Benchmark & Generation & Model-based & Automated & Cross-model & NR & NR \\
 93 & Zhou et al.~\cite{zhou2023instruction} & Instruction-Following Eval (IFEval) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & Sng & AR \\
@@ -580,19 +580,19 @@ satisfied.
 103 & Ma et al.~\cite{ma2024agentboard} & AgentBoard & Benchmark & Agentic & Task-specific & Automated & Cross-model & MAg & AR \\
 \rowcolor{rowgray}
 104 & Liu et al.~\cite{liu2023houyi} & HouYi (Prompt Injection) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
-105 & Maloyan et al.~\cite{maloyan2025judgevuln} & Judge Vulnerability to Injection & LLM-judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
+105 & Maloyan et al.~\cite{maloyan2025judgevuln} & Judge Vulnerability to Injection & LLM-as-Judge & Multi-task & LLM-judge & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Chain-of-Thought Faithfulness and Hallucination Studies}} \\ \midrule
 \rowcolor{rowgray}
 106 & Lanham et al.~\cite{lanham2023faithfulness} & CoT Faithfulness Measurement & Benchmark & Reasoning & Task-specific & Automated & Cross-model & MAg & AR \\
 107 & Chen et al.~\cite{chen2025reasoningmodels} & Reasoning Models Faithfulness & Benchmark & Reasoning & Task-specific & Automated & Cross-model & SB & AR \\
 \rowcolor{rowgray}
-108 & Akbar et al.~\cite{akbar2024hallumeasure} & HalluMeasure & LLM-judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
+108 & Akbar et al.~\cite{akbar2024hallumeasure} & HalluMeasure & LLM-as-Judge & Generation & LLM-judge & Automated & Cross-model & Sng & AR \\
 109 & Liu et al.~\cite{liu2025multimodalhallu} & RH-Bench (Multimodal Hallu.) & Benchmark & Multi-task & Task-specific & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Multilingual LLM-as-Judge Meta-Evaluation}} \\ \midrule
 \rowcolor{rowgray}
-110 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
+110 & Son et al.~\cite{son2024mmeval} & MM-Eval (Multilingual Judge) & LLM-as-Judge & Multilingual & LLM-judge & Automated & Cross-model & MAg & AR \\
 \midrule
 \multicolumn{10}{l}{\textit{Foundation-Model Technical Reports}} \\ \midrule
 111 & Achiam et al.~\cite{achiam2023gpt4} & GPT-4 Technical Report & Benchmark & Multi-task & Task-specific & Automated & Cross-domain & Sng & NR \\
@@ -621,7 +621,7 @@ satisfied.
 \midrule
 \multicolumn{10}{l}{\textit{Retrieval-Augmented Generation Evaluation Papers}} \\ \midrule
 \rowcolor{rowgray}
-124 & Saad-Falcon et al.~\cite{saadfalcon2023ares} & ARES & LLM-judge & QA & LLM-judge & Automated & Cross-model & MAg & AR \\
+124 & Saad-Falcon et al.~\cite{saadfalcon2023ares} & ARES & LLM-as-Judge & QA & LLM-judge & Automated & Cross-model & MAg & AR \\
 125 & Yu et al.~\cite{yu2024ragsurvey} & Auepora RAG Survey & Benchmark & Multi-task & Hybrid & Automated & Cross-domain & NR & NR \\
 \rowcolor{rowgray}
 126 & Chen et al.~\cite{chen2023rgb} & RGB (RAG Benchmark) & Benchmark & QA & Task-specific & Automated & Cross-model & MAg & AR \\

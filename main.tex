@@ -876,7 +876,7 @@ Stability of reported performance under semantically equivalent rephrasings &
 PromptSET: paraphrase-based sensitivity benchmark~\cite{promptsensitivity2025} \\
 \midrule
 D7 Reproducibility \& contamination resistance &
-Artifact-incomplete, Artifact-released, Contamination-checked, Judge-version-pinned &
+Artifact-released, Contamination-checked, Judge-version-pinned, Not-reported &
 V/R &
 Stability of results under judge drift, API version change, and benchmark contamination &
 WildBench: contamination-resistant dynamic benchmark~\cite{wildbench2024} \\
@@ -1012,15 +1012,16 @@ reliability that D4 does not: a pipeline can be within-run reliable
 (same call $\rightarrow$ same score today) and across-time fragile
 (judge model silently revised between API
 versions~\cite{feng2025sage}; test items leaked into
-pretraining~\cite{ni2025benchmarks, raji2021ai}). The four
-subcategories are coded as non-mutually-exclusive binary properties:
-\emph{Artifact-incomplete} (no released code/prompts/seeds),
-\emph{Artifact-released} (code, prompts, seeds available),
-\emph{Contamination-checked} (test items verified absent from
+pretraining~\cite{ni2025benchmarks, raji2021ai}). Three positive properties are coded as non-mutually-exclusive binary
+flags:
+\emph{Artifact-released} (AR: code, prompts, and/or seeds publicly
+available),
+\emph{Contamination-checked} (CC: test items verified absent from
 training data via held-out construction~\cite{wildbench2024} or
-contamination probes), and \emph{Judge-version-pinned} (API version
-or local checkpoint of any LLM-judge component recorded and
-recoverable).
+contamination probes), and
+\emph{Judge-version-pinned} (JP: API version or local checkpoint of
+any LLM-judge component recorded and recoverable). Papers reporting
+none of these properties are coded \emph{Not-reported} (NR).
 
 \subsection{Why These Seven Dimensions and Not Others}
 \label{subsec:whyseven}
@@ -1163,7 +1164,7 @@ evaluation, D7 should aim at \textit{judge-version-pinned} (if any LLM
 component is used) and \textit{contamination-checked} (verifying that
 the test set is not subset of any training corpus the underlying
 model has seen). Because medical benchmarks are smaller and easier to
-contaminate, D7=\,Artifact-incomplete is rarely defensible in this
+contaminate, D7=\,Not-reported is rarely defensible in this
 domain.
 
 This exercise surfaces seven design decisions that are typically
@@ -2302,7 +2303,7 @@ clear the 0.3 ``moderate-association'' threshold; the top five clear
 0.49 (close to or above ``strong''). The full pairwise table is in
 the released machine-readable dataset.
 \textit{Takeaway:} The strongest dependencies (D1--D3 = 0.702;
-D1--D4 = 0.605) confirm that evaluation-method choice cascades
+D1--D4 = 0.589) confirm that evaluation-method choice cascades
 through metric and automation choices in a statistically detectable
 way; the dimensions are non-redundant but not independent, which is
 consistent with the pattern the archetype analysis identifies.}
@@ -2313,8 +2314,8 @@ consistent with the pattern the archetype analysis identifies.}
 \toprule
 \textbf{Dimension pair} & \textbf{Cram\'er's $V$} & \textbf{$\chi^2$} & \textbf{df} \\
 \midrule
-D1 (Method) -- D3 (Metric)        & 0.702 & 224.4 & 12 \\
-D1 (Method) -- D4 (Automation)    & 0.605 & 167.1 & 12 \\
+D1 (Method) -- D3 (Metric)        & 0.702 & 224.4 &  9 \\
+D1 (Method) -- D4 (Automation)    & 0.589 & 158.4 &  9 \\
 D5 (Scope) -- D7 (Reproducibility) & 0.515 & 120.8 & 12 \\
 D5 (Scope) -- D6 (Robustness)     & 0.498 & 113.2 &  9 \\
 D6 (Robustness) -- D7 (Reproducibility) & 0.495 & 111.9 & 12 \\
