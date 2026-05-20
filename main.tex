@@ -152,7 +152,7 @@ the high-reliability, narrow-validity region of the design space and
 works well for tasks with correct answers, but under-specifies the
 construct for open-ended generation. The LLM-as-judge cluster
 addresses this gap at the cost of introducing judge-model reliability
-concerns the field has not managed with a shared calibration
+concerns that the surveyed work has not yet managed with a shared calibration
 protocol. Robustness and contamination-resistant evaluation appear as
 reported properties in only a minority of papers, suggesting these
 checks are not yet standard.
@@ -881,176 +881,86 @@ dimension primarily projects onto, and a representative example.
 \subsection{Dimension 1: Evaluation Method}
 \label{subsec:d1}
 
-How is a prompting technique assessed? Method is primarily a projection
-onto the judgment-locus axis: reference-anchored at the benchmark and
-ablation end, judgment-anchored at the human, LLM-judge, and user-study
-end. Five subcategories appear in the corpus.
-
-\textbf{Benchmark-based evaluation} applies a prompting technique to
-a curated dataset with known correct answers. MMLU~\cite{hendrycks2021measuring},
-BIG-Bench~\cite{srivastava2022bigbench}, and HellaSwag are representative examples.
-Results are reproducible and comparable across studies, which explains why this
-remains the default method across most of the literature. The main weakness is
-saturation: as model capabilities improve, benchmarks lose discriminative
-power, and data contamination is a well-documented concern~\cite{ni2025benchmarks}.
-
-\textbf{Human evaluation} asks annotators to judge output quality through
-absolute scoring or pairwise preference. It is generally the most credible option
-for open-ended tasks, but it is also resource-intensive, slow to execute, difficult to
-replicate, and rarely accompanied by strong inter-annotator agreement~\cite{chang2023survey}.
-
-\textbf{LLM-as-judge evaluation} replaces human annotators with a second language model
-in the scoring role. MT-Bench and AlpacaEval are prominent examples of this
-approach~\cite{zheng2023judging, dubois2024alpacaeval}. It scales efficiently and
-handles open-ended outputs well, but the judge carries its own systematic biases
-that multiple independent studies have now documented~\cite{gu2025llmjudge}.
-
-\textbf{Ablation study} isolates the contribution of individual components
-by selectively removing or modifying them. This approach is well suited to
-understanding what drives a technique's performance, though it is not designed
-for cross-technique comparison.
-
-\textbf{User study} collects evidence from real users performing authentic
-tasks, measuring outcomes such as task completion rates, satisfaction, or efficiency. User studies are rare
-in the NLP literature but are important whenever the deployment context
-involves end users rather than benchmark leaderboards~\cite{chang2023survey}.
-
-\textit{Note on LLM self-evaluation and self-refinement.}
-Methods in which an LLM critiques or revises its own output---Constitutional
-AI~\cite{bai2022constitutional}, self-refine~\cite{madaan2023selfrefine}, and
-related work---do not map cleanly onto any single D1 subcategory: the
-evaluator and the evaluated system are the same model, which breaks the
-independence assumption underlying both human evaluation and LLM-as-judge
-scoring. Papers whose primary contribution is a self-evaluation method are
-coded by the dominant external evidence they present (typically Benchmark or
-LLM-as-judge comparisons), with a note that self-evaluation is the mechanism
-under study rather than the evaluation protocol.
+How is a prompting technique assessed? D1 projects primarily onto the
+judgment-locus axis: reference-anchored at the Benchmark and Ablation
+end, judgment-anchored at the Human, LLM-judge, and User-study end.
+Five subcategories appear in the corpus, each indexed to a primary
+strength and a primary weakness: \emph{Benchmark} (reproducible,
+saturation-prone~\cite{hendrycks2021measuring, ni2025benchmarks});
+\emph{Human eval} (credible for open-ended tasks, expensive and slow
+to replicate~\cite{chang2023survey}); \emph{LLM-as-judge} (scales to
+open-ended outputs, imports judge bias~\cite{zheng2023judging,
+dubois2024alpacaeval, gu2025llmjudge}); \emph{Ablation} (isolates
+component contribution, not for cross-technique comparison);
+\emph{User study} (deployment-context evidence, rare in the NLP
+literature). LLM self-evaluation/self-refinement methods
+(Constitutional AI~\cite{bai2022constitutional}, self-refine~\cite{madaan2023selfrefine})
+do not map cleanly onto any single subcategory because evaluator and
+evaluated system are the same model; we code such papers by their
+dominant external evidence (typically Benchmark or LLM-judge) and
+note self-evaluation as the studied mechanism.
 
 \subsection{Dimension 2: Task Scope}
 \label{subsec:d2}
 
-What type of task is the evaluation targeting? Task scope acts as a
-\textit{moderator} on the validity-reliability tradeoff: the same metric
-choice yields very different validity properties depending on whether
-the task admits a single gold answer (arithmetic reasoning, exact
-factual retrieval) or only a distribution of acceptable
-answers (open-ended generation, clinical decision support). Scope is
-arguably the most fragmented dimension across the literature. A
-technique that performs strongly on arithmetic reasoning may behave
-quite differently on clinical named entity recognition, yet many papers
-treat their chosen task as broadly representative without testing
-whether their findings hold elsewhere.
-
-Our review identifies eight primary task categories that together span
-the range of tasks observed in the corpus (plus a cross-category
-\textbf{Multi-task} label for papers spanning multiple domains; see
-below).
-
-\textbf{Reasoning tasks} include arithmetic, symbolic, commonsense, and
-multi-step logical reasoning. This is the most heavily studied category,
-largely because chain-of-thought prompting~\cite{wei2022chain} was initially developed
-for reasoning problems and most early follow-on evaluations naturally adopted that framing.
-
-\textbf{Natural language generation tasks} cover summarization, dialogue,
-translation, and open-ended writing. Since these tasks admit no single correct
-answer, they require human or LLM-based evaluation rather than
-exact-match scoring.
-
-\textbf{Code generation tasks} assess whether a prompted model produces
-functionally correct code, typically measured via pass@$k$ against a test
-suite~\cite{scoT2023, promptalchemy2025}.
-
-\textbf{Question answering tasks} range from closed-book factual retrieval to
-open-book reading comprehension, and are conventionally scored with exact match or F1.
-
-\textbf{Clinical and domain-specific tasks} include medical QA, clinical
-note processing, and legal reasoning. Accuracy requirements are considerably higher in these settings,
-evaluation routinely requires domain experts, and available benchmarks are
-smaller and more specialized~\cite{clinicalnlp2024, medicalcot2025}.
-
-\textbf{Multilingual tasks} evaluate techniques across languages and
-tend to surface performance gaps that monolingual evaluations
-would otherwise conceal~\cite{vatsal2024survey}.
-
-\textbf{Agentic and tool-use tasks} evaluate prompted models acting
-as autonomous decision-makers across multi-step workflows that
-invoke external tools, search APIs, code interpreters, or
-sub-agents~\cite{yao2024taubench}. Evaluation is
-trajectory-oriented (success rate over multi-step traces) rather than
-single-output, and requires sandboxes that simulate the tool API
-deterministically.
-
-\textbf{Multimodal tasks} extend prompted evaluation to inputs and
-outputs beyond text -- typically vision-language pairs (visual
-question answering, image captioning, OCR-grounded reasoning) and
-increasingly audio and video~\cite{fu2023mme}. Scoring requires
-modality-appropriate references (image-grounded BLEU/CIDEr,
-visual-grounding accuracy) or judgment-anchored alternatives.
-
-Papers evaluated across multiple task domains without specializing in
-any single category are coded as \textbf{Multi-task}; this is a
-cross-category label rather than a peer primary category, and appears
-as a ninth entry in Table~\ref{tab:taxonomy} for completeness.
-
-The corpus distribution across these eight primary task categories
-(and the Multi-task label) is reported in
-Section~\ref{subsec:d2dist}. Agentic and Multimodal entered the
-taxonomy during expansion rounds 2--3
-(Table~\ref{tab:expansion_rounds}) when those papers were
-re-admitted; they are present in lower numbers than the first six
-categories because they are recent. Future revisions of the
-taxonomy may further subdivide these as the population grows
-(Section~\ref{subsec:multimodal}).
+What type of task is the evaluation targeting? D2 acts as a
+\emph{moderator} on the validity-reliability tradeoff: the same
+metric choice yields very different validity properties depending on
+whether the task admits a single gold answer (arithmetic, exact
+retrieval) or only a distribution of acceptable answers (open-ended
+generation, clinical decision support). The eight primary categories
+are: \emph{Reasoning} (arithmetic, symbolic, commonsense, multi-step
+logic --- the most heavily studied category since chain-of-thought
+prompting~\cite{wei2022chain} originated here); \emph{Natural
+language generation} (summarization, dialogue, translation, open-ended
+writing; admits no single correct answer); \emph{Code generation}
+(pass@$k$ against test suites~\cite{scoT2023, promptalchemy2025});
+\emph{Question answering} (closed- and open-book retrieval, scored
+with exact match or F1); \emph{Clinical and domain-specific} (medical
+QA, clinical notes, legal reasoning; higher accuracy requirements and
+domain-expert evaluation~\cite{clinicalnlp2024, medicalcot2025});
+\emph{Multilingual} (cross-language performance, often surfacing gaps
+monolingual evaluations
+conceal~\cite{vatsal2024survey}); \emph{Agentic and tool-use}
+(trajectory-oriented success-rate over multi-step
+workflows~\cite{yao2024taubench}); and \emph{Multimodal} (vision-,
+audio-, and video-grounded prompted
+evaluation~\cite{fu2023mme}). Papers spanning multiple categories
+without specializing are coded \emph{Multi-task} as a cross-category
+label. Agentic and Multimodal entered the taxonomy during expansion
+rounds 2--3 (Table~\ref{tab:expansion_rounds}) and remain smaller
+populations.
 
 \subsection{Dimension 3: Metric Type}
 \label{subsec:d3}
 
-What is being measured, and by what means? Metric type is the most direct
-projection of the reference-anchored / judgment-anchored axis introduced
-in Section~\ref{subsec:tensions}: reference-based and task-specific
-metrics anchor scoring to a stored gold answer, while LLM-as-judge
-and (some) model-based metrics anchor scoring to an evaluator's
-judgment. Section~\ref{sec:background} introduced the four metric
-families; we apply them directly here: reference-based
-(BLEU~\cite{papineni2002bleu}, ROUGE~\cite{lin2004rouge}), model-based
-(BERTScore), LLM-as-judge (G-Eval~\cite{liu2023geval}), and task-specific
-(pass@$k$, exact match, RAGAS~\cite{rageval2024}). Calibration evidence
-- whether the metric has been validated against a target judgment, e.g.
-human annotators on the specific task - is a sub-property of D3 that
-becomes methodologically central for judgment-anchored metrics.
-
-Metric choice is not independent of the other dimensions, and making
-these interdependencies explicit is a central contribution of this
-classification. Reference-based metrics only function when a gold
-reference exists; they are poorly suited for open-ended generation.
-Task-specific metrics do not transfer outside their native task family.
-LLM-as-judge metrics import the systematic biases of the underlying
-judge model and require explicit calibration before scores carry construct
-meaning~\cite{liu2023geval, gu2025llmjudge}. Classifying papers by
-metric type surfaces systematic patterns in how the field matches, and
-sometimes mismatches, its metrics to its tasks.
+What is being measured, and by what means? D3 is the most direct
+projection of the reference-anchored / judgment-anchored axis: the
+four families introduced in §\ref{sec:background} ---
+reference-based (BLEU~\cite{papineni2002bleu},
+ROUGE~\cite{lin2004rouge}), model-based (BERTScore), LLM-as-judge
+(G-Eval~\cite{liu2023geval}), and task-specific (pass@$k$, exact
+match, RAGAS~\cite{rageval2024}) --- partition along that axis.
+Calibration evidence (validation of the metric against a target
+judgment on the specific task) is a D3 sub-property that becomes
+methodologically central for judgment-anchored metrics
+\cite{liu2023geval, gu2025llmjudge}.
 
 \subsection{Dimension 4: Automation Level}
 \label{subsec:d4}
 
-How much human involvement does the evaluation require? Unlike the
-preceding dimensions, automation level is not a peer of method, task,
-or metric. It is best understood as a \textit{sub-axis of reliability}:
-fully automated pipelines maximize across-run consistency at the cost of
-whatever construct validity human judgment would have contributed, while
-fully manual pipelines invert that tradeoff. We retain D4 in the
-taxonomy because the corpus codes it independently and the
-human-in-loop / hybrid distinction is practically meaningful, but its
-conceptual weight is lower than D1, D3, or D5.
-
-The four subcategories are: \textit{fully manual} (all judgment in
-human hands), \textit{human-in-loop} (selective routing of borderline
-cases to human reviewers~\cite{ouyang2022training}), \textit{hybrid}
-(automated scoring for the bulk of items plus uniform human validation
-on a held-out sample), and \textit{fully automated} (no human in any
-stage of the loop). The human-in-loop and hybrid categories are not
-interchangeable: human-in-loop applies judgment selectively on hard
-cases while hybrid applies it uniformly across a fixed sample.
+How much human involvement does the evaluation require? D4 is a
+\emph{sub-axis of reliability}: fully automated pipelines maximize
+across-run consistency at the cost of any construct validity human
+judgment would have added, while fully manual pipelines invert that
+tradeoff. We retain D4 separately because the corpus codes it
+independently of D1. The four subcategories are \emph{Fully manual},
+\emph{Human-in-loop} (selective routing of borderline cases to
+reviewers~\cite{ouyang2022training}), \emph{Hybrid} (automated bulk
+scoring with uniform human validation on a held-out sample), and
+\emph{Fully automated}; human-in-loop and hybrid are not
+interchangeable, since the former applies judgment selectively on
+hard cases while the latter applies it uniformly.
 
 \begin{table*}[!t]
 \caption{Seven-Dimensional Taxonomy of Prompt Engineering Evaluation
@@ -1203,111 +1113,66 @@ Table~\ref{tab:archetype_distribution}.
 \subsection{Dimension 5: Evaluation Scope}
 \label{subsec:d5}
 
-What is being compared? Scope projects onto a third axis that is
-largely orthogonal to the validity-reliability frame: it determines how
-far a paper's conclusions can generalize beyond the specific setup in
-which results were obtained. A maximally reliable, maximally valid
-single-model evaluation still yields a narrow claim; a noisier
-cross-model evaluation may yield a broader one.
-
-\textbf{Single-model, single-dataset} is a common baseline
-configuration: one technique, one model, one benchmark. Results are
-internally clean but generalizability is entirely unverified. The
-modal configuration in the corpus is in fact cross-model
-(Section~\ref{subsec:d5dist}); single-model-single-dataset is the
-narrowest end of the scope axis.
-
-\textbf{Cross-model evaluation} applies the same technique to multiple
-model families, directly testing whether performance is specific to one architecture
-or holds more broadly.
-
-\textbf{Cross-dataset evaluation} holds the task type fixed while varying
-the benchmark. This probes robustness within a given task family.
-
-\textbf{Cross-domain evaluation} applies a technique across qualitatively
-different task types. It represents the most demanding scope and remains the least common in
-individual papers, though survey works such as Sahoo
-et al.~\cite{sahoo2024systematic} cover it implicitly by design.
-
-\textbf{Cross-lingual evaluation} tests performance across languages. As multilingual
-prompt engineering research matures, this scope is beginning to appear more
-frequently in the literature~\cite{vatsal2024survey}.
-
-Scope matters because a substantial share of strong claims in the PE literature
-rest on single-model, single-dataset evidence. A technique that performs
-well on GPT-4 for arithmetic may not transfer to smaller open-source models or
-different task types. Without explicit scope classification, those limits stay invisible to readers.
+What is being compared? D5 projects onto a generalizability axis
+largely orthogonal to the validity-reliability frame: it determines
+how far a paper's conclusions can extend beyond the specific setup
+that produced them. The five subcategories index increasing breadth:
+\emph{Single-model, single-dataset} (one technique, one model, one
+benchmark; cleanest internally, narrowest claim);
+\emph{Cross-model} (multiple model families, testing
+architecture-independence); \emph{Cross-dataset} (task type fixed,
+benchmark varied, testing within-family robustness);
+\emph{Cross-domain} (qualitatively different task types, the most
+demanding scope and the least common in individual papers, though
+survey works such as Sahoo et al.~\cite{sahoo2024systematic} cover it
+by design); and \emph{Cross-lingual} (performance across
+languages~\cite{vatsal2024survey}). Without explicit scope coding,
+the limits of single-model, single-dataset claims --- which underpin a
+substantial share of PE-literature results --- stay invisible.
 
 \subsection{Dimension 6: Robustness and Prompt Sensitivity}
 \label{subsec:d6}
 
-Does the evaluation establish that the reported performance is stable
-under semantically equivalent rephrasings of the prompt? Robustness is a
-property of the construct being measured, not of the measurement
-instrument, and it therefore projects onto the validity axis.
-A technique that performs well under one prompt phrasing but degrades
-sharply under paraphrase is not, in any meaningful sense, the technique
-the paper claims to evaluate; the construct ``effectiveness of
-chain-of-thought prompting'' includes the assumption that
-\textit{semantically equivalent} chain-of-thought instructions yield
-\textit{statistically equivalent} performance.
-
-The empirical case for treating robustness as a first-class dimension is
-already in the literature. Sclar et al.~\cite{sclar2023formatting} showed
-that delimiter and formatting changes shift accuracy by margins large
-enough to reverse leaderboard rankings. Salinas and Morstatter's butterfly-effect
-study~\cite{butterfly2024} documents similar variance under paraphrase.
-Razavi et al.'s PromptSET~\cite{promptsensitivity2025} provides a
-sensitivity benchmark explicitly. Bellibaltu et al.'s Judge Sensitivity
-Score~\cite{bellibatlu2026judgesense} (a 2026 arXiv preprint; findings
-are preliminary) extends sensitivity reporting to
-LLM-as-judge pipelines themselves, defining JSS over 500 hand-validated
-paraphrase pairs across four evaluation tasks (factuality, coherence,
-relevance, preference) and reporting it for 13 judge models. They
-find that even GPT-4o flips its coherence rating on 8.5\% of paraphrase
-pairs and that smaller instruction-tuned judges flip on more than 60\%,
-and crucially that model scale is not a reliable proxy for stability.
-Yet the corpus we surveyed treats
-sensitivity as a finding rather than a dimension: papers rarely report
-performance bounds across paraphrases, and reviewers rarely require
-them.
-
-The four robustness subcategories used in our coding are: \textit{not
-reported} (no sensitivity analysis), \textit{single-prompt} (one prompt
-phrasing, no variance information), \textit{multi-prompt aggregate}
-(performance averaged across paraphrases without per-prompt breakdown),
-and \textit{sensitivity-bounded} (variance or stability bounds reported
-explicitly). The four-level coding lets us distinguish papers that
-ignore sensitivity from those that report it without quantifying it,
-and from the smaller set that establish bounds.
+Does the evaluation establish that reported performance is stable
+under semantically equivalent prompt rephrasings? Robustness is a
+property of the construct, not the measurement instrument, and
+therefore projects onto the validity axis: a technique that performs
+well under one phrasing but degrades sharply under paraphrase is not,
+in a methodologically meaningful sense, the technique the paper
+claims to evaluate. Existing literature provides empirical
+motivation: Sclar et al.~\cite{sclar2023formatting} showed formatting
+changes shift accuracy enough to reverse leaderboard rankings;
+Salinas and Morstatter~\cite{butterfly2024} document similar
+paraphrase variance; PromptSET~\cite{promptsensitivity2025} provides
+an explicit sensitivity benchmark; Bellibaltu et
+al.~\cite{bellibatlu2026judgesense} (2026 arXiv preprint;
+preliminary) extend the analysis to LLM-judge pipelines, reporting an
+8.5\% coherence flip rate on GPT-4o under paraphrase and over 60\% on
+smaller judges. The four subcategories index the depth of
+sensitivity reporting: \emph{Not reported}, \emph{Single-prompt}
+(one phrasing, no variance), \emph{Multi-prompt aggregate}
+(averaged across paraphrases without per-prompt breakdown), and
+\emph{Sensitivity-bounded} (variance or stability bounds reported
+explicitly).
 
 \subsection{Dimension 7: Reproducibility and Contamination Resistance}
 \label{subsec:d7}
 
 Can a third party reproduce the reported results, and are those
-results stable under realistic infrastructure drift? Reproducibility
-projects onto the reliability axis, but it captures aspects that D4
-(automation level) does not. A fully automated evaluation pipeline
-that depends on a proprietary judge model accessed via a versioned API
-is reliable in the within-run sense (the same call returns the same
-score) and unreliable in the across-time sense (the judge can change
-silently between API revisions, as documented for GPT-4
-snapshots~\cite{feng2025sage}). Contamination is a further reproducibility
-threat: a benchmark whose answers have leaked into pretraining produces
-inflated scores that subsequent runs cannot correct~\cite{ni2025benchmarks,
-raji2021ai}.
-
-The four reproducibility subcategories used in our coding are:
-\textit{artifact-incomplete} (no released code, prompts, or seeds),
-\textit{artifact-released} (code, prompts, and seeds available),
-\textit{contamination-checked} (the study explicitly verifies that
-test items did not appear in training data, e.g.\ via held-out
-construction~\cite{wildbench2024} or contamination probes), and
-\textit{judge-version-pinned} (where applicable: the API version,
-snapshot date, or local model checkpoint of any LLM-as-judge component
-is reported and recoverable). The categories are not mutually
-exclusive; a paper can satisfy multiple. We code each as a binary
-property and report combined patterns in Section~\ref{sec:comparison}.
+results stable under infrastructure drift? D7 captures aspects of
+reliability that D4 does not: a pipeline can be within-run reliable
+(same call $\rightarrow$ same score today) and across-time fragile
+(judge model silently revised between API
+versions~\cite{feng2025sage}; test items leaked into
+pretraining~\cite{ni2025benchmarks, raji2021ai}). The four
+subcategories are coded as non-mutually-exclusive binary properties:
+\emph{Artifact-incomplete} (no released code/prompts/seeds),
+\emph{Artifact-released} (code, prompts, seeds available),
+\emph{Contamination-checked} (test items verified absent from
+training data via held-out construction~\cite{wildbench2024} or
+contamination probes), and \emph{Judge-version-pinned} (API version
+or local checkpoint of any LLM-judge component recorded and
+recoverable).
 
 \subsection{Why These Seven Dimensions and Not Others}
 \label{subsec:whyseven}
@@ -1949,22 +1814,17 @@ to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
 
 Inter-rater agreement is reported as Cohen's $\kappa$ per dimension
 in Table~\ref{tab:kappa}. The dimensions split into two reliability
-regimes. Objectively verifiable dimensions (D1 evaluation method, D2
-task scope, D3 metric type, D5 evaluation scope) achieved $\kappa$
-between 0.88 and 0.92 on the dual-coded sample, all in the
-``almost perfect'' tier of the Landis and Koch scale. Interpretively
-coded dimensions (D4 automation level, D6 robustness, D7
-reproducibility) achieved $\kappa$ between 0.76 and 0.84, in the
-``substantial'' tier. The lower $\kappa$ on D6 and D7 reflects
-genuine ambiguity at category boundaries rather than disagreement on
-facts: papers that report a single sentence acknowledging
-sensitivity without quantifying it sit between D6=Not reported and
-D6=Single-prompt, and papers that release code but not data sit
-between D7=Artifact-released and D7=Artifact-incomplete. We report what we measured rather than collapsing to a single
-corpus-level $\kappa$, since the heterogeneous reliability profile is
-itself part of the finding: some evaluation properties are codable
-from descriptions, others require interpretive judgment that an
-evaluation reporting standard could substantially reduce.
+regimes: objectively verifiable dimensions (D1, D2, D3, D5) reach
+$\kappa$ = 0.88--0.92 (``almost perfect'' on the Landis--Koch scale);
+interpretively coded dimensions (D4, D6, D7) reach $\kappa$ =
+0.76--0.84 (``substantial''). The lower $\kappa$ on D6 and D7
+reflects boundary ambiguity rather than factual disagreement (e.g.,
+papers acknowledging sensitivity without quantifying it sit between
+D6=Not-reported and D6=Single-prompt). We report per-dimension
+$\kappa$ rather than a collapsed corpus-level value because the
+heterogeneous profile is itself the finding: some evaluation
+properties are codable from descriptions, others require
+interpretive judgment that a reporting standard could reduce.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -1990,39 +1850,25 @@ D7 Reproducibility & 0.78 & Substantial \\
 \end{tabular}
 \end{table}
 
-Ambiguity-resolution rules are documented in the dataset repository
-linked above. The most consequential rules were: (a) for D3 papers
-using multiple metric families, the \textit{primary} metric (the one
-used for the headline claim) was recorded; (b) for D4 papers
-reporting a small spot-check of an otherwise automated pipeline, the
-paper was coded as hybrid only if the spot-check result conditioned
-a reported decision (e.g.\ a filter, a threshold), not if it was
-descriptive; (c) for D6, papers that reported sensitivity \emph{only
-as a finding} (sensitivity studies themselves) without using
-sensitivity as part of the headline evaluation pipeline were coded as
-\textit{multi-prompt aggregate}, not sensitivity-bounded; (d) for
-D7, contamination-checked required an explicit verification step,
-not a generic statement that the test set differed from training.
+Ambiguity-resolution rules (full list in the released repository):
+D3 records the \emph{primary} metric used for the headline claim;
+D4=Hybrid only if a spot-check conditions a reported decision (not
+when descriptive); D6=Sensitivity-bounded requires the headline
+pipeline to use the sensitivity result, otherwise D6=Multi-prompt
+aggregate; D7=Contamination-checked requires an explicit verification
+step, not a generic statement of dataset differences.
 
 \subsection{Sensitivity Analysis}
 \label{subsec:sensitivity}
 
-To check whether the headline distributional claims in
-Section~\ref{sec:comparison} are stable under coding uncertainty,
-we report a sensitivity analysis. We perturbed 10\% and 20\% of
-dimensional codes uniformly at random,
-re-derived the headline percentages (benchmark dominance, automation
-dominance, single-model evaluation share, clinical and multilingual
-representation), and report the resulting bounds in
-Table~\ref{tab:sensitivity}. Headline claims that move by less than
-two percentage points under 20\% perturbation are reported as stable;
-claims that move more are flagged with explicit uncertainty bounds in
-the relevant Section~\ref{sec:comparison} subsections. All headline claims are robust to both perturbation levels: no claim
-moves by more than 3.4 percentage points under 20\% perturbation.
-The task-specific metric share shows the largest shift (3.4~pp under
-20\% perturbation), which is borderline-stable relative to the 2-pp
-stability threshold; this claim should be read with that caveat.
-All other claims move by less than 2~pp, confirming stability.
+To test whether headline distributional claims are stable under
+coding uncertainty, we perturbed 10\% and 20\% of dimensional codes
+uniformly at random and re-derived the percentages
+(Table~\ref{tab:sensitivity}). All claims move by less than 3.4
+percentage points under 20\% perturbation; the largest shift (task-specific
+metric share, 3.4~pp) is borderline-stable relative to a 2-pp
+threshold and should be read with that caveat. All other claims move
+by less than 2~pp.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -2271,271 +2117,148 @@ worth highlighting in the discussion
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
 
-Benchmark-based evaluation accounts for 106 of the 152 papers in the
-corpus (69.7\%), establishing it as the default across every subgroup
-in the review. Representative examples include Wei et al.~\cite{wei2022chain} on
-chain-of-thought prompting and Hendrycks et al.~\cite{hendrycks2021measuring}
-on multitask language understanding. Both studies report accuracy against
-fixed-answer datasets, and this pattern repeats consistently throughout
-the reasoning and benchmark subgroups. The foundation-model technical
-reports for GPT-4~\cite{achiam2023gpt4},
-LLaMA~\cite{touvron2023llama}, Llama
-2~\cite{touvron2023llama2}, and GPT-4o~\cite{hurst2024gpt4o}
-similarly anchor on this benchmark-automated configuration; their
-release-time evaluations rely almost entirely on fixed-answer
-benchmarks for the headline capability claims. Benchmark results are
-reproducible, comparable across labs, and inexpensive to compute at
-scale. What they cannot capture is output quality for open-ended tasks
-where no single correct answer exists.
+Benchmark-based evaluation accounts for 106 papers (69.7\%),
+establishing it as the default across every subgroup, including the
+foundation-model technical reports for GPT-4~\cite{achiam2023gpt4},
+LLaMA~\cite{touvron2023llama, touvron2023llama2}, and
+GPT-4o~\cite{hurst2024gpt4o}. Benchmark results are reproducible,
+cross-lab comparable, and inexpensive at scale; what they cannot
+capture is output quality on open-ended tasks without a single
+correct answer.
 
 LLM-as-judge evaluation appears in 32 papers (21.1\%), concentrated
-almost entirely in the open-ended generation and instruction-following
-subgroups. Zheng et al.~\cite{zheng2023judging} introduced the MT-Bench
-framework for this purpose and were candid about its limitations alongside
-its strengths. Gu et al.~\cite{gu2025llmjudge} and Feng et al.~\cite{feng2025sage}
-have since documented the reliability concerns more systematically. The
-corpus also includes the fine-tuned scalable judges of Zhu et
-al.~\cite{zhu2023judgelm} (JudgeLM), the panel-of-judges approach by Verga
-et al.~\cite{verga2024replacing}, the agent-debate meta-evaluation
-framework of Chern et al.~\cite{chern2024scaleeval} (ScaleEval), and the
-multi-agent ensemble of Chen et al.~\cite{multiagentjudge2025} (MAJ-EVAL).
-Two recent surveys -- Li et al.~\cite{li2024llmsjudges} on
-LLM-as-judge methodology and the empirical study of Yang et
-al.~\cite{llmjudgestudy2024} -- catalog the resulting design space, and
-Panickssery et al.'s ``Judging the Judges'' work~\cite{judgingjudges2024}
-and JudgeBench~\cite{judgebench2024} provide benchmarks of judge
-quality itself. Recent work by Ye et al.~\cite{ye2024justice} and
-Wataoka et al.~\cite{wataoka2024selfpreference} quantifies the bias
-profile of LLM judges directly, and HalluMeasure
-\cite{akbar2024hallumeasure} applies the judge framing to
-hallucination detection. LLM judges address a genuine need: many tasks have no
-gold reference to score against. But adoption has clearly outpaced the
-research into when and how much to
-trust them.
+in open-ended generation and instruction-following subgroups
+(MT-Bench~\cite{zheng2023judging},
+AlpacaEval~\cite{dubois2024alpacaeval}, G-Eval~\cite{liu2023geval}).
+The cluster includes fine-tuned scalable judges~\cite{zhu2023judgelm},
+panel-of-judges~\cite{verga2024replacing}, agent-debate
+meta-evaluation~\cite{chern2024scaleeval},
+multi-agent ensembles~\cite{multiagentjudge2025},
+two surveys~\cite{gu2025llmjudge, li2024llmsjudges}, bias
+quantification~\cite{ye2024justice, wataoka2024selfpreference,
+judgingjudges2024, judgebench2024}, and hallucination-detection
+applications~\cite{akbar2024hallumeasure}. Adoption has outpaced
+calibration research.
 
-Human evaluation appears in only 16 papers (10.5\%), and ablation
-studies in 2 (1.3\%). No paper in the corpus employs a user study as
-its primary method. (Four papers in the LLM-judge-and-human cluster
-\textemdash{} Ye et al.~\cite{llmvshuman2024},
-Calderon et al.~\cite{alternativeannotator2025},
-Ye et al.~\cite{humansorllm2024},
-and Chiang et al.~\cite{canlllmsreplace2023}~\textemdash{} are
-coded under both D1=LLM-judge and D1=Human, so the four D1 subcategory
-counts sum to 156 rather than 152; the headline frequencies above
-are computed on the 152-paper denominator, not the 156-method
-denominator.) The human-evaluation cluster combines work that
-either (i) uses human ratings as the primary signal, as in Jang and
-Lukasiewicz's consistency analysis of
-ChatGPT~\cite{jang2023consistency} and the Bubeck et al.\ ``Sparks of
-AGI'' capability probe~\cite{bubeck2023sparks}, (ii) uses humans to
-audit safety-critical behavior, as in the medical red-teaming of
-Chang et al.~\cite{chang2025redteamingmed} and the human-LLM
-calibration-gap study of Steyvers et
-al.~\cite{steyvers2024calibgap}, or (iii) compares humans against LLMs
-on cognitive tasks, as in the Theory-of-Mind battery of Strachan et
-al.~\cite{strachan2024theoryofmind}. The LLMBar meta-evaluation
-benchmark by Zeng et al.~\cite{zeng2024llmbar} provides a
-complementary measurement of how well LLM judges substitute for human
-raters on instruction-following. Human evaluation remains the acknowledged
-standard for tasks involving subjective quality
-judgments~\cite{chang2023survey}, but its share in this corpus is
-small. Read against the overall distribution, the pattern is
-consistent with a tradeoff in which the corpus systematically favors
-configurations that maximize reliability and scale -- benchmark and
-LLM-judge pipelines -- over configurations that prioritize the
-construct-validity guarantees human evaluation provides. We return
-to this tradeoff in Section~\ref{subsec:tension_scalability}.
+Human evaluation appears in 16 papers (10.5\%), ablation studies in
+2 (1.3\%); no corpus paper uses a user study as primary method. Four
+papers in the LLM-judge-and-human cluster (Ye et
+al.~\cite{llmvshuman2024}, Calderon et
+al.~\cite{alternativeannotator2025},
+Ye et al.~\cite{humansorllm2024}, Chiang et
+al.~\cite{canlllmsreplace2023}) are coded under both D1=LLM-judge and
+D1=Human, so D1 subcategory counts sum to 156 rather than 152; the
+headline frequencies use the 152-paper denominator. The
+human-evaluation cluster splits into primary-signal
+studies~\cite{jang2023consistency, bubeck2023sparks},
+safety-audit work~\cite{chang2025redteamingmed, steyvers2024calibgap},
+and human-vs-LLM cognitive
+comparisons~\cite{strachan2024theoryofmind}; LLMBar~\cite{zeng2024llmbar}
+provides complementary instruction-following measurement. Read
+against the overall distribution, the corpus favours configurations
+that maximize reliability and scale over those that prioritize the
+construct-validity guarantees human evaluation provides
+(Section~\ref{subsec:tension_scalability}).
 
 \subsection{Distribution across Task Scope (Dimension 2)}
 \label{subsec:d2dist}
 
-Multi-task or cross-task evaluations account for 89 papers (58.6\%),
-meaning that more than half the corpus does not assess prompting
-techniques on any specific task type. These studies aggregate
-performance across benchmarks spanning many different categories. This pattern
-is partly an artifact of how surveys and taxonomy papers are classified, but it also reflects
-a genuine tendency in the literature to report average scores across
-MMLU or BIG-Bench without disaggregating results by individual task type.
+Multi-task or cross-task evaluations account for 89 papers (58.6\%):
+more than half the corpus does not assess techniques on a specific
+task type, instead aggregating across benchmarks. The pattern is
+partly an artefact of how survey and taxonomy papers classify, but
+also reflects a genuine tendency to report MMLU / BIG-Bench averages
+without per-task disaggregation. Reasoning is the largest
+task-specific subgroup at 18 papers (11.8\%), reflecting
+chain-of-thought's origin on arithmetic and symbolic benchmarks
+\cite{wei2022chain}; faithfulness-focused work in this subgroup
+\cite{lanham2023faithfulness, chen2025reasoningmodels} treats the
+reasoning chain itself as the evaluation target. Generation appears
+in 10 papers (6.6\%), code in 12 (7.9\%), QA in 8 (5.3\%).
 
-Among task-specific subgroups, reasoning tasks are the most studied
-at 18 papers (11.8\%). Chain-of-thought prompting~\cite{wei2022chain}
-was developed on arithmetic and symbolic reasoning benchmarks, and the
-majority of early evaluations naturally adopted that framing. The combination of
-strong techniques and well-established benchmarks in this area has created a
-self-reinforcing concentration that persists across the literature.
-Faithfulness-focused work in this subgroup -- Lanham et
-al.~\cite{lanham2023faithfulness} and Chen et
-al.~\cite{chen2025reasoningmodels} -- treats the reasoning chain
-itself as the evaluation target rather than only the final answer.
+Clinical and multilingual coverage are reported separately to avoid
+conflating task domain with language scope. By \emph{primary
+target}, clinical is 1 paper (0.9\%; Sivarajkumar et
+al.~\cite{sivarajkumar2024empirical}) and multilingual is 2 (1.8\%;
+\cite{vatsal2025multilingual, son2024mmeval}); by \emph{any-occurrence}
+the shares are 3.9\% and 2.6\% respectively
+(Table~\ref{tab:sensitivity}), adding MIRAGE/MedRAG, Nori et al.\
+USMLE, Chang et al.\ medical red-teaming, Kim et al.\ medical
+hallucination, MGSM, and MM-Eval. Agentic evaluation
+\cite{liu2023agentbench, ma2024agentboard, liu2024toolace}, safety
+and prompt-injection benchmarks \cite{liu2023houyi,
+maloyan2025judgevuln}, legal evaluation \cite{guha2023legalbench,
+fei2023lawbench}, medical evaluation \cite{nori2023gpt4medical,
+chang2025redteamingmed, kim2025medicalhallu}, instruction-following
+\cite{zhou2023instruction}, multimodal \cite{fu2023mme,
+liu2025multimodalhallu}, foundational reasoning benchmarks
+\cite{cobbe2021gsm8k, mirzadeh2024gsmsymbolic, shi2022mgsm,
+lin2021truthfulqa}, code generation \cite{jimenez2023swebench,
+liu2023evalplus, jain2024livecodebench, roziere2023codellama,
+promptingsecurecode2024, impactpromptprogramming2024}, long-context
+\cite{hsieh2024ruler, bai2023longbench, yen2024helmet}, and reward
+modelling \cite{lambert2024rewardbench, malik2025rewardbench2} round
+out the corpus.
 
-Generation tasks appear in 10 papers (6.6\%), code tasks in 12
-(7.9\%), and QA tasks in 8 (5.3\%). Clinical and multilingual
-evaluation appear in two distinct senses in the corpus; we report
-both separately to avoid conflating clinical evaluation (task domain)
-with multilingual evaluation (language scope).
-Counted by \emph{primary evaluation target}, one paper --
-Sivarajkumar et al.~\cite{sivarajkumar2024empirical} -- centrally
-adopts clinical NLP tasks (0.9\%), and two -- Vatsal and
-Singh~\cite{vatsal2025multilingual} and Son et
-al.~\cite{son2024mmeval} -- centrally adopt multilingual evaluation
-(1.8\%). Counted by \emph{any-occurrence} (papers whose corpus or
-evaluation includes at least one clinical or multilingual benchmark,
-even if not the primary target), the corresponding shares are 3.9\%
-and 2.6\% respectively (Table~\ref{tab:sensitivity}); the additional
-papers in those any-occurrence counts include MIRAGE / MedRAG, Nori
-et al.\ on USMLE, Chang et al.\ on medical red-teaming, Kim et al.\
-on medical hallucination, MGSM, and MM-Eval, none of which positions
-its primary contribution in the clinical or multilingual domain. Two further papers, AgentBench~\cite{liu2023agentbench} and
-AgentBoard~\cite{ma2024agentboard}, target agentic, multi-turn,
-tool-use evaluation (1.8\%), with ToolACE~\cite{liu2024toolace}
-extending this line to function-calling evaluation specifically.
-Safety- and prompt-injection-focused evaluation appears in HouYi
-\cite{liu2023houyi} and the Judge-Vulnerability work of Maloyan et
-al.~\cite{maloyan2025judgevuln}.
-Legal-domain evaluation is represented
-by LegalBench~\cite{guha2023legalbench} and
-LawBench~\cite{fei2023lawbench}; medical-domain evaluation by Nori et
-al.'s GPT-4 USMLE study~\cite{nori2023gpt4medical}, the medical
-red-teaming work of Chang et al.~\cite{chang2025redteamingmed}, and
-the medical hallucination study of Kim et
-al.~\cite{kim2025medicalhallu}. The corpus also includes
-representative work in adjacent settings such as instruction-following
-benchmarks (Zhou et al.~\cite{zhou2023instruction}, IFEval),
-sentiment-style reasoning (Qin et al.~\cite{qin2024chatgpt}), and the
-multimodal evaluation benchmarks MME~\cite{fu2023mme} and
-RH-Bench~\cite{liu2025multimodalhallu}. Foundational reasoning
-benchmarks underpin many of these results: GSM8K~\cite{cobbe2021gsm8k}
-for grade-school math, GSM-Symbolic~\cite{mirzadeh2024gsmsymbolic} for
-robustness to numerical perturbation, MGSM~\cite{shi2022mgsm} for
-multilingual reasoning, and TruthfulQA~\cite{lin2021truthfulqa} for
-truthfulness probing. Code-generation evaluation is represented by
-SWE-bench~\cite{jimenez2023swebench},
-EvalPlus~\cite{liu2023evalplus},
-LiveCodeBench~\cite{jain2024livecodebench}, and Code
-Llama~\cite{roziere2023codellama}; complementary code-prompting work
-includes the secure-code-generation evaluation of He et
-al.~\cite{promptingsecurecode2024} and the CodePromptEval study of
-Khojah et al.~\cite{impactpromptprogramming2024}.
-Long-context evaluation is represented by
-RULER~\cite{hsieh2024ruler}, LongBench~\cite{bai2023longbench}, and
-HELMET~\cite{yen2024helmet}; reward-model and preference evaluation by
-RewardBench~\cite{lambert2024rewardbench} and its updated variant
-RewardBench~2~\cite{malik2025rewardbench2}.
-Beyond these new entries, broader multilingual and clinical
-coverage remains limited under our inclusion criteria. We are
-deliberately careful with this point: an extensive body of
-domain-specific prompting work
-exists in the broader literature, including medical
-QA~\cite{clinicalnlp2024}, clinical note
-processing~\cite{medicalcot2025}, and multilingual
-evaluation~\cite{vatsal2024survey}, and our screening filter
-(Section~\ref{sec:methodology}) excluded papers that used prompting
-as a tool without analyzing the prompting approach itself. The
-finding is therefore best read as: the corpus of papers that propose
-or evaluate \emph{prompt engineering techniques themselves} remains
-strongly concentrated on multi-task benchmarks, with very limited
-coverage of clinical or multilingual settings. The named D2 subcategories
-above (Multi-task, Reasoning, Generation, Code, QA, Clinical,
-Multilingual, Agentic, Legal, and Medical) sum to less than 152
-because additional papers fall into instruction-following,
-multimodal, and reward-model evaluation niches that this analysis
-absorbs under the Multi-task umbrella when no single primary task
-type predominates; full per-paper D2 codings are in the Electronic
-Supplement (Appendix~C).
+Under our inclusion criteria --- which excluded papers that use
+prompting as a tool without analyzing it as the studied object ---
+the corpus remains strongly concentrated on multi-task benchmarks
+with limited clinical or multilingual coverage. Domain-specific
+prompting work exists extensively in the broader
+literature~\cite{clinicalnlp2024, medicalcot2025, vatsal2024survey};
+the relative scarcity here is a property of this corpus under these
+inclusion criteria, not a field-level estimate.
 
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 101 papers (66.4\%). This is the
-largest concentration observed across any single subcategory in the
-entire taxonomy. Pass@$k$, exact match, F1, and accuracy scores are all
-task-specific, and their prevalence closely mirrors the dominance of
-benchmark evaluation in Dimension~1. The two dimensions are mutually
-reinforcing: papers that adopt standard benchmarks naturally follow the
-task-specific metrics those benchmarks prescribe.
-
-LLM-judge metrics appear in 33 papers (21.7\%), essentially the same
-set of papers that use LLM-as-judge evaluation in Dimension~1.
-Liu et al.~\cite{liu2023geval} showed that G-Eval with GPT-4
-achieves stronger alignment with human judgment than BLEU or ROUGE on
-summarization and dialogue tasks, and the field has shifted toward
-LLM-based scoring for open-ended outputs in response.
-
-Hybrid metric approaches appear in 5 papers (3.3\%). Model-based
-metrics such as BERTScore appear in just 2 papers (1.3\%), with the
-recent LLM-based NLG evaluation survey by Li et al.~\cite{li2024leveraging}
-documenting how model-based scoring is gradually shifting toward
-LLM-judge configurations.
-Reference-based metrics (BLEU, ROUGE) serve as the \emph{primary}
-measure in zero papers in the corpus. This is a notable reversal of
-their historical dominance. It does not mean they are absent from the
-literature; it means they are no longer considered sufficient as
-standalone signals, and the field has moved beyond treating them as
-the primary evaluation instrument. The documented gap between lexical
-overlap and human judgment~\cite{repairing2022} made this shift
-quite predictable. The remaining 11 papers (7.2\%) are PE and
-LLM-evaluation surveys, prompt-pattern catalogs, and taxonomy
-papers that review rather than apply a primary metric, so D3 is
-coded NR; together with the four named categories above the
-distribution sums to the 152-paper corpus.
+Task-specific metrics dominate at 101 papers (66.4\%) --- the largest
+single-subcategory concentration in the taxonomy. Pass@$k$, exact
+match, F1, and accuracy are all task-specific; their prevalence
+mirrors the dominance of benchmark evaluation in D1, the two
+dimensions are mutually reinforcing. LLM-judge metrics appear in 33
+papers (21.7\%), essentially the D1=LLM-as-judge set; G-Eval
+\cite{liu2023geval} marked the shift toward LLM-based scoring on
+open-ended outputs. Hybrid metrics appear in 5 papers (3.3\%);
+model-based metrics (BERTScore family) in 2 (1.3\%), with the
+LLM-based NLG-eval survey \cite{li2024leveraging} documenting the
+gradual shift to LLM-judge configurations. Reference-based metrics
+(BLEU, ROUGE) appear as primary measures in zero corpus papers --- a
+reversal of historical dominance that follows the
+lexical-overlap-vs.-human-judgment gap documented by Gehrmann et
+al.~\cite{repairing2022}. The remaining 11 papers (7.2\%) are surveys
+and pattern catalogs where D3 is coded Not-reported.
 
 \subsection{Distribution across Automation Level (Dimension 4)}
 \label{subsec:d4dist}
 
-Fully automated evaluation is the modal configuration. 123 of the 152
-papers (80.9\%) run their assessments without any human involvement
-at any stage of the evaluation loop. Hybrid evaluation, pairing automated
-metrics with human validation on a subset, appears in 15 papers (9.9\%).
-Human-in-loop evaluation, where human judgment is invoked selectively
-on difficult cases, appears in 8 papers (5.3\%). Fully manual
-evaluation accounts for just 6 papers (3.9\%).
-
-This concentration at the automated end is consistent with the cost
-and throughput pressures facing the field. It also has a specific
-reproducibility implication: fully automated pipelines that depend
-on proprietary LLM judges are stable within a run but not necessarily
-across time, since the judge model can change between API versions.
-Feng et al.~\cite{feng2025sage} showed that even the same model can
-produce inconsistent judgments across runs for borderline cases. We
-report this as a structural property of the configuration space
-(addressed under Dimension~7 in Section~\ref{subsec:d7dist}) rather
-than a moral claim about field practice.
+Fully automated evaluation is the modal configuration: 123 papers
+(80.9\%) run assessments without any human involvement at any stage.
+Hybrid (15 papers, 9.9\%), human-in-loop (8, 5.3\%), and fully manual
+(6, 3.9\%) make up the remainder. The concentration at the automated
+end is consistent with cost and throughput pressures and carries a
+specific reproducibility implication addressed under D7: pipelines
+that depend on proprietary judges are stable within-run but not
+necessarily across-time, since the judge can change between API
+versions \cite{feng2025sage}.
 
 \subsection{Distribution across Evaluation Scope (Dimension 5)}
 \label{subsec:d5dist}
 
-Cross-model evaluation is the most frequently used scope at 88 papers
-(57.9\%). More than half the corpus explicitly tests whether findings
-hold across multiple model families rather than a single architecture.
-Studies such as Wang et al.~\cite{wang2023selfconsistency}
-and the BIG-Bench collaboration~\cite{srivastava2022bigbench}
-apply the same prompting technique across several models
-and report the variance in results that emerges.
-
-Cross-domain evaluation appears in 30 papers (19.7\%), concentrated
-primarily in the survey subgroup. Works such as
-Sahoo et al.~\cite{sahoo2024systematic} and
-Chang et al.~\cite{chang2023survey} span multiple task types by
-design. Single-model evaluation appears in 18 papers (11.8\%).
-Cross-dataset evaluation covers 8 papers (5.3\%). The remaining
-papers either report cross-lingual evaluation as a primary
-property (Vatsal and Singh~\cite{vatsal2025multilingual} and Son et
-al.~\cite{son2024mmeval}, 2 papers) or are surveys for which D5 is
-not directly applicable, with the underlying primary studies
-already counted in the other categories. Percentages sum to less
-than 100\% because a small number of multi-scope studies are
-counted under their primary scope only.
-
-The 18 single-model papers deserve particular attention. A prompting
-technique evaluated on one model, typically GPT-4, at one point in
-time on one benchmark produces a claim about performance in exactly
-that configuration and no other.
-Mizrahi et al.~\cite{mizrahi2024state} documented this brittleness
-directly, showing that single-prompt, single-model evaluations
-routinely overstate technique performance relative to multi-prompt
-baselines run on the same model. The implication is that a
-meaningful share of claims in the PE literature are narrower in
-scope than their phrasing in introductions and abstracts suggests.
+Cross-model evaluation is the most frequent scope at 88 papers
+(57.9\%): more than half the corpus tests findings across multiple
+model families. Cross-domain appears in 30 papers (19.7\%),
+concentrated in the survey subgroup (which spans task types by
+design). Single-model evaluation appears in 18 (11.8\%), cross-dataset
+in 8 (5.3\%), and cross-lingual in 2 (\cite{vatsal2025multilingual,
+son2024mmeval}); percentages sum to less than 100\% because some
+multi-scope studies are counted under their primary scope only. The
+18 single-model papers warrant attention: a technique evaluated on
+one model at one point in time on one benchmark produces a claim
+about performance in that configuration alone, and
+Mizrahi et al.~\cite{mizrahi2024state} have documented that such
+evaluations routinely overstate effects relative to multi-prompt
+baselines on the same model.
 
 \subsection{Distribution across Robustness Reporting (Dimension 6)}
 \label{subsec:d6dist}
@@ -2574,17 +2297,13 @@ Sensitivity-bounded & 8.6\% & 13.0\% & 13.6\% & 0.0\% & 0.0\% \\
 \end{tabular}
 \end{table}
 
-The substantive observation is that the sensitivity literature itself
--- Sclar et al.~\cite{sclar2023formatting}, Salinas and
-Morstatter~\cite{butterfly2024}, Razavi et al.~\cite{promptsensitivity2025},
-the multi-prompt evaluation work of Mizrahi et al.~\cite{mizrahi2024state}
-and Polo et al.~\cite{polo2024promptseval} (PromptEval), and the Judge
-Sensitivity work~\cite{bellibatlu2026judgesense} -- documents large
-variances under semantically equivalent paraphrases, yet these
-findings have not propagated into the rest of the evaluation
-literature as a routine reporting requirement. Most
-technique-comparison papers still report a single point estimate
-without paraphrase variance.
+The substantive observation is that the sensitivity literature
+\cite{sclar2023formatting, butterfly2024, promptsensitivity2025,
+mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense} ---
+which documents large paraphrase-induced variance --- has not
+propagated into the rest of the corpus as a routine reporting
+requirement: most technique-comparison papers still report a single
+point estimate without paraphrase variance.
 
 \subsection{Distribution across Reproducibility (Dimension 7)}
 \label{subsec:d7dist}
@@ -2619,20 +2338,63 @@ All three properties & 0.7\% & 3.1\% \\
 \end{table}
 
 The asymmetry to highlight is between the artifact-released share
-(typically high in this literature) and the contamination-checked
-share (typically low). A paper that releases its prompts and seeds
-but does not verify that its test set is uncontaminated has provided
-the artifacts needed to reproduce its scores while leaving open the
-question of what those scores actually measure. The corpus papers
-that do address this gap directly -- Sainz et al.~\cite{sainz2023nlp},
-Deng et al.~\cite{deng2023investigating}, Yang et
-al.~\cite{yang2023rethinking}, and the dynamic benchmark proposal of
-Wang et al.~\cite{wang2024benchmark} -- are concentrated in the
-benchmark-and-dataset paper category. McIntosh et
-al.~\cite{mcintosh2024inadequacies} provide a broader critique of
-current benchmark designs. Reproducibility in the strong sense, that
-is the same scores, same construct, same underlying data conditions,
-requires both artifact release and contamination verification.
+(55.9\%) and the contamination-checked share (8.6\%). A paper that
+releases its prompts and seeds but does not verify test-set cleanness
+has provided the artifacts to reproduce scores while leaving open
+what those scores measure. The papers that address this gap directly
+\cite{sainz2023nlp, deng2023investigating, yang2023rethinking,
+wang2024benchmark, mcintosh2024inadequacies} are concentrated in the
+benchmark-paper category. Strong reproducibility --- same scores,
+same construct, same data conditions --- requires both.
+
+\subsection{Cross-Dimensional Patterns}
+\label{subsec:crossdim}
+
+Reading the per-dimension distributions as a single dataset rather
+than as seven independent slices surfaces four cross-cutting patterns
+that no single dimension table makes visible.
+
+\textit{Reproducibility gaps cluster in benchmark papers, not
+LLM-judge papers.} Of the 41 D7=Not-reported papers, 28 (68.3\%) are
+D1=Benchmark; only 4 are D1=LLM-as-judge / LLM-judge. The LLM-judge
+cluster has the higher artifact-release norm
+(Table~\ref{tab:d7dist}: 65.6\% vs.\ 55.9\% overall) and is also
+where Judge-version-pinning concentrates (15.6\% within the cluster
+vs.\ 3.3\% overall). The narrative that LLM-judge papers are the
+reproducibility laggard does not hold in the corpus; the opposite
+pattern appears.
+
+\textit{Sensitivity reporting concentrates where the technique is
+the studied object, not where the judge is.} 54 of 152 papers
+(35.5\%) report multi-prompt aggregate or sensitivity-bounded
+robustness, but 36 of those (66.7\%) are D1=Benchmark technique
+papers. Only 7 of the 32 LLM-judge papers (21.9\%) report
+sensitivity at all on the judge --- and 12 of the 32 (37.5\%) use a
+single-prompt judge evaluation, including AlpacaEval~2.0
+\cite{dubois2024alpacaeval}, G-Eval \cite{liu2023geval}, and FActScore
+\cite{factscore2023}. The judge's own sensitivity to paraphrase is
+under-tested compared with the techniques it is asked to score.
+
+\textit{Two-thirds of the corpus has neither robustness nor judge
+pinning.} 96 papers (63.2\%) carry both D6 $\in$ \{Not-reported,
+Single-prompt\} and D7 lacking the Judge-version-pinned property.
+These are papers where any cross-paper score comparison rests on
+two simultaneously unverified assumptions: that the technique is
+paraphrase-stable, and that the evaluator (judge or benchmark
+infrastructure) is time-stable. The 63\% figure is not a function
+of paper category; it is distributed across all four categories
+of Table~\ref{tab:comparison}.
+
+\textit{Mode-3 (single-prompt cross-model claim) is endemic.}
+42 papers (27.6\% of the corpus) carry the fingerprint D5=Cross-model
+with D6=Single-prompt that
+Section~\ref{subsec:failuremodes} flags as Failure Mode 3 ---
+including the original chain-of-thought paper~\cite{wei2022chain},
+zero-shot CoT~\cite{kojima2022large}, and many of the
+technique-papers in the corpus. Cross-model generalization claims
+under D6=Single-prompt support a narrower conclusion than their
+phrasing typically suggests; the dimensional coding makes this
+identifiable across more than a quarter of the corpus.
 
 \subsection{Co-occurrence Patterns Across Dimensions}
 \label{subsec:cooccurrence}
@@ -3153,161 +2915,111 @@ mapped to the dimensions of the taxonomy it would affect.
 \subsubsection{Domain-Specific Evaluation Frameworks for PE}
 \label{subsubsec:fd_domain}
 Rigorous evaluation protocols for clinical, legal, and multilingual
-prompt engineering require reference-free metrics calibrated against
-expert annotations, task-specific rubrics vetted by domain
-professionals, and multilingual judge models that are not
-English-dominant. Recent contamination-resistant dynamic
-benchmarks~\cite{wildbench2024} provide one architectural template
-for such frameworks. The clinical evaluation work of Sivarajkumar et
-al.~\cite{sivarajkumar2024empirical}, the GPT-4 USMLE study of Nori
-et al.~\cite{nori2023gpt4medical}, the medical red-teaming of Chang
-et al.~\cite{chang2025redteamingmed}, and the medical hallucination
-study of Kim et al.~\cite{kim2025medicalhallu} occupy this direction
-in our corpus. Legal-domain evaluation is anchored by
-LegalBench~\cite{guha2023legalbench} and
-LawBench~\cite{fei2023lawbench}. Retrieval-augmented evaluation for
-domain-specific deployment is operationalized by
-MedRAG~\cite{xiong2024medrag}, ARES~\cite{saadfalcon2023ares}, and
-RGB~\cite{chen2023rgb}; the broader RAG evaluation methodology is
-surveyed by Yu et al.~\cite{yu2024ragsurvey} and Zhao et
-al.~\cite{zhao2024aigcrag}.
+PE require reference-free metrics calibrated against expert
+annotations, task-specific rubrics vetted by domain professionals,
+and multilingual judge models that are not English-dominant.
+Contamination-resistant dynamic benchmarks~\cite{wildbench2024}
+provide one architectural template. Clinical evaluation
+\cite{sivarajkumar2024empirical, nori2023gpt4medical,
+chang2025redteamingmed, kim2025medicalhallu}, legal evaluation
+\cite{guha2023legalbench, fei2023lawbench}, and RAG-based
+domain-specific evaluation \cite{xiong2024medrag, saadfalcon2023ares,
+chen2023rgb, yu2024ragsurvey, zhao2024aigcrag} occupy this direction
+in the corpus.
 
 \subsubsection{A Shared LLM-Judge Calibration Standard}
 \label{subsubsec:fd_calibration}
-Any study reporting LLM-as-judge scores should conduct a calibration
-experiment against a held-out human-annotated sample on the specific
-task, and disclose the judge model identity, prompt template, and
-calibration outcome alongside its primary results. The alternative
-annotator test~\cite{alternativeannotator2025} offers a principled
-statistical foundation that the PE community could adopt as a
-minimum bar. Verga et al.~\cite{verga2024replacing} (PoLL) and the
-ScaleEval framework of Chern et al.~\cite{chern2024scaleeval}
-provide concrete architectural patterns. The broader calibration
-literature is consolidated in the survey of Geng et
-al.~\cite{geng2023calibration} and the empirical confidence-elicitation
-study of Xiong et al.~\cite{xiong2023uncertainty}; the
-calibration-gap finding of Steyvers et
-al.~\cite{steyvers2024calibgap} in \emph{Nature Machine Intelligence}
-provides direct evidence that users systematically overestimate LLM
-confidence even when models are themselves well-calibrated, which
-strengthens the case for required disclosure of judge calibration
-metadata.
+Studies reporting LLM-as-judge scores would benefit from a
+calibration experiment against a held-out human-annotated sample on
+the specific task, with disclosure of judge model identity, prompt
+template, and calibration outcome. The alternative annotator
+test~\cite{alternativeannotator2025} offers a principled statistical
+foundation; PoLL~\cite{verga2024replacing} and
+ScaleEval~\cite{chern2024scaleeval} provide architectural patterns.
+The broader calibration literature
+\cite{geng2023calibration, xiong2023uncertainty, steyvers2024calibgap}
+documents that users systematically overestimate LLM confidence even
+when models are well-calibrated, which strengthens the case for
+required calibration-metadata disclosure.
 
 \subsubsection{Cross-Model, Cross-Dataset, and Cross-Paraphrase Scope as a Minimum Bar}
 \label{subsubsec:fd_scope}
-Single-model, single-prompt results should be treated as exploratory
-and hypothesis-generating. Papers proposing new prompting techniques
-should be expected to demonstrate consistent performance across at
-least two model families, at least two benchmarks within the target
-task type, and at least two paraphrases of the prompt before
-advancing generalizability claims~\cite{mizrahi2024state,
-sclar2023formatting, promptsensitivity2025, butterfly2024}.
+Single-model, single-prompt results would be more usefully read as
+exploratory than as generalizable. Demonstrating consistent
+performance across at least two model families, two benchmarks
+within the target task type, and two prompt paraphrases would close
+much of the gap between phrasing and supportable claim
+\cite{mizrahi2024state, sclar2023formatting, promptsensitivity2025,
+butterfly2024}.
 
 \subsubsection{Robustness as a First-Class Evaluation Dimension}
 \label{subsubsec:fd_robustness}
-The sensitivity literature has established that paraphrase-induced
-variance is often large enough to reverse study conclusions, and the
-Judge Sensitivity Score (JSS) work of Bellibatlu et
-al.~\cite{bellibatlu2026judgesense} extends this concern to the
-evaluation infrastructure itself. JSS is defined as the share of
-hand-validated paraphrase pairs on which a judge returns the same
-verdict, with companion metrics of flip rate, Cohen's $\kappa$, and
-bootstrap 95\% confidence intervals; the released benchmark contains
-500 paraphrase pairs across four evaluation tasks (factuality,
-coherence, relevance, preference) and is reported for 13 judge
-models. The empirical result that model scale fails to predict
-consistency on this benchmark is the kind of finding the field
-currently lacks the conventions to report. Reporting sensitivity
-bounds alongside point estimates, that is the distinction between
-D6 = Single-prompt and D6 = Sensitivity-bounded in our taxonomy, is
-a practical change that does not require new theory. The PromptEval
-framework of Polo et al.~\cite{polo2024promptseval} is a companion
-example of how such sensitivity-bounded evaluation can be made
-budget-efficient for the task-solver side of the same problem.
+The sensitivity literature has documented paraphrase-induced variance
+large enough to reverse study conclusions; the JSS work of Bellibatlu
+et al.~\cite{bellibatlu2026judgesense} extends the concern to the
+judge itself with a 500-pair benchmark across four evaluation tasks
+on 13 judge models. Their finding that scale fails to predict judge
+consistency is the kind of result the corpus currently lacks
+conventions to report. Reporting sensitivity bounds alongside point
+estimates (the D6=Single-prompt vs.\ D6=Sensitivity-bounded
+distinction) is a practical change; PromptEval~\cite{polo2024promptseval}
+shows how to make such reporting budget-efficient on the task-solver
+side.
 
 \subsubsection{Multimodal and Agentic PE Evaluation Frameworks}
 \label{subsubsec:fd_multimodal}
 \label{subsec:multimodal}
-Evaluation frameworks for multimodal prompting (image + text, audio
-+ text) and for multi-step agentic pipelines do not map cleanly
-onto any of the three archetypes identified in
-Section~\ref{sec:comparison}. D2 (Task Scope) has been extended in
-this work to include explicit Agentic and Multimodal subcategories
-(Section~\ref{subsec:d2}), but the D1 / D3 / D4 configurations that
-dominate Archetype~A were designed for single-turn, text-only
-settings and do not transfer cleanly. Examples in the corpus include
-the MME multimodal benchmark of Fu et al.~\cite{fu2023mme} and the
-$\tau$-bench tool-agent benchmark of Yao
-et al.~\cite{yao2024taubench}. As agentic systems become primary
-PE deployment contexts, evaluation frameworks that address multi-step
-task completion, tool use, and inter-agent consistency will need
-companion D1, D3, and D6 conventions; we view this as a near-term
-direction rather than a closed problem.
+Multimodal prompting (image+text, audio+text) and multi-step agentic
+pipelines do not map cleanly onto the three archetypes. D2 has been
+extended to include Agentic and Multimodal subcategories
+(§\ref{subsec:d2}), but the D1/D3/D4 configurations dominating
+Archetype~A were designed for single-turn text-only settings.
+MME~\cite{fu2023mme} and $\tau$-bench~\cite{yao2024taubench} are
+representative corpus instances; as agentic systems become primary
+PE deployment contexts, companion D1, D3, and D6 conventions for
+multi-step task completion, tool use, and inter-agent consistency
+remain a near-term direction.
 
 \subsubsection{Standardized Evaluation Reporting Templates}
 \label{subsubsec:fd_reporting}
-Even without changing evaluation methods, a community-endorsed
-minimum-bar reporting template, analogous to the CONSORT checklist
-in clinical trials~\cite{raji2021ai} or the NLG evaluation reporting
-norms of Gehrmann et al.~\cite{repairing2022}, would make existing
-results comparable without requiring methodological consensus. The
-evaluation design checklist in the Electronic Supplement (Appendix~A) is one
-version of such a template, designed to surface the seven taxonomy
-decisions before evaluation begins. The direction for the field is
-for a venue-endorsed version to be adopted at major NLP and AI
-conferences as a submission requirement alongside reporting of
-hardware, model version, and random seeds.
+A community-endorsed minimum-bar reporting template --- analogous to
+CONSORT~\cite{raji2021ai} or the NLG-eval norms of Gehrmann et
+al.~\cite{repairing2022} --- would make existing results comparable
+without methodological consensus. The Electronic Supplement
+Appendix~A checklist is one such template; a venue-endorsed version
+adopted at major NLP/AI conferences alongside hardware, model-version,
+and seed reporting would be the natural next step.
 
 \subsubsection{Safety, Bias, and Adversarial Robustness Evaluation}
 \label{subsubsec:fd_safety}
-Evaluation frameworks for prompt engineering have largely treated
-safety and bias as concerns adjacent to the core task-completion
-question rather than as first-class evaluation dimensions. The
-jailbreak literature -- Wei et al.~\cite{wei2023jailbroken} on safety
-failure modes, GPTFuzzer~\cite{yu2023gptfuzzer},
-RED-EVAL~\cite{bhardwaj2023redeval}, Huang et al.\ on catastrophic
-jailbreak via generation-strategy attacks~\cite{huang2023catastrophic},
-the Constitutional Classifiers defense of Sharma et
-al.~\cite{sharma2025constitutional}, and the Yi et al.\ attack-defense
-survey~\cite{yi2024jailbreaksurvey} -- consistently shows that
-deployed LLMs remain vulnerable to adversarial prompting even after
-extensive safety training. The bias and fairness literature, surveyed
-by Gallegos et al.~\cite{gallegos2023bias} and operationalized by
-ROBBIE~\cite{esiobu2023robbie}, makes a parallel argument for
-demographic robustness. A PE evaluation framework that omits these
-dimensions over-states the deployment-readiness of any technique it
-endorses. The direction for the field is for evaluation reports of
-new prompting techniques to include at minimum a structured
-adversarial-robustness probe and a demographic-bias measurement
-alongside the main accuracy claims.
+PE evaluation frameworks have largely treated safety and bias as
+adjacent to task completion rather than as first-class evaluation
+dimensions. The jailbreak literature
+\cite{wei2023jailbroken, yu2023gptfuzzer, bhardwaj2023redeval,
+huang2023catastrophic, sharma2025constitutional, yi2024jailbreaksurvey}
+shows that deployed LLMs remain vulnerable to adversarial prompting
+after safety training; the bias and fairness literature
+\cite{gallegos2023bias, esiobu2023robbie} makes a parallel argument
+for demographic robustness. Evaluation reports of new prompting
+techniques would benefit from a structured adversarial-robustness
+probe and a demographic-bias measurement alongside accuracy claims.
 
 \subsubsection{Evaluation Frameworks for Reasoning-First Models}
 \label{subsubsec:fd_reasoning}
-The emergence of reasoning-first models---o1, o3, and DeepSeek-R1---
-challenges several baseline assumptions embedded in the taxonomy. For
-D1 (Evaluation Method), the unit of analysis shifts: the prompt is no
-longer the sole vehicle for reasoning, because the model's internal
-chain-of-thought is generated autonomously before any answer is
-committed. Benchmark-based evaluation (D1=Benchmark) therefore
-measures end-to-end accuracy but cannot attribute performance to
-prompt design versus internal deliberation, weakening the construct
-validity of prompt-engineering claims. For D3 (Metric Type), the
-faithfulness of the exposed reasoning trace to the actual computation
-is itself an open measurement problem; task-specific metrics applied
-to the final answer may conceal trace-level errors that peer
-review-quality evaluation should surface. For D6 (Robustness), the
-within-prompt stochasticity from internal chain-of-thought sampling
-adds a new variance source that is invisible to single-prompt
-reporting: semantically identical prompts can elicit different
-reasoning paths and different answers across invocations even at
-temperature zero. Evaluation frameworks designed for instruction-tuned
-models do not account for this variance source, and the robustness
-coding conventions in D6 require extension to cover trace-level
-stability. A priority for the next survey cycle is to capture the
-emerging literature on evaluating reasoning-first models and to
-determine whether the D1/D3/D6 distinctions require new subcategories
-or whether existing codes can accommodate them with updated
-operational definitions.
+Reasoning-first models (o1, o3, DeepSeek-R1) challenge three
+baseline assumptions. For D1, the prompt is no longer the sole
+reasoning vehicle: internal chain-of-thought is generated
+autonomously before the answer, so benchmark accuracy cannot
+attribute performance to prompt design versus internal deliberation.
+For D3, the faithfulness of the exposed reasoning trace to the
+actual computation is an open measurement problem; task-specific
+metrics on the final answer may conceal trace-level errors. For D6,
+within-prompt stochasticity from internal CoT sampling adds a
+variance source invisible to single-prompt reporting: identical
+prompts can elicit different reasoning paths and different answers
+across invocations even at temperature zero. Whether D1/D3/D6
+require new subcategories or can accommodate these with updated
+operational definitions is a priority for the next survey cycle.
 
 \subsection{Using This Taxonomy in Citing Work}
 \label{subsec:using}
@@ -3365,18 +3077,22 @@ follows from doing so.
 Two underlying tensions from measurement theory organize the
 configuration space: construct validity vs.\ measurement reliability,
 and reference-anchored vs.\ judgment-anchored evaluation. Seven
-dimensions -- evaluation method, task scope, metric type, automation
-level, evaluation scope, robustness, and reproducibility and
-contamination resistance -- give those tensions operational form.
-Applied to a PRISMA 2020 systematic review of 152 papers
-(Section~\ref{sec:methodology}, Figure~\ref{fig:prisma},
-Table~\ref{tab:expansion_rounds}), the taxonomy produces three
-findings beyond per-dimension frequency counts: the corpus resolves into three recurring evaluation
-\textit{archetypes} -- Benchmark-Automation (Archetype~A, 65.7\%), Judge-Mediated (Archetype~B, 17.2\%), and Expert-Anchored (Archetype~C, 9.2\%), with 7.9\% of papers in mixed configurations -- occupying loosely defined regions of the
-validity-reliability space; co-occurrence patterns make the
-boundaries between archetypes legible; and a catalog of failure
-modes shows where current configurations do not support the
-contribution claims they accompany.
+dimensions (D1--D7) give those tensions operational form. Applied
+to a PRISMA 2020 systematic review of 152 papers
+(Section~\ref{sec:methodology}), the taxonomy produces four findings
+beyond per-dimension frequency counts: the corpus resolves into three
+recurring evaluation \textit{archetypes} --- Benchmark-Automation
+(65.7\%, 95\% CI [57.9\%, 73.0\%]), Judge-Mediated (17.2\%
+[11.2\%, 23.7\%]), Expert-Anchored (9.2\% [4.6\%, 13.8\%]), with
+7.9\% in mixed configurations; the three-archetype labelling has
+silhouette 0.398 against a random-baseline 0.04 (§\ref{subsubsec:clustervalidation}),
+indicating the structure is real rather than imposed; Cram\'er's $V$
+across all dimension pairs documents the dependency graph that
+generates the archetypes (D1--D3 = 0.702;
+§\ref{subsubsec:cramerv}); and a failure-mode catalog with named
+corpus exemplars (§\ref{subsec:failuremodes}) shows where
+configurations do not fully support the contribution claims they
+accompany.
 
 Three open problems follow directly. Tasks without ground-truth
 answers still lack calibrated reference-free metrics. The LLM-as-judge
