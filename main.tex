@@ -1767,10 +1767,10 @@ averaged across 1{,}000 perturbation runs each.
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
 Benchmark-based evaluation share & 72.4\% & $\pm$1.5 / $\pm$3.0 pp \\
-Fully automated evaluation share & 80.9\% & $\pm$1.2 / $\pm$2.5 pp \\
-Task-specific metric share & 66.4\% & $\pm$1.8 / $\pm$3.4 pp \\
-Clinical task representation & 3.9\% & $\pm$0.5 / $\pm$1.1 pp \\
-Multilingual task representation & 2.6\% & $\pm$0.5 / $\pm$1.0 pp \\
+Fully automated evaluation share & 81.6\% & $\pm$1.2 / $\pm$2.5 pp \\
+Task-specific metric share & 67.8\% & $\pm$1.8 / $\pm$3.4 pp \\
+Clinical task representation & 3.3\% & $\pm$0.5 / $\pm$1.1 pp \\
+Multilingual task representation & 2.0\% & $\pm$0.5 / $\pm$1.0 pp \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2035,23 +2035,23 @@ construct-validity guarantees that human evaluation provides
 \subsection{Distribution across Task Scope (Dimension 2)}
 \label{subsec:d2dist}
 
-Multi-task or cross-task evaluations account for 89 papers (58.6\%):
+Multi-task or cross-task evaluations account for 94 papers (61.8\%):
 more than half the corpus does not assess techniques on a specific
 task type, instead aggregating across benchmarks. The pattern is
 partly an artefact of how survey and taxonomy papers classify, but
 also reflects a genuine tendency to report MMLU / BIG-Bench averages
 without per-task disaggregation. Reasoning is the largest
-task-specific subgroup at 18 papers (11.8\%), reflecting
+task-specific subgroup at 14 papers (9.2\%), reflecting
 chain-of-thought's origin on arithmetic and symbolic benchmarks
 \cite{wei2022chain}; faithfulness-focused work in this subgroup
 \cite{lanham2023faithfulness, chen2025reasoningmodels} treats the
 reasoning chain itself as the evaluation target. Generation appears
-in 10 papers (6.6\%), code in 12 (7.9\%), QA in 8 (5.3\%).
+in 10 papers (6.6\%), code in 12 (7.9\%), QA in 10 (6.6\%),
+and agentic task evaluation in 4 (2.6\%).
 
-Clinical (primary target: 1 paper, 0.7\%) and multilingual (primary:
-2 papers, 1.3\%) are small populations by primary coding; by
-any-occurrence they rise to 3.9\% and 2.6\% respectively
-(Table~\ref{tab:sensitivity}). The full per-paper breakdown is in
+Clinical (5 papers, 3.3\%) and multilingual (3 papers, 2.0\%) are
+small populations; Table~\ref{tab:sensitivity} reports
+perturbation-stability bounds for both categories. The full per-paper breakdown is in
 the Electronic Supplement (Appendix~C). Under our inclusion criteria
 --- which excluded papers that use prompting as a tool without
 analyzing it as the studied object --- the corpus is strongly
@@ -2063,30 +2063,30 @@ vatsal2024survey}.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 101 papers (66.4\%) --- the largest
+Task-specific metrics dominate at 103 papers (67.8\%) --- the largest
 single-subcategory concentration in the taxonomy. Pass@$k$, exact
 match, F1, and accuracy are all task-specific; their prevalence
 mirrors the dominance of benchmark evaluation in D1, the two
-dimensions are mutually reinforcing. LLM-judge metrics appear in 33
-papers (21.7\%), essentially the D1=LLM-as-judge set; G-Eval
+dimensions are mutually reinforcing. LLM-judge metrics appear in 31
+papers (20.4\%), essentially the D1=LLM-as-judge set; G-Eval
 \cite{liu2023geval} marked the shift toward LLM-based scoring on
-open-ended outputs. Hybrid metrics appear in 5 papers (3.3\%);
+open-ended outputs. Hybrid metrics appear in 16 papers (10.5\%), combining automated
+scoring with judge-based assessment across multiple axes;
 model-based metrics (BERTScore family) in 2 (1.3\%), with the
 LLM-based NLG-eval survey \cite{li2024leveraging} documenting the
 gradual shift to LLM-judge configurations. Reference-based metrics
 (BLEU, ROUGE) appear as primary measures in zero corpus papers --- a
 reversal of historical dominance that follows the
 lexical-overlap-vs.-human-judgment gap documented by Gehrmann et
-al.~\cite{repairing2022}. The remaining 11 papers (7.2\%) are surveys
-and pattern catalogs where D3 is coded Not-reported.
+al.~\cite{repairing2022}.
 
 \subsection{Distribution across Automation Level (Dimension 4)}
 \label{subsec:d4dist}
 
-Fully automated evaluation is the modal configuration: 123 papers
-(80.9\%) run assessments without any human involvement at any stage.
-Hybrid (15 papers, 9.9\%), human-in-loop (8, 5.3\%), and fully manual
-(6, 3.9\%) make up the remainder. The concentration at the automated
+Fully automated evaluation is the modal configuration: 124 papers
+(81.6\%) run assessments without any human involvement at any stage.
+Hybrid (19 papers, 12.5\%), fully manual (5, 3.3\%), and human-in-loop
+(4, 2.6\%) make up the remainder. The concentration at the automated
 end is consistent with cost and throughput pressures and carries a
 specific reproducibility implication addressed under D7: pipelines
 that depend on proprietary judges are stable within-run but not
@@ -2259,7 +2259,7 @@ the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
 available in the machine-readable dataset.
-\textit{Takeaway:} The strongest co-occurrence (D1=LLM-as-Judge \& D3=LLM-judge at 19.7\%) is consistent with evaluation-method choice cascading through metric choice; the taxonomy dimensions are therefore informative about one another --- knowing D1 substantially narrows the likely values of D3, D4, and D7 in this corpus.}
+\textit{Takeaway:} The strongest co-occurrences involve the Benchmark method (D1=Benchmark \& D3=Task-specific at 66.4\%; D1=Benchmark \& D4=Automated at 66.4\%), confirming that benchmark adoption bundles metric and automation choices together; the D1=LLM-as-Judge \& D3=LLM-judge link (19.7\%) shows the same cascade for the judge-mediated archetype.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2267,12 +2267,12 @@ available in the machine-readable dataset.
 \toprule
 \textbf{Property A} & \textbf{Property B} & \textbf{Co-occurrence} \\
 \midrule
-D1 = Benchmark & D3 = Task-specific & 64.5\% \\
+D1 = Benchmark & D3 = Task-specific & 66.4\% \\
 D1 = LLM-as-Judge & D3 = LLM-judge & 19.7\% \\
-D1 = Benchmark & D4 = Automated & 62.5\% \\
-D5 = Single-model & D6 = Single-prompt & 7.9\% \\
+D1 = Benchmark & D4 = Automated & 66.4\% \\
+D5 = Single-model & D6 = Single-prompt & 8.6\% \\
 D1 = LLM-as-Judge & D7 = Judge-version-pinned & 3.3\% \\
-D2 = Reasoning & D3 = Task-specific & 11.8\% \\
+D2 = Reasoning & D3 = Task-specific & 9.2\% \\
 D2 = Generation & D3 = LLM-judge & 4.6\% \\
 \bottomrule
 \end{tabular}
