@@ -1975,17 +1975,20 @@ non-trivial reporting share in this category. \\
 \end{tabular}
 \end{table}
 
-The five-row category aggregation foregrounds two patterns that the
-full per-paper enumeration obscured by repetition. First, the dimensional
-profile is largely set by paper category: technique papers, benchmark
-papers, and surveys converge on Archetype A (Benchmark-Automation),
-while LLM-judge papers converge on Archetype B, and sensitivity
-papers cluster around higher D6 reporting. Second, the per-category
-modal configuration is informative \emph{because} of the within-category
-variations noted in the right-hand column - each variation is a
-candidate failure-mode example
-(Section~\ref{subsec:failuremodes}) or a methodological development
-worth highlighting in the discussion
+Table~\ref{tab:comparison} foregrounds two patterns. First, the dimensional
+profile varies by paper category: technique papers (N=27), benchmark
+papers (N=44), and surveys (N=22) converge on Archetype~A
+(Benchmark-Automation), while LLM-judge papers (N=32) converge on
+Archetype~B, and sensitivity papers (N=27) show elevated D6 reporting
+(as noted in the final row of Table~\ref{tab:comparison}).
+These observations are grounded in the modal subcategories reported
+in Table~\ref{tab:comparison}; paper-category assignments for all
+152 papers are included in the review-time dataset.
+Second, the per-category modal configuration is informative
+\emph{because} of the within-category variations noted in the
+right-hand column --- each variation is a candidate failure-mode
+example (Section~\ref{subsec:failuremodes}) or a methodological
+development worth highlighting in the discussion
 (Section~\ref{sec:discussion}).
 
 %% The full 152-paper machine-readable coding (all 7 dimensions) is
@@ -2124,8 +2127,8 @@ Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.
 setting (41.4\%), confirming that most papers still report a single
 point estimate without paraphrase variance; multi-prompt aggregate
 and sensitivity-bounded together account for 35.5\% of the corpus, a
-share concentrated in LLM-judge and sensitivity papers
-(Section~\ref{subsec:crossdim}).}
+share elevated among papers with D1=LLM-as-Judge (50.0\% of that
+subgroup; see Section~\ref{subsec:crossdim}).}
 \label{tab:d6dist}
 \centering
 \footnotesize
@@ -2227,9 +2230,9 @@ Single-prompt\} and D7 lacking the Judge-version-pinned property.
 These are papers where any cross-paper score comparison rests on
 two simultaneously unverified assumptions: that the technique is
 paraphrase-stable, and that the evaluator (judge or benchmark
-infrastructure) is time-stable. The 63\% figure is not a function
-of paper category; it is distributed across all four categories
-of Table~\ref{tab:comparison}.
+infrastructure) is time-stable. The 63\% figure is directly verifiable from \texttt{corpus\_d1d7.csv}
+by intersecting D6 $\in$ \{Not-reported, Single-prompt\} with
+D7 $\notin$ \{Judge-version-pinned\}.
 
 \textit{Mode-3 (single-prompt cross-model claim) is endemic.}
 42 papers (27.6\% of the corpus) carry the fingerprint D5=Cross-model
