@@ -1765,7 +1765,7 @@ averaged across 1{,}000 perturbation runs each.
 \toprule
 \textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
 \midrule
-Benchmark-based evaluation share & 69.7\% & $\pm$1.5 / $\pm$3.0 pp \\
+Benchmark-based evaluation share & 72.4\% & $\pm$1.5 / $\pm$3.0 pp \\
 Fully automated evaluation share & 80.9\% & $\pm$1.2 / $\pm$2.5 pp \\
 Task-specific metric share & 66.4\% & $\pm$1.8 / $\pm$3.4 pp \\
 Clinical task representation & 3.9\% & $\pm$0.5 / $\pm$1.1 pp \\
@@ -1998,7 +1998,7 @@ worth highlighting in the discussion
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
 
-Benchmark-based evaluation accounts for 106 papers (69.7\%),
+Benchmark-based evaluation accounts for 110 papers (72.4\%),
 establishing it as the default across every subgroup, including the
 foundation-model technical reports for GPT-4~\cite{achiam2023gpt4},
 LLaMA~\cite{touvron2023llama, touvron2023llama2}, and
@@ -2007,7 +2007,7 @@ cross-lab comparable, and inexpensive at scale; what they cannot
 capture is output quality on open-ended tasks without a single
 correct answer.
 
-LLM-as-judge evaluation appears in 32 papers (21.1\%), concentrated
+LLM-as-judge evaluation appears in 30 papers (19.7\%), concentrated
 in open-ended generation and instruction-following subgroups
 (MT-Bench~\cite{zheng2023judging},
 AlpacaEval~\cite{dubois2024alpacaeval}, G-Eval~\cite{liu2023geval}).
@@ -2021,10 +2021,10 @@ judgingjudges2024, judgebench2024}, and hallucination-detection
 applications~\cite{akbar2024hallumeasure}. Adoption has outpaced
 calibration research.
 
-Human evaluation appears in 16 papers (10.5\%), ablation studies in
+Human evaluation appears in 14 papers (9.2\%), ablation studies in
 2 (1.3\%); no corpus paper uses a user study as primary method. Four
 papers~\cite{llmvshuman2024, alternativeannotator2025, humansorllm2024,
-canlllmsreplace2023} are coded under both D1=LLM-judge and D1=Human,
+canlllmsreplace2023} are coded under both D1=LLM-as-Judge and D1=Human,
 so subcategory counts sum to 156 rather than 152; headline frequencies
 use the 152-paper denominator. The overall distribution favours
 configurations that maximize reliability and scale over
@@ -2157,9 +2157,9 @@ Table~\ref{tab:d7dist} shows the D7 distribution
 \caption{Distribution of reproducibility properties (D7) across the
 corpus ($N$=152). Each row is a binary property; columns are the
 share of papers satisfying that property for all papers and for the
-32 LLM-judge and metric-quality papers specifically.
+30 LLM-judge and metric-quality papers specifically.
 Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
-\textit{Takeaway:} Artifact release is approaching a majority norm (55.9\%) but contamination checking (8.6\%) and judge-version pinning (3.3\%) remain rare -- a reproducibility gap that will compound as LLM-as-judge usage grows and model versions diverge from those used at publication time.}
+\textit{Takeaway:} Artifact release is a clear majority norm (70.4\%) but contamination checking (3.9\%) and judge-version pinning (3.3\%) remain rare -- a reproducibility gap that will compound as LLM-as-judge usage grows and model versions diverge from those used at publication time.}
 \label{tab:d7dist}
 \centering
 \footnotesize
@@ -2167,16 +2167,16 @@ Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
 \toprule
 \textbf{D7 property} & \textbf{Share (all)} & \textbf{Among LLM-judge papers only} \\
 \midrule
-Artifact-released & 55.9\% & 65.6\% \\
-Contamination-checked & 8.6\% & 6.3\% \\
-Judge-version-pinned (where applicable) & 3.3\% & 15.6\% \\
-All three properties & 0.7\% & 3.1\% \\
+Artifact-released & 70.4\% & 86.7\% \\
+Contamination-checked & 3.9\% & 3.3\% \\
+Judge-version-pinned (where applicable) & 3.3\% & 16.7\% \\
+All three properties & 0.0\% & 0.0\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The asymmetry to highlight is between the artifact-released share
-(55.9\%) and the contamination-checked share (8.6\%). A paper that
+(70.4\%) and the contamination-checked share (3.9\%). A paper that
 releases its prompts and seeds but does not verify test-set cleanness
 has provided the artifacts to reproduce scores while leaving open
 what those scores measure. The papers that address this gap directly
@@ -2193,25 +2193,28 @@ than as seven independent slices surfaces four cross-cutting patterns
 that no single dimension table makes visible.
 
 \textit{Reproducibility gaps cluster in benchmark papers, not
-LLM-judge papers.} Of the 41 D7=Not-reported papers, 28 (68.3\%) are
-D1=Benchmark; only 4 are D1=LLM-as-judge / LLM-judge. The LLM-judge
+LLM-judge papers.} Of the 42 D7=Not-reported papers, 28 (66.7\%) are
+D1=Benchmark; only 4 are D1=LLM-as-Judge. The LLM-judge
 cluster has the higher artifact-release norm
-(Table~\ref{tab:d7dist}: 65.6\% vs.\ 55.9\% overall) and is also
-where Judge-version-pinning concentrates (15.6\% within the cluster
+(Table~\ref{tab:d7dist}: 86.7\% vs.\ 70.4\% overall) and is also
+where Judge-version-pinning concentrates (16.7\% within the cluster
 vs.\ 3.3\% overall). The narrative that LLM-judge papers are the
 reproducibility laggard does not hold in the corpus; the opposite
 pattern appears.
 
-\textit{Sensitivity reporting concentrates where the technique is
-the studied object, not where the judge is.} 54 of 152 papers
-(35.5\%) report multi-prompt aggregate or sensitivity-bounded
-robustness, but 36 of those (66.7\%) are D1=Benchmark technique
-papers. Only 7 of the 32 LLM-judge papers (21.9\%) report
-sensitivity at all on the judge --- and 12 of the 32 (37.5\%) use a
+\textit{LLM-judge papers report multi-prompt sensitivity at
+above-average rates.} 54 of 152 papers (35.5\%) report multi-prompt
+aggregate or sensitivity-bounded robustness; 36 of those (66.7\%) are
+D1=Benchmark technique papers. However, 15 of the 30 LLM-judge papers
+(50.0\%) report multi-prompt or sensitivity-bounded robustness for the
+judge itself --- above the corpus-wide rate (35.5\%) --- reflecting
+that the expansion-round papers in this cluster are predominantly
+judge-quality and bias studies that specifically employ multi-prompt
+evaluation designs. Nonetheless, 12 of the 30 (40.0\%) still use a
 single-prompt judge evaluation, including AlpacaEval~2.0
 \cite{dubois2024alpacaeval}, G-Eval \cite{liu2023geval}, and FActScore
-\cite{factscore2023}. The judge's own sensitivity to paraphrase is
-under-tested compared with the techniques it is asked to score.
+\cite{factscore2023}; the single-prompt practice persists in deployed
+systems even as the reliability literature matures.
 
 \textit{Two-thirds of the corpus has neither robustness nor judge
 pinning.} 96 papers (63.2\%) carry both D6 $\in$ \{Not-reported,
@@ -2252,7 +2255,7 @@ the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
 available in the machine-readable dataset.
-\textit{Takeaway:} The strongest co-occurrence (D1=LLM-judge \& D3=LLM-judge at 21.1\%) is consistent with evaluation-method choice cascading through metric choice; the taxonomy dimensions are therefore informative about one another --- knowing D1 substantially narrows the likely values of D3, D4, and D7 in this corpus.}
+\textit{Takeaway:} The strongest co-occurrence (D1=LLM-as-Judge \& D3=LLM-judge at 19.7\%) is consistent with evaluation-method choice cascading through metric choice; the taxonomy dimensions are therefore informative about one another --- knowing D1 substantially narrows the likely values of D3, D4, and D7 in this corpus.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2261,10 +2264,10 @@ available in the machine-readable dataset.
 \textbf{Property A} & \textbf{Property B} & \textbf{Co-occurrence} \\
 \midrule
 D1 = Benchmark & D3 = Task-specific & 64.5\% \\
-D1 = LLM-judge & D3 = LLM-judge & 21.1\% \\
+D1 = LLM-as-Judge & D3 = LLM-judge & 19.7\% \\
 D1 = Benchmark & D4 = Automated & 62.5\% \\
 D5 = Single-model & D6 = Single-prompt & 7.9\% \\
-D1 = LLM-judge & D7 = Judge-version-pinned & 3.3\% \\
+D1 = LLM-as-Judge & D7 = Judge-version-pinned & 3.3\% \\
 D2 = Reasoning & D3 = Task-specific & 11.8\% \\
 D2 = Generation & D3 = LLM-judge & 4.6\% \\
 \bottomrule
@@ -2505,7 +2508,7 @@ unrecorded. The Judge-Sensitivity work of
 Bellibaltu et al.~\cite{bellibatlu2026judgesense} and SAGE~\cite{feng2025sage}
 quantify that drift directly; among the LLM-judge papers in the
 corpus, only the 5 papers coded D7 = Judge-version-pinned
-(Table~\ref{tab:d7dist}; 3.3\% overall, 15.6\% of LLM-judge papers)
+(Table~\ref{tab:d7dist}; 3.3\% overall, 16.7\% of LLM-judge papers)
 document the judge snapshot in a way that supports across-time
 reproducibility.
 
@@ -2616,7 +2619,7 @@ B. When no gold reference exists, scoring must delegate to a judgment
 --- human, expert panel, or LLM --- and the failure modes change:
 reference-anchored evaluation fails on under-determined references
 and contamination; judgment-anchored evaluation fails on judge bias,
-judge-version drift, and missing calibration. The 32 LLM-judge papers
+judge-version drift, and missing calibration. The 30 LLM-judge papers
 in the corpus draw from at least six distinct judge configurations
 (different judge models, prompt templates, scoring rubrics,
 tie-handling protocols), and few report a calibration experiment
