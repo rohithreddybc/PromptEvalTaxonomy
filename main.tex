@@ -2213,10 +2213,10 @@ infrastructure) is time-stable. The 63\% figure is directly verifiable from \tex
 by intersecting D6 $\in$ \{Not-reported, Single-prompt\} with
 D7 $\notin$ \{Judge-version-pinned\}.
 
-\textit{Mode-3 (single-prompt cross-model claim) is endemic.}
+\textit{FM3 (Single-Phrasing Generalization) is endemic.}
 42 papers (27.6\% of the corpus) carry the fingerprint D5=Cross-model
-with D6=Single-prompt that
-Section~\ref{subsec:failuremodes} flags as Failure Mode 3,
+with D6=Single-prompt that Section~\ref{subsec:failuremodes} flags
+as FM3,
 including the original chain-of-thought paper~\cite{wei2022chain},
 zero-shot CoT~\cite{kojima2022large}, and many of the
 technique-papers in the corpus. Cross-model generalization claims
@@ -2452,9 +2452,10 @@ them are not merely imposed by the rule-based labels.
 
 Beyond the distributional patterns, the seven-dimensional coding
 identifies specific cases in which a paper's evaluation configuration
-does not fully support its contribution claim. We name three
-failure modes, give the dimensional fingerprint of each, and identify
-named corpus papers carrying that fingerprint. The intent is
+does not fully support its contribution claim. We name three failure
+modes (FM1: Construct Mismatch; FM2: Unpinned Judge; FM3:
+Single-Phrasing Generalization), give the dimensional fingerprint of
+each, and identify named corpus papers carrying that fingerprint. The intent is
 diagnostic rather than accusatory: each named paper makes a defensible
 contribution within its own scope, and naming the dimensional gap is
 not the same as discounting the contribution. What the dimensional
