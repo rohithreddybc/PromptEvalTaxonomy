@@ -1953,18 +1953,15 @@ vatsal2024survey}.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 103 papers (67.8\%), the largest
-single-subcategory concentration in the taxonomy. Pass@$k$, exact
-match, F1, and accuracy are all task-specific; their prevalence
-mirrors the dominance of benchmark evaluation in D1, the two
-dimensions are mutually reinforcing. LLM-judge metrics appear in 31
-papers (20.4\%), essentially the D1=LLM-as-judge set; G-Eval
-\cite{liu2023geval} marked the shift toward LLM-based scoring on
-open-ended outputs. Hybrid metrics appear in 16 papers (10.5\%), combining automated
-scoring with judge-based assessment across multiple axes;
-model-based metrics (BERTScore family) in 2 (1.3\%), with the
-LLM-based NLG-eval survey \cite{li2024leveraging} documenting the
-gradual shift to LLM-judge configurations. Reference-based metrics
+Task-specific metrics dominate at 103 papers (67.8\%): pass@$k$,
+exact match, F1, and accuracy mirror the dominance of benchmark
+evaluation in D1. LLM-judge metrics appear in 31 papers (20.4\%);
+G-Eval~\cite{liu2023geval} marked the shift toward LLM-based scoring
+on open-ended outputs. Hybrid metrics appear in 16 papers (10.5\%),
+combining automated scoring with judge-based assessment across
+multiple axes; model-based metrics (BERTScore family) in 2 (1.3\%),
+with the LLM-based NLG-eval survey~\cite{li2024leveraging}
+documenting the gradual shift to LLM-judge. Reference-based metrics
 (BLEU, ROUGE) appear as primary measures in zero corpus papers, a
 reversal of historical dominance that follows the
 lexical-overlap-vs.-human-judgment gap documented by Gehrmann et
@@ -1986,17 +1983,15 @@ versions \cite{feng2025sage}.
 \subsection{Distribution across Evaluation Scope (Dimension 5)}
 \label{subsec:d5dist}
 
-Cross-model evaluation is the most frequent scope at 96 papers
-(63.2\%). Cross-domain appears in 32 (21.1\%), concentrated in the
-survey subgroup. Single-model evaluation appears in 16 (10.5\%),
-cross-dataset in 8 (5.3\%). The two multilingual-topic papers
-~\cite{vatsal2025multilingual, son2024mmeval} are coded Cross-domain
-and Cross-model respectively under D5 (their \emph{evaluation scope}),
-even though their task scope (D2) is Multilingual; no papers are coded
-with a Cross-lingual D5 value. Single-model findings support claims
-about that configuration alone; single-prompt, single-model evaluations
-systematically overstate effects relative to multi-prompt baselines on
-the same model~\cite{mizrahi2024state}.
+Cross-model is the most frequent scope at 96 papers (63.2\%);
+cross-domain in 32 (21.1\%, concentrated in surveys); single-model in
+16 (10.5\%); cross-dataset in 8 (5.3\%). The two multilingual-topic
+papers~\cite{vatsal2025multilingual, son2024mmeval} are coded
+Cross-domain and Cross-model respectively under D5
+(\emph{evaluation scope}), despite their D2 being Multilingual.
+Single-prompt, single-model evaluations systematically overstate
+effects relative to multi-prompt baselines on the same
+model~\cite{mizrahi2024state}.
 
 \subsection{Distribution across Robustness Reporting (Dimension 6)}
 \label{subsec:d6dist}
@@ -2428,10 +2423,10 @@ the released machine-readable corpus permits any reader to compile a
 similar list using a different fingerprint.
 
 \paragraph{Hidden assumptions surfaced by the dimensional view.}
-Each failure mode is a place where an unstated assumption is
-necessary to support the contribution claim. Naming these assumptions explicitly is one contribution of the
-taxonomy: each is a candidate \emph{reporting requirement} that a
-future evaluation standard could codify.
+Each failure mode is a place where an unstated assumption supports the
+contribution claim. Naming these explicitly is one contribution of the
+taxonomy: each is a candidate \emph{reporting requirement} a future
+evaluation standard could codify.
 
 \begin{itemize}
 \item \textit{Construct-equivalence assumption.} The headline claim
@@ -2463,12 +2458,11 @@ task type within the corpus. Surfaced by D2 = Multi-task with no
 per-task disaggregation.
 \end{itemize}
 
-The five assumptions are not novel observations in isolation - each
-appears in at least one prior critique of evaluation
-practice~\cite{ni2025benchmarks, sclar2023formatting, feng2025sage,
-mizrahi2024state}. What the taxonomy provides is a single coding scheme
-that locates them in specific papers and quantifies how often each
-assumption goes unaddressed across the corpus.
+The five assumptions are not novel in isolation; each appears in
+prior critiques~\cite{ni2025benchmarks, sclar2023formatting,
+feng2025sage, mizrahi2024state}. What the taxonomy provides is a
+single coding scheme that locates them in specific papers and
+quantifies how often each goes unaddressed across the corpus.
 
 % ---------------------------------------------------------------
 \section{Discussion and Future Directions}
@@ -2485,23 +2479,21 @@ the taxonomy suggests is missing.
 \label{subsec:tension_scalability}
 
 Archetype A maximizes within-run reliability and throughput by
-anchoring scoring to a fixed gold reference; Archetype C maximizes
-construct validity by anchoring scoring to human judgment, at the
-cost of replication speed and cross-paper comparability. Corpus
-weighting is heavily toward Archetype A (65.7\% vs.\ 9.2\%). The
-tradeoff is not rigour-vs.-laziness (both archetypes are
-internally rigorous), but between \emph{construct fidelity at the
-deployment context} and \emph{measurement consistency across runs}.
-For tasks where the construct is well-approximated by an exact-match
+anchoring to a fixed gold reference; Archetype C maximizes construct
+validity by anchoring to human judgment, at the cost of replication
+speed and cross-paper comparability. The corpus is heavily weighted
+toward A (65.7\% vs.\ 9.2\%). The tradeoff is not rigour-vs.-laziness
+(both archetypes are internally rigorous) but between \emph{construct
+fidelity at deployment} and \emph{measurement consistency across
+runs}. Where the construct is well-approximated by an exact-match
 score (arithmetic, factual retrieval, code execution), Archetype A
-loses little construct validity for very high reliability. For
-tasks where the construct is not (open-ended generation, clinical
-decision support, multilingual fluency), Archetype A pays
-significant construct validity for the same reliability, and the
-resulting score under-determines what it claims to measure. The
-implication for citing work is narrow: deployment claims on
-non-exact-match constructs should not rest on an Archetype-A
-evaluation alone.
+loses little construct validity for very high reliability; where it
+is not (open-ended generation, clinical decision support, multilingual
+fluency), Archetype A pays significant construct validity for the
+same reliability, and the score under-determines what it claims to
+measure. The implication for citing work: deployment claims on
+non-exact-match constructs should not rest on Archetype-A evaluation
+alone.
 
 \subsection{Tension 2: Reference-Anchored vs.\ Judgment-Anchored Evaluation}
 \label{subsec:tension_reference}
