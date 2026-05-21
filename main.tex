@@ -309,34 +309,22 @@ claim.
 
 \subsection*{Paper Organization}
 
-Section~\ref{sec:related_work} reviews three streams of related work
-(prompt engineering methods, LLM evaluation frameworks, existing
-surveys and taxonomies) and explicitly differentiates this paper from
-each. Section~\ref{sec:background} provides background on LLMs, the
-prompt engineering design space, the four metric families that appear
-throughout the corpus, and formal definitions of the five core
-measurement-theory concepts used throughout the paper.
-Section~\ref{sec:taxonomy} introduces the two underlying tensions and
-defines the seven dimensions.
-Section~\ref{sec:taxonomy_application} provides worked examples of
-classifying existing papers and a forward-looking design guide.
-Section~\ref{sec:tools} catalogs the evaluation frameworks, judge
-pipelines, dynamic benchmarks, and robustness tools that implement
-each region of the taxonomy.
-Section~\ref{sec:methodology} describes the systematic review
-protocol, the dual-coding procedure, and the sensitivity analysis
-that establish coding reliability.
-Section~\ref{sec:comparison} presents the comparative analysis:
-per-dimension distributions, co-occurrence patterns, recurring
-archetypes, and a failure-mode catalog.
-Section~\ref{sec:discussion} synthesizes the findings around the
-two named tensions -- including a within-run vs.\ across-time
-reliability refinement of the first tension -- and a future research
-agenda.
-Section~\ref{sec:conclusion} concludes.
-The Electronic Supplement provides: Appendix~A (evaluation design checklist for
-preregistration), Appendix~B (Table~B.1, representative ten-paper mapping), and
-Appendix~C (comprehensive 152-paper mapping, all seven dimensions).
+Section~\ref{sec:related_work} reviews related work and differentiates
+this paper from prior surveys. Section~\ref{sec:background} provides
+background on LLMs, the prompt engineering design space, metric
+families, and the five measurement-theory definitions used throughout.
+Sections~\ref{sec:taxonomy}--\ref{sec:tools} introduce the two
+underlying tensions, define the seven dimensions, present worked
+examples and a design guide, and catalog the evaluation tool landscape.
+Section~\ref{sec:methodology} describes the systematic review protocol,
+dual-coding, and sensitivity analysis. Section~\ref{sec:comparison}
+presents per-dimension distributions, co-occurrence patterns, recurring
+archetypes, and the failure-mode catalog. Section~\ref{sec:discussion}
+synthesizes findings and presents a research agenda.
+Section~\ref{sec:conclusion} concludes. The Electronic Supplement
+provides the evaluation-design checklist (Appendix~A), a
+representative ten-paper mapping (Table~B.1), and the comprehensive
+152-paper mapping (Table~C.1).
 
 
 % ---------------------------------------------------------------
@@ -1297,7 +1285,12 @@ with narrower topical refinements (Table~\ref{tab:expansion_rounds},
 ``Target areas''). The expansion rounds are therefore documented as
 ``additional records identified from other sources / supplementary
 searches'' within the PRISMA 2020 flow~\cite{page2021prisma}, which
-explicitly allows for such rounds.
+explicitly allows for such rounds. The expansion rounds function as
+coverage-repair searches that address specific under-represented
+topic areas identified after coding the prior set; they are not
+independent prevalence sweeps of the full literature, and the
+directional bias they introduce is named explicitly as a limitation
+in Section~\ref{subsubsec:lim_expansion}.
 
 \subsection{Search Strategy}
 \label{subsec:search}
@@ -1493,10 +1486,11 @@ status. The complete bibliography record per paper is in
 \subsection{Screening Process}
 \label{subsec:screening}
 
-Database queries returned 2,847 unique records after
-deduplication. Two reviewers independently screened all titles and
-abstracts against the inclusion and exclusion criteria, working
-separately at each phase. Disagreements at title/abstract screening
+The primary-round database queries returned 2,847 unique records
+after deduplication (expansion-round counts are tabulated separately
+in Table~\ref{tab:expansion_rounds}). Two reviewers independently
+screened all titles and abstracts against the inclusion and exclusion
+criteria, working separately at each phase. Disagreements at title/abstract screening
 were resolved through discussion (percent agreement 94.1\%, $\kappa$
 = 0.81 over a 200-record dual-screened sample); unresolved cases were
 referred to a third reviewer, as specified in PRISMA 2020
@@ -2234,7 +2228,7 @@ the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
 available in the machine-readable dataset.
-\textit{Takeaway:} The strongest co-occurrences involve the Benchmark method (D1=Benchmark \& D3=Task-specific at 66.4\%; D1=Benchmark \& D4=Automated at 66.4\%), confirming that benchmark adoption bundles metric and automation choices together; the D1=LLM-as-Judge \& D3=LLM-judge link (19.7\%) shows the same cascade for the judge-mediated archetype.}
+\textit{Takeaway:} The strongest co-occurrences involve the Benchmark method (D1=Benchmark \& D3=Task-specific at 66.4\%; D1=Benchmark \& D4=Automated at 66.4\%), confirming that benchmark adoption bundles metric and automation choices together; the D1=LLM-as-Judge \& D3=LLM-judge link (19.7\%) shows the same bundling pattern for the judge-mediated archetype.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2285,10 +2279,10 @@ clear the 0.3 ``moderate-association'' threshold; the top four clear
 0.49 (close to or above ``strong''). The full pairwise table is in
 the released machine-readable dataset.
 \textit{Takeaway:} The strongest dependencies (D1--D3 = 0.702;
-D1--D4 = 0.589) confirm that evaluation-method choice cascades
-through metric and automation choices in a statistically detectable
-way; the dimensions are non-redundant but not independent, which is
-consistent with the pattern the archetype analysis identifies.}
+D1--D4 = 0.589) confirm that evaluation-method choice is strongly
+associated with metric and automation choices in a statistically
+detectable pattern; the dimensions are non-redundant but not
+independent, which is consistent with what the archetype analysis identifies.}
 \label{tab:cramerv}
 \centering
 \footnotesize
@@ -2311,10 +2305,10 @@ Three observations follow. First, every pair listed clears the
 ``moderate association'' threshold, so the entanglement pattern is
 not a function of one or two unusually strong pairs; rather, the
 seven dimensions form a connected dependency graph. Second, the
-strongest pair (D1--D3) reflects the cascade from judgment locus to
-metric type that the validity-reliability frame anticipates: choosing a
-benchmark commits the study to reference-based metrics, choosing an
-LLM-judge commits it to LLM-judge metrics. Third, D5--D6, D5--D7, and
+strongest pair (D1--D3) reflects the association between judgment
+locus and metric type that the validity-reliability frame anticipates:
+choosing a benchmark commits the study to reference-based metrics,
+choosing an LLM-judge commits it to LLM-judge metrics. Third, D5--D6, D5--D7, and
 D6--D7 form a connected cluster, which is consistent with our
 interpretation that reproducibility and robustness reporting share an
 infrastructural cause: papers that pin their judge version also tend
