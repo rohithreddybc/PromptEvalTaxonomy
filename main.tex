@@ -120,19 +120,50 @@ Evaluation Frameworks for Large Language Models}
 
 % ---------------------------------------------------------------
 \begin{abstract}
-Prompt engineering evaluation lacks a shared conceptual frame.
-Two studies can report improvements via internally consistent yet
-mutually incomparable methods because no standard governs what to
-measure or how. We trace this to two measurement-theoretic tensions
-(construct validity vs.\ reliability, and reference-anchored
-vs.\ judgment-anchored evaluation) and develop a seven-dimensional
-taxonomy (D1--D7) to operationalize them. Applied to a PRISMA~2020
-corpus of 152 papers, the taxonomy identifies three recurring
-archetypes (supported by silhouette analysis and unsupervised
-k-means clustering), dimension-pair dependencies (Cram\'{e}r's~$V$),
-and a failure-mode catalog with named exemplars. A companion
-seven-question checklist operationalizes the taxonomy for
-immediate practitioner use.
+Prompt engineering evaluation lacks a shared conceptual frame. Two
+papers can both report improvements on the same prompting technique
+using methods, metrics, and scopes that are internally consistent yet
+mutually incomparable, not because either study is poorly designed,
+but because no shared standard has emerged in the surveyed work on
+what should be measured or how. We trace this to two unresolved
+tensions from measurement theory: construct validity
+vs.\ measurement reliability, and reference-anchored
+vs.\ judgment-anchored evaluation. Existing evaluation choices
+project onto these tensions in identifiable, predictable ways.
+
+This paper develops a seven-dimensional taxonomy of prompt
+engineering evaluation frameworks organized around those tensions,
+covering evaluation method, task scope, metric type, automation
+level, evaluation scope, robustness, and reproducibility. We apply
+it to a corpus of 152 papers from a PRISMA~2020 systematic review of
+six academic databases (an initial 79-paper set expanded through four
+supplementary search rounds covering LLM-judge quality, benchmark
+contamination, multi-prompt sensitivity, agentic and multilingual
+evaluation, prompt-injection safety, CoT faithfulness,
+foundation-model technical reports, RAG evaluation, bias and fairness,
+calibration, and clinical/legal domain evaluation) and use it to
+derive co-occurrence patterns, recurring evaluation
+\textit{archetypes}, and a catalog of failure modes where a paper's
+evaluation configuration does not support its contribution claims.
+
+Three patterns emerge from the data. The dominant configuration
+(benchmark-based, task-specific, fully automated evaluation) sits in
+the high-reliability, narrow-validity region of the design space and
+works well for tasks with correct answers, but under-specifies the
+construct for open-ended generation. The LLM-as-judge cluster
+addresses this gap at the cost of introducing judge-model reliability
+concerns that the surveyed work has not yet managed with a shared
+calibration protocol. Robustness and contamination-resistant
+evaluation appear as reported properties in only a minority of
+papers, suggesting these checks are not yet standard.
+
+The taxonomy is not a new evaluation method. It is a shared
+vocabulary for making evaluation design choices, their tradeoffs, and
+their interactions visible to both the researcher designing a study
+and the reader interpreting its results. A seven-question evaluation
+design checklist operationalizing the taxonomy across all seven
+dimensions is provided as a companion artifact for immediate use by
+practitioners and reviewers.
 \end{abstract}
 
 \keywords{prompt engineering, large language models, evaluation
