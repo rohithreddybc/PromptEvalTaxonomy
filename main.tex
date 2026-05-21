@@ -256,7 +256,14 @@ named corpus papers (Section~\ref{subsec:failuremodes}).
 
 The taxonomy itself is not a new evaluation method. It is a
 classification scheme for existing methods together with empirical
-findings about how those methods co-occur in the literature.
+findings about how those methods co-occur in the literature. To our
+knowledge, this is the first systematic survey to organize prompt
+engineering evaluation through a measurement-theoretic frame; the
+seven-dimensional codebook, failure-mode catalog (FM1--FM3), and
+accompanying preregistration checklist are intended as a stable
+reference vocabulary that subsequent evaluation work can cite to
+disclose methodology and position contributions consistently across
+studies (Section~\ref{subsec:using}).
 
 \subsection*{Research Questions}
 \label{subsec:rqs}
@@ -1136,8 +1143,15 @@ prior work.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
-\caption{Evaluation Design Quick Reference: One Question per Dimension. Each row names the central tradeoff the dimension forces a researcher to confront.
-\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier but benefits from explicit justification; without that, the corresponding dimension tends to be decided implicitly by benchmark choice rather than by deliberate evaluation design.}
+\caption{Seven-Question Evaluation Checklist: one question per
+dimension. This is the companion checklist referenced in the abstract;
+each row names the central tradeoff the dimension forces a researcher
+to confront. The full preregistration checklist is in the Electronic
+Supplement (Appendix~A).
+\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier
+but benefits from explicit justification; without that, the
+corresponding dimension tends to be decided implicitly by benchmark
+choice rather than by deliberate evaluation design.}
 \label{tab:quickref}
 \centering
 \footnotesize
@@ -2447,8 +2461,8 @@ not the same as discounting the contribution. What the dimensional
 coding surfaces is the gap between configuration and claim that an
 unstructured prose summary would not.
 
-\textit{Failure mode 1: task-specific metric on a non-exact-match
-construct.} Dimensional fingerprint: D1=Benchmark, D3=Task-specific
+\textit{Failure mode 1 (FM1: Construct Mismatch): task-specific
+metric on a non-exact-match construct.} Dimensional fingerprint: D1=Benchmark, D3=Task-specific
 or Reference-based, applied to a D2 task category where the construct
 is not well-approximated by a single closed-form reference. Corpus
 exemplars: Sivarajkumar et al.~\cite{sivarajkumar2024empirical}
@@ -2467,8 +2481,8 @@ Gehrmann et al.~\cite{repairing2022} have documented the systematic
 gap between lexical-overlap or exact-match metrics and human
 judgment on generation tasks.
 
-\textit{Failure mode 2: LLM-judge score without judge-version
-pinning.} Dimensional fingerprint: D1=LLM-as-Judge, D3=LLM-judge,
+\textit{Failure mode 2 (FM2: Unpinned Judge): LLM-judge score
+without judge-version pinning.} Dimensional fingerprint: D1=LLM-as-Judge, D3=LLM-judge,
 D7 lacks the Judge-version-pinned property. Corpus exemplars:
 Panickssery et al.~\cite{judgingjudges2024} (Judging the Judges;
 D1=LLM-as-Judge, D7=Artifact-released only), Bavaresco et al.~\cite{llmvshuman2024}
@@ -2485,7 +2499,8 @@ corpus, only the 5 papers coded D7 = Judge-version-pinned
 document the judge snapshot in a way that supports across-time
 reproducibility.
 
-\textit{Failure mode 3: single-prompt cross-model claim.}
+\textit{Failure mode 3 (FM3: Single-Phrasing Generalization):
+single-prompt cross-model claim.}
 Dimensional fingerprint: D5=Cross-model with D6=Single-prompt or
 D6=Not-reported. Corpus exemplars: chain-of-thought
 prompting~\cite{wei2022chain} (D5=Cross-model, D6=Single-prompt) and
@@ -2856,10 +2871,14 @@ task, and it cannot supply the domain expertise needed to build
 rigorous protocols in specialized settings. What it does is name
 the tradeoffs that currently go unnamed, locate them in the
 literature, and provide a vocabulary in which methodological
-standardization is at least describable. The distance from
-describable to standardized is a coordination problem, one that
-requires community adoption of shared standards more than new
-technical development.
+standardization is at least describable. Adoption is feasible
+immediately: disclosing the D1--D7 configuration of any reported
+evaluation takes a single methodology line
+(Section~\ref{subsec:using}) and makes the design directly
+comparable to prior work without changing the evaluation itself.
+The distance from describable to standardized is a coordination
+problem, one that requires community adoption of shared standards
+more than new technical development.
 
 \section*{Acknowledgments}
 This research received no specific grant from any funding agency in
