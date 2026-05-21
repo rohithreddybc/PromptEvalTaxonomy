@@ -127,7 +127,7 @@ measure or how. We trace this to two measurement-theoretic tensions
 (construct validity vs.\ reliability, and reference-anchored
 vs.\ judgment-anchored evaluation) and develop a seven-dimensional
 taxonomy (D1--D7) to operationalize them. Applied to a PRISMA~2020
-corpus of 152 papers, the taxonomy reveals three recurring
+corpus of 152 papers, the taxonomy identifies three recurring
 archetypes (supported by silhouette analysis and unsupervised
 k-means clustering), dimension-pair dependencies (Cram\'{e}r's~$V$),
 and a failure-mode catalog with named exemplars. A companion
@@ -1614,7 +1614,7 @@ the final corpus of 152 papers.
 The expanded identification and per-round screening counts are
 tabulated in Table~\ref{tab:expansion_rounds}; the figure integrates
 all five rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
-\textit{Takeaway:} Of 3,297 records initially identified, only 4.6\% (152 papers) met all inclusion criteria, reflecting strict quality and relevance thresholds; the high exclusion rate at full-text (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
+\textit{Takeaway:} Of 3,297 database records identified, 130 (3.9\%) met all inclusion criteria via database search; 22 additional papers recovered through citation tracing in Round~0 yielded the final corpus of 152 papers. The high full-text exclusion rate (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
 \label{fig:prisma}
 \end{figure}
 
@@ -1636,8 +1636,11 @@ fields:
 \item Year of publication
 \item Publication venue and type (journal, conference, preprint)
 \item Paper category (technique, benchmark, LLM-judge / metric, or
-survey) - used for the per-category splits in
-Section~\ref{sec:comparison}
+survey) -- used internally to produce the per-category rows in
+Table~\ref{tab:comparison} (Section~\ref{sec:comparison}); not
+included in the released \texttt{corpus\_d1d7.csv}, which contains
+only the seven dimensional codes (D1--D7) that are the primary
+codebook contribution
 \end{enumerate}
 
 The complete extraction dataset (all papers mapped to their
@@ -1681,7 +1684,7 @@ interpretive judgment that a reporting standard could reduce.
 \caption{Inter-rater agreement on dimensional codings, dual-coded
 subsample. Cohen's $\kappa$ per dimension, with interpretation
 following Landis \& Koch.
-\textit{Takeaway:} D1--D5 all reach ``almost perfect'' agreement ($\kappa \geq 0.84$, well above the Landis \& Koch 0.81 threshold), and D6--D7 reach ``substantial'' agreement ($\kappa = 0.76$ and $0.78$); the taxonomy can therefore be applied reliably by independent coders without extended calibration.}
+\textit{Takeaway:} D1--D5 all reach ``almost perfect'' agreement ($\kappa \geq 0.84$, well above the Landis \& Koch 0.81 threshold); D6--D7 reach ``substantial'' agreement ($\kappa = 0.76$ and $0.78$), indicating that robustness and reproducibility coding requires more interpretive judgment than the procedural dimensions -- as expected for properties not always explicitly reported in paper text.}
 \label{tab:kappa}
 \centering
 \footnotesize
