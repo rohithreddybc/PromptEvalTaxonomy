@@ -293,26 +293,18 @@ Addressed in Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_repr
 and the future-direction agenda of Section~\ref{subsec:agenda}.
 \end{description}
 
-We apply the taxonomy to a corpus of 152 papers from a PRISMA 2020
-systematic review (six databases, primary-search set of 79 papers
-expanded across four supplementary rounds to 152;
-Section~\ref{sec:methodology}). The data reveal three patterns within
-the inclusion criteria of Section~\ref{subsec:inclusion}. The modal
-configuration (benchmark-based, task-specific, fully automated)
-occupies the high-reliability, narrow-validity region and works well
-for tasks with ground-truth answers but under-specifies the construct
-on open-ended generation. The LLM-as-judge cluster addresses this
-under-specification at the cost of introducing judge-model reliability
-concerns the corpus does not yet manage with a shared calibration
-protocol. Robustness and contamination-resistant evaluation appear in
-only a small minority of papers, a reporting pattern documented in
-Section~\ref{sec:comparison} and whose boundary conditions are noted
-there. The contribution is therefore not a new evaluation method but
-a shared conceptual frame: it locates the tradeoffs each coding
-choice carries, names the recurring archetypes those choices
-produce (Section~\ref{subsec:archetypes}), and surfaces the points
-at which a configuration does not support its associated contribution
-claim.
+We apply the taxonomy to a 152-paper PRISMA 2020 corpus (six
+databases, primary set of 79 papers expanded across four
+supplementary rounds; Section~\ref{sec:methodology}). Three patterns
+emerge within these inclusion criteria. The modal configuration
+(benchmark-based, task-specific, fully automated) occupies the
+high-reliability, narrow-validity region: well-matched to tasks with
+ground-truth answers, under-specified on open-ended generation. The
+LLM-as-judge cluster addresses this gap but introduces judge-model
+reliability concerns the corpus does not yet manage with a shared
+calibration protocol. Robustness and contamination-resistant
+evaluation appear in only a small minority of papers
+(Section~\ref{sec:comparison}).
 
 \subsection*{Paper Organization}
 
@@ -567,10 +559,9 @@ evidence about the benchmark, not about the deployment property.
 \subsection{Formal Definitions}
 \label{subsec:definitions}
 
-The following five definitions formalize the conceptual vocabulary
-used throughout the rest of the paper. Each definition is tight by
-design; the operationalizations and their empirical projections are
-developed in Sections~\ref{sec:taxonomy} and~\ref{sec:comparison}.
+The five definitions below formalize the vocabulary used throughout;
+operationalizations and empirical projections appear in
+Sections~\ref{sec:taxonomy} and~\ref{sec:comparison}.
 
 \begin{definition}[Prompt Engineering Evaluation Framework]
 A prompt engineering evaluation framework $\mathcal{F}$ is a tuple
@@ -689,24 +680,20 @@ independent property of evaluation; it is a particular operationalization
 of the reliability axis, and treating it as a peer to evaluation method
 or metric type misrepresents the conceptual structure.
 
-The current version of the taxonomy retains the five original dimensions
-but adds two: \textit{Dimension~6 (Robustness)} and
-\textit{Dimension~7 (Reproducibility and Contamination Resistance)}. It
-also reframes \textit{Dimension~4 (Automation Level)} explicitly as a
-sub-axis of reliability rather than an independent procedural choice.
-The resulting seven-dimensional structure is intended to make the two
+The current taxonomy retains the original five and adds
+\textit{D6 (Robustness)} and \textit{D7 (Reproducibility and
+Contamination Resistance)}; it also reframes \textit{D4 (Automation
+Level)} as a sub-axis of reliability rather than an independent
+choice. The seven-dimensional structure is designed to make the two
 underlying tensions traceable through every coding decision.
 
-As formalized in Definition~1, a prompt engineering evaluation
-framework is fully specified by a choice along each of the seven
-dimensions D1\textendash D7. The dimensions are conceptually
-distinct -- each can vary independently of the others -- but they are
-not statistically independent in practice.
-The co-occurrence patterns documented in
-Section~\ref{subsec:cooccurrence} are a finding of this survey, not a
-flaw in the dimensional decomposition. Table~\ref{tab:taxonomy}
-summarizes all seven dimensions with subcategories, the axis each
-dimension primarily projects onto, and a representative example.
+Per Definition~1, an evaluation framework is fully specified by a
+choice along each of D1--D7. The dimensions are conceptually distinct
+(each can vary independently) but not statistically independent in
+practice; the co-occurrence patterns
+(Section~\ref{subsec:cooccurrence}) are a finding, not a decomposition
+flaw. Table~\ref{tab:taxonomy} summarizes all seven dimensions with
+subcategories, axis projection, and a representative example.
 
 \subsection{Dimension 1: Evaluation Method}
 \label{subsec:d1}
@@ -1013,21 +1000,18 @@ design guidance follow in Section~\ref{sec:taxonomy_application}.
 \section{Applying the Taxonomy: Worked Examples and Design Guidance}
 \label{sec:taxonomy_application}
 
-The taxonomy becomes useful only when researchers can apply it, both
-to classify existing work and to structure their own evaluation designs.
-This section demonstrates both uses. Subsection~\ref{subsec:classify}
-works through two papers already in the corpus to show how classification
-proceeds dimension by dimension. Subsection~\ref{subsec:design} walks a
-researcher forward through a new study, showing how the taxonomy surfaces
-design decisions that would otherwise remain implicit.
-Subsection~\ref{subsec:quickref} distills the guidance into a single
-reference table.
+The taxonomy is useful only when researchers can apply it both to
+classify existing work and to structure new evaluation designs.
+Subsection~\ref{subsec:classify} works through two corpus papers
+dimension by dimension; Subsection~\ref{subsec:design} walks forward
+through a new study, surfacing design decisions that would otherwise
+remain implicit; Subsection~\ref{subsec:quickref} distills the
+guidance into one reference table.
 
 \subsection{Classifying Existing Papers}
 \label{subsec:classify}
 
-To illustrate the classification process, consider two widely cited papers
-that represent distinct evaluation configurations.
+Two widely cited corpus papers illustrate the classification process.
 
 \textbf{Paper: Wei et al., ``Chain-of-Thought Prompting Elicits Reasoning
 in Large Language Models''~\cite{wei2022chain}.}
@@ -1390,51 +1374,40 @@ or discuss evaluation of the prompting approach itself
 \end{itemize}
 
 \textbf{Re-admittance criterion for expansion rounds 2--3.}
-The initial PRISMA round excluded papers whose \emph{topic} was prompt
-injection, jailbreaking, or narrow clinical/legal application. In
-expansion rounds 2 and 3 (Table~\ref{tab:expansion_rounds}), this
-exclusion was refined: papers in these areas were re-admitted when
-their \emph{evaluation methodology} (not their attack or clinical
-content) is what the taxonomy classifies -- e.g., prompt-injection
-\emph{benchmarks} contribute evaluation infrastructure even though
-their topic is an attack family, and clinical PE benchmarks such as
-MIRAGE / MedRAG~\cite{xiong2024medrag} contribute
-multi-prompt and reference-anchored evaluation evidence even if the
-underlying study is domain-applied. We document the re-admittance
-choice explicitly because it changed the corpus boundary between
-rounds. Papers admitted under this refinement are listed and flagged
-in the Electronic Supplement (Appendix~C).
+The initial PRISMA round excluded papers whose \emph{topic} was
+prompt injection, jailbreaking, or narrow clinical/legal application.
+Rounds 2--3 (Table~\ref{tab:expansion_rounds}) refined this:
+such papers were re-admitted when their \emph{evaluation methodology}
+(not their attack or clinical content) is what the taxonomy
+classifies -- e.g., prompt-injection \emph{benchmarks} contribute
+evaluation infrastructure, and clinical PE benchmarks such as
+MIRAGE/MedRAG~\cite{xiong2024medrag} contribute multi-prompt and
+reference-anchored evidence even when the underlying study is
+domain-applied. Papers admitted under this refinement are flagged in
+the Electronic Supplement (Appendix~C).
 
-This distinction is practically consequential: many papers use prompting as a tool
-(e.g., ``we prompted GPT-4 to extract entities'') without
-reporting or analyzing the evaluation of the prompting approach
-in any systematic way. Those papers were excluded because they do not contribute
-meaningfully to understanding evaluation frameworks.
+The use-as-tool exclusion is practically consequential: many papers
+use prompting incidentally (``we prompted GPT-4 to extract
+entities'') without reporting evaluation of the prompting approach
+itself; these were excluded as they do not contribute to
+understanding evaluation frameworks.
 
-\textbf{On mixing paper types.} The corpus deliberately includes four
-overlapping paper categories: (1) prompt engineering technique
-papers, (2) benchmark and dataset papers, (3) LLM-as-judge and
-metric-quality papers, and (4) prompt engineering and LLM evaluation
-surveys. A reviewer may reasonably ask whether mixing these categories
-into one analytical corpus is methodologically defensible. Our
-position is that all four categories \emph{participate in PE
-evaluation infrastructure}: technique papers consume benchmarks and
-metrics, benchmark and metric papers shape what techniques can be
-evaluated, and surveys recapitulate practice and influence its
-direction. The unifying inclusion principle is participation in
-evaluation infrastructure, not paper genre. To allow auditable
-claims, however, we report all major distributions in
-Section~\ref{sec:comparison} in aggregate directly from
-\texttt{corpus\_d1d7.csv}, so that every percentage is independently
-verifiable; where a category subgroup is the moderator of interest
-(for instance, LLM-as-judge configurations for the D7 distribution),
-the contrast is noted inline. Recent CSUR systematic reviews of
-adjacent topics adopt the same mixed-category convention: for
-example, Edemacu and Wu~\cite{edemacu2024privacysurvey} (privacy
-attacks on LLMs) and Chang et al.~\cite{chang2023survey} (LLM
-evaluation) both combine method, benchmark, and survey papers under a
-shared evaluation-infrastructure framing, so this design choice is
-consistent with venue precedent.
+\textbf{On mixing paper types.} The corpus includes four overlapping
+categories: prompt engineering technique papers, benchmark/dataset
+papers, LLM-as-judge and metric-quality papers, and PE/LLM-evaluation
+surveys. All four \emph{participate in PE evaluation infrastructure}:
+technique papers consume benchmarks and metrics, benchmark and metric
+papers shape what techniques can be evaluated, and surveys
+recapitulate and influence practice. The unifying inclusion principle
+is participation in evaluation infrastructure, not paper genre. All
+major distributions in Section~\ref{sec:comparison} are reported in
+aggregate directly from \texttt{corpus\_d1d7.csv}, so every
+percentage is independently verifiable; category-subgroup contrasts
+are noted inline where relevant (e.g., LLM-as-judge configurations
+for D7). Recent CSUR systematic reviews adopt the same mixed-category
+convention (e.g., Edemacu and Wu~\cite{edemacu2024privacysurvey} on
+privacy attacks; Chang et al.~\cite{chang2023survey} on LLM
+evaluation).
 
 \textbf{On including arXiv preprints.} arXiv preprints are retained
 only when they meet at least one of three quality conditions: 10+
@@ -1448,22 +1421,17 @@ retained under this rule but flagged in
 Section~\ref{subsubsec:lim_recency} as preliminary; no headline claim
 in this survey rests solely on a 2026 preprint.
 
-\textbf{On corpus size.} The 152-paper corpus is comparable in size
-to focused systematic surveys at CSUR and adjacent venues that
-restrict scope to a specific evaluation slice rather than the full
-LLM literature: 142 papers in Edemacu and
+\textbf{On corpus size.} The 152-paper corpus is comparable to
+focused CSUR-tier systematic surveys: 142 papers in Edemacu and
 Wu~\cite{edemacu2024privacysurvey}, ${\sim}160$ in Sahoo et
 al.~\cite{sahoo2024systematic} (PE techniques), ${\sim}220$ in
-Chang et al.~\cite{chang2023survey} (broader LLM evaluation
-including non-PE topics). The corpus is intentionally narrower than
-omnibus LLM surveys because the dimensional coding (D1--D7) requires
-per-paper full-text review, dual coding, and disagreement
-adjudication, which limits feasible corpus size at fixed coding
-quality. Section~\ref{subsec:sensitivity} provides a perturbation
-analysis showing that headline distributional claims are stable at
-this corpus size, and the dimensional Cohen's $\kappa$ values in
-Table~\ref{tab:kappa} document that coding reliability holds
-throughout.
+Chang et al.~\cite{chang2023survey} (broader LLM evaluation). The
+corpus is narrower than omnibus surveys because dimensional coding
+(D1--D7) requires per-paper full-text review, dual coding, and
+disagreement adjudication, limiting feasible size at fixed coding
+quality. Sensitivity analysis (Section~\ref{subsec:sensitivity})
+confirms headline distributional claims are stable; per-dimension
+$\kappa$ in Table~\ref{tab:kappa} documents coding reliability.
 
 \textbf{On expansion rounds.} The four supplementary rounds were
 each triggered by a specific under-coverage gap identified after
@@ -1476,26 +1444,22 @@ topical queries in Rounds 1--4). The directional bias is named
 explicitly as a limitation in
 Section~\ref{subsubsec:lim_expansion}.
 
-\textbf{Corpus publication-status breakdown.} All 152 corpus papers
-satisfy at least one of the three quality conditions in
-Section~\ref{subsec:inclusion}: peer review, 10+ Google Scholar
-citations at the time of screening, or publication at a recognized
-NLP/AI venue. The corpus contains 2 explicit 2026 arXiv preprints
+\textbf{Corpus publication-status breakdown.} All 152 papers satisfy
+at least one quality condition in Section~\ref{subsec:inclusion}
+(peer review, 10+ Google Scholar citations at screening time, or
+recognized NLP/AI venue). Two are explicit 2026 arXiv preprints
 (\cite{bellibatlu2026judgesense, benchmark2sq2026}) flagged as
-preliminary; no headline claim in this survey rests solely on either.
-The remaining 150 papers are a mix of peer-reviewed conference and
-journal publications (most of the technique, benchmark, and survey
-categories), foundation-model technical reports, and arXiv preprints
-that met the citation- or venue-criterion threshold. We do not report
-a precise peer-reviewed-vs.-arXiv split because many corpus papers
-were initially posted to arXiv and subsequently accepted at venues
-(NeurIPS, ACL, EMNLP, ICLR, TACL, JMIR, \emph{Nature Machine
-Intelligence}, ACM Computing Surveys, etc.); the BibTeX record for
-each such paper typically retains the arXiv identifier in the
-\texttt{journal} field even after publication, so an automatic count
-from the bibliography would systematically undercount peer-reviewed
-status. The complete bibliography record per paper is in
-\texttt{references.bib} in the artifact repository.
+preliminary, with no headline claim resting solely on either. The
+remaining 150 mix peer-reviewed conference/journal papers,
+foundation-model technical reports, and arXiv preprints meeting the
+citation- or venue-criterion threshold. A precise peer-reviewed
+vs.\ arXiv split is not reported because many corpus papers were
+initially posted to arXiv and subsequently accepted at venues
+(NeurIPS, ACL, EMNLP, ICLR, TACL, etc.) while retaining the arXiv
+identifier in their BibTeX \texttt{journal} field; an automatic count
+would systematically undercount peer-reviewed status. The complete
+per-paper record is in \texttt{references.bib} in the artifact
+repository.
 
 \subsection{Screening Process}
 \label{subsec:screening}
@@ -1673,19 +1637,17 @@ access to the primary coder's labels. Disagreements were resolved
 through discussion; cases that could not be resolved were referred
 to a third reviewer following PRISMA 2020 Item~8~\cite{page2021prisma}.
 
-Inter-rater agreement is reported as Cohen's $\kappa$ per dimension
-in Table~\ref{tab:kappa}. The dimensions split into two reliability
-regimes: D1--D5 reach $\kappa$ = 0.84--0.92
-(``almost perfect'' on the Landis--Koch scale, threshold $> 0.81$);
-D6 and D7 reach $\kappa$ = 0.76--0.78 (``substantial'').
-The lower $\kappa$ on D6 and D7
-reflects boundary ambiguity rather than factual disagreement (e.g.,
-papers acknowledging sensitivity without quantifying it sit between
+Inter-rater agreement is reported per dimension in
+Table~\ref{tab:kappa}. The dimensions split into two reliability
+regimes: D1--D5 reach $\kappa$ = 0.84--0.92 (``almost perfect'' on
+the Landis--Koch scale, threshold $> 0.81$); D6--D7 reach $\kappa$ =
+0.76--0.78 (``substantial''). The lower D6/D7 $\kappa$ reflects
+boundary ambiguity rather than factual disagreement (e.g., papers
+acknowledging sensitivity without quantifying it sit between
 D6=Not-reported and D6=Single-prompt). We report per-dimension
-$\kappa$ rather than a collapsed corpus-level value because the
-heterogeneous profile is itself the finding: some evaluation
-properties are codable from descriptions, others require
-interpretive judgment that a reporting standard could reduce.
+$\kappa$ because the heterogeneous profile is itself the finding:
+some properties are codable from descriptions; others require
+interpretive judgment a reporting standard could reduce.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -1797,57 +1759,43 @@ that uncertainty propagates to the headline claims.
 \section{Comparative Analysis}
 \label{sec:comparison}
 
-Mapping the corpus against the seven-dimensional taxonomy serves
-three purposes. First, it tests whether the taxonomy is expressive
-enough to characterize the range of evaluation choices observed in
-the literature within our inclusion criteria. Second, it derives
-co-occurrence patterns, recurring \textit{evaluation archetypes},
-and a catalog of failure modes that go beyond per-dimension frequency
-counts. Third, it generates the empirical foundation for the
-synthesis in Section~\ref{sec:discussion}.
+Mapping the corpus against the taxonomy serves three purposes:
+testing the taxonomy's expressive coverage of evaluation choices
+observed under our inclusion criteria, deriving co-occurrence
+patterns / recurring \textit{evaluation archetypes} / a failure-mode
+catalog beyond per-dimension counts, and grounding the synthesis in
+Section~\ref{sec:discussion}.
 
 \paragraph{PE-core papers vs.\ evaluation infrastructure.} The
-corpus deliberately contains two overlapping populations: \emph{PE-core
-papers} (prompt-engineering technique papers, sensitivity / code
-prompting studies, and PE-specific evaluation surveys -- 76 papers
-total in the categories of Table~\ref{tab:comparison}) and
-\emph{evaluation infrastructure papers} (benchmarks, datasets,
-LLM-judge frameworks, and metric-quality studies -- 76 papers
-total). Together they constitute the 152-paper corpus. The mixed
-inclusion is justified in Section~\ref{subsec:inclusion}: technique
-papers consume infrastructure and infrastructure papers shape what
-techniques can be evaluated, so the two populations participate in
-shared PE evaluation practice. We retain the mixed corpus for the
-aggregate distributional findings below; the D7 table
-(Section~\ref{subsec:d7dist}) additionally reports the LLM-as-Judge
-subset where the contrast with the aggregate is most pronounced.
+corpus contains two overlapping populations: 76 \emph{PE-core
+papers} (technique, sensitivity/code prompting, PE-specific surveys)
+and 76 \emph{evaluation infrastructure papers} (benchmarks, datasets,
+LLM-judge frameworks, metric-quality studies); together they form
+the 152-paper corpus. The mixed inclusion is justified in
+Section~\ref{subsec:inclusion}: technique papers consume
+infrastructure and infrastructure papers shape what techniques can
+be evaluated. Aggregate distributions below use the full corpus;
+the D7 table (Section~\ref{subsec:d7dist}) additionally reports the
+LLM-as-Judge subset where the contrast is most pronounced.
 
-We organize the analysis as follows. Sections~\ref{subsec:d1dist}
-through~\ref{subsec:d7dist} report per-dimension distributions in
-aggregate, so that all values are directly reproducible from
-\texttt{corpus\_d1d7.csv}; where a meaningful subset contrast exists,
-it is noted inline. Section~\ref{subsec:cooccurrence}
-reports the dimension co-occurrence matrix and identifies the small
-number of configurations that account for the bulk of the corpus.
-Section~\ref{subsec:archetypes} names the recurring evaluation
-archetypes that emerge from those configurations and locates each on
-the validity-reliability frame from Section~\ref{subsec:tensions}.
-Section~\ref{subsec:failuremodes} then walks through three
-worked examples in which a paper's evaluation configuration does not
-support its contribution claim - cases where the taxonomy makes a
-genuine methodological mismatch visible.
+Sections~\ref{subsec:d1dist}--\ref{subsec:d7dist} report per-dimension
+distributions directly reproducible from \texttt{corpus\_d1d7.csv},
+with subset contrasts noted inline. Section~\ref{subsec:cooccurrence}
+reports the co-occurrence matrix and the configurations accounting
+for the bulk of the corpus. Section~\ref{subsec:archetypes} names
+the recurring archetypes and locates each on the validity-reliability
+frame (Section~\ref{subsec:tensions}). Section~\ref{subsec:failuremodes}
+walks through three worked failure modes where the taxonomy makes a
+methodological mismatch visible.
 
-Table~\ref{tab:archetype_distribution} previews the analysis: the
-five most common configurations across the seven dimensions, their
-share of the corpus, and the underlying tension each foregrounds.
-A representative ten-paper mapping with all seven dimensions coded
-is given in the Electronic Supplement (Appendix~B) as Table~B.1; the
-comprehensive 152-paper mapping is in
-the Electronic Supplement (Appendix~C); the machine-readable dataset is included as a review-time snapshot
-with the submission; a citable tagged version will be released at
-acceptance to the URL in Section~\ref{sec:methodology}.
-Table~\ref{tab:comparison} below summarizes the modal configuration
-per paper category.
+Table~\ref{tab:archetype_distribution} previews the five most common
+configurations and the tension each foregrounds. A representative
+ten-paper mapping is in the Electronic Supplement
+(Appendix~B, Table~B.1); the full 152-paper mapping is in Appendix~C;
+the machine-readable dataset is included as a review-time snapshot
+with the submission and will be tagged citably at acceptance.
+Table~\ref{tab:comparison} summarizes the modal configuration per
+paper category.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -2032,13 +1980,11 @@ and agentic task evaluation in 4 (2.6\%).
 
 Clinical (5 papers, 3.3\%) and multilingual (3 papers, 2.0\%) are
 small populations; Table~\ref{tab:sensitivity} reports
-perturbation-stability bounds for both categories. The full per-paper breakdown is in
-the Electronic Supplement (Appendix~C). Under our inclusion criteria
-(which excluded papers that use prompting as a tool without
-analyzing it as the studied object), the corpus is strongly
-concentrated on multi-task benchmarks; the relative scarcity of
-clinical and multilingual papers is a property of these inclusion
-criteria, not a field-level estimate~\cite{clinicalnlp2024,
+perturbation-stability bounds for both. The full per-paper breakdown
+is in the Electronic Supplement (Appendix~C). Under our inclusion
+criteria the corpus is strongly concentrated on multi-task
+benchmarks; the scarcity of clinical and multilingual papers reflects
+these criteria, not a field-level estimate~\cite{clinicalnlp2024,
 vatsal2024survey}.
 
 \subsection{Distribution across Metric Type (Dimension 3)}
@@ -2125,13 +2071,11 @@ Total            & 152 & 100.0\% \\
 \end{tabular}
 \end{table}
 
-The substantive observation is that the sensitivity literature
+The sensitivity literature
 \cite{sclar2023formatting, butterfly2024, promptsensitivity2025,
 mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense}
-(which documents large paraphrase-induced variance) has not
-propagated into the rest of the corpus as a routine reporting
-requirement: most technique-comparison papers still report a single
-point estimate without paraphrase variance.
+documents large paraphrase-induced variance but has not propagated
+into the broader corpus as a routine reporting requirement.
 
 \subsection{Distribution across Reproducibility (Dimension 7)}
 \label{subsec:d7dist}
@@ -2681,22 +2625,17 @@ each named and scoped below.
 \subsubsection{Search-String Coverage Gaps}
 \label{subsubsec:lim_search}
 Search strings operate on controlled vocabulary in title, abstract,
-and keyword fields, which means papers addressing the same concepts
-under alternative or emerging terminology may have been missed.
-Citation searching recovered 22 additional papers in the primary
-round, and four subsequent targeted expansion rounds
-(Section~\ref{sec:methodology}, Table~\ref{tab:expansion_rounds})
-recovered 73 more (20 + 11 + 35 + 7), but completeness cannot be
-guaranteed. Because the expansion rounds used narrower topical
-queries rather than full database sweeps, they introduce a
-potential selection bias toward the targeted areas; we therefore
-report distributional findings as descriptive of \emph{this corpus
-under these inclusion and expansion criteria} rather than as
-field-level estimates. Where the corpus shows a relative scarcity
-(clinical and multilingual primary targets, in particular), we are
-explicit
-throughout this paper that the absence is a property of the corpus
-under our inclusion criteria, not a claim about the field at large.
+and keyword fields; papers using alternative or emerging terminology
+may have been missed. Citation searching recovered 22 additional
+papers in the primary round; four targeted expansion rounds
+(Table~\ref{tab:expansion_rounds}) recovered 73 more (20+11+35+7),
+but completeness cannot be guaranteed. Because expansion rounds
+used narrow topical queries rather than full sweeps, they introduce
+selection bias toward targeted areas; distributional findings are
+therefore descriptive of \emph{this corpus under these inclusion and
+expansion criteria}, not field-level estimates. Scarcities
+(notably clinical and multilingual primary targets) are properties
+of these criteria, not claims about the field at large.
 
 \subsubsection{Recency Bias Against 2025--2026 Work}
 \label{subsubsec:lim_recency}
