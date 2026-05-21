@@ -642,56 +642,24 @@ feng2025sage}.
 \label{subsec:tensions}
 
 A useful taxonomy of evaluation frameworks should do more than catalog the
-choices researchers make. It should help interpret why those choices cluster the
-way they do. We frame the configuration space of prompt engineering
-evaluation as structured by two largely orthogonal tensions, each
-inherited from the broader measurement literature and each visible in the
-distribution of practice across our corpus
-(Section~\ref{sec:comparison}).
-
-The first tension is between \textit{construct validity} and
-\textit{measurement reliability}. Construct validity asks whether a measurement
-captures the property it is intended to capture; reliability asks whether
-the same measurement, applied repeatedly, yields the same
-result~\cite{cronbach1955construct, messick1995validity}. The two
-properties are not equivalent and frequently pull in opposite directions.
-A pass@$k$ score against a fixed test suite is highly reliable
-- a second run on the same model and the same suite will return the same
-number - but its construct validity for ``code quality'' is narrow, since
-unit tests do not capture readability, maintainability, or security. A
-panel of expert clinicians scoring open-ended medical answers can pursue
-construct validity at the level the deployment context demands, but the
-panel cannot be replicated cheaply or at scale, and inter-rater agreement
-is rarely perfect~\cite{chang2023survey}. Recent work in machine learning
-evaluation explicitly translates this validity-reliability framing into
-the ML setting~\cite{jacobs2021measurement, subramonian2023takeoneforteam,
-liao2023designing}, and we adopt it here as the spine of the taxonomy.
-
-The second tension is between \textit{reference-anchored} and
-\textit{judgment-anchored} evaluation. Reference-anchored evaluation
-compares a model's output to a stored gold answer (or a structured
-property of the answer, such as a passing test). Judgment-anchored
-evaluation delegates the decision to an evaluator - a human reviewer, a
-panel of experts, or a second language model acting as judge. The two
-modes have different failure characteristics. Reference-anchored
-evaluation fails when no plausible gold reference exists, when references
-under-determine acceptable outputs (translation, summarization), or when
-the reference set is contaminated by training data. Judgment-anchored
-evaluation fails when judges import biases that the protocol does not
-detect~\cite{zheng2023judging, gu2025llmjudge, feng2025sage}, when
-inter-judge calibration is absent, or when the judge is itself a
-language model whose internal state cannot be audited.
-
-These two tensions are largely orthogonal. A single study can be
-reference-anchored and reliability-favoring (benchmark accuracy),
-judgment-anchored and validity-favoring (expert panel review), or any
-combination in between. The seven dimensions introduced in
-Sections~\ref{subsec:d1}--\ref{subsec:d7} project onto these axes in
-specific, identifiable ways, and the configurations that papers
-actually adopt cluster in regions of the space that the
-validity/reliability frame anticipates. Figure~\ref{fig:taxonomy} positions
-the dimensions on the two-axis space; Section~\ref{sec:comparison} then
-locates 152 papers within it.
+choices researchers make; it should help interpret why those choices cluster
+the way they do. We frame the configuration space of prompt engineering
+evaluation as structured by two largely orthogonal tensions, both
+formalized in Section~\ref{subsec:validityreliability}, each visible in
+the distribution of practice across the corpus
+(Section~\ref{sec:comparison}):
+(1)~\textit{construct validity} vs.\ \textit{measurement reliability}
+(Definitions~2--3: does the score capture the intended property, and does
+it do so consistently?), and
+(2)~\textit{reference-anchored} vs.\ \textit{judgment-anchored} evaluation
+(Definitions~4--5: is scoring determined by a stored gold answer, or
+delegated to an evaluator whose output is not pre-determined?).
+The seven dimensions in Sections~\ref{subsec:d1}--\ref{subsec:d7}
+project onto these axes in specific, identifiable ways, and the
+configurations that papers actually adopt cluster in regions of the space
+the validity/reliability frame anticipates.
+Figure~\ref{fig:taxonomy} positions the dimensions on the two-axis space;
+Section~\ref{sec:comparison} then locates 152 papers within it.
 
 \textit{What the frame organizes.} The two tensions make three
 patterns we later observe in the corpus interpretable rather than
