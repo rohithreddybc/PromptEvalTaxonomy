@@ -1350,32 +1350,13 @@ the string was adapted accordingly for each source while preserving
 the same logical structure. Full per-database strings are provided
 at the project repository (\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}).
 
-\medskip
-\noindent\begin{minipage}{\columnwidth}
-\small
-\begin{flushleft}
-\ttfamily
-(\textquotedblleft prompt engineering\textquotedblright~OR
-\textquotedblleft prompting technique\textquotedblright~OR
-\textquotedblleft prompt optimization\textquotedblright~OR
-\textquotedblleft chain-of-thought\textquotedblright~OR
-\textquotedblleft few-shot prompting\textquotedblright~OR
-\textquotedblleft zero-shot prompting\textquotedblright~OR
-\textquotedblleft retrieval-augmented generation\textquotedblright)\\[2pt]
-AND\\[2pt]
-(\textquotedblleft evaluation\textquotedblright~OR
-\textquotedblleft benchmark\textquotedblright~OR
-\textquotedblleft assessment\textquotedblright~OR
-\textquotedblleft metric\textquotedblright~OR
-\textquotedblleft framework\textquotedblright~OR
-\textquotedblleft human evaluation\textquotedblright)\\[2pt]
-AND\\[2pt]
-(\textquotedblleft large language model\textquotedblright~OR
-\textquotedblleft LLM\textquotedblright~OR
-\textquotedblleft GPT\textquotedblright~OR
-\textquotedblleft language model\textquotedblright)
-\end{flushleft}
-\end{minipage}
+\medskip\noindent{\small\ttfamily
+(``prompt engineering'' OR ``prompting technique'' OR ``prompt optimization''\\
+\phantom{(}OR ``chain-of-thought'' OR ``few-shot prompting'' OR ``zero-shot prompting''\\
+\phantom{(}OR ``retrieval-augmented generation'')\\[2pt]
+AND (``evaluation'' OR ``benchmark'' OR ``assessment'' OR ``metric''\\
+\phantom{AND\,(}OR ``framework'' OR ``human evaluation'')\\[2pt]
+AND (``large language model'' OR ``LLM'' OR ``GPT'' OR ``language model'')}
 \medskip
 
 Supplementary searches targeted specific subtopics that the primary
@@ -1571,8 +1552,7 @@ screening; cumulative = running corpus size. Final corpus: 152 papers.
 \end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
-\renewcommand{\arraystretch}{1.1}
+\begin{table*}[!t]
 \caption{Expansion-round audit: trigger, query scope, role, and
 bias-risk classification for each supplementary round. ``Trigger''
 identifies the gap that prompted the round (observed after coding
@@ -1580,22 +1560,18 @@ the prior cumulative set); ``Role'' distinguishes exploratory rounds
 (coverage of an emerging topic area) from confirmatory rounds
 (targeted retrieval of work already cited in the prior set);
 ``Bias risk'' notes the directional bias the round introduces toward
-its target area. All four expansion rounds used the same six
-databases as Round~0 (arXiv, ACM Digital Library, IEEE Xplore,
-Semantic Scholar, Scopus, Web of Science) and applied the same
-inclusion criteria (§\ref{subsec:inclusion}).
-\textit{Takeaway:} The expansion rounds were prompted by specific
-coverage gaps rather than opportunistic search; each round's role
-and bias risk is stated explicitly so distributional findings can be
-discounted by the reader for the target-area over-representation
-each round introduces.}
+its target area. All four rounds used the same six databases and
+inclusion criteria as Round~0 (§\ref{subsec:inclusion}).
+\textit{Takeaway:} Each round's role and bias risk is stated
+explicitly so distributional findings can be discounted by the reader
+for the target-area over-representation each round introduces.}
 \label{tab:expansion_audit}
 \centering
 \scriptsize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{c p{3.0cm} p{2.5cm} c p{2.6cm}}
+\begin{tabular}{c p{3.8cm} p{2.8cm} c p{3.3cm}}
 \toprule
-\textbf{Round} & \textbf{Trigger (coverage gap identified after prior round)} & \textbf{Role} & \textbf{Records retained} & \textbf{Bias risk} \\
+\textbf{Round} & \textbf{Trigger (coverage gap after prior round)} & \textbf{Role} & \textbf{Ret.} & \textbf{Bias risk} \\
 \midrule
 1 & Few papers explicitly studying judge reliability despite 32 corpus papers using LLM-judge methods & Exploratory & 20 & Over-represents LLM-judge quality and bias literature \\
 2 & Agentic, multilingual, prompt-injection, and CoT-faithfulness work missing from primary set & Exploratory & 11 & Over-represents agentic and multilingual evaluation \\
@@ -1603,7 +1579,7 @@ each round introduces.}
 4 & Long-context, tool-use, reward-model evaluation emerged as gap during 2026-Q1 coding & Exploratory & 7 & Over-represents 2026-recent benchmark proposals \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 Figure~\ref{fig:prisma} shows the PRISMA 2020 flowchart aggregating
 all five rounds; Table~\ref{tab:expansion_rounds} provides the
@@ -1612,9 +1588,9 @@ for transparency, since each expansion round used the same
 screening criteria applied to a smaller, topically targeted
 candidate set.
 
-\begin{figure}[!t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.78\linewidth,height=0.55\textheight,keepaspectratio]{prisma_flowchart}
+\includegraphics[width=0.78\textwidth,height=0.50\textheight,keepaspectratio]{prisma_flowchart}
 \caption{PRISMA 2020 flowchart for all five search rounds combined.
 Of 3,297 total records identified across six databases (arXiv, ACM
 Digital Library, IEEE Xplore, Semantic Scholar, Scopus, Web of
@@ -1627,7 +1603,7 @@ tabulated in Table~\ref{tab:expansion_rounds}; the figure integrates
 all five rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
 \textit{Takeaway:} Of 3,297 database records identified, 130 (3.9\%) met all inclusion criteria via database search; 22 additional papers recovered through citation tracing in Round~0 yielded the final corpus of 152 papers. The high full-text exclusion rate (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
 \label{fig:prisma}
-\end{figure}
+\end{figure*}
 
 \subsection{Data Extraction}
 
@@ -1688,18 +1664,24 @@ $\kappa$ because the heterogeneous profile is itself the finding:
 some properties are codable from descriptions; others require
 interpretive judgment a reporting standard could reduce.
 
-\begin{table}[!t]
+\begin{table*}[!t]
+\begin{minipage}[t]{5.9cm}
 \renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{3pt}
 \caption{Inter-rater agreement on dimensional codings, dual-coded
 subsample. Cohen's $\kappa$ per dimension, with interpretation
 following Landis \& Koch.
-\textit{Takeaway:} D1--D5 all reach ``almost perfect'' agreement ($\kappa \geq 0.84$, well above the Landis \& Koch 0.81 threshold); D6--D7 reach ``substantial'' agreement ($\kappa = 0.76$ and $0.78$), indicating that robustness and reproducibility coding requires more interpretive judgment than the procedural dimensions -- as expected for properties not always explicitly reported in paper text.}
+\textit{Takeaway:} D1--D5 all reach ``almost perfect'' agreement
+($\kappa \geq 0.84$, well above the Landis \& Koch 0.81 threshold);
+D6--D7 reach ``substantial'' agreement ($\kappa = 0.76$ and $0.78$),
+indicating robustness and reproducibility coding requires more
+interpretive judgment, as expected for properties not always
+explicitly reported in paper text.}
 \label{tab:kappa}
-\centering
-\footnotesize
+\centering\footnotesize
 \begin{tabular}{p{2.0cm} c c}
 \toprule
-\textbf{Dimension} & \textbf{Cohen's $\kappa$} & \textbf{Interpretation} \\
+\textbf{Dimension} & \textbf{$\kappa$} & \textbf{Interpretation} \\
 \midrule
 D1 Evaluation method & 0.92 & Almost perfect \\
 D2 Task scope & 0.88 & Almost perfect \\
@@ -1710,7 +1692,34 @@ D6 Robustness & 0.76 & Substantial \\
 D7 Reproducibility & 0.78 & Substantial \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{6.5cm}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{3pt}
+\caption{Stability of headline distributional claims under random
+coding perturbation. Reported values are from the 152-paper coding;
+shift bounds are the half-width of a 95\% bootstrap interval derived
+by 10\% and 20\% random reassignment, 1{,}000 runs each.
+\textit{Takeaway:} All headline distributional claims survive
+perturbation with shifts $\leq$3.4~pp under 20\% random reassignment,
+suggesting the findings are stable under coding uncertainty and not
+artefacts of borderline cases.}
+\label{tab:sensitivity}
+\centering\footnotesize
+\begin{tabular}{p{3.5cm} c c}
+\toprule
+\textbf{Headline claim} & \textbf{Value} & \textbf{Shift (10/20\%)} \\
+\midrule
+Benchmark-based evaluation share & 72.4\% & $\pm$1.5 / $\pm$3.0 pp \\
+Fully automated evaluation share & 81.6\% & $\pm$1.2 / $\pm$2.5 pp \\
+Task-specific metric share & 67.8\% & $\pm$1.8 / $\pm$3.4 pp \\
+Clinical task representation & 3.3\% & $\pm$0.5 / $\pm$1.1 pp \\
+Multilingual task representation & 2.0\% & $\pm$0.5 / $\pm$1.0 pp \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{table*}
 
 Ambiguity-resolution rules (full list in the released repository):
 D3 records the \emph{primary} metric used for the headline claim;
@@ -1732,29 +1741,6 @@ metric share, 3.4~pp) is borderline-stable relative to a 2-pp
 threshold and should be read with that caveat. Under 10\% perturbation,
 all five claims shift by less than 2~pp.
 
-\begin{table}[!t]
-\renewcommand{\arraystretch}{1.2}
-\caption{Stability of headline distributional claims under random
-coding perturbation. Reported values are from the 152-paper coding;
-shift bounds are the half-width of a 95\% bootstrap interval derived
-by 10\% and 20\% random reassignment of dimensional codes,
-averaged across 1{,}000 perturbation runs each.
-\textit{Takeaway:} All headline distributional claims survive perturbation with shifts $\leq$3.4 pp under 20\% random reassignment, suggesting the headline findings are stable under individual coding uncertainty and not artefacts of borderline cases.}
-\label{tab:sensitivity}
-\centering
-\footnotesize
-\begin{tabular}{p{4.0cm} c c}
-\toprule
-\textbf{Headline claim} & \textbf{Reported value} & \textbf{Shift (10\%/20\%)} \\
-\midrule
-Benchmark-based evaluation share & 72.4\% & $\pm$1.5 / $\pm$3.0 pp \\
-Fully automated evaluation share & 81.6\% & $\pm$1.2 / $\pm$2.5 pp \\
-Task-specific metric share & 67.8\% & $\pm$1.8 / $\pm$3.4 pp \\
-Clinical task representation & 3.3\% & $\pm$0.5 / $\pm$1.1 pp \\
-Multilingual task representation & 2.0\% & $\pm$0.5 / $\pm$1.0 pp \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \subsection{Validity Threats}
 
@@ -2080,35 +2066,55 @@ the same model~\cite{mizrahi2024state}.
 Table~\ref{tab:d6dist} shows the D6 distribution
 ($\kappa$ = 0.76; Section~\ref{subsec:coding_reliability}).
 
-\begin{table}[!htbp]
+\begin{table*}[!t]
+\begin{minipage}[t]{5.0cm}
 \renewcommand{\arraystretch}{1.2}
-\caption{Distribution of robustness reporting (D6) across the
-corpus ($N$=152). Counts are tallied directly from the D6 column of
-\texttt{corpus\_d1d7.csv} and are fully reproducible from the
-released dataset.
-Inter-rater $\kappa$ = 0.76 (D6); see Section~\ref{subsec:coding_reliability}.
-\textit{Takeaway:} Single-prompt-only evaluation is the most common
-setting (41.4\%), confirming that most papers still report a single
-point estimate without paraphrase variance; multi-prompt aggregate
-and sensitivity-bounded together account for 35.5\% of the corpus, a
-share elevated among papers with D1=LLM-as-Judge (50.0\% of that
-subgroup; see Section~\ref{subsec:crossdim}).}
+\setlength{\tabcolsep}{3pt}
+\caption{Distribution of robustness reporting (D6), $N$=152.
+Inter-rater $\kappa$ = 0.76; see Section~\ref{subsec:coding_reliability}.
+\textit{Takeaway:} Single-prompt-only evaluation (41.4\%) is most
+common; multi-prompt aggregate and sensitivity-bounded together
+account for 35.5\%, elevated among D1=LLM-as-Judge papers (50.0\%;
+see Section~\ref{subsec:crossdim}).}
 \label{tab:d6dist}
-\centering
-\footnotesize
-\begin{tabular}{p{3.5cm} c c}
+\centering\footnotesize
+\begin{tabular}{p{2.5cm} c c}
 \toprule
 \textbf{D6 subcategory} & \textbf{\emph{n}} & \textbf{Share} \\
 \midrule
-Not reported     & 35 & 23.0\% \\
-Single-prompt    & 63 & 41.4\% \\
-Multi-prompt aggr. & 45 & 29.6\% \\
-Sensitivity-bounded & 9 & 5.9\% \\
+Not reported        & 35 & 23.0\% \\
+Single-prompt       & 63 & 41.4\% \\
+Multi-prompt aggr.  & 45 & 29.6\% \\
+Sensitivity-bounded &  9 &  5.9\% \\
 \midrule
-Total            & 152 & 100.0\% \\
+Total               & 152 & 100.0\% \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{7.3cm}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{3pt}
+\caption{Distribution of reproducibility properties (D7), $N$=152.
+Inter-rater $\kappa$ = 0.78; see Section~\ref{subsec:coding_reliability}.
+\textit{Takeaway:} Artifact release is a majority norm (70.4\%) but
+contamination checking (3.9\%) and judge-version pinning (3.3\%) remain
+rare, a gap that will compound as LLM-as-judge usage grows and model
+versions diverge from publication-time versions.}
+\label{tab:d7dist}
+\centering\footnotesize
+\begin{tabular}{p{3.0cm} c p{2.0cm}}
+\toprule
+\textbf{D7 property} & \textbf{All} & \textbf{LLM-judge ($N$=30)} \\
+\midrule
+Artifact-released & 70.4\% & 86.7\% \\
+Contamination-checked & 3.9\% & 3.3\% \\
+Judge-version-pinned & 3.3\% & 16.7\% \\
+All three & 0.0\% & 0.0\% \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{table*}
 
 The sensitivity literature
 \cite{sclar2023formatting, butterfly2024, promptsensitivity2025,
@@ -2122,28 +2128,6 @@ into the broader corpus as a routine reporting requirement.
 Table~\ref{tab:d7dist} shows the D7 distribution
 ($\kappa$ = 0.78; Section~\ref{subsec:coding_reliability}).
 
-\begin{table}[!htbp]
-\renewcommand{\arraystretch}{1.2}
-\caption{Distribution of reproducibility properties (D7) across the
-corpus ($N$=152). Each row is a binary property; columns are the
-share of papers satisfying that property for all papers and for the
-30 D1=LLM-as-Judge papers specifically.
-Inter-rater $\kappa$ = 0.78 (D7); see Section~\ref{subsec:coding_reliability}.
-\textit{Takeaway:} Artifact release is a clear majority norm (70.4\%) but contamination checking (3.9\%) and judge-version pinning (3.3\%) remain rare -- a reproducibility gap that will compound as LLM-as-judge usage grows and model versions diverge from those used at publication time.}
-\label{tab:d7dist}
-\centering
-\footnotesize
-\begin{tabular}{p{4.0cm} c c}
-\toprule
-\textbf{D7 property} & \textbf{Share (all)} & \textbf{Among D1=LLM-as-Judge papers ($N$=30)} \\
-\midrule
-Artifact-released & 70.4\% & 86.7\% \\
-Contamination-checked & 3.9\% & 3.3\% \\
-Judge-version-pinned (where applicable) & 3.3\% & 16.7\% \\
-All three properties & 0.0\% & 0.0\% \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 The asymmetry to highlight is between the artifact-released share
 (70.4\%) and the contamination-checked share (3.9\%). A paper that
