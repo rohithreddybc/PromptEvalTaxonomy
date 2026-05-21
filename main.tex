@@ -354,10 +354,9 @@ representative ten-paper mapping (Table~B.1), and the comprehensive
 \section{Related Work}
 \label{sec:related_work}
 
-Three intersecting bodies of prior work bear directly on this survey:
-prompt engineering methods, LLM evaluation frameworks, and taxonomy
-and survey papers in NLP. We characterize what each stream has
-contributed and where each falls short.
+Three streams of prior work bear on this survey: prompt engineering
+methods, LLM evaluation frameworks, and NLP taxonomies. We characterize
+each stream's contribution and gaps.
 
 \subsection{Prompt Engineering Methods and Techniques}
 
@@ -410,9 +409,8 @@ comparing across them.
 
 \subsection{Surveys and Taxonomies in Prompt Engineering and LLM Evaluation}
 
-Across the survey literature, prompting methods and evaluation
-practice have been treated as separate topics with no systematic
-bridge between them. On the PE methods side, Schulhoff et
+Survey literature treats prompting methods and evaluation practice as
+separate topics with no systematic bridge. On the PE methods side, Schulhoff et
 al.~\cite{schulhoff2024prompt} catalog 58 text-only prompting
 techniques with a meta-analysis but no evaluation framework; Sahoo
 et al.~\cite{sahoo2024systematic} and Vatsal \&
@@ -526,16 +524,15 @@ taxonomies~\cite{sahoo2024systematic, schulhoff2024prompt}.
 
 \subsection{The Prompt Engineering Design Space}
 
-The prompting design space spans from manual to fully automated.
-Zero-shot and few-shot prompting~\cite{brown2020gpt3}, chain-of-thought
-prompting~\cite{wei2022chain}, retrieval-augmented
+The prompting design space spans manual to fully automated:
+zero-shot/few-shot~\cite{brown2020gpt3},
+chain-of-thought~\cite{wei2022chain}, retrieval-augmented
 generation~\cite{lewis2020retrieval}, and automated prompt optimization
 via textual gradient descent~\cite{pryzant2023apo} or LLM-based
-search~\cite{zhou2022ape} represent the range. The question that cuts
-across all of these methods (how do you know it worked?) depends
-on which evaluation framework you apply, and the field currently has no
-shared vocabulary for classifying those frameworks. That is what this
-survey provides.
+search~\cite{zhou2022ape}. The question that cuts across them (how do
+you know it worked?) depends on which evaluation framework you apply;
+the field has no shared vocabulary for classifying those frameworks,
+and this survey provides one.
 
 \subsection{Evaluation Metric Families}
 
@@ -651,25 +648,19 @@ feng2025sage}.
 \subsection{Two Underlying Tensions in Evaluation Design}
 \label{subsec:tensions}
 
-A useful taxonomy of evaluation frameworks should do more than catalog the
-choices researchers make; it should help interpret why those choices cluster
-the way they do. We frame the configuration space of prompt engineering
-evaluation as structured by two largely orthogonal tensions, both
-formalized in Section~\ref{subsec:validityreliability}, each visible in
-the distribution of practice across the corpus
-(Section~\ref{sec:comparison}):
+A useful taxonomy of evaluation frameworks should not only catalog
+choices but interpret why they cluster as they do. We frame the
+configuration space as structured by two largely orthogonal tensions
+(formalized in Section~\ref{subsec:validityreliability}, each visible in
+Section~\ref{sec:comparison}):
 (1)~\textit{construct validity} vs.\ \textit{measurement reliability}
-(Definitions~2--3: does the score capture the intended property, and does
-it do so consistently?), and
-(2)~\textit{reference-anchored} vs.\ \textit{judgment-anchored} evaluation
-(Definitions~4--5: is scoring determined by a stored gold answer, or
-delegated to an evaluator whose output is not pre-determined?).
-The seven dimensions in Sections~\ref{subsec:d1}--\ref{subsec:d7}
-project onto these axes in specific, identifiable ways, and the
-configurations that papers actually adopt cluster in regions of the space
-the validity/reliability frame anticipates.
-Figure~\ref{fig:taxonomy} positions the dimensions on the two-axis space;
-Section~\ref{sec:comparison} then locates 152 papers within it.
+(Definitions~2--3), and
+(2)~\textit{reference-anchored} vs.\ \textit{judgment-anchored}
+evaluation (Definitions~4--5). The seven dimensions in
+Sections~\ref{subsec:d1}--\ref{subsec:d7} project onto these axes in
+identifiable ways, and the configurations papers adopt cluster in
+regions the frame anticipates. Figure~\ref{fig:taxonomy} positions
+the dimensions; Section~\ref{sec:comparison} locates the 152 papers.
 
 \textit{What the frame organizes.} The two tensions make three
 patterns we later observe in the corpus interpretable rather than
@@ -689,27 +680,20 @@ return to in Section~\ref{subsec:archetypes}.
 \subsection{From Five Dimensions to Seven}
 \label{subsec:fivetoseven}
 
-An earlier formulation of this taxonomy used five dimensions:
-evaluation method, task scope, metric type, automation level, and
-evaluation scope. Application to the corpus revealed two limitations
-of the five-dimensional version. First, the five dimensions
-captured \emph{procedural} choices but did not name two properties
-that the literature itself treats as first-class evaluation concerns:
-robustness to prompt rephrasing~\cite{sclar2023formatting,
-promptsensitivity2025, butterfly2024} and reproducibility under judge
-drift, API change, and benchmark contamination~\cite{ni2025benchmarks,
-feng2025sage}. Second, the five dimensions did not place automation
-level in its proper relation to reliability. Automation is not an
-independent property of evaluation; it is a particular operationalization
-of the reliability axis, and treating it as a peer to evaluation method
-or metric type misrepresents the conceptual structure.
-
-The current taxonomy retains the original five and adds
+An earlier formulation used five dimensions (evaluation method, task
+scope, metric type, automation level, evaluation scope). Application
+to the corpus revealed two limitations: the five dimensions captured
+\emph{procedural} choices but did not name two literature-recognized
+first-class concerns: robustness to prompt
+rephrasing~\cite{sclar2023formatting, promptsensitivity2025,
+butterfly2024} and reproducibility under judge drift, API change, and
+contamination~\cite{ni2025benchmarks, feng2025sage}; second, automation
+level was treated as a peer dimension rather than as an operationalization
+of the reliability axis. The current taxonomy adds
 \textit{D6 (Robustness)} and \textit{D7 (Reproducibility and
-Contamination Resistance)}; it also reframes \textit{D4 (Automation
-Level)} as a sub-axis of reliability rather than an independent
-choice. The seven-dimensional structure is designed to make the two
-underlying tensions traceable through every coding decision.
+Contamination Resistance)} and reframes \textit{D4 (Automation Level)}
+as a sub-axis of reliability, making both underlying tensions
+traceable through every coding decision.
 
 Per Definition~1, an evaluation framework is fully specified by a
 choice along each of D1--D7. The dimensions are conceptually distinct
@@ -1015,22 +999,21 @@ grows substantially.
 \label{subsec:taxsummary}
 
 Table~\ref{tab:taxonomy} and Figure~\ref{fig:taxonomy} summarize the
-seven dimensions and their positions on the validity-reliability and
-reference-judgment axes. Empirical distributions are in
-Section~\ref{sec:comparison}; worked classification examples and
-design guidance follow in Section~\ref{sec:taxonomy_application}.
+seven dimensions on the validity-reliability and reference-judgment
+axes. Empirical distributions follow in Section~\ref{sec:comparison};
+worked examples and design guidance in
+Section~\ref{sec:taxonomy_application}.
 
 % ---------------------------------------------------------------
 \section{Applying the Taxonomy: Worked Examples and Design Guidance}
 \label{sec:taxonomy_application}
 
-The taxonomy is useful only when researchers can apply it both to
-classify existing work and to structure new evaluation designs.
-Subsection~\ref{subsec:classify} works through two corpus papers
-dimension by dimension; Subsection~\ref{subsec:design} walks forward
-through a new study, surfacing design decisions that would otherwise
-remain implicit; Subsection~\ref{subsec:quickref} distills the
-guidance into one reference table.
+The taxonomy is useful only when applied to classify existing work
+and to structure new designs. Subsection~\ref{subsec:classify} classifies
+two corpus papers; Subsection~\ref{subsec:design} walks through a new
+study, surfacing implicit design decisions;
+Subsection~\ref{subsec:quickref} distills guidance into a reference
+table.
 
 \subsection{Classifying Existing Papers}
 \label{subsec:classify}
@@ -1288,31 +1271,25 @@ papers must make deliberate tradeoffs among the taxonomy dimensions.
 \section{Methodology: Systematic Literature Review}
 \label{sec:methodology}
 The 152-paper corpus was constructed through a PRISMA 2020 systematic
-literature review~\cite{page2021prisma}. The review consists of one
-primary search round (Sections~\ref{subsec:search}--\ref{subsec:screening},
+literature review~\cite{page2021prisma}, comprising one primary search
+round (Sections~\ref{subsec:search}--\ref{subsec:screening},
 Figure~\ref{fig:prisma}) followed by four targeted expansion rounds
-(Table~\ref{tab:expansion_rounds}). All five rounds apply the PRISMA
-2020 reporting conventions~\cite{page2021prisma}: stated databases,
-documented search strategy with dates, explicit inclusion / exclusion
-criteria (Section~\ref{subsec:inclusion}), dual-reviewer screening
-with reported agreement (Section~\ref{subsec:screening}, $\kappa$ =
-0.81 over a 200-record dual-screened sample), per-round identified /
-screened / excluded / included counts (Table~\ref{tab:expansion_rounds}),
-and dual coding of every included paper (Section~\ref{subsec:coding_reliability},
-$\kappa$ = 0.76--0.92 by dimension). The primary round and the four
-expansion rounds differ only in the breadth of their queries: the
-primary round used full database sweeps with broad PE-evaluation
-search strings, while the expansion rounds used the same databases
-with narrower topical refinements (Table~\ref{tab:expansion_rounds},
-``Target areas''). The expansion rounds are therefore documented as
-``additional records identified from other sources / supplementary
-searches'' within the PRISMA 2020 flow~\cite{page2021prisma}, which
-explicitly allows for such rounds. The expansion rounds function as
-coverage-repair searches that address specific under-represented
-topic areas identified after coding the prior set; they are not
-independent prevalence sweeps of the full literature, and the
-directional bias they introduce is named explicitly as a limitation
-in Section~\ref{subsubsec:lim_expansion}.
+(Table~\ref{tab:expansion_rounds}). All five rounds apply PRISMA 2020
+conventions: stated databases, documented search strategy with dates,
+explicit inclusion / exclusion criteria (Section~\ref{subsec:inclusion}),
+dual-reviewer screening (Section~\ref{subsec:screening}; $\kappa$ =
+0.81 over a 200-record dual-screened sample), per-round
+identified/screened/excluded/included counts
+(Table~\ref{tab:expansion_rounds}), and dual coding of every included
+paper (Section~\ref{subsec:coding_reliability}; $\kappa$ = 0.76--0.92).
+The primary round used broad PE-evaluation queries; the expansion
+rounds used narrower topical refinements against the same databases
+(Table~\ref{tab:expansion_rounds}, ``Target areas''), documented as
+``additional records identified from supplementary searches''
+within the PRISMA 2020 flow. These coverage-repair rounds address
+under-represented topic areas identified after coding the prior set;
+they are not independent prevalence sweeps, and the directional bias
+they introduce is named in Section~\ref{subsubsec:lim_expansion}.
 
 \subsection{Search Strategy}
 \label{subsec:search}
@@ -1438,33 +1415,25 @@ quality. Sensitivity analysis (Section~\ref{subsec:sensitivity})
 confirms headline distributional claims are stable; per-dimension
 $\kappa$ in Table~\ref{tab:kappa} documents coding reliability.
 
-\textbf{On expansion rounds.} The four supplementary rounds were
-each triggered by a specific under-coverage gap identified after
-coding the prior cumulative set, with trigger / role / bias risk
-recorded per round in Table~\ref{tab:expansion_audit}. Each round
-used the same inclusion and exclusion criteria and the same six
-databases as Round~0; the only methodological difference is the
-breadth of the search string (broad sweep in Round~0 versus narrow
-topical queries in Rounds 1--4). The directional bias is named
-explicitly as a limitation in
+\textbf{On expansion rounds.} Each supplementary round was triggered
+by a specific under-coverage gap identified after coding the prior
+cumulative set, with trigger / role / bias risk recorded in
+Table~\ref{tab:expansion_audit}. All rounds shared the inclusion
+criteria and six databases of Round~0, differing only in
+search-string breadth (broad sweep vs.\ narrow topical queries).
+The directional bias is named in
 Section~\ref{subsubsec:lim_expansion}.
 
 \textbf{Corpus publication-status breakdown.} All 152 papers satisfy
-at least one quality condition in Section~\ref{subsec:inclusion}
-(peer review, 10+ Google Scholar citations at screening time, or
-recognized NLP/AI venue). Two are explicit 2026 arXiv preprints
-(\cite{bellibatlu2026judgesense, benchmark2sq2026}) flagged as
-preliminary, with no headline claim resting solely on either. The
-remaining 150 mix peer-reviewed conference/journal papers,
-foundation-model technical reports, and arXiv preprints meeting the
-citation- or venue-criterion threshold. A precise peer-reviewed
-vs.\ arXiv split is not reported because many corpus papers were
-initially posted to arXiv and subsequently accepted at venues
-(NeurIPS, ACL, EMNLP, ICLR, TACL, etc.) while retaining the arXiv
-identifier in their BibTeX \texttt{journal} field; an automatic count
-would systematically undercount peer-reviewed status. The complete
-per-paper record is in \texttt{references.bib} in the artifact
-repository.
+at least one quality condition (peer review, 10+ Google Scholar
+citations at screening, or recognized NLP/AI venue). Two are 2026
+arXiv preprints~\cite{bellibatlu2026judgesense, benchmark2sq2026}
+flagged as preliminary, with no headline claim resting solely on
+either. A precise peer-reviewed vs.\ arXiv split is not reported
+because many corpus papers were initially posted to arXiv and later
+accepted at venues (NeurIPS, ACL, EMNLP, ICLR, TACL) while retaining
+the arXiv identifier in their BibTeX \texttt{journal} field; the
+complete per-paper record is in \texttt{references.bib}.
 
 \subsection{Screening Process}
 \label{subsec:screening}
@@ -1769,43 +1738,32 @@ that uncertainty propagates to the headline claims.
 \section{Comparative Analysis}
 \label{sec:comparison}
 
-Mapping the corpus against the taxonomy serves three purposes:
-testing the taxonomy's expressive coverage of evaluation choices
-observed under our inclusion criteria, deriving co-occurrence
-patterns / recurring \textit{evaluation archetypes} / a failure-mode
-catalog beyond per-dimension counts, and grounding the synthesis in
+Mapping the corpus against the taxonomy tests its expressive coverage,
+derives co-occurrence patterns, recurring \textit{evaluation
+archetypes}, and a failure-mode catalog, and grounds the synthesis in
 Section~\ref{sec:discussion}.
 
-\paragraph{PE-core papers vs.\ evaluation infrastructure.} The
-corpus contains two overlapping populations: 76 \emph{PE-core
-papers} (technique, sensitivity/code prompting, PE-specific surveys)
-and 76 \emph{evaluation infrastructure papers} (benchmarks, datasets,
-LLM-judge frameworks, metric-quality studies); together they form
-the 152-paper corpus. The mixed inclusion is justified in
-Section~\ref{subsec:inclusion}: technique papers consume
-infrastructure and infrastructure papers shape what techniques can
-be evaluated. Aggregate distributions below use the full corpus;
-the D7 table (Section~\ref{subsec:d7dist}) additionally reports the
-LLM-as-Judge subset where the contrast is most pronounced.
+\paragraph{PE-core papers vs.\ evaluation infrastructure.} The corpus
+contains two overlapping populations: 76 \emph{PE-core papers}
+(technique, sensitivity/code prompting, PE-specific surveys) and 76
+\emph{evaluation infrastructure papers} (benchmarks, datasets,
+LLM-judge frameworks, metric-quality studies). The mixed inclusion is
+justified in Section~\ref{subsec:inclusion}. Aggregate distributions
+below use the full corpus; the D7 table
+(Section~\ref{subsec:d7dist}) additionally reports the LLM-as-Judge
+subset.
 
 Sections~\ref{subsec:d1dist}--\ref{subsec:d7dist} report per-dimension
-distributions directly reproducible from \texttt{corpus\_d1d7.csv},
-with subset contrasts noted inline. Section~\ref{subsec:cooccurrence}
-reports the co-occurrence matrix and the configurations accounting
-for the bulk of the corpus. Section~\ref{subsec:archetypes} names
-the recurring archetypes and locates each on the validity-reliability
-frame (Section~\ref{subsec:tensions}). Section~\ref{subsec:failuremodes}
-walks through three worked failure modes where the taxonomy makes a
-methodological mismatch visible.
-
+distributions (reproducible from \texttt{corpus\_d1d7.csv}).
+Section~\ref{subsec:cooccurrence} reports the co-occurrence matrix;
+Section~\ref{subsec:archetypes} names the recurring archetypes;
+Section~\ref{subsec:failuremodes} walks through three failure modes.
 Table~\ref{tab:archetype_distribution} previews the five most common
-configurations and the tension each foregrounds. A representative
-ten-paper mapping is in the Electronic Supplement
-(Appendix~B, Table~B.1); the full 152-paper mapping is in Appendix~C;
-the machine-readable dataset is included as a review-time snapshot
-with the submission and will be tagged citably at acceptance.
-Table~\ref{tab:comparison} summarizes the modal configuration per
-paper category.
+configurations; Table~\ref{tab:comparison} summarizes the modal
+configuration per paper category. A representative ten-paper mapping
+is in Appendix~B; the full 152-paper mapping is in Appendix~C; the
+machine-readable dataset is a review-time snapshot, tagged citably at
+acceptance.
 
 \begin{table*}[!t]
 \renewcommand{\arraystretch}{1.2}
@@ -1913,21 +1871,16 @@ non-trivial reporting share in this category. \\
 \end{tabular}
 \end{table*}
 
-Table~\ref{tab:comparison} foregrounds two patterns. First, the dimensional
-profile varies by paper category: technique papers (N=27), benchmark
-papers (N=44), and surveys (N=22) converge on Archetype~A
-(Benchmark-Automation), while LLM-judge papers (N=32) converge on
-Archetype~B, and sensitivity papers (N=27) show elevated D6 reporting
-(as noted in the final row of Table~\ref{tab:comparison}).
-These observations are summarized in Table~\ref{tab:comparison};
-the per-paper D1--D7 assignments supporting the aggregate dimensional
-analyses are included in the review-time dataset.
-Second, the per-category modal configuration is informative
-\emph{because} of the within-category variations noted in the
-right-hand column; each variation is a candidate failure-mode
-example (Section~\ref{subsec:failuremodes}) or a methodological
-development worth highlighting in the discussion
-(Section~\ref{sec:discussion}).
+Table~\ref{tab:comparison} foregrounds two patterns. First, the
+dimensional profile varies by paper category: technique papers
+(N=27), benchmark papers (N=44), and surveys (N=22) converge on
+Archetype~A (Benchmark-Automation); LLM-judge papers (N=32) converge
+on Archetype~B; sensitivity papers (N=27) show elevated D6 reporting.
+Per-paper D1--D7 assignments are in the review-time dataset.
+Second, the per-category modal is informative \emph{because of} the
+within-category variations in the right-hand column; each variation
+is a candidate failure mode (Section~\ref{subsec:failuremodes}) or a
+discussion-worthy methodological development (Section~\ref{sec:discussion}).
 
 %% The full 152-paper machine-readable coding (all 7 dimensions) is
 %% released at https://github.com/rohithreddybc/PromptEvalTaxonomy.
@@ -1949,18 +1902,17 @@ capture is output quality on open-ended tasks without a single
 correct answer.
 
 LLM-as-judge evaluation appears in 30 papers (19.7\%), concentrated
-in open-ended generation and instruction-following subgroups
+in open-ended generation and instruction-following
 (MT-Bench~\cite{zheng2023judging},
 AlpacaEval~\cite{dubois2024alpacaeval}, G-Eval~\cite{liu2023geval}).
-The cluster includes fine-tuned scalable judges~\cite{zhu2023judgelm},
-panel-of-judges~\cite{verga2024replacing}, agent-debate
-meta-evaluation~\cite{chern2024scaleeval},
-multi-agent ensembles~\cite{multiagentjudge2025},
-two surveys~\cite{gu2025llmjudge, li2024llmsjudges}, bias
-quantification~\cite{ye2024justice, wataoka2024selfpreference,
-judgingjudges2024, judgebench2024}, and applications for
-hallucination detection~\cite{akbar2024hallumeasure}.
-Adoption has outpaced calibration research.
+The cluster spans fine-tuned scalable judges~\cite{zhu2023judgelm},
+judge panels and debate-based
+meta-evaluation~\cite{verga2024replacing, chern2024scaleeval,
+multiagentjudge2025}, two surveys~\cite{gu2025llmjudge, li2024llmsjudges},
+bias quantification~\cite{ye2024justice, wataoka2024selfpreference,
+judgingjudges2024, judgebench2024}, and hallucination
+detection~\cite{akbar2024hallumeasure}. Adoption has outpaced
+calibration research.
 
 Human evaluation appears in 14 papers (9.2\%), ablation studies in
 2 (1.3\%); no corpus paper uses a user study as primary method. Four
@@ -2115,15 +2067,14 @@ Table~\ref{tab:d7dist} shows the D7 distribution
 ($\kappa$ = 0.78; Section~\ref{subsec:coding_reliability}).
 
 
-The asymmetry to highlight is between the artifact-released share
-(70.4\%) and the contamination-checked share (3.9\%). A paper that
-releases its prompts and seeds but does not verify test-set cleanness
-has provided the artifacts to reproduce scores while leaving open
-what those scores measure. The papers that address this gap directly
-\cite{sainz2023nlp, deng2023investigating, yang2023rethinking,
-wang2024benchmark, mcintosh2024inadequacies} are concentrated in the
-benchmark-paper category. Strong reproducibility (same scores,
-same construct, same data conditions) requires both.
+The key asymmetry is between artifact-released share (70.4\%) and
+contamination-checked share (3.9\%): a paper that releases prompts
+and seeds without verifying test-set cleanness provides
+reproducibility artifacts while leaving construct unclear. Papers
+addressing this gap directly~\cite{sainz2023nlp, deng2023investigating,
+yang2023rethinking, wang2024benchmark, mcintosh2024inadequacies} are
+concentrated in the benchmark-paper category; strong reproducibility
+requires both.
 
 \subsection{Cross-Dimensional Patterns}
 \label{subsec:crossdim}
@@ -2523,13 +2474,12 @@ assumption goes unaddressed across the corpus.
 \section{Discussion and Future Directions}
 \label{sec:discussion}
 
-The per-dimension distributions and the archetype analysis in
-Section~\ref{sec:comparison} are best read as empirical evidence for
-the two underlying tensions of Section~\ref{subsec:tensions}, plus a
-within-run vs.\ across-time refinement of the first tension that
-Definition~3 already singles out. The three sections below name each
-tension, point to the corpus evidence, and identify what the taxonomy
-suggests is missing.
+The per-dimension distributions and archetype analysis
+(Section~\ref{sec:comparison}) are best read as empirical evidence
+for the two tensions of Section~\ref{subsec:tensions}, plus a
+within-run vs.\ across-time refinement (Definition~3). The sections
+below name each tension, point to corpus evidence, and identify what
+the taxonomy suggests is missing.
 
 \subsection{Tension 1: Scalability vs.\ Construct Validity}
 \label{subsec:tension_scalability}
@@ -2557,22 +2507,19 @@ evaluation alone.
 \label{subsec:tension_reference}
 
 The second tension marks the boundary between Archetypes A and
-B. When no gold reference exists, scoring must delegate to a judgment
-(human, expert panel, or LLM), and the failure modes change:
-reference-anchored evaluation fails on under-determined references
-and contamination; judgment-anchored evaluation fails on judge bias,
-judge-version drift, and missing calibration. The 30 LLM-judge papers
-in the corpus draw from at least six distinct judge configurations
-(different judge models, prompt templates, scoring rubrics,
-tie-handling protocols), and few report a calibration experiment
-against a target judgment on the specific task evaluated. The result
-is that LLM-judge scores are reproducible within a paper but not
+B. Without a gold reference, scoring delegates to a judgment (human,
+expert panel, or LLM), changing the failure modes: reference-anchored
+evaluation fails on under-determined references and contamination;
+judgment-anchored evaluation fails on judge bias, version drift, and
+missing calibration. The 30 LLM-judge papers use at least six
+distinct judge configurations (judge model, prompt template, scoring
+rubric, tie-handling) with few reporting calibration against a target
+judgment, so LLM-judge scores are reproducible within a paper but not
 directly comparable across papers. Calderon et
-al.~\cite{alternativeannotator2025} have proposed a statistical
-framework for judge--annotator substitutability and Gehrmann et
-al.~\cite{repairing2022} have articulated broader NLG reporting
-norms; neither has been adopted at scale within the PE evaluation
-literature.
+al.~\cite{alternativeannotator2025} proposed a statistical framework
+for judge--annotator substitutability; Gehrmann et
+al.~\cite{repairing2022} articulated broader NLG reporting norms;
+neither has been adopted at scale within PE evaluation.
 
 \subsection{Refining Tension 1: Within-Run vs.\ Across-Time Reliability}
 \label{subsec:tension_reproducibility}
@@ -2594,36 +2541,25 @@ parts of it; what remains is widespread adoption.
 \subsection{Open Problems by Tension}
 \label{subsec:open_problems}
 
-Each tension implies a specific class of open problem.
-
-The scalability vs.\ validity tension implies a need for
+Each tension implies a specific class of open problem. The
+scalability vs.\ validity tension implies a need for
 \textit{calibrated reference-free metrics} for tasks where no gold
-answer exists - metrics whose construct relationship to the target
-property has been validated against an expert standard, and whose
-calibration evidence is reported alongside their numerical scores.
-Existing work on FActScore~\cite{factscore2023} and the alternative
-annotator test~\cite{alternativeannotator2025} provides building
-blocks; a domain-specific PE evaluation literature using these
-building blocks does not yet exist in systematic form, particularly
-for clinical and multilingual settings (with the corpus boundary
-caveats from Section~\ref{subsec:d2dist}).
-
-The reference vs.\ judgment tension implies a need for a
-\textit{shared LLM-judge calibration standard}: a minimum bar of
-disclosure (judge model and version, prompt template, calibration
-outcome against a target judgment on the specific task) that
-papers reporting LLM-judge scores would be expected to meet. The
-PE community has the building blocks; what is missing is
-adoption.
-
-The within-run vs.\ across-time tension implies a need for
-\textit{infrastructure-stable evaluation pipelines}: dynamic
+answer exists, with construct relationship to the target property
+validated against an expert standard and calibration evidence
+reported alongside numerical scores; FActScore~\cite{factscore2023}
+and the alternative annotator test~\cite{alternativeannotator2025}
+provide building blocks, but a systematic domain-specific PE
+evaluation literature does not yet exist (with corpus boundary
+caveats from Section~\ref{subsec:d2dist}). The reference vs.\
+judgment tension implies a \textit{shared LLM-judge calibration
+standard}: a minimum disclosure bar (judge model and version, prompt
+template, calibration outcome) that LLM-judge papers would meet; the
+community has the building blocks, what is missing is adoption. The
+within-run vs.\ across-time tension implies
+\textit{infrastructure-stable pipelines}: dynamic
 contamination-resistant benchmarks, locally-pinned judge models
-where licensing permits, or - at minimum - explicit reporting of
-the snapshot date for any proprietary judge component. None of
-these is a research breakthrough; each is an evaluation engineering
-practice that the literature could converge on if reviewers
-required it.
+where licensing permits, or at minimum explicit snapshot-date
+reporting for proprietary judge components.
 
 \subsection{Limitations of This Survey}
 \label{subsec:surveylimits}
@@ -2777,12 +2713,10 @@ literature.''
 \label{sec:conclusion}
 
 Prompt engineering evaluation has been treated as a procedural
-choice rather than a measurement problem. The procedural framing
-makes it difficult to compare evaluation results across studies and
-to reason about which choices are methodologically central to a
-given contribution claim. This survey reframes the practice as a
-measurement problem and develops the conceptual structure that
-follows from doing so.
+choice rather than a measurement problem, making cross-study
+comparison and methodological reasoning difficult. This survey
+reframes the practice as a measurement problem and develops the
+conceptual structure that follows.
 
 Two underlying tensions from measurement theory help organize the
 configuration space: construct validity vs.\ measurement reliability,
