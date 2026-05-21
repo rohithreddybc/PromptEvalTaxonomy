@@ -142,7 +142,7 @@ contamination, multi-prompt sensitivity, agentic and multilingual
 evaluation, prompt-injection safety, CoT faithfulness,
 foundation-model technical reports, RAG evaluation, bias and fairness,
 calibration, and clinical/legal domain evaluation), the taxonomy
-identifies three recurring evaluation archetypes validated by
+identifies three recurring evaluation archetypes supported by
 silhouette analysis and unsupervised $k$-means clustering
 (Benchmark-Automation, Judge-Mediated, Expert-Anchored), strong
 dimension-pair dependencies (Cram\'{e}r's~$V$ up to 0.702), and
@@ -1986,9 +1986,9 @@ meta-evaluation~\cite{chern2024scaleeval},
 multi-agent ensembles~\cite{multiagentjudge2025},
 two surveys~\cite{gu2025llmjudge, li2024llmsjudges}, bias
 quantification~\cite{ye2024justice, wataoka2024selfpreference,
-judgingjudges2024, judgebench2024}, and hallucination-detection
-applications~\cite{akbar2024hallumeasure}. Adoption has outpaced
-calibration research.
+judgingjudges2024, judgebench2024}, and applications for
+hallucination detection~\cite{akbar2024hallumeasure}.
+Adoption has outpaced calibration research.
 
 Human evaluation appears in 14 papers (9.2\%), ablation studies in
 2 (1.3\%); no corpus paper uses a user study as primary method. Four
@@ -2865,13 +2865,14 @@ the public, commercial, or not-for-profit sectors.
 
 \section*{Data Availability}
 \label{sec:data}
+\begin{sloppypar}
 The companion artifact repository is publicly available at
 \url{https://github.com/rohithreddybc/PromptEvalTaxonomy} under a
 CC-BY 4.0 license. The repository provides the evaluation-design
 checklist of the Electronic Supplement (Appendix~A) in
 machine-readable form, the schema for the per-paper extraction
 dataset, the PowerShell script reproducing the empirical analyses in
-§\ref{subsubsec:cramerv} and §\ref{subsubsec:clustervalidation}, the
+\S\ref{subsubsec:cramerv} and \S\ref{subsubsec:clustervalidation}, the
 PRISMA flow record, and the paper source.
 
 \textbf{Review-time artifact access.} For peer review, an anonymized
@@ -2880,9 +2881,10 @@ snapshot of the 152-paper $\times$ D1--D7 coding spreadsheet
 (\texttt{\_empirical\_analysis.ps1}), and the PRISMA flow record is
 included with the submission package and is available at the
 repository URL above. Reviewers can therefore audit individual paper
-codings, regenerate the silhouette and Cram\'er's $V$ values reported
-in §\ref{sec:comparison}, and verify the per-round PRISMA counts
+codings, regenerate the silhouette and Cram\'{e}r's~$V$ values reported
+in \S\ref{sec:comparison}, and verify the per-round PRISMA counts
 during the review period.
+\end{sloppypar}
 
 The repository will be tagged as a citable snapshot at paper
 acceptance to keep the dataset versioned-aligned with the accepted
