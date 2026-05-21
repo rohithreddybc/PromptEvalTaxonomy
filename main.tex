@@ -121,57 +121,42 @@ Evaluation Frameworks for Large Language Models}
 % ---------------------------------------------------------------
 \begin{abstract}
 Prompt engineering evaluation lacks a shared conceptual frame. Two
-papers can both report improvements on the same prompting technique
-using methods, metrics, and scopes that are internally consistent yet
+papers can report improvements on the same prompting technique using
+methods, metrics, and scopes that are internally consistent yet
 mutually incomparable, not because either study is poorly designed,
 but because the surveyed literature has not converged on what should
-be measured or how. We trace this gap to two unresolved tensions from
-measurement theory: construct validity vs.\ measurement reliability,
-and reference-anchored vs.\ judgment-anchored evaluation. Existing
-evaluation choices project onto these tensions in identifiable,
-predictable ways.
+be measured or how. We trace this to two unresolved measurement-theory
+tensions: construct validity vs.\ measurement reliability, and
+reference-anchored vs.\ judgment-anchored evaluation.
 
-This paper develops a seven-dimensional taxonomy of prompt
-engineering evaluation frameworks organized around those tensions,
-covering evaluation method (D1), task scope (D2), metric type (D3),
-automation level (D4), evaluation scope (D5), robustness (D6), and
-reproducibility (D7). Applied to a 152-paper PRISMA~2020 corpus from
-six academic databases (an initial 79-paper set expanded through four
-supplementary rounds covering LLM-judge quality, benchmark
-contamination, multi-prompt sensitivity, agentic and multilingual
-evaluation, prompt-injection safety, CoT faithfulness,
-foundation-model technical reports, RAG evaluation, bias and fairness,
-calibration, and clinical/legal domain evaluation), the taxonomy
-identifies three recurring evaluation archetypes supported by
-silhouette analysis and unsupervised $k$-means clustering
-(Benchmark-Automation, Judge-Mediated, Expert-Anchored), strong
-dimension-pair dependencies (Cram\'{e}r's~$V$ up to 0.702), and
-three named failure modes (FM1: Construct Mismatch; FM2: Unpinned
-Judge; FM3: Single-Phrasing Generalization) where a paper's
-evaluation configuration does not support its stated contribution
-claims.
+We develop a seven-dimensional taxonomy (D1--D7: evaluation method,
+task scope, metric type, automation level, evaluation scope,
+robustness, reproducibility) and apply it to a 152-paper PRISMA~2020
+corpus from six databases (79-paper primary set plus four
+coverage-repair expansion rounds). The taxonomy identifies three
+recurring archetypes supported by silhouette analysis and unsupervised
+$k$-means clustering (Benchmark-Automation, Judge-Mediated,
+Expert-Anchored), strong dimension-pair dependencies
+(Cram\'{e}r's~$V$ up to 0.702), and three named failure modes
+(FM1: Construct Mismatch; FM2: Unpinned Judge; FM3: Single-Phrasing
+Generalization) where an evaluation design does not support its
+stated claims.
 
-Three patterns emerge from the corpus. The dominant archetype,
-Benchmark-Automation (65.7\% of coded papers, 95\% bootstrap CI
-[57.9\%, 73.0\%]), occupies the high-reliability, narrow-validity
-region of the design space: well-matched to tasks with ground-truth
-answers, but under-specifying the construct for open-ended
-generation. The Judge-Mediated archetype (17.2\%) addresses this gap
-at the cost of introducing judge-model reliability concerns that the
-surveyed corpus has not yet managed with a shared calibration
-protocol. Robustness and contamination-resistant evaluation remain
-minority practices in the corpus, indicating these dimensions are not
-yet standard in how prompt engineering evaluation is designed and
-reported.
+Three patterns emerge. The dominant archetype (Benchmark-Automation,
+65.7\% of the corpus) occupies the high-reliability, narrow-validity
+region: well-suited to tasks with ground-truth answers but
+under-specifying the construct for open-ended generation. The
+Judge-Mediated archetype (17.2\%) addresses this gap at the cost of
+judge-model reliability concerns the surveyed corpus has not yet
+managed with a shared calibration protocol. Robustness and
+contamination-resistant evaluation remain minority practices.
 
 The taxonomy is not a new evaluation method. To our knowledge, it is
-the first systematic treatment of prompt engineering evaluation
-organized through a measurement-theoretic frame, providing a stable
-reference vocabulary (D1--D7, FM1--FM3, and three archetype labels)
-that subsequent work can cite to disclose methodology and position
-contributions relative to prior designs. A companion seven-question
-checklist operationalizing all seven dimensions supports immediate use
-in study design and peer review (Table~\ref{tab:quickref}).
+the first systematic treatment of prompt engineering evaluation through
+a measurement-theoretic frame, providing a stable reference vocabulary
+(D1--D7, FM1--FM3, archetype labels) that subsequent work can cite to
+disclose and compare evaluation methodology. A companion
+seven-question checklist supports immediate practitioner use.
 \end{abstract}
 
 \keywords{prompt engineering, large language models, evaluation
