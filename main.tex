@@ -151,12 +151,13 @@ judge-model reliability concerns the surveyed corpus has not yet
 managed with a shared calibration protocol. Robustness and
 contamination-resistant evaluation remain minority practices.
 
-The taxonomy is not a new evaluation method. To our knowledge, it is
-the first systematic treatment of prompt engineering evaluation through
-a measurement-theoretic frame, providing a stable reference vocabulary
-(D1--D7, FM1--FM3, archetype labels) that subsequent work can cite to
-disclose and compare evaluation methodology. A companion
-seven-question checklist supports immediate practitioner use.
+The taxonomy is not a new evaluation method. We propose it as one
+organizing scheme for prompt engineering evaluation through a
+measurement-theoretic lens; whether the resulting vocabulary
+(D1--D7, FM1--FM3, archetype labels) proves useful for disclosing
+and comparing evaluation methodology is for the community to decide.
+A companion seven-question checklist accompanies the taxonomy as a
+practitioner aid.
 \end{abstract}
 
 \keywords{prompt engineering, large language models, evaluation
@@ -233,10 +234,11 @@ results are limited by an evaluation ecosystem without a shared
 vocabulary for describing what each measured, which tradeoffs each
 accepts, and under what conditions results transfer across labs.
 The same pattern (internally consistent, mutually incomparable
-evaluations) applies across the broader literature
-\cite{chang2023survey, guo2023evaluating}. Providing that vocabulary
-in the form of a seven-dimensional taxonomy grounded in measurement
-theory is the primary contribution of this paper.
+evaluations) appears throughout the broader
+literature~\cite{chang2023survey, guo2023evaluating}. Proposing a
+candidate vocabulary in the form of a seven-dimensional taxonomy
+grounded in measurement theory, and testing whether it organizes the
+literature usefully, is the primary contribution of this paper.
 
 \subsection*{Contribution}
 
@@ -280,23 +282,21 @@ named corpus papers (Section~\ref{subsec:failuremodes}).
 
 The taxonomy itself is not a new evaluation method. It is a
 classification scheme for existing methods together with empirical
-findings about how those methods co-occur in the literature. To our
-knowledge, this is the first systematic survey to organize prompt
-engineering evaluation through a measurement-theoretic frame; the
-seven-dimensional codebook, failure-mode catalog (FM1--FM3), and
-accompanying preregistration checklist are intended as a stable
-reference vocabulary that subsequent evaluation work can cite to
-disclose methodology and position contributions consistently across
-studies (Section~\ref{subsec:using}).
+findings about how those methods co-occur in the literature. We are
+not aware of a prior survey that organizes prompt engineering
+evaluation through a measurement-theoretic lens, though the survey
+landscape is fast-moving; the contribution we claim is the proposed
+organization and the empirical analyses that follow from it
+(Section~\ref{subsec:using}), not field-level priority.
 
 \subsection*{Research Questions}
 \label{subsec:rqs}
 This survey is organized around four research questions:
 \begin{description}
-\item[RQ1] \textit{(Taxonomy.)} What dimensions are required to
-classify the evaluation framework of any prompt-engineering study in
-a way that exposes its measurement-theoretic trade-offs? Addressed
-in Sections~\ref{sec:taxonomy} and~\ref{subsec:tensions}.
+\item[RQ1] \textit{(Taxonomy.)} What dimensions, if any, suffice to
+classify the evaluation framework of a prompt-engineering study in a
+way that exposes measurement-theoretic trade-offs? Addressed in
+Sections~\ref{sec:taxonomy} and~\ref{subsec:tensions}.
 
 \item[RQ2] \textit{(Distribution.)} What are the empirical
 distributions of evaluation choices across the 152-paper corpus, and
@@ -307,13 +307,13 @@ Sections~\ref{subsec:d1dist}--\ref{subsec:cooccurrence} and
 
 \item[RQ3] \textit{(Failure modes.)} Where does the taxonomy expose
 specific points at which an evaluation configuration does not support
-the paper's contribution claim? Addressed in
-Section~\ref{subsec:failuremodes}.
+the paper's contribution claim, and how prevalent are these in the
+corpus? Addressed in Section~\ref{subsec:failuremodes}.
 
-\item[RQ4] \textit{(Tensions and gaps.)} What structural tensions
-organize the corpus, and what gaps in evaluation practice does the
-taxonomy reveal that prior surveys do not centrally address?
-Addressed in Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_reproducibility}
+\item[RQ4] \textit{(Tensions and gaps.)} What interpretive tensions
+appear consistent with the observed configurations, and what gaps in
+reporting practice does the corpus show? Addressed in
+Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_reproducibility}
 and the future-direction agenda of Section~\ref{subsec:agenda}.
 \end{description}
 
@@ -645,21 +645,26 @@ feng2025sage}.
 \section{A Taxonomy of Prompt Engineering Evaluation Frameworks}
 \label{sec:taxonomy}
 
-\subsection{Two Underlying Tensions in Evaluation Design}
+\subsection{Two Interpretive Tensions Suggested by the Analysis}
 \label{subsec:tensions}
 
-A useful taxonomy of evaluation frameworks should not only catalog
-choices but interpret why they cluster as they do. We frame the
-configuration space as structured by two largely orthogonal tensions
-(formalized in Section~\ref{subsec:validityreliability}, each visible in
-Section~\ref{sec:comparison}):
+A taxonomy of evaluation frameworks can do more than catalog choices
+if a small number of organizing tensions also explain why those
+choices cluster as they do. We propose two such tensions as an
+\emph{interpretive frame} (formalized in
+Section~\ref{subsec:validityreliability}; consistent with the corpus
+patterns in Section~\ref{sec:comparison}):
 (1)~\textit{construct validity} vs.\ \textit{measurement reliability}
 (Definitions~2--3), and
 (2)~\textit{reference-anchored} vs.\ \textit{judgment-anchored}
-evaluation (Definitions~4--5). The seven dimensions in
-Sections~\ref{subsec:d1}--\ref{subsec:d7} project onto these axes in
-identifiable ways, and the configurations papers adopt cluster in
-regions the frame anticipates. Figure~\ref{fig:taxonomy} positions
+evaluation (Definitions~4--5). Other organizing tensions are
+plausible; we choose these because they are well-established in the
+measurement-theory literature
+they project onto~\cite{cronbach1955construct, messick1995validity,
+jacobs2021measurement} and because the seven dimensions project onto
+them in identifiable ways. Whether this frame has explanatory force
+beyond surface organization is an empirical question we examine in
+Section~\ref{subsec:archetypes}. Figure~\ref{fig:taxonomy} positions
 the dimensions; Section~\ref{sec:comparison} locates the 152 papers.
 
 \textit{What the frame organizes.} The two tensions make three
@@ -789,7 +794,7 @@ Any combination of subcategories across dimensions is a valid
 evaluation framework configuration; co-occurrence patterns observed
 in practice are reported in
 Section~\ref{subsec:cooccurrence}.
-\textit{Takeaway:} The seven dimensions are non-redundant: each enforces a distinct design choice that prior surveys either collapse into a single axis or omit entirely, giving this taxonomy finer discriminating power over evaluation configurations.}
+\textit{Takeaway:} The seven dimensions index distinct design choices that prior surveys collapse into a single axis or omit; whether this finer resolution improves discrimination over a smaller axis set is examined empirically in Section~\ref{subsec:archetypes}.}
 \label{tab:taxonomy}
 \centering
 \footnotesize
@@ -1102,10 +1107,10 @@ but risks systematic errors that clinicians would catch. Human-in-loop
 domain where no calibrated automated metric yet exists.
 
 \textit{D5 - What evaluation scope?} A single-model result
-(D5\,=\,Single-model) in clinical QA provides the weakest possible
-generalizability evidence. Cross-model evaluation (D5\,=\,Cross-model) is
-required before the technique can be recommended for deployment across
-clinical systems using different underlying models.
+(D5\,=\,Single-model) in clinical QA provides limited
+generalizability evidence; cross-model evaluation
+(D5\,=\,Cross-model) is the stronger basis for deployment claims
+across clinical systems using different underlying models.
 
 \textit{D6 - What robustness reporting?} Clinical RAG systems are
 particularly exposed to prompt sensitivity because retrieved-context
@@ -1116,12 +1121,11 @@ defensible; D6\,=\,Single-prompt should be flagged as a known
 generalizability risk in the limitations section.
 
 \textit{D7 - What reproducibility commitments?} For clinical
-evaluation, D7 should aim at \textit{judge-version-pinned} (if any LLM
-component is used) and \textit{contamination-checked} (verifying that
-the test set is not subset of any training corpus the underlying
-model has seen). Because medical benchmarks are smaller and easier to
-contaminate, D7=\,Not-reported is rarely defensible in this
-domain.
+evaluation, \textit{judge-version-pinned} (if an LLM component is
+used) and \textit{contamination-checked} (verifying that the test
+set is not a subset of any training corpus the underlying model has
+seen) are stronger choices than D7\,=\,Not-reported, particularly
+because medical benchmarks are smaller and easier to contaminate.
 
 This exercise surfaces seven design decisions that are typically
 implicit and unreported. Using the taxonomy to make them explicit
@@ -1753,6 +1757,30 @@ below use the full corpus; the D7 table
 (Section~\ref{subsec:d7dist}) additionally reports the LLM-as-Judge
 subset.
 
+\paragraph{Implications of the mixed corpus for distributional claims.}
+Combining technique, benchmark, LLM-judge, and survey papers within a
+single corpus is a methodological choice that aids the taxonomy's
+expressive test (the dimensional categories must cover all four paper
+types if the framework is to be general) but trades that breadth for
+straightforward prevalence interpretation. Three implications follow.
+First, aggregate percentages below describe the \emph{distribution of
+evaluation configurations represented in the corpus under the
+inclusion criteria of Section~\ref{subsec:inclusion}}, not
+field-level prevalence; a corpus that excluded surveys, or that
+weighted by citation count, would produce different percentages.
+Second, archetype shares are sensitive to the PE-core / infrastructure
+split: Archetype B is concentrated in the LLM-judge-frameworks
+population (Section~\ref{subsec:archetypes}), so its corpus share
+partly reflects how many such frameworks meet the inclusion criteria
+rather than how often LLM-judge evaluation is used in deployed PE
+work. Third, distributional findings should be read alongside the
+per-category breakdown (Table~\ref{tab:comparison}), which separates
+technique, benchmark, LLM-judge, and survey populations and surfaces
+the within-category modal configuration. The expansion rounds further
+mean the final corpus is partially purposive rather than purely
+systematic; selection-bias implications are stated explicitly in
+Section~\ref{subsubsec:lim_expansion}.
+
 Sections~\ref{subsec:d1dist}--\ref{subsec:d7dist} report per-dimension
 distributions (reproducible from \texttt{corpus\_d1d7.csv}).
 Section~\ref{subsec:cooccurrence} reports the co-occurrence matrix;
@@ -2346,6 +2374,59 @@ coherent regions of the validity-reliability space, and the cluster
 validation provides convergent evidence that the boundaries between
 them are not merely imposed by the rule-based labels.
 
+\emph{Check 3: stability across clustering methods.} To address the
+concern that k-means is a particular algorithmic choice, we re-ran the
+analysis under four alternative methods on the 141-paper
+archetype-fitting subset: hierarchical clustering with Ward linkage,
+hierarchical clustering with average linkage, Gaussian mixture
+models (GMM) with diagonal covariance, and spectral clustering
+(nearest-neighbours affinity). At $k=3$, the adjusted Rand index
+against the rule-based labels was 0.51 (k-means), 0.54 (Ward), 0.92
+(average linkage), 0.51 (GMM), and 0.51 (spectral); silhouette scores
+ranged from 0.27 to 0.34. GMM-BIC was minimized at $k=3$
+(BIC$_{k=3}=-10653$ vs.\ $-9898$ at $k=2$ and $-10019$ at $k=4$),
+providing a second model-selection criterion that converges on
+$k=3$. Average-linkage hierarchical clustering produced the closest
+agreement with the rule-based labels (ARI~$=0.92$), suggesting the
+rule-based partition aligns particularly well with a hierarchical
+view of the configuration space. The gap statistic on uniform-random
+references is monotonically increasing through $k=7$ (Gap rises from
+0.24 at $k=3$ to 0.56 at $k=7$), a known artefact on sparse binary
+data~\cite{tibshirani2001gap, sugar2003finding}; we therefore rely on
+BIC and silhouette for $k$ selection.
+
+\emph{Check 4: bootstrap stability of cluster membership.} Across 200
+non-parametric bootstrap resamples of the 141-paper subset (sample
+with replacement, refit k-means at $k=3$ each iteration), the mean
+within-rule-archetype co-cluster probability was 0.62, 0.81, and 0.52
+for Archetypes A, B, and C respectively, against a between-archetype
+mean of 0.09. The 0.53 separation indicates that papers assigned to
+the same rule-archetype remain co-clustered under bootstrap
+resampling at roughly seven times the rate of papers assigned to
+different archetypes, supporting cluster stability under sampling
+variation.
+
+\subsubsection{Predictive validation: does the archetype carry
+information beyond its construction?}
+\label{subsubsec:predictive}
+A taxonomy that organizes but does not predict provides limited
+analytical value. We test whether the archetype labels (constructed
+from D1 and D4 alone) statistically predict D6 (robustness) and D7
+(reproducibility) properties, which were not used in archetype
+construction. A chi-square test of independence between archetype
+membership and D6 distribution yields $\chi^2 = 13.53$ ($p = 0.035$,
+Cram\'er's $V = 0.219$); the same test against D7 distribution yields
+$\chi^2 = 36.08$ ($p < 0.001$, Cram\'er's $V = 0.358$). The strongest
+predictive signal is on D7: judge-version pinning is reported by 0\%
+of Archetype A papers (0/101) but 16.7\% of Archetype B papers
+(5/30), and full non-reporting of D7 properties holds for 80\% of
+Archetype C papers (8/10) versus 25.7\% of Archetype A (26/101).
+The taxonomy therefore carries information about downstream reporting
+practices beyond what its construction inputs encode, which is
+consistent with (though does not by itself establish) the claim that
+the archetype structure reflects coherent evaluation strategies
+rather than coding artefacts.
+
 \subsection{Failure-Mode Catalog}
 \label{subsec:failuremodes}
 
@@ -2362,17 +2443,21 @@ coding surfaces is the gap between configuration and claim that an
 unstructured prose summary would not.
 
 \textit{Failure mode 1 (FM1: Construct Mismatch): task-specific
-metric on a non-exact-match construct.} Dimensional fingerprint: D1=Benchmark, D3=Task-specific
-or Reference-based, applied to a D2 task category where the construct
-is not well-approximated by a single closed-form reference. Corpus
-exemplars: Sivarajkumar et al.~\cite{sivarajkumar2024empirical}
-(empirical clinical prompting evaluation; D2=Clinical, D3=Task-specific,
-D6=Multi-prompt-aggregate, D7=Not-reported), Nori et
-al.~\cite{nori2023gpt4medical} (GPT-4 medical capabilities;
-D2=Clinical, D3=Task-specific, D5=Single-model, D7=Not-reported), and
-the cross-model SE evaluations of Hou et al.~\cite{advancedllmsse2024}
-(D2=Code, D3=Task-specific, D5=Cross-model, D6=Not-reported,
-D7=Not-reported). The configurations support claims about answer-key
+metric on a non-exact-match construct.} Dimensional fingerprint: D1=Benchmark,
+D3$\in$\{Task-specific, Reference-based, Model-based\}, applied to a
+D2 task category whose construct is not well-approximated by a single
+closed-form reference (D2$\in$\{Generation, Clinical, Agentic,
+Multilingual\}). \emph{Corpus prevalence:} 11 of 152 papers (7.2\%)
+under the strict fingerprint, derived directly from the released
+\texttt{corpus\_d1d7.csv}. Named exemplars: Sivarajkumar et
+al.~\cite{sivarajkumar2024empirical} (empirical clinical prompting
+evaluation; D2=Clinical, D3=Task-specific, D6=Multi-prompt-aggregate,
+D7=Not-reported), Nori et al.~\cite{nori2023gpt4medical} (GPT-4
+medical capabilities; D2=Clinical, D3=Task-specific, D5=Single-model,
+D7=Not-reported), and the cross-model SE evaluations of Hou et
+al.~\cite{advancedllmsse2024} (D2=Code, D3=Task-specific,
+D5=Cross-model, D6=Not-reported, D7=Not-reported; coded under the
+broader fingerprint that includes Code with task-specific metrics). The configurations support claims about answer-key
 agreement; deployment-readiness claims about clinical or code-quality
 behaviour additionally require Archetype-B or Archetype-C evidence,
 or a calibrated reference-free metric, none of which is reported by
@@ -2382,8 +2467,11 @@ gap between lexical-overlap or exact-match metrics and human
 judgment on generation tasks.
 
 \textit{Failure mode 2 (FM2: Unpinned Judge): LLM-judge score
-without judge-version pinning.} Dimensional fingerprint: D1=LLM-as-Judge, D3=LLM-judge,
-D7 lacks the Judge-version-pinned property. Corpus exemplars:
+without judge-version pinning.} Dimensional fingerprint:
+D1$\supseteq$LLM-as-Judge, D7 lacks the Judge-version-pinned property.
+\emph{Corpus prevalence:} 25 of 30 LLM-judge papers (83.3\% of the
+LLM-judge subgroup, 16.4\% of the full corpus) carry this fingerprint.
+Named exemplars:
 Panickssery et al.~\cite{judgingjudges2024} (Judging the Judges;
 D1=LLM-as-Judge, D7=Artifact-released only), Bavaresco et al.~\cite{llmvshuman2024}
 (D1=LLM-as-Judge with Human, D7=Artifact-released only), and
@@ -2400,13 +2488,17 @@ document the judge snapshot in a way that supports across-time
 reproducibility.
 
 \textit{Failure mode 3 (FM3: Single-Phrasing Generalization):
-single-prompt cross-model claim.}
-Dimensional fingerprint: D5=Cross-model with D6=Single-prompt or
-D6=Not-reported. Corpus exemplars: chain-of-thought
-prompting~\cite{wei2022chain} (D5=Cross-model, D6=Single-prompt) and
-zero-shot CoT~\cite{kojima2022large} (same fingerprint), both
-landmark techniques whose original evaluations report cross-model
-generalization on a single prompt phrasing per model.
+single-prompt cross-model claim.} Dimensional fingerprint: D5=Cross-model
+with D6$\in$\{Single-prompt, Not-reported\}.
+\emph{Corpus prevalence:} 45 of 152 papers (29.6\%) carry this
+fingerprint (42 with D6=Single-prompt, 3 with D6=Not-reported),
+making FM3 the most prevalent of the three failure modes and
+endemic to the modal Archetype A configuration. Named exemplars:
+chain-of-thought prompting~\cite{wei2022chain} (D5=Cross-model,
+D6=Single-prompt) and zero-shot CoT~\cite{kojima2022large} (same
+fingerprint), both landmark techniques whose original evaluations
+report cross-model generalization on a single prompt phrasing per
+model.
 Mizrahi et al.~\cite{mizrahi2024state} and Salinas \&
 Morstatter~\cite{butterfly2024} have shown that single-prompt
 evaluations systematically overstate effects relative to
@@ -2417,10 +2509,16 @@ phrasing typically suggests, a pattern endemic to the modal
 Archetype A configuration that affects the bulk of the technique
 papers in the corpus.
 
-These failure modes are not unusual; the dimensional codings make
-them locally identifiable in a way that prose summaries do not, and
-the released machine-readable corpus permits any reader to compile a
-similar list using a different fingerprint.
+\textit{Aggregate prevalence.} 69 of 152 corpus papers (45.4\%)
+exhibit at least one of FM1--FM3 under the fingerprints above;
+overlap is modest (FM1$\cap$FM3 = 2 papers; FM2$\cap$FM3 = 9 papers;
+no paper exhibits all three). These are corpus-derived counts, not
+selected examples: any reader can reproduce them from the released
+\texttt{corpus\_d1d7.csv} using the dimensional fingerprints stated
+above. The dimensional codings make each fingerprint locally
+identifiable in a way that prose summaries do not, and the released
+machine-readable corpus permits any reader to compile a similar list
+using a different fingerprint.
 
 \paragraph{Hidden assumptions surfaced by the dimensional view.}
 Each failure mode is a place where an unstated assumption supports the
@@ -2683,21 +2781,19 @@ survey cycle.
 \subsection{Using This Taxonomy in Citing Work}
 \label{subsec:using}
 
-The taxonomy is most useful when citing work reuses the D1--D7 labels
-directly. Three applications: (1)~\emph{Methodology disclosure}:
-embed the seven-tuple in a single methodology line (e.g., ``D1=Benchmark,
-D2=Reasoning, D3=Task-specific, D4=Automated, D5=Cross-model,
-D6=Multi-prompt aggregate, D7=Artifact-released'');
-(2)~\emph{Comparative claims}: use the machine-readable corpus
-dataset (review-time snapshot with submission; see Data Availability)
-as the comparison spine rather than re-coding papers;
+For citing work that finds the D1--D7 labels useful, three
+applications follow naturally:
+(1)~\emph{Methodology disclosure}: embed the seven-tuple in a single
+methodology line (e.g., ``D1=Benchmark, D2=Reasoning,
+D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt
+aggregate, D7=Artifact-released'');
+(2)~\emph{Comparative claims}: use the machine-readable corpus dataset
+(review-time snapshot with submission; see Data Availability) as a
+comparison reference rather than re-coding papers;
 (3)~\emph{Evaluation design}: use the Electronic Supplement
-(Appendix~A) checklist as a preregistration template.
-
-A canonical citation form:
-``We adopt the seven-dimensional PE evaluation taxonomy (D1--D7) of
-[this paper] to position our evaluation relative to the prior
-literature.''
+(Appendix~A) checklist as a preregistration template. None of these
+are prescriptive uses; whether they prove sufficient is for the
+community to assess.
 
 
 % ---------------------------------------------------------------
@@ -2710,7 +2806,7 @@ comparison and methodological reasoning difficult. This survey
 reframes the practice as a measurement problem and develops the
 conceptual structure that follows.
 
-Two underlying tensions from measurement theory help organize the
+Two interpretive tensions from measurement theory help organize the
 configuration space: construct validity vs.\ measurement reliability,
 and reference-anchored vs.\ judgment-anchored evaluation. Seven
 dimensions (D1--D7) give those tensions operational form. Applied
@@ -2744,14 +2840,15 @@ components; what they require is adoption, not new theory.
 The taxonomy is not a complete solution. It does not settle
 disagreements about which evaluation method is optimal for a given
 task, and it cannot supply the domain expertise needed to build
-rigorous protocols in specialized settings. What it does is name
-the tradeoffs that currently go unnamed, locate them in the
-literature, and provide a vocabulary in which methodological
-standardization is at least describable. Adoption is feasible
-immediately: disclosing the D1--D7 configuration of any reported
-evaluation takes a single methodology line
-(Section~\ref{subsec:using}) and makes the design directly
-comparable to prior work without changing the evaluation itself.
+rigorous protocols in specialized settings. What it attempts is to
+name tradeoffs that currently go unnamed, locate them in the
+literature, and offer a vocabulary in which methodological
+standardization is at least describable. Whether the proposed
+vocabulary is taken up by subsequent work is a community decision,
+not a contribution of this paper; disclosing a D1--D7 configuration
+adds one methodology line and changes nothing about the underlying
+evaluation, which is the lightest test we can offer of whether the
+labels are useful.
 The distance from describable to standardized is a coordination
 problem, one that requires community adoption of shared standards
 more than new technical development.
