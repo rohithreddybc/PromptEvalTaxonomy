@@ -934,6 +934,7 @@ identified in Section~\ref{subsec:archetypes}; the empirical
 distribution of papers across them is reported in
 Table~\ref{tab:archetype_distribution}.
 \textit{Takeaway:} The majority of the corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), suggesting that within this corpus benchmark-automation more often emphasizes measurement convenience and cross-paper comparability than construct coverage.}
+\Description[Two-axis validity-reliability diagram with seven dimensions]{A two-axis diagram showing the construct validity vs.\ measurement reliability tradeoff on one axis and reference-anchored vs.\ judgment-anchored evaluation on the other, with the seven taxonomy dimensions D1 through D7 positioned at their primary projections and three archetype regions (Benchmark-Automation, Judge-Mediated, Expert-Anchored) labelled.}
 \label{fig:taxonomy}
 \end{figure*}
 
@@ -1567,6 +1568,7 @@ The expanded identification and per-round screening counts are
 tabulated in Table~\ref{tab:expansion_rounds}; the figure integrates
 all five rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
 \textit{Takeaway:} Of 3,297 database records identified, 130 (3.9\%) met all inclusion criteria via database search; 22 additional papers recovered through citation tracing in Round~0 yielded the final corpus of 152 papers. The high full-text exclusion rate (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
+\Description[PRISMA 2020 flow diagram for the five-round literature search]{PRISMA 2020 flowchart depicting identification, screening, eligibility, and inclusion steps across the primary search round and four supplementary expansion rounds, with records counts at each stage: 3,297 identified, 862 screened, 732 excluded, 152 included.}
 \label{fig:prisma}
 \end{figure*}
 
@@ -2389,7 +2391,8 @@ models (GMM) with diagonal covariance, and spectral clustering
 (nearest-neighbours affinity). At $k=3$, the adjusted Rand index
 against the rule-based labels was 0.51 (k-means), 0.54 (Ward), 0.92
 (average linkage), 0.51 (GMM), and 0.51 (spectral); silhouette scores
-ranged from 0.27 to 0.34. GMM-BIC was minimized at $k=3$
+ranged from 0.27 to 0.34. The Bayesian information criterion (BIC)
+under the GMM fit was minimized at $k=3$
 (BIC$_{k=3} = -10{,}653$ vs.\ $-9{,}898$ at $k=2$ and $-10{,}019$ at $k=4$),
 providing a second model-selection criterion that converges on
 $k=3$. Average-linkage hierarchical clustering produced the closest
@@ -2412,18 +2415,17 @@ resampling at roughly seven times the rate of papers assigned to
 different archetypes, supporting cluster stability under sampling
 variation.
 
-\subsubsection{Predictive validation: does the archetype carry
-information beyond its construction?}
+\subsubsection{Predictive Validation: does the archetype carry information beyond its construction?}
 \label{subsubsec:predictive}
 A taxonomy that organizes but does not predict provides limited
 analytical value. We test whether the archetype labels (constructed
 from D1 and D4) statistically predict D6 (robustness) and D7
 (reproducibility) properties, which were not used in archetype
-construction. A chi-square test of independence between archetype
+construction. A $\chi^2$ test of independence between archetype
 membership and D6 distribution yields $\chi^2 = 12.66$ on 6 df
-($p = 0.049$, Cram\'er's $V = 0.212$); the same test against D7
+($p = 0.049$, Cram\'er's $V = 0.21$); the same test against D7
 distribution yields $\chi^2 = 31.44$ on 8 df ($p < 0.001$,
-Cram\'er's $V = 0.334$). The strongest predictive signal is on D7:
+Cram\'er's $V = 0.33$). The strongest predictive signal is on D7:
 judge-version pinning (D7=JP) is reported by 0\% of Archetype A
 papers (0/101) versus 19.2\% of Archetype B papers (5/26), and full
 non-reporting of D7 properties (D7=NR) holds for 57.1\% of Archetype
@@ -2475,7 +2477,8 @@ judgment on generation tasks.
 
 \textit{Failure mode 2 (FM2: Unpinned Judge): LLM-judge score
 without judge-version pinning.} Dimensional fingerprint:
-D1$\supseteq$LLM-as-Judge, D7 lacks the Judge-version-pinned property.
+D1$\in$\{LLM-as-Judge, LLM-as-Judge with Human\}, D7 lacks the
+Judge-version-pinned property.
 \emph{Corpus prevalence:} 25 of 30 LLM-judge papers (83.3\% of the
 LLM-judge subgroup, 16.4\% of the full corpus) carry this fingerprint.
 Named exemplars:
