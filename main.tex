@@ -149,10 +149,10 @@ evaluation's dimensional configuration does not support its stated
 claims.
 
 Three patterns emerge. The dominant archetype (Benchmark-Automation,
-65.7\% of the corpus) occupies the high-reliability, narrow-validity
+66.4\% of the corpus) occupies the high-reliability, narrow-validity
 region: well-suited to tasks with ground-truth answers but
 under-specifying the construct for open-ended generation. The
-Judge-Mediated archetype (17.2\%) addresses this gap at the cost of
+Judge-Mediated archetype (17.1\%) addresses this gap at the cost of
 judge-model reliability concerns the surveyed corpus has not yet
 managed with a shared calibration protocol. Robustness and
 contamination-resistant evaluation remain minority practices.
@@ -229,7 +229,7 @@ a chain-of-thought variant for medical differential diagnosis.
 Study~A evaluates it on MedQA with exact-match accuracy
 (D1=Benchmark, D3=Task-specific, D4=Automated); Study~B evaluates
 the same technique with GPT-4 as a clinical scoring judge on a
-different question set (D1=LLM-as-judge, D3=LLM-judge, D4=Automated).
+different question set (D1=LLM-as-Judge, D3=LLM-judge, D4=Automated).
 Both report improvements over their baselines, but a clinician
 choosing between them cannot combine the results: Study~A's
 exact-match accuracy does not capture the reasoning quality or
@@ -273,7 +273,7 @@ constructs.
 
 \item \textit{An empirical archetype finding.} Three recurring
 configurations (Benchmark-Automation, Judge-Mediated,
-Expert-Anchored) account for 92.1\% of the corpus under a strict
+Expert-Anchored) account for 92.8\% of the corpus under a strict
 mutual-exclusion assignment, with a silhouette coefficient of 0.398
 against a random-labelling baseline of $-0.037$
 (Section~\ref{subsubsec:clustervalidation}). The finding is
@@ -330,7 +330,7 @@ emerge within these inclusion criteria. The modal configuration
 (benchmark-based, task-specific, fully automated) occupies the
 high-reliability, narrow-validity region: well-matched to tasks with
 ground-truth answers, under-specified on open-ended generation. The
-LLM-as-judge cluster addresses this gap but introduces judge-model
+LLM-as-Judge cluster addresses this gap but introduces judge-model
 reliability concerns the corpus does not yet manage with a shared
 calibration protocol. Robustness and contamination-resistant
 evaluation appear in only a small minority of papers
@@ -549,7 +549,7 @@ fast and reproducible, but weakly aligned with human judgment on
 open-ended tasks~\cite{liu2023geval, repairing2022}.
 \textbf{Model-based metrics} use learned semantic representations
 (BERTScore~\cite{zhang2020bertscore} and related), handling paraphrase
-more gracefully but still requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-judge
+more gracefully but still requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-Judge
 metrics} delegate scoring to a second language model
 (G-Eval~\cite{liu2023geval}), eliminating the gold-reference
 requirement at the cost of importing judge biases: positional
@@ -724,7 +724,7 @@ Five subcategories appear in the corpus, each indexed to a primary
 strength and a primary weakness: \emph{Benchmark} (reproducible,
 saturation-prone~\cite{hendrycks2021measuring, ni2025benchmarks});
 \emph{Human eval} (credible for open-ended tasks, expensive and slow
-to replicate~\cite{chang2023survey}); \emph{LLM-as-judge} (scales to
+to replicate~\cite{chang2023survey}); \emph{LLM-as-Judge} (scales to
 open-ended outputs, imports judge bias~\cite{zheng2023judging,
 dubois2024alpacaeval, gu2025llmjudge}); \emph{Ablation} (isolates
 component contribution, not for cross-technique comparison);
@@ -765,7 +765,7 @@ What is being measured, and by what means? D3 is the most direct
 projection of the reference-anchored / judgment-anchored axis: the
 four families introduced in §\ref{sec:background},
 comprising reference-based (BLEU~\cite{papineni2002bleu},
-ROUGE~\cite{lin2004rouge}), model-based (BERTScore), LLM-as-judge
+ROUGE~\cite{lin2004rouge}), model-based (BERTScore), LLM-as-Judge
 (G-Eval~\cite{liu2023geval}), and task-specific (pass@$k$, exact
 match, RAGAS~\cite{rageval2024}), partition along that axis.
 Calibration evidence (validation of the metric against a target
@@ -793,8 +793,8 @@ hard cases while the latter applies it uniformly.
 \caption{Seven-Dimensional Taxonomy of Prompt Engineering Evaluation
 Frameworks. Each dimension projects primarily onto one of the two
 underlying tensions introduced in Section~\ref{subsec:tensions}:
-construct validity vs. measurement reliability (V/R), and
-reference-anchored vs. judgment-anchored evaluation (R/J). D5
+construct validity vs.\ measurement reliability (V/R), and
+reference-anchored vs.\ judgment-anchored evaluation (R/J). D5
 projects onto a third, largely orthogonal generalizability axis (G).
 Any combination of subcategories across dimensions is a valid
 evaluation framework configuration; co-occurrence patterns observed
@@ -810,10 +810,10 @@ Section~\ref{subsec:cooccurrence}.
 \textbf{What it captures} & \textbf{Representative example} \\
 \midrule
 D1 Evaluation method &
-Benchmark, Human eval, LLM-as-judge, Ablation, User study &
+Benchmark, Human eval, LLM-as-Judge, Ablation, User study &
 R/J &
 The procedure used to assess prompting technique performance &
-MT-Bench: LLM-as-judge on open-ended tasks~\cite{zheng2023judging} \\
+MT-Bench: LLM-as-Judge on open-ended tasks~\cite{zheng2023judging} \\
 \midrule
 D2 Task scope &
 Reasoning, NLG, Code, QA, Clinical, Multilingual, Agentic, Multimodal, Multi-task &
@@ -1051,11 +1051,11 @@ contamination-checked at the time of publication.
 
 \textbf{Paper: Zheng et al., ``Judging LLM-as-a-Judge with MT-Bench and
 Chatbot Arena''~\cite{zheng2023judging}.}
-D1\,=\,LLM-as-judge (GPT-4 is used as the primary evaluator, scoring
+D1\,=\,LLM-as-Judge (GPT-4 is used as the primary evaluator, scoring
 model responses on a 1-10 scale).
 D2\,=\,Multi-task (MT-Bench spans eight categories including writing,
 roleplay, math, and coding, with no single task domain dominating).
-D3\,=\,LLM-as-judge (the scoring rubric is operationalized entirely
+D3\,=\,LLM-as-Judge (the scoring rubric is operationalized entirely
 through GPT-4 judgments rather than reference-based or human-assigned
 metrics; calibration is reported against human pairwise preferences
 on a held-out subset).
@@ -1102,7 +1102,7 @@ instruments from general NLP may not transfer without adaptation.
 clinical responses, making reference-based metrics (BLEU, ROUGE)
 structurally inadequate. Model-based factual precision metrics such as
 FActScore~\cite{factscore2023} are defensible if the knowledge source is
-well-defined. An LLM-as-judge configuration (D3\,=\,LLM-judge) is an
+well-defined. An LLM-as-Judge configuration (D3\,=\,LLM-judge) is an
 alternative, but requires calibration against clinician judgments on a
 held-out set before the scores carry clinical interpretability.
 
@@ -1270,7 +1270,7 @@ PromptEval \cite{polo2024promptseval}
 Together, these tools partition the design space along the two
 underlying tensions: automated benchmark frameworks (Archetype~A)
 maximize reliability and throughput but accept narrow construct
-validity; LLM-as-judge frameworks (Archetype~B) broaden coverage to
+validity; LLM-as-Judge frameworks (Archetype~B) broaden coverage to
 open-ended tasks but introduce judge-side variance that the
 robustness tools (PromptBench, PromptSET, JudgeSense) begin to
 quantify. No single tool covers all seven dimensions simultaneously, mirroring
@@ -1333,7 +1333,7 @@ AND (``large language model'' OR ``LLM'' OR ``GPT'' OR ``language model'')}
 \medskip
 
 Supplementary searches targeted specific subtopics that the primary
-string was likely to undercount: LLM-as-judge evaluation methodology,
+string was likely to undercount: LLM-as-Judge evaluation methodology,
 evaluation of automated prompt optimization systems, and cross-domain
 prompting benchmarks.
 We also conducted backward and forward citation searches on the
@@ -1387,7 +1387,7 @@ understanding evaluation frameworks.
 
 \textbf{On mixing paper types.} The corpus includes four overlapping
 categories: prompt engineering technique papers, benchmark/dataset
-papers, LLM-as-judge and metric-quality papers, and PE/LLM-evaluation
+papers, LLM-as-Judge and metric-quality papers, and PE/LLM-evaluation
 surveys. All four \emph{participate in PE evaluation infrastructure}:
 technique papers consume benchmarks and metrics, benchmark and metric
 papers shape what techniques can be evaluated, and surveys
@@ -1396,7 +1396,7 @@ is participation in evaluation infrastructure, not paper genre. All
 major distributions in Section~\ref{sec:comparison} are reported in
 aggregate directly from \texttt{corpus\_d1d7.csv}, so every
 percentage is independently verifiable; category-subgroup contrasts
-are noted inline where relevant (e.g., LLM-as-judge configurations
+are noted inline where relevant (e.g., LLM-as-Judge configurations
 for D7). Recent CSUR systematic reviews adopt the same mixed-category
 convention (e.g., Edemacu and Wu~\cite{edemacu2024privacysurvey} on
 privacy attacks; Chang et al.~\cite{chang2023survey} on LLM
@@ -1734,7 +1734,7 @@ fewer than 10 citations that were not published at a recognized
 venue, which could underrepresent very recent 2025--2026 work. We
 partially addressed this by retaining 2025 and 2026 papers that met
 the venue criterion regardless of citation count, but the
-distribution of recent methodological developments in the LLM-as-judge
+distribution of recent methodological developments in the LLM-as-Judge
 and dynamic-benchmark subfields may still be undercounted.
 
 \textit{Coding judgment at category boundaries.} Several dimensions
@@ -1813,7 +1813,7 @@ reported in Table~\ref{tab:kappa}. The Judge-pinned property
 ($\approx$3.3\% of the corpus, Table~\ref{tab:d7dist}), so the
 LLM-judge archetypes below do not list JP as part of their modal
 D7 configuration.
-\textit{Takeaway:} Under a strict mutual-exclusion assignment, the Benchmark-Automation archetype accounts for 65.7\% of the corpus (95\% bootstrap CI [57.9\%, 73.0\%]); the Judge-Mediated cluster is the only other substantial group at 17.2\% [11.2\%, 23.7\%], making the choice between benchmark-automation and judge-mediated evaluation a central design distinction within this corpus.}
+\textit{Takeaway:} Under a strict mutual-exclusion assignment, the Benchmark-Automation archetype accounts for 66.4\% of the corpus (95\% bootstrap CI [58.6\%, 73.7\%]); the Judge-Mediated cluster is the only other substantial group at 17.1\% [11.2\%, 23.7\%], making the choice between benchmark-automation and judge-mediated evaluation a central design distinction within this corpus.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -1881,8 +1881,8 @@ SWE-bench~\cite{jimenez2023swebench}, WildBench~\cite{wildbench2024})
 are predominantly Cross-model; foundational multi-task benchmark suites
 (GLUE, MMLU, BIG-Bench) form the Cross-dataset minority. \\
 \midrule
-LLM-as-judge / metric-quality papers & 32 &
-LLM-as-judge / LLM-judge / Auto or Hybrid &
+LLM-as-Judge / metric-quality papers & 32 &
+LLM-as-Judge / LLM-judge / Auto or Hybrid &
 Cross-model &
 Expansion round added judge-bias papers (Koo et al.~\cite{koo2023benchmarking},
 Ye et al.~\cite{ye2024justice}). Judge-version-pinning (D7) is
@@ -1936,7 +1936,7 @@ cross-lab comparable, and inexpensive at scale; what they cannot
 capture is output quality on open-ended tasks without a single
 correct answer.
 
-LLM-as-judge evaluation appears in 30 papers (19.7\%), concentrated
+LLM-as-Judge evaluation appears in 30 papers (19.7\%), concentrated
 in open-ended generation and instruction-following
 (MT-Bench~\cite{zheng2023judging},
 AlpacaEval~\cite{dubois2024alpacaeval}, G-Eval~\cite{liu2023geval}).
@@ -2067,7 +2067,7 @@ Total               & 152 & 100.0\% \\
 Inter-rater $\kappa$ = 0.78; see Section~\ref{subsec:coding_reliability}.
 \textit{Takeaway:} Artifact release is a majority norm (70.4\%) but
 contamination checking (3.9\%) and judge-version pinning (3.3\%) remain
-rare, a gap that will compound as LLM-as-judge usage grows and model
+rare, a gap that will compound as LLM-as-Judge usage grows and model
 versions diverge from publication-time versions.}
 \label{tab:d7dist}
 \centering\footnotesize
@@ -2272,11 +2272,11 @@ is precisely the configuration that produces recurring archetypes.
 \label{subsec:archetypes}
 
 The co-occurrence pattern resolves into three recurring archetypes
-that, taken together, cover 92.1\% of the corpus. Each archetype is a
+that, taken together, cover 92.8\% of the corpus. Each archetype is a
 named configuration of dimensional choices, located at a specific
 region of the validity-reliability space. To classify each paper we
 apply a strict mutual-exclusion rule (C before B before A) so the
-shares below sum to less than 100\%; the residual 7.9\% (12 papers)
+shares below sum to less than 100\%; the residual 7.2\% (11 papers)
 carry a mixed configuration that does not match any single archetype
 cleanly.
 
@@ -2284,8 +2284,8 @@ cleanly.
 Configuration: D1 = Benchmark, D3 = Task-specific, D4 = Automated,
 D5 = Cross-model or Single-model, D6 = Single-prompt or
 Not reported, D7 = Artifact-released, Contamination-checked rare.
-Empirical share: 65.7\% of the corpus (100 papers; 95\% bootstrap CI
-[57.9\%, 73.0\%]; modal archetype for technique, benchmark, and survey
+Empirical share: 66.4\% of the corpus (101 papers; 95\% bootstrap CI
+[58.6\%, 73.7\%]; modal archetype for technique, benchmark, and survey
 categories). Region of design space: high reliability, narrow
 construct validity, reference-anchored. Representative example:
 chain-of-thought papers~\cite{wei2022chain, wang2023selfconsistency}
@@ -2297,10 +2297,10 @@ open-ended generation, sensitive to contamination, rarely reports
 prompt-paraphrase variance.
 
 \textbf{Archetype B: Judge-Mediated.}
-Configuration: D1 = LLM-as-judge, D3 = LLM-judge, D4 = Automated or
+Configuration: D1 = LLM-as-Judge, D3 = LLM-judge, D4 = Automated or
 Hybrid, D5 = Cross-model, D6 = Multi-prompt aggregate or
 Single-prompt, D7 = Judge-version-pinned where reported,
-Contamination-checked rare. Empirical share: 17.2\% (26 papers; 95\%
+Contamination-checked rare. Empirical share: 17.1\% (26 papers; 95\%
 bootstrap CI [11.2\%, 23.7\%]; concentrated in the LLM-judge and
 metric-quality category). Region of design space: judgment-anchored,
 broader construct ambition than Archetype A, but reliability mediated
@@ -2351,23 +2351,22 @@ respectively).
 ran k-means clustering for $k=2,\ldots,6$ on the one-hot vectors,
 with k-means++ initialisation, ten random seeds per $k$, and selection
 of the lowest-SSE solution. The unsupervised algorithm has no
-knowledge of the rule-based archetype labels. Results: $k=3$ is the
-silhouette-maximising unsupervised partition (silhouette $0.440$ vs.\
-$0.421$ at $k=2$ and $0.306$ at $k=4$), and the adjusted Rand index
-between the unsupervised $k=3$ partition and the rule-based
-three-archetype labels is \textbf{0.440} (chance-corrected; $0$ =
-random agreement, $1$ = perfect agreement). At $k=2$, $k=4$, $k=5$,
-$k=6$ the ARI drops to $0.023$, $0.242$, $0.311$, $0.227$
-respectively. Two findings follow: $k=3$ is independently
-silhouette-optimal under unsupervised clustering, and the
-unsupervised $k=3$ partition agrees moderately with the rule-based
-labels rather than recovering a different structure.
+knowledge of the rule-based archetype labels. Results: $k=3$ is
+local-maximum for silhouette ($0.335$ at $k=3$, $0.284$ at $k=2$,
+$0.349$ at $k=4$), and the adjusted Rand index between the
+unsupervised $k=3$ partition and the rule-based three-archetype
+labels is $0.51$ (chance-corrected; $0$~$=$~random agreement,
+$1$~$=$~perfect). The two findings: $k=3$ is silhouette-competitive
+under unsupervised clustering (only marginally below $k=4$ at
+$0.349$, and parsimony favours $k=3$); the unsupervised $k=3$
+partition agrees moderately with the rule-based labels rather than
+recovering a different structure.
 
 \emph{Caveat.} Both checks are computed on a one-hot encoding of the
 same D1--D7 codes used to derive the rule-based labels, so they
 validate cluster separability and recovery under the proposed coding
 representation rather than proving that the archetypes exist
-independent of the coding choices. The ARI of $0.440$ is moderate
+independent of the coding choices. The ARI of $0.51$ is moderate
 rather than high; it indicates partial agreement between rule-based
 and unsupervised partitions, not equivalence. The substantive
 conclusion we draw is that the three-archetype structure is robust to
@@ -2391,7 +2390,7 @@ models (GMM) with diagonal covariance, and spectral clustering
 against the rule-based labels was 0.51 (k-means), 0.54 (Ward), 0.92
 (average linkage), 0.51 (GMM), and 0.51 (spectral); silhouette scores
 ranged from 0.27 to 0.34. GMM-BIC was minimized at $k=3$
-(BIC$_{k=3}=-10653$ vs.\ $-9898$ at $k=2$ and $-10019$ at $k=4$),
+(BIC$_{k=3} = -10{,}653$ vs.\ $-9{,}898$ at $k=2$ and $-10{,}019$ at $k=4$),
 providing a second model-selection criterion that converges on
 $k=3$. Average-linkage hierarchical clustering produced the closest
 agreement with the rule-based labels (ARI~$=0.92$), suggesting the
@@ -2545,7 +2544,7 @@ generation task scope.
 
 \item \textit{Judge-stability assumption.} The headline claim
 treats the LLM-judge score as time-invariant. Surfaced by D1 =
-LLM-as-judge with D7 not pinning the judge version: future
+LLM-as-Judge with D7 not pinning the judge version: future
 re-runs cannot recover the same evaluator.
 
 \item \textit{Paraphrase-invariance assumption.} The headline
@@ -2588,14 +2587,14 @@ Archetype A maximizes within-run reliability and throughput by
 anchoring to a fixed gold reference; Archetype C maximizes construct
 validity by anchoring to human judgment, at the cost of replication
 speed and cross-paper comparability. The corpus is heavily weighted
-toward A (65.7\% vs.\ 9.2\%). The tradeoff is not rigour-vs.-laziness
+toward A (66.4\% vs.\ 9.2\%). The tradeoff is not rigour-vs.-laziness
 (both archetypes are internally rigorous) but between \emph{construct
 fidelity at deployment} and \emph{measurement consistency across
 runs}. Where the construct is well-approximated by an exact-match
 score (arithmetic, factual retrieval, code execution), Archetype A
 loses little construct validity for very high reliability; where it
 is not (open-ended generation, clinical decision support, multilingual
-fluency), Archetype A pays significant construct validity for the
+fluency), Archetype A trades substantial construct validity for the
 same reliability, and the score under-determines what it claims to
 measure. The implication for citing work: deployment claims on
 non-exact-match constructs should not rest on Archetype-A evaluation
@@ -2687,7 +2686,7 @@ Papers published in 2025--2026 that have not yet accumulated
 citations and were not published at a recognized venue fall outside
 the retention criteria. The corpus may therefore underrepresent
 recent methodological developments, particularly in the fast-moving
-LLM-as-judge and dynamic-benchmark subfields. The expansion round
+LLM-as-Judge and dynamic-benchmark subfields. The expansion round
 specifically targeted this gap by extending the search cutoff and
 supplementing the primary search with domain-specific queries in
 those areas, but the underlying recency bias of the citation
@@ -2824,9 +2823,9 @@ to a PRISMA 2020 systematic review of 152 papers
 (Section~\ref{sec:methodology}), the taxonomy produces four findings
 beyond per-dimension frequency counts: the corpus resolves into three
 recurring evaluation \textit{archetypes}: Benchmark-Automation
-(65.7\%, 95\% CI [57.9\%, 73.0\%]), Judge-Mediated (17.2\%
+(66.4\%, 95\% CI [58.6\%, 73.7\%]), Judge-Mediated (17.1\%
 [11.2\%, 23.7\%]), Expert-Anchored (9.2\% [4.6\%, 13.8\%]), with
-7.9\% in mixed configurations; the three-archetype labelling has
+7.2\% in mixed configurations; the three-archetype labelling has
 silhouette 0.398 against a random-baseline mean of $-0.037$
 (§\ref{subsubsec:clustervalidation}),
 indicating separability under the D1--D7 coding representation
@@ -2839,7 +2838,7 @@ configurations do not fully support the contribution claims they
 accompany.
 
 Three open problems follow directly. Tasks without ground-truth
-answers still lack calibrated reference-free metrics. The LLM-as-judge
+answers still lack calibrated reference-free metrics. The LLM-as-Judge
 cluster has no shared calibration standard, so scores produced by
 different judge configurations are not comparable across labs.
 Evaluation pipelines that depend on hosted models are not
