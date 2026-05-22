@@ -129,18 +129,24 @@ be measured or how. We trace this to two unresolved measurement-theory
 tensions: construct validity vs.\ measurement reliability, and
 reference-anchored vs.\ judgment-anchored evaluation.
 
-We develop a seven-dimensional taxonomy (D1--D7: evaluation method,
+We propose a seven-dimensional taxonomy (D1--D7: evaluation method,
 task scope, metric type, automation level, evaluation scope,
 robustness, reproducibility) and apply it to a 152-paper PRISMA~2020
 corpus from six databases (79-paper primary set plus four
 coverage-repair expansion rounds). The taxonomy identifies three
-recurring archetypes supported by silhouette analysis and unsupervised
-$k$-means clustering (Benchmark-Automation, Judge-Mediated,
-Expert-Anchored), strong dimension-pair dependencies
-(Cram\'{e}r's~$V$ up to 0.702), and three named failure modes
-(FM1: Construct Mismatch; FM2: Unpinned Judge; FM3: Single-Phrasing
-Generalization) where an evaluation design does not support its
-stated claims.
+recurring archetypes supported by convergent unsupervised criteria
+($k$-means, hierarchical, GMM, spectral; BIC-minimum at $k=3$;
+bootstrap-stable membership) and labelled descriptively
+(Benchmark-Automation, Judge-Mediated, Expert-Anchored). Archetypes
+constructed from D1 and D4 statistically predict D6 and D7
+properties not used in construction ($\chi^2$ test, Cram\'{e}r's
+$V = 0.21$ and $0.33$ respectively), evidence that the taxonomy
+carries information beyond surface organization. We also report
+three corpus-prevalent failure modes (FM1: Construct Mismatch, 7.2\%;
+FM2: Unpinned Judge, 16.4\% of corpus and 83.3\% of the LLM-judge
+subgroup; FM3: Single-Phrasing Generalization, 29.6\%) where an
+evaluation's dimensional configuration does not support its stated
+claims.
 
 Three patterns emerge. The dominant archetype (Benchmark-Automation,
 65.7\% of the corpus) occupies the high-reliability, narrow-validity
@@ -1267,9 +1273,10 @@ maximize reliability and throughput but accept narrow construct
 validity; LLM-as-judge frameworks (Archetype~B) broaden coverage to
 open-ended tasks but introduce judge-side variance that the
 robustness tools (PromptBench, PromptSET, JudgeSense) begin to
-quantify. No single tool covers all seven dimensions simultaneously,
-which mirrors the finding in Section~\ref{subsec:archetypes} that
-papers must make deliberate tradeoffs among the taxonomy dimensions.
+quantify. No single tool covers all seven dimensions simultaneously, mirroring
+the finding in Section~\ref{subsec:archetypes} that papers in the
+corpus tend to make deliberate tradeoffs among the taxonomy
+dimensions.
 
 % ---------------------------------------------------------------
 \section{Methodology: Systematic Literature Review}
@@ -2411,21 +2418,22 @@ information beyond its construction?}
 \label{subsubsec:predictive}
 A taxonomy that organizes but does not predict provides limited
 analytical value. We test whether the archetype labels (constructed
-from D1 and D4 alone) statistically predict D6 (robustness) and D7
+from D1 and D4) statistically predict D6 (robustness) and D7
 (reproducibility) properties, which were not used in archetype
 construction. A chi-square test of independence between archetype
-membership and D6 distribution yields $\chi^2 = 13.53$ ($p = 0.035$,
-Cram\'er's $V = 0.219$); the same test against D7 distribution yields
-$\chi^2 = 36.08$ ($p < 0.001$, Cram\'er's $V = 0.358$). The strongest
-predictive signal is on D7: judge-version pinning is reported by 0\%
-of Archetype A papers (0/101) but 16.7\% of Archetype B papers
-(5/30), and full non-reporting of D7 properties holds for 80\% of
-Archetype C papers (8/10) versus 25.7\% of Archetype A (26/101).
-The taxonomy therefore carries information about downstream reporting
-practices beyond what its construction inputs encode, which is
-consistent with (though does not by itself establish) the claim that
-the archetype structure reflects coherent evaluation strategies
-rather than coding artefacts.
+membership and D6 distribution yields $\chi^2 = 12.66$ on 6 df
+($p = 0.049$, Cram\'er's $V = 0.212$); the same test against D7
+distribution yields $\chi^2 = 31.44$ on 8 df ($p < 0.001$,
+Cram\'er's $V = 0.334$). The strongest predictive signal is on D7:
+judge-version pinning (D7=JP) is reported by 0\% of Archetype A
+papers (0/101) versus 19.2\% of Archetype B papers (5/26), and full
+non-reporting of D7 properties (D7=NR) holds for 57.1\% of Archetype
+C papers (8/14) versus 25.7\% of Archetype A (26/101) and 15.4\% of
+Archetype B (4/26). The taxonomy therefore carries information about
+downstream reporting practices beyond what its construction inputs
+encode, which is consistent with (though does not by itself
+establish) the claim that the archetype structure reflects coherent
+evaluation strategies rather than coding artefacts.
 
 \subsection{Failure-Mode Catalog}
 \label{subsec:failuremodes}
@@ -2511,8 +2519,8 @@ papers in the corpus.
 
 \textit{Aggregate prevalence.} 69 of 152 corpus papers (45.4\%)
 exhibit at least one of FM1--FM3 under the fingerprints above;
-overlap is modest (FM1$\cap$FM3 = 2 papers; FM2$\cap$FM3 = 9 papers;
-no paper exhibits all three). These are corpus-derived counts, not
+overlap is modest (FM1$\cap$FM3 = 3 papers; FM2$\cap$FM3 = 9 papers;
+no paper exhibits all three; no paper exhibits both FM1 and FM2). These are corpus-derived counts, not
 selected examples: any reader can reproduce them from the released
 \texttt{corpus\_d1d7.csv} using the dimensional fingerprints stated
 above. The dimensional codings make each fingerprint locally
@@ -2626,7 +2634,8 @@ and LLM-judge evaluation depends on proprietary judges the pipeline
 cannot pin. Recent work on contamination-resistant dynamic
 benchmarks~\cite{wildbench2024} and on judge-sensitivity
 quantification~\cite{bellibatlu2026judgesense, feng2025sage} addresses
-parts of it; what remains is widespread adoption.
+parts of it; broader uptake remains an open empirical question rather
+than a research gap.
 
 \subsection{Open Problems by Tension}
 \label{subsec:open_problems}
@@ -2782,14 +2791,15 @@ survey cycle.
 \label{subsec:using}
 
 For citing work that finds the D1--D7 labels useful, three
-applications follow naturally:
+applications follow naturally.
 (1)~\emph{Methodology disclosure}: embed the seven-tuple in a single
-methodology line (e.g., ``D1=Benchmark, D2=Reasoning,
-D3=Task-specific, D4=Automated, D5=Cross-model, D6=Multi-prompt
-aggregate, D7=Artifact-released'');
-(2)~\emph{Comparative claims}: use the machine-readable corpus dataset
-(review-time snapshot with submission; see Data Availability) as a
-comparison reference rather than re-coding papers;
+methodology line, for example,
+``D1\,=\,Benchmark, D2\,=\,Reasoning, D3\,=\,Task-specific,
+D4\,=\,Automated, D5\,=\,Cross-model,
+D6\,=\,Multi-prompt-aggregate, D7\,=\,Artifact-released''.
+(2)~\emph{Comparative claims}: use the machine-readable corpus
+dataset (review-time snapshot with submission; see Data Availability)
+as a comparison reference rather than re-coding papers.
 (3)~\emph{Evaluation design}: use the Electronic Supplement
 (Appendix~A) checklist as a preregistration template. None of these
 are prescriptive uses; whether they prove sufficient is for the
@@ -2835,7 +2845,8 @@ different judge configurations are not comparable across labs.
 Evaluation pipelines that depend on hosted models are not
 infrastructure-stable, since the judge can change silently between
 API versions. All three are addressable with existing technical
-components; what they require is adoption, not new theory.
+components; whether the community converges on shared practice is an
+open question rather than a technical one.
 
 The taxonomy is not a complete solution. It does not settle
 disagreements about which evaluation method is optimal for a given
@@ -2850,8 +2861,8 @@ adds one methodology line and changes nothing about the underlying
 evaluation, which is the lightest test we can offer of whether the
 labels are useful.
 The distance from describable to standardized is a coordination
-problem, one that requires community adoption of shared standards
-more than new technical development.
+problem, and whether the community closes it is for the community to
+decide, not for this paper to prescribe.
 
 \section*{Acknowledgments}
 This research received no specific grant from any funding agency in
