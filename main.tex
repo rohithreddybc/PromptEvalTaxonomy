@@ -289,11 +289,20 @@ named corpus papers (Section~\ref{subsec:failuremodes}).
 The taxonomy itself is not a new evaluation method. It is a
 classification scheme for existing methods together with empirical
 findings about how those methods co-occur in the literature. We are
-not aware of a prior survey that organizes prompt engineering
-evaluation through a measurement-theoretic lens, though the survey
-landscape is fast-moving; the contribution we claim is the proposed
-organization and the empirical analyses that follow from it
-(Section~\ref{subsec:using}), not field-level priority.
+aware of three concurrent works that adopt a measurement-theoretic
+lens for adjacent scopes: Bean et al.~\cite{bean2025measuring} apply
+construct-validity review to 445 LLM benchmarks broadly; Alaa et
+al.~\cite{alaa2025medical} apply it to medical benchmarks
+specifically; and Ye et al.~\cite{ye2025psychometrics} survey LLM
+psychometrics including validation methodology. Our scope and
+contribution are distinct: we apply the validity/reliability tension
+specifically to prompt engineering evaluation configurations across
+a 152-paper PRISMA corpus and produce a seven-dimensional codebook,
+archetype clustering, and failure-mode catalog (FM1--FM3) for that
+scope (Section~\ref{subsec:using}). The survey landscape is
+fast-moving; the contribution we claim is the proposed organization
+and the empirical analyses that follow from it, not field-level
+priority on measurement-theoretic LLM evaluation in general.
 
 \subsection*{Research Questions}
 \label{subsec:rqs}
@@ -443,9 +452,22 @@ five-dimensional agent-evaluation taxonomies respectively; Guan et
 al.~\cite{guan2025multiturn} apply a PRISMA-inspired review to
 ${\sim}$250 multi-turn-agent evaluation sources; Li et
 al.~\cite{li2025generationjudgment} survey LLM-as-Judge along
-\emph{what/how/benchmark}; and Lu et al.~\cite{promptprism2025}
+\emph{what/how/benchmark}; Lu et al.~\cite{promptprism2025}
 propose a linguistically-inspired \emph{PromptPrism} taxonomy of
-prompt structure. None of these
+prompt structure. Three recent works adopt the same
+measurement-theoretic framing we use but target different scopes:
+Bean et al.~\cite{bean2025measuring} systematically review 445 LLM
+benchmarks for construct validity (29 expert reviewers); Alaa et
+al.~\cite{alaa2025medical} argue for construct-validity-centered
+evaluation of medical LLM benchmarks specifically; and Ye et
+al.~\cite{ye2025psychometrics} survey LLM evaluation through the
+broader lens of psychometrics, including validation and enhancement
+methodology. Kearns~\cite{kearns2026quantifying} proposes a
+structured-capabilities model for quantifying construct validity
+across the OpenLLM Leaderboard. These works overlap with our
+theoretical grounding but target LLM benchmarks broadly, medical
+benchmarks, or psychometric methodology, not prompt-engineering
+evaluation configurations specifically. None of these
 centrally addresses the question we foreground: for a researcher
 evaluating a specific prompting technique, which evaluation framework
 should they use, and why? Answering that requires a classification
@@ -476,7 +498,7 @@ taxonomy. \checkmark{} = covered as a primary axis;
 $\circ$ = mentioned but not classified along; \textendash{} = not
 covered. ``This work'' uses the seven dimensions defined in
 Section~\ref{sec:taxonomy}.
-\textit{Takeaway:} Among the compared surveys, this paper is the only one to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame, making its coverage structurally distinct from the nine prior surveys included in the comparison. The closest title-overlap is with Liu et al.~\cite{liu2026taxonomy} (``A comprehensive taxonomy of prompt engineering techniques for large language models'', FCS 2026), which taxonomizes \emph{techniques} along four orthogonal aspects (profile/instruction, knowledge, reasoning/planning, and reliability defined as output-bias reduction); the present survey instead taxonomizes \emph{how techniques are evaluated} and reserves ``reliability'' for its measurement-theory meaning.}
+\textit{Takeaway:} Among the compared surveys, this paper is the only one to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame applied specifically to prompt engineering, making its coverage structurally distinct from the eleven prior surveys included in the comparison. The closest title-overlap is with Liu et al.~\cite{liu2026taxonomy} (``A comprehensive taxonomy of prompt engineering techniques for large language models'', FCS 2026), which taxonomizes \emph{techniques}; the closest framing-overlap is with Bean et al.~\cite{bean2025measuring} and Ye et al.~\cite{ye2025psychometrics}, which apply construct-validity / psychometric framing to LLM \emph{benchmarks} (445 benchmarks, 29 reviewers) and to LLM \emph{capabilities} respectively. The present survey instead taxonomizes the seven-dimensional space of \emph{prompt engineering evaluation configurations} and provides corpus-grounded archetype clustering and failure-mode catalogs for that scope.}
 \label{tab:differentiation}
 \centering
 \footnotesize
@@ -504,7 +526,11 @@ Mohammadi et al.~\cite{mohammadi2025agents} & Eval (agents) & Two-dimensional & 
 \midrule
 Gu et al.~\cite{gu2025llmjudge} & Eval (LLM-judge) & Bias / reliability of LLM judges & $\circ$ & \textendash & \checkmark & \textendash & \textendash & $\circ$ & $\circ$ \\
 \midrule
-\textbf{This work} & \textbf{Eval (PE)} & \textbf{Validity / reliability tensions} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Bean et al.~\cite{bean2025measuring} & Eval (benchmarks) & Construct validity (445 benchmarks, 29 reviewers) & $\circ$ & \checkmark & \checkmark & \textendash & \textendash & $\circ$ & $\circ$ \\
+\midrule
+Ye et al.~\cite{ye2025psychometrics} & Eval (LLMs) & Psychometric validation \& enhancement & $\circ$ & \checkmark & \checkmark & \textendash & \textendash & $\circ$ & \textendash \\
+\midrule
+\textbf{This work} & \textbf{Eval (PE)} & \textbf{Validity / reliability tensions, archetype clustering, failure modes} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
 \bottomrule
 \end{tabular}
 \end{table*}
