@@ -421,8 +421,12 @@ al.~\cite{schulhoff2024prompt} catalog 58 text-only prompting
 techniques with a meta-analysis but no evaluation framework; Sahoo
 et al.~\cite{sahoo2024systematic} and Vatsal \&
 Dubey~\cite{vatsal2024survey} organize methods by application domain
-and NLP task type respectively; Wen et al.~\cite{pettax2025} build a
-template-structure taxonomy; Sasaki et al.~\cite{petaxse2025} cover
+and NLP task type respectively; Liu et al.~\cite{liu2026taxonomy}
+build a four-aspect taxonomy of techniques (profile/instruction,
+knowledge, reasoning/planning, and output-bias reliability) that
+matches our title structure closely but classifies prompts rather
+than the evaluations applied to them; Wen et al.~\cite{pettax2025}
+build a template-structure taxonomy; Sasaki et al.~\cite{petaxse2025} cover
 SE-specific patterns; Tian et al.~\cite{petaxdefects2025} taxonomize
 prompt defects in PE-for-code; He et al.~\cite{contextengineer2025}
 situate PE within ``context engineering''; and Dong et
@@ -465,7 +469,7 @@ taxonomy. \checkmark{} = covered as a primary axis;
 $\circ$ = mentioned but not classified along; \textendash{} = not
 covered. ``This work'' uses the seven dimensions defined in
 Section~\ref{sec:taxonomy}.
-\textit{Takeaway:} Among the compared surveys, this paper is the only one to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame, making its coverage structurally distinct from the seven prior surveys included in the comparison.}
+\textit{Takeaway:} Among the compared surveys, this paper is the only one to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame, making its coverage structurally distinct from the nine prior surveys included in the comparison. The closest title-overlap is with Liu et al.~\cite{liu2026taxonomy} (``A comprehensive taxonomy of prompt engineering techniques for large language models'', FCS 2026), which taxonomizes \emph{techniques} along four orthogonal aspects (profile/instruction, knowledge, reasoning/planning, and reliability defined as output-bias reduction); the present survey instead taxonomizes \emph{how techniques are evaluated} and reserves ``reliability'' for its measurement-theory meaning.}
 \label{tab:differentiation}
 \centering
 \footnotesize
@@ -480,6 +484,10 @@ Schulhoff et al.~\cite{schulhoff2024prompt} & Methods & Flat catalog (58 techniq
 Sahoo et al.~\cite{sahoo2024systematic} & Methods & Application domain & \textendash & \checkmark & \textendash & \textendash & $\circ$ & \textendash & \textendash \\
 \midrule
 Vatsal \& Dubey~\cite{vatsal2024survey} & Methods & NLP task type & \textendash & \checkmark & \textendash & \textendash & \textendash & \textendash & \textendash \\
+\midrule
+Liu et al.~\cite{liu2026taxonomy} & Methods & Profile / Knowledge / Reasoning / Reliability (output bias) & \textendash & \checkmark & \textendash & \textendash & \textendash & \textendash & \textendash \\
+\midrule
+Budagam et al.~\cite{budagam2024hierarchical} & Eval (prompting) & Hierarchical 5-level prompting framework, cognitive principles & \textendash & \checkmark & \textendash & \textendash & \textendash & \textendash & \textendash \\
 \midrule
 Chang et al.~\cite{chang2023survey} & Eval & What/where/how to evaluate & \checkmark & \checkmark & \checkmark & $\circ$ & $\circ$ & $\circ$ & \textendash \\
 \midrule
@@ -503,10 +511,19 @@ and reproducibility / contamination resistance (D7) as first-class
 dimensions of evaluation design; they appear, when they appear at
 all, as findings inside other surveys (notably Ni et al. on
 benchmark contamination and Gu et al. on judge bias). Third, prior
-PE-focused surveys (Schulhoff, Sahoo, Vatsal \& Dubey) catalog
-\emph{methods}, not \emph{evaluation frameworks}; they answer
-``what prompting techniques exist'' rather than ``how should those
-techniques be assessed''. This survey is positioned in the gap left
+PE-focused surveys whose titles use similar phrasing
+(Schulhoff et al., Sahoo et al., Vatsal \& Dubey, Liu et al.~2026)
+catalog \emph{methods}, not \emph{evaluation frameworks}; they answer
+``what prompting techniques exist'' rather than ``how those
+techniques are assessed''. The title-overlap with Liu et al.~2026
+is purely lexical: their four aspects (profile/instruction, knowledge,
+reasoning/planning, output-bias reliability) classify prompt designs,
+whereas our seven dimensions (D1--D7) classify the evaluation
+configurations under which prompt designs are tested. Budagam et
+al.~\cite{budagam2024hierarchical} use ``evaluation framework'' in
+their title but propose a single hierarchical prompting scheme for
+cognitive-complexity-aware testing, not a taxonomy of existing
+evaluation practice. This survey is positioned in the gap left
 by all three groups: a measurement-grounded taxonomy of PE
 \emph{evaluation} that explicitly incorporates robustness and
 reproducibility.
