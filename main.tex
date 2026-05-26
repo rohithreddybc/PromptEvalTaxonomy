@@ -443,7 +443,9 @@ published in this venue, survey \emph{prompting frameworks} in the
 sense of toolkits and lifecycle structures (Data, Base, Execute, and
 Service Levels) rather than evaluation frameworks; and Dong et
 al.~\cite{dong2022survey} provide the foundational in-context-learning
-survey. On the evaluation side, Chang et al.~\cite{chang2023survey}
+survey.
+
+On the evaluation side, Chang et al.~\cite{chang2023survey}
 organize LLM evaluation around what/where/how; Zhao et
 al.~\cite{explainabilityllm2023} cover explainability evaluation;
 Hou et al.~\cite{advancedllmsse2024} cover LLM-for-SE evaluation;
@@ -457,8 +459,10 @@ ${\sim}$250 multi-turn-agent evaluation sources; Li et
 al.~\cite{li2025generationjudgment} survey LLM-as-Judge along
 \emph{what/how/benchmark}; Lu et al.~\cite{promptprism2025}
 propose a linguistically-inspired \emph{PromptPrism} taxonomy of
-prompt structure. Three recent works adopt the same
-measurement-theoretic framing we use but target different scopes:
+prompt structure.
+
+Three recent works adopt the same measurement-theoretic framing we use
+but target different scopes:
 Bean et al.~\cite{bean2025measuring} systematically review 445 LLM
 benchmarks for construct validity (29 expert reviewers); Alaa et
 al.~\cite{alaa2025medical} argue for construct-validity-centered
@@ -484,12 +488,12 @@ Several recent surveys overlap in topic with this paper, and a CSUR-
 or similar-tier reviewer is right to ask what specifically is novel
 here beyond reorganizing known evaluation practices. We answer that
 question directly. Table~\ref{tab:differentiation} compares this
-work to seven closely related surveys on three axes: (1)
-\textit{primary scope} - whether the survey catalogs prompting
-methods, evaluation methods, or both; (2) \textit{theoretical
-framing} - whether the survey commits to a conceptual structure
-beyond a flat enumeration; and (3) \textit{coverage of the seven
-dimensions} introduced in Section~\ref{sec:taxonomy}.
+work to eleven closely related surveys on three axes: (1)
+\textit{primary scope} (catalogs prompting methods, evaluation
+methods, or both); (2) \textit{theoretical framing} (whether the
+survey commits to a conceptual structure beyond a flat enumeration);
+and (3) \textit{coverage of the seven dimensions} introduced in
+Section~\ref{sec:taxonomy}.
 
 \begin{table*}[!t]
 \caption{Differentiation from prior surveys. ``Methods'' refers to a
@@ -539,10 +543,13 @@ Ye et al.~\cite{ye2025psychometrics} & Eval (LLMs) & Psychometric validation \& 
 \end{table*}
 
 Three differences are central. First, among the closely related
-surveys reviewed here, none centrally organizes PE evaluation around
-a measurement-theoretic frame; the closest is Chang et al.'s
-what/where/how decomposition, which is descriptive rather than
-tension-based. Second, none of these surveys treats robustness (D6)
+surveys reviewed here, none centrally organizes \emph{prompt
+engineering evaluation} around a measurement-theoretic frame. Bean
+et al.~\cite{bean2025measuring} and Ye et al.~\cite{ye2025psychometrics}
+apply construct-validity and psychometric framing respectively, but
+to LLM benchmarks broadly and to LLM capabilities, not to
+configurations of PE evaluation; Chang et al.'s what/where/how
+decomposition is descriptive rather than tension-based. Second, none of these surveys treats robustness (D6)
 and reproducibility / contamination resistance (D7) as first-class
 dimensions of evaluation design; they appear, when they appear at
 all, as findings inside other surveys (notably Ni et al. on
