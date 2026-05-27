@@ -36,6 +36,7 @@
 \usepackage{longtable}
 \usepackage{colortbl}
 \usepackage{pdflscape}
+\usepackage{placeins}
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
 
@@ -286,23 +287,19 @@ does not fully support its contribution claim, each instantiated by
 named corpus papers (Section~\ref{subsec:failuremodes}).
 \end{enumerate}
 
-The taxonomy itself is not a new evaluation method. It is a
-classification scheme for existing methods together with empirical
-findings about how those methods co-occur in the literature. We are
-aware of three concurrent works that adopt a measurement-theoretic
-lens for adjacent scopes: Bean et al.~\cite{bean2025measuring} apply
-construct-validity review to 445 LLM benchmarks broadly; Alaa et
-al.~\cite{alaa2025medical} apply it to medical benchmarks
-specifically; and Ye et al.~\cite{ye2025psychometrics} survey LLM
-psychometrics including validation methodology. Our scope and
-contribution are distinct: we apply the validity/reliability tension
-specifically to prompt engineering evaluation configurations across
-a 152-paper PRISMA corpus and produce a seven-dimensional codebook,
-archetype clustering, and failure-mode catalog (FM1--FM3) for that
-scope (Section~\ref{subsec:using}). The survey landscape is
-fast-moving; the contribution we claim is the proposed organization
-and the empirical analyses that follow from it, not field-level
-priority on measurement-theoretic LLM evaluation in general.
+The taxonomy is not a new evaluation method but a classification
+scheme together with empirical findings on how those methods co-occur.
+Three concurrent works adopt a measurement-theoretic lens for adjacent
+scopes: Bean et al.~\cite{bean2025measuring} on 445 LLM benchmarks
+broadly, Alaa et al.~\cite{alaa2025medical} on medical benchmarks,
+and Ye et al.~\cite{ye2025psychometrics} on LLM psychometrics. Our
+scope is distinct: we apply the validity/reliability tension to
+prompt engineering evaluation configurations across a 152-paper PRISMA
+corpus and produce a seven-dimensional codebook, archetype clustering,
+and failure-mode catalog (FM1--FM3) for that scope
+(Section~\ref{subsec:using}). We claim contribution on the proposed
+organization and empirical analyses, not field-level priority on
+measurement-theoretic LLM evaluation in general.
 
 \subsection*{Research Questions}
 \label{subsec:rqs}
@@ -2203,27 +2200,25 @@ that no single dimension table makes visible.
 
 \textit{Reproducibility gaps cluster in benchmark papers, not
 LLM-judge papers.} Of the 42 D7=Not-reported papers, 28 (66.7\%) are
-D1=Benchmark; only 4 are D1=LLM-as-Judge. The LLM-judge
-cluster has the higher artifact-release norm
-(Table~\ref{tab:d7dist}: 86.7\% vs.\ 70.4\% overall) and is also
-where Judge-version-pinning concentrates (16.7\% within the cluster
-vs.\ 3.3\% overall). The narrative that LLM-judge papers are the
-reproducibility laggard does not hold in the corpus; the opposite
-pattern appears.
+D1=Benchmark and only 4 are D1=LLM-as-Judge; the LLM-judge cluster
+has higher artifact-release (86.7\% vs.\ 70.4\%) and concentrates
+judge-version pinning (16.7\% vs.\ 3.3\% overall). The narrative
+that LLM-judge papers are the reproducibility laggard does not hold
+in this corpus.
 
 \textit{LLM-judge papers report multi-prompt sensitivity at
-above-average rates.} 54 of 152 papers (35.5\%) report multi-prompt
-aggregate or sensitivity-bounded robustness; 36 of those (66.7\%) are
-coded D1=Benchmark. However, 15 of the 30 LLM-judge papers
-(50.0\%) report multi-prompt or sensitivity-bounded robustness for the
-judge itself (above the corpus-wide rate of 35.5\%), reflecting
-that the expansion-round papers in this cluster are predominantly
-judge-quality and bias studies that specifically employ multi-prompt
-evaluation designs. Nonetheless, 12 of the 30 (40.0\%) still use a
-single-prompt judge evaluation, including AlpacaEval~2.0
-\cite{dubois2024alpacaeval}, G-Eval \cite{liu2023geval}, and FActScore
-\cite{factscore2023}; the single-prompt practice persists in deployed
-systems even as the reliability literature matures.
+above-average rates.} 54 papers (35.5\%) report multi-prompt
+aggregate or sensitivity-bounded robustness; 36 of those are
+D1=Benchmark. Among the 30 LLM-judge papers, 15 (50.0\%) report
+multi-prompt or sensitivity-bounded robustness for the judge itself
+(above the 35.5\% corpus rate), reflecting that expansion-round
+papers in this cluster are judge-quality and bias studies employing
+multi-prompt designs. Yet 12 of the 30 LLM-judge papers (40.0\%)
+still use single-prompt judging, including
+AlpacaEval~2.0~\cite{dubois2024alpacaeval},
+G-Eval~\cite{liu2023geval}, and
+FActScore~\cite{factscore2023}: the single-prompt practice persists
+in deployed systems as the reliability literature matures.
 
 \textit{Two-thirds of the corpus has neither robustness nor judge
 pinning.} 96 papers (63.2\%) carry both D6 $\in$ \{Not-reported,
@@ -2972,6 +2967,7 @@ The distance from describable to standardized is a coordination
 problem, and whether the community closes it is for the community to
 decide, not for this paper to prescribe.
 
+\FloatBarrier
 \section*{Acknowledgments}
 This research received no specific grant from any funding agency in
 the public, commercial, or not-for-profit sectors.
@@ -3091,6 +3087,7 @@ revision. Consistent with ACM policy, AI assistants are not credited
 as authors.
 
 
+\clearpage
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 \end{document}
