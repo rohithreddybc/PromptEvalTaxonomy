@@ -2627,6 +2627,39 @@ identifiable in a way that prose summaries do not, and the released
 machine-readable corpus permits any reader to compile a similar list
 using a different fingerprint.
 
+Table~\ref{tab:fmsummary} consolidates FM1--FM3 as a single-page
+reference that subsequent work can cite when reporting how a study
+addressed one or more failure modes (e.g., ``we mitigate FM2 of
+[this paper] by recording the judge snapshot in Section~X'').
+
+\begin{table*}[!t]
+\caption{Failure-mode quick-reference for FM1--FM3. Each row gives
+the dimensional fingerprint (under which a paper carries the
+failure mode), corpus prevalence (number and \% of the 152-paper
+corpus), one mitigation that removes the fingerprint, and one
+named corpus exemplar. \textit{Citation guidance:} a paper that
+addresses FM$x$ in its evaluation design can cite this table as the
+source of the fingerprint and mitigation. The released
+\texttt{corpus\_d1d7.csv} permits any reader to reproduce the
+prevalence column.
+\textit{Takeaway:} Each failure mode has a one-step mitigation that does not require a new evaluation method, only a reporting change; the bulk of the corpus exhibits at least one of FM1--FM3 (45.4\%), but the modes are largely non-overlapping (no paper exhibits all three), suggesting that targeted reporting changes per failure mode can substantially reduce the configuration--claim gap.}
+\label{tab:fmsummary}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.5cm} p{1.9cm} p{3.2cm} p{1.6cm} p{2.8cm} p{1.8cm}}
+\toprule
+\textbf{FM} & \textbf{Name} & \textbf{Fingerprint} & \textbf{Prevalence} & \textbf{Mitigation} & \textbf{Exemplar} \\
+\midrule
+FM1 & Construct Mismatch & D1=Benchmark, D3=Task-spec./Ref./Model-based on D2$\in$\{Gen, Clin, Agentic, Multilingual\} & 11 / 152 (7.2\%) & Calibrated reference-free metric (e.g., FActScore~\cite{factscore2023}) or human anchor & Sivarajkumar~\cite{sivarajkumar2024empirical} \\
+\midrule
+FM2 & Unpinned Judge & D1$\supseteq$LLM-as-Judge; D7 lacks JP & 25 / 30 LLM-judge (83.3\%) & Record judge model + snapshot date; pin checkpoint when possible & Panickssery~\cite{judgingjudges2024} \\
+\midrule
+FM3 & Single-Phrasing Generalization & D5=Cross-model + D6$\in$\{Single-prompt, NR\} & 45 / 152 (29.6\%) & Variance over $\geq 5$ paraphrases~\cite{mizrahi2024state, zhuo2024prosa} & Wei~\cite{wei2022chain} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \paragraph{Hidden assumptions surfaced by the dimensional view.}
 Each failure mode is a place where an unstated assumption supports the
 contribution claim. Naming these explicitly is one contribution of the
@@ -2889,7 +2922,7 @@ survey cycle.
 \subsection{Using This Taxonomy in Citing Work}
 \label{subsec:using}
 
-For citing work that finds the D1--D7 labels useful, three
+For citing work that finds the D1--D7 labels useful, four
 applications follow naturally.
 (1)~\emph{Methodology disclosure}: embed the seven-tuple in a single
 methodology line, for example,
@@ -2900,9 +2933,13 @@ D6\,=\,Multi-prompt-aggregate, D7\,=\,Artifact-released''.
 dataset (review-time snapshot with submission; see Data Availability)
 as a comparison reference rather than re-coding papers.
 (3)~\emph{Evaluation design}: use the Electronic Supplement
-(Appendix~A) checklist as a preregistration template. None of these
-are prescriptive uses; whether they prove sufficient is for the
-community to assess.
+(Appendix~A) checklist as a preregistration template.
+(4)~\emph{Failure-mode mitigation}: cite Table~\ref{tab:fmsummary}
+when reporting how an evaluation design addresses FM1, FM2, or FM3
+(e.g., ``we follow the FM2 mitigation in [this paper] by recording
+the judge snapshot date in Section~X''). None of these are
+prescriptive uses; whether they prove sufficient is for the community
+to assess.
 
 
 % ---------------------------------------------------------------
@@ -2982,7 +3019,7 @@ PRISMA flow record, and the paper source.
 \textbf{Review-time artifact access.} For peer review, an anonymized
 snapshot of the 152-paper $\times$ D1--D7 coding spreadsheet
 (\texttt{corpus\_d1d7.csv}), the empirical-analysis script
-(\texttt{\_empirical\_analysis.ps1}), and the PRISMA flow record is
+(\texttt{empirical\_analysis.ps1}), and the PRISMA flow record is
 included with the submission package and is available at the
 repository URL above. Reviewers can therefore audit individual paper
 codings, regenerate the silhouette and Cram\'{e}r's~$V$ values reported
@@ -2994,6 +3031,45 @@ The repository will be tagged as a citable snapshot at paper
 acceptance to keep the dataset versioned-aligned with the accepted
 manuscript; the review-time and acceptance-time artifacts will both
 remain accessible.
+
+\textbf{Claim-to-artifact mapping (reproducibility audit).} Each
+empirical claim in this paper can be reproduced from a specific
+artifact in the repository:
+
+\begin{itemize}
+\item \emph{Per-dimension distributions} (D1--D7 frequencies in
+Section~\ref{subsec:d1dist}--\ref{subsec:d7dist}) and \emph{archetype
+shares} (66.4\% / 17.1\% / 9.2\% / 7.2\%): reproducible by direct
+counts from \texttt{corpus\_d1d7.csv}.
+\item \emph{Failure-mode prevalence} (FM1 = 7.2\%, FM2 = 83.3\% of
+LLM-judge subgroup, FM3 = 29.6\%, Any FM = 45.4\%; intersections):
+reproducible by applying the dimensional fingerprints of
+Section~\ref{subsec:failuremodes} to \texttt{corpus\_d1d7.csv}.
+\item \emph{Cram\'{e}r's $V$ values} (Table~\ref{tab:cramerv}; D1--D3 $=$ 0.702
+and 20 other pairs): reproducible via the PowerShell empirical-analysis
+script in the repository.
+\item \emph{Silhouette and ARI for cluster validation}
+(Section~\ref{subsubsec:clustervalidation}, Checks 1--4):
+reproducible via the Python sklearn script referenced in the
+repository \texttt{README}; alternative-clustering ARIs
+($0.51$ k-means, $0.54$ Ward, $0.92$ average linkage,
+$0.51$ GMM, $0.51$ spectral) and bootstrap stability metrics
+($0.62$ / $0.81$ / $0.52$ within-archetype co-cluster
+probability) reproduce under the documented random-seed and
+encoding settings.
+\item \emph{Predictive validation}
+(Section~\ref{subsubsec:predictive}; $\chi^2 = 12.66$ on archetype
+vs D6 and $\chi^2 = 31.44$ on archetype vs D7): reproducible via
+\texttt{scipy.stats.chi2\_contingency} on the contingency tables
+derived from \texttt{corpus\_d1d7.csv}.
+\item \emph{Inter-rater $\kappa$ per dimension}
+(Table~\ref{tab:kappa}; $0.76$--$0.92$): reproducible from the
+dual-coded subsample documented in the Electronic Supplement.
+\item \emph{Sensitivity analysis} (Table~\ref{tab:sensitivity};
+shift bounds under 10\%/20\% perturbation): reproducible by
+re-running the bootstrap perturbation routine over 1{,}000
+iterations as documented.
+\end{itemize}
 
 \section*{Author Contributions, Funding, and Conflict of Interest}
 \label{sec:credits}
