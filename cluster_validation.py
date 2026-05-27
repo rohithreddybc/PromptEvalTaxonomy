@@ -188,12 +188,19 @@ def main() -> int:
         except Exception as e:
             print(f"  {name:18s} (failed: {e})")
 
-    # CHECK 3: silhouette curve for KMeans at k=2,3,4
-    print("\nCheck 3: KMeans silhouette curve (Hamming distance)")
+    # CHECK 3: silhouette curve for KMeans + BIC curve for GMM at k=2,3,4
+    # Note: absolute BIC magnitudes depend on the one-hot encoding dimensionality
+    # (this script uses the full 35-feature atomic encoding; the paper's reported
+    # BIC values use a reduced encoding and have smaller magnitude). The k that
+    # MINIMIZES BIC depends on encoding too; the more robust k=3 evidence in the
+    # paper comes from silhouette, which IS a maximum at k=3 under both encodings.
+    print("\nCheck 3: KMeans silhouette + GMM BIC at k in {2,3,4}")
     for k in (2, 3, 4):
         km = KMeans(n_clusters=k, n_init=10, random_state=RNG_SEED).fit(Xk)
         sil_k = silhouette_score(Xk, km.labels_, metric="hamming")
-        print(f"  k={k}: silhouette = {sil_k:.3f}")
+        gmm = GaussianMixture(n_components=k, random_state=RNG_SEED, n_init=5).fit(Xk)
+        bic = gmm.bic(Xk)
+        print(f"  k={k}: silhouette = {sil_k:.3f}, GMM BIC = {bic:.0f}")
 
     # CHECK 4: bootstrap co-cluster stability
     print("\nCheck 4: bootstrap co-cluster stability of rule-based archetypes (200 iters)")

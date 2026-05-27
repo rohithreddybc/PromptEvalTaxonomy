@@ -393,7 +393,7 @@ corpus? Addressed in Section~\ref{subsec:failuremodes}.
 \item[RQ4] \textit{(Tensions and gaps.)} What interpretive tensions
 appear consistent with the observed configurations, and what gaps in
 reporting practice does the corpus show? Addressed in
-Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_reproducibility}
+Sections~\ref{subsec:tension_scalability}--\ref{subsec:tension_acrosstime}
 and the future-direction agenda of Section~\ref{subsec:agenda}.
 \end{description}
 
@@ -1586,7 +1586,7 @@ for the target-area over-representation each round introduces.}
 \toprule
 \textbf{Round} & \textbf{Trigger (coverage gap after prior round)} & \textbf{Role} & \textbf{Ret.} & \textbf{Bias risk} \\
 \midrule
-1 & Few papers explicitly studying judge reliability despite 32 corpus papers using LLM-judge methods & Exploratory & 20 & Over-represents LLM-judge quality and bias literature \\
+1 & Few papers explicitly studying judge reliability despite 30 corpus papers (in the final 152) using LLM-judge methods & Exploratory & 20 & Over-represents LLM-judge quality and bias literature \\
 2 & Agentic, multilingual, prompt-injection, and CoT-faithfulness work missing from primary set & Exploratory & 11 & Over-represents agentic and multilingual evaluation \\
 3 & Foundation-model technical reports, RAG, safety, fairness, calibration, clinical, legal evaluation under-covered & Confirmatory + exploratory & 35 & Over-represents foundation-model and domain-specific work \\
 4 & Long-context, tool-use, reward-model evaluation emerged as gap during 2026-Q1 coding & Exploratory & 7 & Over-represents 2026-recent benchmark proposals \\
@@ -2199,11 +2199,11 @@ by intersecting D6 $\in$ \{Not-reported, Single-prompt\} with
 D7 $\notin$ \{Judge-version-pinned\}.
 
 \textit{FM3 (Single-Phrasing Generalization) is endemic.}
-42 papers (27.6\%) carry the FM3 fingerprint (D5=Cross-model with
-D6=Single-prompt), including chain-of-thought~\cite{wei2022chain}
-and zero-shot CoT~\cite{kojima2022large}. Cross-model claims under
-single-prompt support narrower conclusions than their phrasing
-suggests.
+45 papers (29.6\%) carry the FM3 fingerprint (D5=Cross-model with
+D6 $\in$ \{Single-prompt, Not-reported\}), including
+chain-of-thought~\cite{wei2022chain} and zero-shot
+CoT~\cite{kojima2022large}. Cross-model claims under single-prompt
+support narrower conclusions than their phrasing suggests.
 
 \subsection{Co-occurrence Patterns Across Dimensions}
 \label{subsec:cooccurrence}
@@ -2491,12 +2491,15 @@ supports the failure-mode framing.
 
 \textit{Failure mode 1 (FM1: Construct Mismatch).} Beyond
 Sivarajkumar et al.~\cite{sivarajkumar2024empirical} (Table~16),
-Nori et al.~\cite{nori2023gpt4medical} on clinical and Hou et
-al.~\cite{advancedllmsse2024} on code show the same pattern: the
-benchmark metric supports answer-key agreement claims, but the
-deployment-readiness claim about clinical or code-quality behaviour
-requires Archetype-B or Archetype-C evidence (or a calibrated
-reference-free metric) that the cited papers do not provide. Liu et
+Nori et al.~\cite{nori2023gpt4medical} carries the same FM1
+fingerprint on clinical reasoning, and Hou et
+al.~\cite{advancedllmsse2024} on code exhibits a closely related
+construct-mismatch pattern (outside the FM1 D2 subset but identical
+in structure): the benchmark metric supports answer-key agreement
+claims, but the deployment-readiness claim about clinical or
+code-quality behaviour requires Archetype-B or Archetype-C evidence
+(or a calibrated reference-free metric) that the cited papers do
+not provide. Liu et
 al.~\cite{liu2023geval} (G-Eval) and Gehrmann et
 al.~\cite{repairing2022} have documented the systematic gap between
 lexical-overlap or exact-match metrics and human judgment on
@@ -2570,7 +2573,7 @@ prevalence column.
 \midrule
 FM1 & Construct Mismatch & D1=Benchmark, D3=Task-spec./Ref./Model-based on D2$\in$\{Gen, Clin, Agentic, Multilingual\} & 11 / 152 (7.2\%) & Calibrated reference-free metric (e.g., FActScore~\cite{factscore2023}) or human anchor & Sivarajkumar~\cite{sivarajkumar2024empirical} \\
 \midrule
-FM2 & Unpinned Judge & D1$\supseteq$LLM-as-Judge; D7 lacks JP & 25 / 30 LLM-judge (83.3\%) & Record judge model + snapshot date; pin checkpoint when possible & Panickssery~\cite{judgingjudges2024} \\
+FM2 & Unpinned Judge & D1$\supseteq$LLM-as-Judge; D7 lacks JP & 25 / 30 LLM-judge = 83.3\% (16.4\% corpus) & Record judge model + snapshot date; pin checkpoint when possible & Panickssery~\cite{judgingjudges2024} \\
 \midrule
 FM3 & Single-Phrasing Generalization & D5=Cross-model + D6$\in$\{Single-prompt, NR\} & 45 / 152 (29.6\%) & Variance over $\geq 5$ paraphrases~\cite{mizrahi2024state, zhuo2024prosa} & Wei~\cite{wei2022chain} \\
 \bottomrule
@@ -2680,7 +2683,7 @@ al.~\cite{repairing2022} articulated broader NLG reporting norms;
 neither has been adopted at scale within PE evaluation.
 
 \subsection{Refining Tension 1: Within-Run vs.\ Across-Time Reliability}
-\label{subsec:tension_reproducibility}
+\label{subsec:tension_acrosstime}
 
 A pipeline can be reliable within-run yet fragile across-time
 (infrastructure drifts between API revisions; test data leaks into
