@@ -534,7 +534,7 @@ taxonomy. \checkmark{} = covered as a primary axis;
 $\circ$ = mentioned but not classified along; \textendash{} = not
 covered. ``This work'' uses the seven dimensions defined in
 Section~\ref{sec:taxonomy}.
-\textit{Takeaway:} Among the compared surveys, this paper is the only one to combine a prompting-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame applied specifically to prompt engineering, making its coverage structurally distinct from the eleven prior surveys included in the comparison. The closest title-overlap is with Liu et al.~\cite{liu2026taxonomy} (``A comprehensive taxonomy of prompt engineering techniques for large language models'', FCS 2026), which taxonomizes \emph{techniques}; the closest framing-overlap is with Bean et al.~\cite{bean2025measuring} and Ye et al.~\cite{ye2025psychometrics}, which apply construct-validity / psychometric framing to LLM \emph{benchmarks} (445 benchmarks, 29 reviewers) and to LLM \emph{capabilities} respectively. The present survey instead taxonomizes the seven-dimensional space of \emph{prompt engineering evaluation configurations} and provides corpus-grounded archetype clustering and failure-mode catalogs for that scope.}
+\textit{Takeaway:} This paper is the only one combining a PE-technique catalog, an evaluation-method catalog, and an explicit measurement-theoretic frame applied to PE. The closest title-overlap is Liu et al.~\cite{liu2026taxonomy} (techniques, not evaluations); the closest framing-overlap is Bean et al.~\cite{bean2025measuring} and Ye et al.~\cite{ye2025psychometrics} (LLM benchmarks and capabilities, not PE configurations).}
 \label{tab:differentiation}
 \centering
 \footnotesize
@@ -599,16 +599,15 @@ reproducibility.
 
 \subsection{Large Language Models and the Role of Prompting}
 
-Large language models are transformer-based~\cite{vaswani2017attention}
-neural networks trained on web-scale text; at sufficient scale they
-handle broad task ranges without task-specific
-retraining~\cite{devlin2019bert, brown2020gpt3, bommasani2021foundation}.
-Practitioners interact through prompts, and surface phrasing choices
-produce nontrivial output differences~\cite{sclar2023formatting,
-zhou2022ape}. Prompt engineering (designing inputs to obtain
-reliable, useful outputs without modifying model weights) has
-developed its own benchmarks, optimization algorithms, and
-taxonomies~\cite{sahoo2024systematic, schulhoff2024prompt}.
+LLMs are transformer-based~\cite{vaswani2017attention} networks
+trained on web-scale text; at scale they handle broad task ranges
+without task-specific retraining~\cite{devlin2019bert, brown2020gpt3,
+bommasani2021foundation}. Practitioners interact through prompts, and
+surface phrasing produces nontrivial output
+differences~\cite{sclar2023formatting, zhou2022ape}. Prompt
+engineering (designing inputs to obtain reliable outputs without
+modifying weights) has developed its own benchmarks, optimization
+algorithms, and taxonomies~\cite{sahoo2024systematic, schulhoff2024prompt}.
 
 \subsection{The Prompt Engineering Design Space}
 
@@ -624,26 +623,22 @@ and this survey provides one.
 
 \subsection{Evaluation Metric Families}
 
-Four metric families recur across PE evaluation. \textbf{Reference-based
-metrics} score model output by surface overlap against a gold
-reference (BLEU~\cite{papineni2002bleu}, ROUGE~\cite{lin2004rouge});
-fast and reproducible, but weakly aligned with human judgment on
-open-ended tasks~\cite{liu2023geval, repairing2022}.
-\textbf{Model-based metrics} use learned semantic representations
-(BERTScore~\cite{zhang2020bertscore} and related), handling paraphrase
-more gracefully but still requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-Judge
-metrics} delegate scoring to a second language model
-(G-Eval~\cite{liu2023geval}), eliminating the gold-reference
-requirement at the cost of importing judge biases: positional
-preference, length bias, and self-enhancement
-bias~\cite{zheng2023judging, gu2025llmjudge}. \textbf{Task-specific
-metrics} are purpose-built and generally do not transfer (pass@$k$
-for code, exact match for factual retrieval,
-RAGAS~\cite{rageval2024} for retrieval-augmented pipelines); they
-are often the most meaningful for their intended task but share no
-common ground across tasks. Section~\ref{sec:taxonomy} organizes
-these four families along D3 (Metric Type) and threads them through
-the rest of the taxonomy.
+Four metric families recur. \textbf{Reference-based metrics}
+(BLEU~\cite{papineni2002bleu}, ROUGE~\cite{lin2004rouge}) score by
+surface overlap against a gold reference; fast and reproducible but
+weakly aligned with human judgment on open-ended
+tasks~\cite{liu2023geval, repairing2022}. \textbf{Model-based
+metrics} (BERTScore~\cite{zhang2020bertscore}) use learned semantic
+representations, handling paraphrase more gracefully but still
+requiring a reference~\cite{chang2023survey}. \textbf{LLM-as-Judge
+metrics} (G-Eval~\cite{liu2023geval}) delegate scoring to a second
+LLM, eliminating the gold-reference requirement at the cost of
+judge biases (positional, length,
+self-enhancement)~\cite{zheng2023judging, gu2025llmjudge}.
+\textbf{Task-specific metrics} (pass@$k$ for code, exact match for
+factual retrieval, RAGAS~\cite{rageval2024} for RAG pipelines) are
+purpose-built and rarely transfer.
+Section~\ref{sec:taxonomy} organizes these along D3.
 
 \subsection{Validity and Reliability in Evaluation}
 \label{subsec:validityreliability}
@@ -758,20 +753,16 @@ beyond surface organization is an empirical question we examine in
 Section~\ref{subsec:archetypes}. Figure~\ref{fig:taxonomy} positions
 the dimensions; Section~\ref{sec:comparison} locates the 152 papers.
 
-\textit{What the frame organizes.} The two tensions make three
-patterns we later observe in the corpus interpretable rather than
-arbitrary: D1 and D3 are entangled (Section~\ref{subsec:cooccurrence}:
-Cram\'er's $V = 0.702$) because choosing a judgment locus largely
-determines the metric family; benchmark-automation is the modal
-configuration on closed-form tasks because automation pays near-zero
-construct cost when the reference well-approximates the construct
-(Section~\ref{subsec:tension_scalability}); and LLM-judge adoption
-fragments because moving the judgment locus to a proprietary judge
-without calibration evidence breaks across-paper comparability
-(Section~\ref{subsec:tension_reference}). The frame is intended as a
-low-parameter organizing account of these patterns; whether it has
-explanatory force beyond organization is an empirical question we
-return to in Section~\ref{subsec:archetypes}.
+\textit{What the frame organizes.} The two tensions render three
+later corpus patterns interpretable: D1/D3 are entangled (Cram\'er's
+$V = 0.702$) because the judgment locus largely fixes the metric
+family; benchmark-automation is modal on closed-form tasks because
+automation pays near-zero construct cost when the reference
+approximates the construct; LLM-judge adoption fragments because
+moving to a proprietary judge without calibration breaks
+across-paper comparability. Whether the frame has explanatory force
+beyond organization is examined in
+Section~\ref{subsec:archetypes}.
 
 \subsection{From Five Dimensions to Seven}
 \label{subsec:fivetoseven}
@@ -1019,7 +1010,7 @@ regions correspond to the recurring evaluation \emph{archetypes}
 identified in Section~\ref{subsec:archetypes}; the empirical
 distribution of papers across them is reported in
 Table~\ref{tab:archetype_distribution}.
-\textit{Takeaway:} The majority of the corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), suggesting that within this corpus benchmark-automation more often emphasizes measurement convenience and cross-paper comparability than construct coverage.}
+\textit{Takeaway:} The corpus clusters in the high-reliability, low-construct-validity quadrant (Benchmark-Automation archetype), suggesting benchmark-automation emphasizes measurement convenience over construct coverage.}
 \Description[Two-axis validity-reliability diagram with seven dimensions]{A two-axis diagram showing the construct validity vs.\ measurement reliability tradeoff on one axis and reference-anchored vs.\ judgment-anchored evaluation on the other, with the seven taxonomy dimensions D1 through D7 positioned at their primary projections and three archetype regions (Benchmark-Automation, Judge-Mediated, Expert-Anchored) labelled.}
 \label{fig:taxonomy}
 \end{figure*}
@@ -1117,44 +1108,24 @@ reference table.
 
 Two widely cited corpus papers illustrate the classification process.
 
-\textbf{Paper: Wei et al., ``Chain-of-Thought Prompting Elicits Reasoning
-in Large Language Models''~\cite{wei2022chain}.}
-D1\,=\,Benchmark (performance is measured on established arithmetic
-and commonsense benchmarks such as GSM8K and SVAMP, using standardized
-test sets with gold answers).
-D2\,=\,Reasoning (all tasks - arithmetic, symbolic, and commonsense -
-are closed-form reasoning problems).
-D3\,=\,Task-specific (exact-match accuracy is used, which is the
-natural metric for tasks with a single correct answer).
-D4\,=\,Automated (no human judgment is involved; evaluation is
-fully script-based against reference answers).
-D5\,=\,Cross-model (results are reported across multiple model scales,
-including PaLM 540B, GPT-3, and LaMDA).
-D6\,=\,Single-prompt (one chain-of-thought template per benchmark; no
-paraphrase variance reported).
-D7\,=\,Artifact-released (prompts and exemplar sets disclosed); not
-contamination-checked at the time of publication.
+\textbf{Wei et al., Chain-of-Thought~\cite{wei2022chain}.}
+D1=Benchmark (GSM8K, SVAMP); D2=Reasoning (arithmetic, symbolic,
+commonsense); D3=Task-specific (exact-match accuracy);
+D4=Automated (script-based against references); D5=Cross-model
+(PaLM 540B, GPT-3, LaMDA); D6=Single-prompt (one template per
+benchmark); D7=Artifact-released (prompts and exemplars disclosed;
+not contamination-checked at publication).
 
-\textbf{Paper: Zheng et al., ``Judging LLM-as-a-Judge with MT-Bench and
-Chatbot Arena''~\cite{zheng2023judging}.}
-D1\,=\,LLM-as-Judge (GPT-4 is used as the primary evaluator, scoring
-model responses on a 1-10 scale).
-D2\,=\,Multi-task (MT-Bench spans eight categories including writing,
-roleplay, math, and coding, with no single task domain dominating).
-D3\,=\,LLM-as-Judge (the scoring rubric is operationalized entirely
-through GPT-4 judgments rather than reference-based or human-assigned
-metrics; calibration is reported against human pairwise preferences
-on a held-out subset).
-D4\,=\,Automated (the MT-Bench component that the taxonomy classifies
-relies on automated GPT-4 scoring; Chatbot Arena's human preferences
-are an adjunct, not the primary evaluation channel).
-D5\,=\,Cross-model (the paper compares 28 open-source and proprietary
-models simultaneously).
-D6\,=\,Multi-prompt aggregate (positional and verbosity bias probes
-are reported, but per-prompt sensitivity bounds are not).
-D7\,=\,Artifact-released and Judge-version-pinned (prompts and
-MT-Bench dataset publicly released; GPT-4 snapshot identified; not
-contamination-checked).
+\textbf{Zheng et al., MT-Bench~\cite{zheng2023judging}.}
+D1=LLM-as-Judge (GPT-4 scoring on 1-10 scale); D2=Multi-task
+(eight categories: writing, roleplay, math, coding, etc.);
+D3=LLM-judge (GPT-4 judgments; calibration reported against human
+pairwise preferences on held-out subset); D4=Automated (MT-Bench
+component; Chatbot Arena human preferences are adjunct);
+D5=Cross-model (28 open and proprietary models); D6=Multi-prompt
+aggregate (positional and verbosity bias probes; no per-prompt
+sensitivity bounds); D7=Artifact-released, Judge-version-pinned
+(GPT-4 snapshot identified; not contamination-checked).
 
 The compact notation D1\,=\,Benchmark / D2\,=\,Reasoning /
 D3\,=\,Task-specific / D4\,=\,Automated / D5\,=\,Cross-model /
@@ -1218,14 +1189,11 @@ prior work.
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
 \caption{Seven-Question Evaluation Checklist: one question per
-dimension. This is the companion checklist referenced in the abstract;
-each row names the central tradeoff the dimension forces a researcher
-to confront. The full preregistration checklist is in the Electronic
-Supplement (Appendix~A).
-\textit{Takeaway:} A ``no'' answer to any row is not a disqualifier
-but benefits from explicit justification; without that, the
-corresponding dimension tends to be decided implicitly by benchmark
-choice rather than by deliberate evaluation design.}
+dimension. Each row names the tradeoff that dimension forces. Full
+preregistration checklist in Electronic Supplement (Appendix~A).
+\textit{Takeaway:} A ``no'' answer is not a disqualifier but
+benefits from justification; without it, the dimension defaults to
+implicit benchmark choice rather than deliberate design.}
 \label{tab:quickref}
 \centering
 \footnotesize
@@ -1280,7 +1248,7 @@ Table~\ref{tab:quickref}.
 D-dims: taxonomy dimensions directly operationalized. Archetype: A =
 Benchmark-Automation, B = Judge-Mediated, C = Expert-Anchored, R =
 Robustness tools (cross-archetype). See Section~\ref{subsec:archetypes}.
-\textit{Takeaway:} No single tool covers all seven dimensions; D6 (robustness) and D7 (reproducibility) are the most commonly unaddressed dimensions across all tools, suggesting that researchers typically need to combine frameworks or accept systematic gaps in their evaluation design.}
+\textit{Takeaway:} No single tool covers all seven dimensions; D6 (robustness) and D7 (reproducibility) are most commonly unaddressed, requiring researchers to combine frameworks or accept systematic gaps.}
 \label{tab:tools}
 \centering
 \footnotesize
@@ -1555,7 +1523,7 @@ deduplication; screened = full-text reviewed; excluded = full-text
 exclusions with reasons documented in the project repository
 (Section~\ref{subsec:search}); added = papers retained after
 screening; cumulative = running corpus size. Final corpus: 152 papers.
-\textit{Takeaway:} Expansion rounds 1--4 contributed 73 of the 152 final papers (48.0\%), demonstrating that a single broad primary search substantially underestimates coverage for rapidly evolving topics such as LLM-judge quality, contamination resistance, and agentic evaluation.}
+\textit{Takeaway:} Expansion rounds 1--4 contributed 73 of 152 papers (48.0\%); a single broad primary search substantially underestimates coverage for fast-moving topics (LLM-judge quality, contamination, agentic evaluation).}
 \label{tab:expansion_rounds}
 \centering
 \scriptsize
@@ -1624,7 +1592,7 @@ the final corpus of 152 papers.
 The expanded identification and per-round screening counts are
 tabulated in Table~\ref{tab:expansion_rounds}; the figure integrates
 all five rounds per PRISMA 2020 reporting guidelines~\cite{page2021prisma}.
-\textit{Takeaway:} Of 3,297 database records identified, 130 (3.9\%) met all inclusion criteria via database search; 22 additional papers recovered through citation tracing in Round~0 yielded the final corpus of 152 papers. The high full-text exclusion rate (732 excluded) is driven primarily by papers that use prompting as a tool without evaluating it as the studied object.}
+\textit{Takeaway:} Of 3,297 identified records, 130 (3.9\%) met inclusion via database search; 22 added via citation tracing in Round~0 yielded the 152-paper corpus. The high full-text exclusion rate (732) reflects papers that use prompting as a tool without evaluating it.}
 \Description[PRISMA 2020 flow diagram for the five-round literature search]{PRISMA 2020 flowchart depicting identification, screening, eligibility, and inclusion steps across the primary search round and four supplementary expansion rounds, with records counts at each stage: 3,297 identified, 862 screened, 732 excluded, 152 included.}
 \label{fig:prisma}
 \end{figure*}
@@ -1871,7 +1839,7 @@ reported in Table~\ref{tab:kappa}. The Judge-pinned property
 ($\approx$3.3\% of the corpus, Table~\ref{tab:d7dist}), so the
 LLM-judge archetypes below do not list JP as part of their modal
 D7 configuration.
-\textit{Takeaway:} Under a strict mutual-exclusion assignment, the Benchmark-Automation archetype accounts for 66.4\% of the corpus (95\% bootstrap CI [58.6\%, 73.7\%]); the Judge-Mediated cluster is the only other substantial group at 17.1\% [11.2\%, 23.7\%], making the choice between benchmark-automation and judge-mediated evaluation a central design distinction within this corpus.}
+\textit{Takeaway:} Under strict mutual-exclusion, Benchmark-Automation accounts for 66.4\% (95\% CI [58.6\%, 73.7\%]) and Judge-Mediated for 17.1\% [11.2\%, 23.7\%]; the choice between them is the central design distinction in this corpus.}
 \label{tab:archetype_distribution}
 \centering
 \footnotesize
@@ -1912,7 +1880,7 @@ within the category. The full per-paper mapping is included as a review-time sna
 with the submission; a citable tagged version will be released at
 acceptance (see Data Availability statement).
 Modal subcategories are derived from the 152-paper corpus.
-\textit{Takeaway:} All paper categories default to automated evaluation and cross-model scope; the primary differentiators across categories are metric type (D3) and artifact release (D7), with LLM-judge papers being the only group where released artifacts are the majority norm.}
+\textit{Takeaway:} All categories default to automated, cross-model evaluation; the primary differentiators are metric type (D3) and artifact release (D7), where LLM-judge papers are the only group with majority artifact release.}
 \label{tab:comparison}
 \centering
 \footnotesize
@@ -2240,7 +2208,7 @@ the inter-rater $\kappa$ reported in Section~\ref{subsec:coding_reliability}.
 Seven pairs are shown; selection criterion: pairs predicted by the
 validity-reliability frame to co-occur. The full pairwise matrix is
 available in the machine-readable dataset.
-\textit{Takeaway:} The strongest co-occurrences involve the Benchmark method (D1=Benchmark \& D3=Task-specific at 66.4\%; D1=Benchmark \& D4=Automated at 66.4\%), confirming that benchmark adoption bundles metric and automation choices together; the D1=LLM-as-Judge \& D3=LLM-judge link (19.7\%) shows the same bundling pattern for the judge-mediated archetype.}
+\textit{Takeaway:} Benchmark bundles metric and automation choices (D1+D3 = D1+D4 = 66.4\%); LLM-as-Judge similarly bundles with LLM-judge metric (19.7\%), confirming the judge-mediated archetype.}
 \label{tab:cooccurrence}
 \centering
 \footnotesize
@@ -2587,7 +2555,7 @@ addresses FM$x$ in its evaluation design can cite this table as the
 source of the fingerprint and mitigation. The released
 \texttt{corpus\_d1d7.csv} permits any reader to reproduce the
 prevalence column.
-\textit{Takeaway:} Each failure mode has a one-step mitigation that does not require a new evaluation method, only a reporting change; the bulk of the corpus exhibits at least one of FM1--FM3 (45.4\%), but the modes are largely non-overlapping (no paper exhibits all three), suggesting that targeted reporting changes per failure mode can substantially reduce the configuration--claim gap.}
+\textit{Takeaway:} Each FM has a one-step reporting-change mitigation (no new evaluation method needed). 45.4\% of the corpus exhibits at least one FM; modes are largely non-overlapping (no paper has all three), so targeted reporting changes per FM can substantially reduce the configuration--claim gap.}
 \label{tab:fmsummary}
 \centering
 \footnotesize
