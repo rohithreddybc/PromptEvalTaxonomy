@@ -435,7 +435,10 @@ build a four-aspect taxonomy of techniques (profile/instruction,
 knowledge, reasoning/planning, and output-bias reliability) that
 matches our title structure closely but classifies prompts rather
 than the evaluations applied to them; Wen et al.~\cite{pettax2025}
-build a template-structure taxonomy; Sasaki et al.~\cite{petaxse2025} cover
+build a template-structure taxonomy; Fagbohun et
+al.~\cite{fagbohun2024categorization} group techniques into
+seven empirical practitioner-oriented categories; Sasaki et
+al.~\cite{petaxse2025} cover
 SE-specific patterns; Tian et al.~\cite{petaxdefects2025} taxonomize
 prompt defects in PE-for-code; He et al.~\cite{contextengineer2025}
 situate PE within ``context engineering''; Liu et al.~\cite{liu2024promptingframeworks},
@@ -471,7 +474,15 @@ al.~\cite{ye2025psychometrics} survey LLM evaluation through the
 broader lens of psychometrics, including validation and enhancement
 methodology. Kearns~\cite{kearns2026quantifying} proposes a
 structured-capabilities model for quantifying construct validity
-across the OpenLLM Leaderboard. These works overlap with our
+across the OpenLLM Leaderboard. Laeeq et al.~\cite{laeeq2026safepe}
+propose SAFE-PE, the closest direct competitor in scope: a
+multi-dimensional assessment framework for prompt engineering with
+six aspects (accuracy, diversity, robustness, interpretability,
+fairness, ethics); SAFE-PE targets individual prompt-level
+\emph{quality scoring} (case-studied on LLaMA across summarization,
+QA, and code generation), whereas the present survey targets
+\emph{study-level evaluation-framework configurations} across a
+152-paper PRISMA corpus. These works overlap with our
 theoretical grounding but target LLM benchmarks broadly, medical
 benchmarks, or psychometric methodology, not prompt-engineering
 evaluation configurations specifically. None of these
@@ -2573,7 +2584,13 @@ Mizrahi et al.~\cite{mizrahi2024state} and Salinas \&
 Morstatter~\cite{butterfly2024} have shown that single-prompt
 evaluations systematically overstate effects relative to
 multi-prompt baselines on the same model, with documented shifts
-of several percentage points under paraphrase. Cross-model findings
+of several percentage points under paraphrase. Vaugrante et
+al.~\cite{vaugrante2024replication} further report that the
+reasoning improvements claimed for chain-of-thought,
+EmotionPrompting, and ExpertPrompting do not reach statistical
+significance once replicated across six models on six reasoning
+benchmarks, suggesting that FM3's prevalence is not merely a
+reporting style but a replicability concern. Cross-model findings
 under D6=Single-prompt therefore support narrower claims than the
 phrasing typically suggests, a pattern endemic to the modal
 Archetype A configuration that affects the bulk of the technique
