@@ -1444,16 +1444,13 @@ flagged in Section~\ref{subsubsec:lim_recency} as preliminary; no
 headline claim rests solely on a 2026 preprint.
 
 \textbf{On corpus size.} The 152-paper corpus is comparable to
-focused CSUR-tier systematic surveys: 142 papers in Edemacu and
-Wu~\cite{edemacu2024privacysurvey}, ${\sim}160$ in Sahoo et
-al.~\cite{sahoo2024systematic} (PE techniques), ${\sim}220$ in
-Chang et al.~\cite{chang2023survey} (broader LLM evaluation). The
-corpus is narrower than omnibus surveys because dimensional coding
-(D1--D7) requires per-paper full-text review, dual coding, and
-disagreement adjudication, limiting feasible size at fixed coding
-quality. Sensitivity analysis (Section~\ref{subsec:sensitivity})
-confirms headline distributional claims are stable; per-dimension
-$\kappa$ in Table~\ref{tab:kappa} documents coding reliability.
+CSUR-tier systematic surveys (142 in~\cite{edemacu2024privacysurvey},
+${\sim}160$ in~\cite{sahoo2024systematic}, ${\sim}220$
+in~\cite{chang2023survey}) and narrower than omnibus surveys because
+dimensional coding (D1--D7) requires per-paper full-text review and
+dual coding. Sensitivity analysis (Section~\ref{subsec:sensitivity})
+confirms claim stability; per-dimension $\kappa$
+(Table~\ref{tab:kappa}) documents coding reliability.
 
 \textbf{On expansion rounds.} Each supplementary round was triggered
 by a specific under-coverage gap identified after coding the prior
@@ -1953,36 +1950,34 @@ discussion-worthy methodological development (Section~\ref{sec:discussion}).
 \subsection{Distribution across Evaluation Method (Dimension 1)}
 \label{subsec:d1dist}
 
-Benchmark-based evaluation accounts for 110 papers (72.4\%),
-establishing it as the default across every subgroup, including the
-foundation-model technical reports for GPT-4~\cite{achiam2023gpt4},
+Benchmark-based evaluation accounts for 110 papers (72.4\%), the
+default across every subgroup including foundation-model technical
+reports for GPT-4~\cite{achiam2023gpt4},
 LLaMA~\cite{touvron2023llama, touvron2023llama2}, and
-GPT-4o~\cite{hurst2024gpt4o}. Benchmark results are reproducible,
-cross-lab comparable, and inexpensive at scale; what they cannot
-capture is output quality on open-ended tasks without a single
-correct answer.
+GPT-4o~\cite{hurst2024gpt4o}. Benchmarks are reproducible and
+cross-lab comparable but cannot capture output quality on open-ended
+tasks without a single correct answer.
 
-LLM-as-Judge evaluation appears in 30 papers (19.7\%), concentrated
-in open-ended generation and instruction-following
+LLM-as-Judge appears in 30 papers (19.7\%), concentrated in
+open-ended generation and instruction-following
 (MT-Bench~\cite{zheng2023judging},
 AlpacaEval~\cite{dubois2024alpacaeval}, G-Eval~\cite{liu2023geval}).
 The cluster spans fine-tuned scalable judges~\cite{zhu2023judgelm},
-judge panels and debate-based
-meta-evaluation~\cite{verga2024replacing, chern2024scaleeval,
-multiagentjudge2025}, two surveys~\cite{gu2025llmjudge, li2024llmsjudges},
-bias quantification~\cite{ye2024justice, wataoka2024selfpreference,
+judge panels and meta-evaluation~\cite{verga2024replacing,
+chern2024scaleeval, multiagentjudge2025}, two
+surveys~\cite{gu2025llmjudge, li2024llmsjudges}, bias
+quantification~\cite{ye2024justice, wataoka2024selfpreference,
 judgingjudges2024, judgebench2024}, and hallucination
 detection~\cite{akbar2024hallumeasure}. Adoption has outpaced
 calibration research.
 
-Human evaluation appears in 14 papers (9.2\%), ablation studies in
-2 (1.3\%); no corpus paper uses a user study as primary method. Four
-papers~\cite{llmvshuman2024, alternativeannotator2025, humansorllm2024,
-canlllmsreplace2023} are coded under both D1=LLM-as-Judge and D1=Human,
-so subcategory counts sum to 156 rather than 152; headline frequencies
-use the 152-paper denominator. The overall distribution favours
-configurations that maximize reliability and scale over
-construct-validity guarantees that human evaluation provides
+Human evaluation appears in 14 papers (9.2\%), ablation in 2 (1.3\%);
+no primary user studies. Four papers~\cite{llmvshuman2024,
+alternativeannotator2025, humansorllm2024, canlllmsreplace2023} are
+coded under both LLM-as-Judge and Human, so subcategory counts sum
+to 156 (headline frequencies use the 152-paper denominator). The
+overall distribution favours scalable, reliable configurations over
+the construct-validity guarantees human evaluation provides
 (Section~\ref{subsec:tension_scalability}).
 
 \subsection{Distribution across Task Scope (Dimension 2)}
@@ -2014,19 +2009,16 @@ vatsal2024survey}.
 \subsection{Distribution across Metric Type (Dimension 3)}
 \label{subsec:d3dist}
 
-Task-specific metrics dominate at 103 papers (67.8\%): pass@$k$,
-exact match, F1, and accuracy mirror the dominance of benchmark
-evaluation in D1. LLM-judge metrics appear in 31 papers (20.4\%);
-G-Eval~\cite{liu2023geval} marked the shift toward LLM-based scoring
-on open-ended outputs. Hybrid metrics appear in 16 papers (10.5\%),
-combining automated scoring with judge-based assessment across
-multiple axes; model-based metrics (BERTScore family) in 2 (1.3\%),
-with the LLM-based NLG-eval survey~\cite{li2024leveraging}
-documenting the gradual shift to LLM-judge. Reference-based metrics
-(BLEU, ROUGE) appear as primary measures in zero corpus papers, a
-reversal of historical dominance that follows the
-lexical-overlap-vs.-human-judgment gap documented by Gehrmann et
-al.~\cite{repairing2022}.
+Task-specific metrics dominate at 103 papers (67.8\%) (pass@$k$,
+exact match, F1, accuracy), mirroring benchmark dominance in D1.
+LLM-judge metrics appear in 31 (20.4\%); G-Eval~\cite{liu2023geval}
+marked the shift to LLM-based scoring on open-ended outputs. Hybrid
+metrics in 16 (10.5\%); model-based (BERTScore family) in 2 (1.3\%),
+with~\cite{li2024leveraging} documenting the gradual shift to
+LLM-judge. Reference-based metrics (BLEU, ROUGE) appear as primary
+measures in zero corpus papers, a reversal of historical dominance
+following the lexical-overlap vs.\ human-judgment gap documented
+by~\cite{repairing2022}.
 
 \subsection{Distribution across Automation Level (Dimension 4)}
 \label{subsec:d4dist}
@@ -2678,20 +2670,16 @@ neither has been adopted at scale within PE evaluation.
 \subsection{Refining Tension 1: Within-Run vs.\ Across-Time Reliability}
 \label{subsec:tension_reproducibility}
 
-A pipeline can be highly reliable within-run (the same input returns
-the same score on the same day) yet fragile across-time (the score
-depends on infrastructure that drifts between API revisions, or on
-test data that may have leaked into pretraining). D7 captures this
-asymmetry: artifact release is relatively common, but
-contamination-checking and judge-version pinning are not
-(Section~\ref{subsec:d7dist}). The tension is structural: static
-benchmarks grow more contaminated as web-scale training continues,
-and LLM-judge evaluation depends on proprietary judges the pipeline
-cannot pin. Recent work on contamination-resistant dynamic
-benchmarks~\cite{wildbench2024} and on judge-sensitivity
-quantification~\cite{bellibatlu2026judgesense, feng2025sage} addresses
-parts of it; broader uptake remains an open empirical question rather
-than a research gap.
+A pipeline can be reliable within-run yet fragile across-time
+(infrastructure drifts between API revisions; test data leaks into
+pretraining). D7 captures this asymmetry: artifact release is
+common, but contamination-checking and judge-version pinning are
+not (Section~\ref{subsec:d7dist}). The tension is structural: static
+benchmarks grow more contaminated with continued training, and
+LLM-judge pipelines cannot pin proprietary judges. Recent work on
+dynamic contamination-resistant benchmarks~\cite{wildbench2024} and
+judge-sensitivity quantification~\cite{bellibatlu2026judgesense,
+feng2025sage} addresses parts; broader uptake is the open question.
 
 \subsection{Open Problems by Tension}
 \label{subsec:open_problems}
