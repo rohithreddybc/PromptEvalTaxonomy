@@ -17,5 +17,5 @@
 # Compiled output (keep source PDFs like PRISMA)
 main.pdf
 
-# Claude Code settings
+# Editor / tooling settings
 .claude/

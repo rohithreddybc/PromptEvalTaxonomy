@@ -1,6 +1,6 @@
 ﻿"""
 Generate a PRISMA 2020 flowchart PNG in the same visual format as
-prisma_flowchart_OLD_backup.png, but with the updated Claude Code
+prisma_flowchart_OLD_backup.png, but with the updated
 content/counts for all five rounds, ending with 152 papers.
 
 Output:
@@ -15,7 +15,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 # ---------------------------------------------------------------------------
-# Content from the Claude Code / all-rounds PRISMA version
+# Content from the all-rounds PRISMA version
 # ---------------------------------------------------------------------------
 CONTENT = {
     "identified": [
