@@ -444,9 +444,11 @@ prompt defects in PE-for-code; He et al.~\cite{contextengineer2025}
 situate PE within ``context engineering''; Liu et al.~\cite{liu2024promptingframeworks},
 published in this venue, survey \emph{prompting frameworks} in the
 sense of toolkits and lifecycle structures (Data, Base, Execute, and
-Service Levels) rather than evaluation frameworks; and Dong et
-al.~\cite{dong2022survey} provide the foundational in-context-learning
-survey.
+Service Levels) rather than evaluation frameworks; Plaat et
+al.~\cite{plaat2024multistep}, also in this venue, survey
+multi-step reasoning with LLMs along generation, evaluation, and
+control axes; and Dong et al.~\cite{dong2022survey} provide the
+foundational in-context-learning survey.
 
 On the evaluation side, Chang et al.~\cite{chang2023survey}
 organize LLM evaluation around what/where/how; Zhao et
@@ -2159,9 +2161,16 @@ All three & 0.0\% & 0.0\% \\
 
 The sensitivity literature
 \cite{sclar2023formatting, butterfly2024, promptsensitivity2025,
-mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense}
-documents large paraphrase-induced variance but has not propagated
-into the broader corpus as a routine reporting requirement.
+mizrahi2024state, polo2024promptseval, bellibatlu2026judgesense,
+errica2024sensitivity, zhuo2024prosa} documents large
+paraphrase-induced variance and proposes formal sensitivity /
+consistency metrics, but this work has not propagated into the
+broader corpus as a routine reporting requirement. Hua et
+al.~\cite{hua2025flaworartifact} offer a counterpoint: much of the
+reported sensitivity may be an artifact of rigid evaluation
+heuristics (log-likelihood scoring, exact-match) and reduces under
+LLM-as-Judge protocols, which itself reinforces the dependency of
+D6 conclusions on D1/D3 coding choices.
 
 \subsection{Distribution across Reproducibility (Dimension 7)}
 \label{subsec:d7dist}
@@ -2176,8 +2185,14 @@ and seeds without verifying test-set cleanness provides
 reproducibility artifacts while leaving construct unclear. Papers
 addressing this gap directly~\cite{sainz2023nlp, deng2023investigating,
 yang2023rethinking, wang2024benchmark, mcintosh2024inadequacies} are
-concentrated in the benchmark-paper category; strong reproducibility
-requires both.
+concentrated in the benchmark-paper category. Balloccu et
+al.~\cite{balloccu2024leakcheat} systematically document the scale
+of the problem: 4.7M samples from 263 benchmarks have leaked into
+GPT-3.5 / GPT-4 within their first year post-release, making the
+3.9\% contamination-checked share in our corpus more concerning, not
+less, when read alongside the documented leakage. Strong
+reproducibility requires both artifact release and contamination
+checking.
 
 \subsection{Cross-Dimensional Patterns}
 \label{subsec:crossdim}
@@ -2580,7 +2595,12 @@ D6=Single-prompt) and zero-shot CoT~\cite{kojima2022large} (same
 fingerprint), both landmark techniques whose original evaluations
 report cross-model generalization on a single prompt phrasing per
 model.
-Mizrahi et al.~\cite{mizrahi2024state} and Salinas \&
+Mirzadeh et al.~\cite{mirzadeh2024gsmsymbolic} report up to 65\%
+performance drops on a single landmark reasoning benchmark (GSM8K)
+when only numerical values in the questions are altered, reinforcing
+that single-phrasing results from one model can shift dramatically
+under semantics-preserving perturbations. Mizrahi et
+al.~\cite{mizrahi2024state} and Salinas \&
 Morstatter~\cite{butterfly2024} have shown that single-prompt
 evaluations systematically overstate effects relative to
 multi-prompt baselines on the same model, with documented shifts
