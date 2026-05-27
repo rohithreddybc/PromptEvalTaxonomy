@@ -1177,11 +1177,9 @@ D6\,=\,Single-prompt should be flagged as a generalizability risk.
 are stronger choices than D7\,=\,Not-reported, especially since
 medical benchmarks are smaller and easier to contaminate.
 
-This exercise surfaces seven design decisions that are typically
-implicit and unreported. Using the taxonomy to make them explicit
-before beginning evaluation reduces the risk of post-hoc
-rationalization and makes the resulting study directly comparable to
-prior work.
+Making these decisions explicit before evaluation reduces post-hoc
+rationalization and makes the study directly comparable to prior
+work.
 
 \subsection{Evaluation Design Quick Reference}
 \label{subsec:quickref}
@@ -1320,47 +1318,33 @@ Section~\ref{subsec:archetypes}.
 % ---------------------------------------------------------------
 \section{Methodology: Systematic Literature Review}
 \label{sec:methodology}
-The 152-paper corpus was constructed through a PRISMA 2020 systematic
-literature review~\cite{page2021prisma}, comprising one primary search
-round (Sections~\ref{subsec:search}--\ref{subsec:screening},
-Figure~\ref{fig:prisma}) followed by four targeted expansion rounds
-(Table~\ref{tab:expansion_rounds}). All five rounds apply PRISMA 2020
-conventions: stated databases, documented search strategy with dates,
-explicit inclusion / exclusion criteria (Section~\ref{subsec:inclusion}),
-dual-reviewer screening (Section~\ref{subsec:screening}; $\kappa$ =
-0.81 over a 200-record dual-screened sample), per-round
-identified/screened/excluded/included counts
-(Table~\ref{tab:expansion_rounds}), and dual coding of every included
-paper (Section~\ref{subsec:coding_reliability}; $\kappa$ = 0.76--0.92).
-The primary round used broad PE-evaluation queries; the expansion
-rounds used narrower topical refinements against the same databases
-(Table~\ref{tab:expansion_rounds}, ``Target areas''), documented as
-``additional records identified from supplementary searches''
-within the PRISMA 2020 flow. These coverage-repair rounds address
-under-represented topic areas identified after coding the prior set;
-they are not independent prevalence sweeps, and the directional bias
-they introduce is named in Section~\ref{subsubsec:lim_expansion}.
+The 152-paper corpus follows PRISMA 2020~\cite{page2021prisma}: one
+primary search round (Sections~\ref{subsec:search}--\ref{subsec:screening},
+Figure~\ref{fig:prisma}) plus four targeted expansion rounds
+(Table~\ref{tab:expansion_rounds}). All five rounds apply PRISMA
+conventions (stated databases, documented strategy, explicit
+inclusion criteria (Section~\ref{subsec:inclusion}), dual-reviewer
+screening at $\kappa$ = 0.81, per-round identified/screened/
+excluded/included counts, dual coding at $\kappa$ = 0.76--0.92). The
+primary round used broad PE-evaluation queries; expansion rounds
+used narrower topical refinements documented as ``additional records
+from supplementary searches'' within the PRISMA flow. These
+coverage-repair rounds are not independent prevalence sweeps; the
+directional bias is named in
+Section~\ref{subsubsec:lim_expansion}.
 
 \subsection{Search Strategy}
 \label{subsec:search}
 
-We searched six databases: arXiv (cs.CL and cs.AI categories),
-the ACM Digital Library, IEEE Xplore, Semantic Scholar, Scopus,
-and Web of Science. The first four are the principal preprint and
-proceedings venues for prompt engineering and LLM evaluation
-work. Scopus and Web of Science extend coverage to a wider range of journal sources
-and are standard tools in computer science systematic
-reviews~\cite{kitchenham2007slr}. The primary search was conducted in
-2025-Q1--Q2; four targeted expansion rounds followed between 2025-Q3
-and 2026-Q2 (Table~\ref{tab:expansion_rounds}), with no lower
-publication-year cutoff, though nearly all relevant papers in the
-corpus appeared after 2020.
+We searched six databases: arXiv (cs.CL, cs.AI), ACM Digital
+Library, IEEE Xplore, Semantic Scholar, Scopus, and Web of
+Science~\cite{kitchenham2007slr}. The primary search ran in
+2025-Q1--Q2; four expansion rounds followed in 2025-Q3 to 2026-Q2
+(Table~\ref{tab:expansion_rounds}) with no lower year cutoff
+(nearly all retained papers postdate 2020).
 
-The search string below shows the base query applied to title,
-abstract, and keyword fields. Each database uses its own syntax;
-the string was adapted accordingly for each source while preserving
-the same logical structure. Full per-database strings are provided
-at the project repository (\url{https://github.com/rohithreddybc/PromptEvalTaxonomy}).
+The base query (adapted per database, full strings in the
+repository at \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}):
 
 \medskip\noindent{\small\ttfamily
 (``prompt engineering'' OR ``prompting technique'' OR ``prompt optimization''\\
@@ -1405,23 +1389,17 @@ or discuss evaluation of the prompting approach itself
 \item Non-English papers
 \end{itemize}
 
-\textbf{Re-admittance criterion for expansion rounds 2--3.}
-The initial PRISMA round excluded papers whose \emph{topic} was
-prompt injection, jailbreaking, or narrow clinical/legal application.
-Rounds 2--3 (Table~\ref{tab:expansion_rounds}) refined this:
-such papers were re-admitted when their \emph{evaluation methodology}
-(not their attack or clinical content) is what the taxonomy
-classifies -- e.g., prompt-injection \emph{benchmarks} contribute
-evaluation infrastructure, and clinical PE benchmarks such as
-MIRAGE/MedRAG~\cite{xiong2024medrag} contribute multi-prompt and
-reference-anchored evidence even when the underlying study is
-domain-applied. Papers admitted under this refinement are flagged in
-the Electronic Supplement (Appendix~C).
+\textbf{Re-admittance criterion (rounds 2--3).} The initial round
+excluded papers whose \emph{topic} was prompt injection,
+jailbreaking, or narrow clinical/legal application; rounds 2--3
+re-admitted them when their \emph{evaluation methodology} is what
+the taxonomy classifies (e.g., prompt-injection benchmarks and
+MIRAGE/MedRAG~\cite{xiong2024medrag} contribute evaluation
+infrastructure). Re-admitted papers are flagged in Appendix~C.
 
 The use-as-tool exclusion is practically consequential: many papers
-use prompting incidentally (``we prompted GPT-4 to extract
-entities'') without reporting evaluation of the prompting approach
-itself; these were excluded as they do not contribute to
+use prompting incidentally without evaluating the prompting
+approach; these were excluded as they do not contribute to
 understanding evaluation frameworks.
 
 \textbf{On mixing paper types.} The corpus spans four overlapping
@@ -2175,21 +2153,18 @@ D7 $\notin$ \{Judge-version-pinned\}.
 
 \textit{FM3 (Single-Phrasing Generalization) is endemic.}
 42 papers (27.6\%) carry the FM3 fingerprint (D5=Cross-model with
-D6=Single-prompt; Section~\ref{subsec:failuremodes}), including the
-original chain-of-thought paper~\cite{wei2022chain} and zero-shot
-CoT~\cite{kojima2022large}. Cross-model claims under D6=Single-prompt
-support narrower conclusions than their phrasing suggests; the
-dimensional coding makes this identifiable across more than a
-quarter of the corpus.
+D6=Single-prompt), including chain-of-thought~\cite{wei2022chain}
+and zero-shot CoT~\cite{kojima2022large}. Cross-model claims under
+single-prompt support narrower conclusions than their phrasing
+suggests.
 
 \subsection{Co-occurrence Patterns Across Dimensions}
 \label{subsec:cooccurrence}
 
-The seven dimensions are conceptually independent (any combination
-of subcategories is a valid configuration), but they are far from
-statistically independent in practice. Table~\ref{tab:cooccurrence}
-reports pairwise co-occurrence between selected subcategory pairs
-that the validity-reliability frame anticipates as linked.
+The seven dimensions are conceptually independent but far from
+statistically independent. Table~\ref{tab:cooccurrence} reports
+pairwise co-occurrence for subcategory pairs the
+validity-reliability frame anticipates as linked.
 
 \begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.2}
@@ -2369,31 +2344,21 @@ three-archetype configuration is silhouette-maximising relative to
 two- and four-archetype variants (silhouette 0.327 and 0.329
 respectively).
 
-\emph{Check 2: agreement with unsupervised k-means.} We additionally
-ran k-means clustering for $k=2,\ldots,6$ on the one-hot vectors,
-with k-means++ initialisation, ten random seeds per $k$, and selection
-of the lowest-SSE solution. The unsupervised algorithm has no
-knowledge of the rule-based archetype labels. Results: $k=3$ is
-local-maximum for silhouette ($0.335$ at $k=3$, $0.284$ at $k=2$,
-$0.349$ at $k=4$), and the adjusted Rand index between the
-unsupervised $k=3$ partition and the rule-based three-archetype
-labels is $0.51$ (chance-corrected; $0$~$=$~random agreement,
-$1$~$=$~perfect). The two findings: $k=3$ is silhouette-competitive
-under unsupervised clustering (only marginally below $k=4$ at
-$0.349$, and parsimony favours $k=3$); the unsupervised $k=3$
-partition agrees moderately with the rule-based labels rather than
+\emph{Check 2: agreement with unsupervised k-means.} k-means for
+$k=2,\ldots,6$ on the one-hot vectors (k-means++ init, 10 seeds per
+$k$, lowest-SSE) with no knowledge of the rule-based labels yields
+silhouette $0.335$ at $k=3$ ($0.284$ at $k=2$, $0.349$ at $k=4$) and
+ARI $=0.51$ between the unsupervised $k=3$ partition and the
+rule-based labels. $k=3$ is silhouette-competitive (parsimony
+favours it over $k=4$); the partitions agree moderately rather than
 recovering a different structure.
 
-\emph{Caveat.} Both checks are computed on a one-hot encoding of the
-same D1--D7 codes used to derive the rule-based labels, so they
-validate cluster separability and recovery under the proposed coding
-representation rather than proving that the archetypes exist
-independent of the coding choices. The ARI of $0.51$ is moderate
-rather than high; it indicates partial agreement between rule-based
-and unsupervised partitions, not equivalence. The substantive
-conclusion we draw is that the three-archetype structure is robust to
-the choice between rule-based and unsupervised labelling under this
-coding, not that it is an unconditional natural-kinds claim.
+\emph{Caveat.} Both checks use a one-hot encoding of the same D1--D7
+codes used to derive the rule-based labels, so they validate cluster
+separability and recovery under the coding, not natural-kind
+existence. ARI $=0.51$ is moderate, not high: the conclusion is
+that the three-archetype structure is robust to rule-based vs.\
+unsupervised labelling under this coding.
 
 The three archetypes are therefore not exhaustive (7.2\% of the
 corpus carries mixed configurations, plus small populations of
