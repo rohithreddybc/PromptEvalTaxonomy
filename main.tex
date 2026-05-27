@@ -287,6 +287,35 @@ does not fully support its contribution claim, each instantiated by
 named corpus papers (Section~\ref{subsec:failuremodes}).
 \end{enumerate}
 
+\textit{What we integrate, and what is new at the integration.}
+Three streams of prior survey work each contribute a piece that the
+present taxonomy combines into a single coding scheme.
+PE-techniques surveys~\cite{schulhoff2024prompt, sahoo2024systematic,
+vatsal2024survey, liu2026taxonomy} catalog methods through
+dimensional category labels; we apply that practice to the
+\emph{evaluation step} rather than to prompt construction.
+LLM-evaluation surveys~\cite{chang2023survey, ni2025benchmarks,
+mohammadi2025agents, gu2025llmjudge} treat benchmarks, agents, and
+LLM-judges along multiple axes; we rebuild it around PE-specific
+dimensions and promote robustness (D6) and reproducibility (D7) to
+first-class axes (those surveys cover both in passing). The
+construct-validity literature on LLM benchmarks~\cite{bean2025measuring,
+alaa2025medical, ye2025psychometrics} supplies the
+measurement-theoretic framing; we apply it to PE evaluation
+configurations and operationalize the tension through corpus-grounded
+archetypes and failure modes. The integration produces a structure
+none of the source works supplies: a seven-dimensional codebook that
+classifies the evaluation choices PE studies make (not the prompts),
+validated through convergent clustering criteria, and connected to
+three named failure modes whose corpus prevalence (FM1: 7.2\%, FM2:
+83.3\% of LLM-judge papers, FM3: 29.6\%) is reproducible from the
+released coding. The new insight is the joint application of these
+three lenses to PE evaluation: under that joint application, the
+literature partitions into recurring archetypes whose downstream
+reporting properties (D6 and D7) the archetype label statistically
+predicts (Cram\'er's $V = 0.21$ and $0.33$;
+Section~\ref{subsubsec:predictive}).
+
 The taxonomy is not a new evaluation method but a classification
 scheme together with empirical findings on how those methods co-occur.
 Three concurrent works adopt a measurement-theoretic lens for adjacent
