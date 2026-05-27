@@ -381,9 +381,9 @@ representative ten-paper mapping (Table~B.1), and the comprehensive
 \section{Related Work}
 \label{sec:related_work}
 
-Three streams of prior work bear on this survey: prompt engineering
-methods, LLM evaluation frameworks, and NLP taxonomies. We characterize
-each stream's contribution and gaps.
+Three streams bear on this survey: PE methods, LLM evaluation
+frameworks, and NLP taxonomies. We characterize each stream's
+contribution and gaps.
 
 \subsection{Prompt Engineering Methods and Techniques}
 
@@ -648,22 +648,18 @@ the rest of the taxonomy.
 \subsection{Validity and Reliability in Evaluation}
 \label{subsec:validityreliability}
 
-We use \emph{reliability} (the consistency of a measurement under
-repetition) and \emph{construct validity} (the degree to which a
-score is evidence about the property it is intended to
+We use \emph{reliability} (consistency under repetition) and
+\emph{construct validity} (the degree to which a score is evidence
+about the property it intends to
 capture)~\cite{cronbach1955construct, messick1995validity} in their
-measurement-theory sense throughout. The two are not equivalent and
-typically pull against each other: an exact-match comparison against
-a fixed answer key is highly reliable but has narrow construct
-validity for ``answer quality''; an expert panel scoring open-ended
-outputs can pursue higher construct validity but is expensive,
-slow to replicate, and rarely accompanied by strong inter-rater
-agreement~\cite{chang2023survey}. The translation of this distinction
-to ML/NLP evaluation~\cite{jacobs2021measurement,
-subramonian2023takeoneforteam, liao2023designing} is the spine of the
-dimensional decomposition in Section~\ref{sec:taxonomy}: a high score
-on a benchmark whose construct does not match the deployment task is
-evidence about the benchmark, not about the deployment property.
+measurement-theory sense. The two typically pull against each other:
+exact-match scoring against a fixed key is highly reliable but
+narrow on ``answer quality''; expert-panel scoring of open-ended
+outputs pursues higher construct validity at the cost of speed,
+replicability, and inter-rater agreement~\cite{chang2023survey}. The
+translation to ML/NLP evaluation~\cite{jacobs2021measurement,
+subramonian2023takeoneforteam, liao2023designing} is the spine of
+the dimensional decomposition in Section~\ref{sec:taxonomy}.
 
 \subsection{Formal Definitions}
 \label{subsec:definitions}
@@ -1460,34 +1456,24 @@ entities'') without reporting evaluation of the prompting approach
 itself; these were excluded as they do not contribute to
 understanding evaluation frameworks.
 
-\textbf{On mixing paper types.} The corpus includes four overlapping
-categories: prompt engineering technique papers, benchmark/dataset
-papers, LLM-as-Judge and metric-quality papers, and PE/LLM-evaluation
-surveys. All four \emph{participate in PE evaluation infrastructure}:
-technique papers consume benchmarks and metrics, benchmark and metric
-papers shape what techniques can be evaluated, and surveys
-recapitulate and influence practice. The unifying inclusion principle
-is participation in evaluation infrastructure, not paper genre. All
-major distributions in Section~\ref{sec:comparison} are reported in
-aggregate directly from \texttt{corpus\_d1d7.csv}, so every
-percentage is independently verifiable; category-subgroup contrasts
-are noted inline where relevant (e.g., LLM-as-Judge configurations
-for D7). Recent CSUR systematic reviews adopt the same mixed-category
-convention (e.g., Edemacu and Wu~\cite{edemacu2024privacysurvey} on
-privacy attacks; Chang et al.~\cite{chang2023survey} on LLM
-evaluation).
+\textbf{On mixing paper types.} The corpus spans four overlapping
+categories (PE techniques, benchmarks/datasets, LLM-as-Judge and
+metric-quality, PE/LLM-evaluation surveys) unified by participation
+in PE evaluation infrastructure, not paper genre. All distributions
+in Section~\ref{sec:comparison} are aggregate from
+\texttt{corpus\_d1d7.csv} and independently verifiable; subgroup
+contrasts (e.g., LLM-as-Judge for D7) are noted inline. Recent CSUR
+systematic reviews use the same mixed-category convention
+(e.g.,~\cite{edemacu2024privacysurvey, chang2023survey}).
 
-\textbf{On including arXiv preprints.} arXiv preprints are retained
-only when they meet at least one of three quality conditions: 10+
-citations on Google Scholar at the time of screening, publication at
-a recognized NLP/AI venue, or recovery through forward/backward
-citation tracing from an already-included peer-reviewed paper. The
-venue-criterion step at full-text review (Section~\ref{subsec:screening})
-excluded 72 records that did not meet any of these conditions. Two
-2026 preprints (\cite{bellibatlu2026judgesense, benchmark2sq2026}) are
-retained under this rule but flagged in
-Section~\ref{subsubsec:lim_recency} as preliminary; no headline claim
-in this survey rests solely on a 2026 preprint.
+\textbf{On including arXiv preprints.} Preprints are retained only
+when they meet at least one quality condition: 10+ Google Scholar
+citations at screening, publication at a recognized NLP/AI venue, or
+citation-trace recovery from an already-included peer-reviewed paper.
+The venue-criterion step excluded 72 records. Two 2026
+preprints~\cite{bellibatlu2026judgesense, benchmark2sq2026} are
+flagged in Section~\ref{subsubsec:lim_recency} as preliminary; no
+headline claim rests solely on a 2026 preprint.
 
 \textbf{On corpus size.} The 152-paper corpus is comparable to
 focused CSUR-tier systematic surveys: 142 papers in Edemacu and
@@ -1510,27 +1496,24 @@ search-string breadth (broad sweep vs.\ narrow topical queries).
 The directional bias is named in
 Section~\ref{subsubsec:lim_expansion}.
 
-\textbf{Corpus publication-status breakdown.} All 152 papers satisfy
-at least one quality condition (peer review, 10+ Google Scholar
-citations at screening, or recognized NLP/AI venue). Two are 2026
-arXiv preprints~\cite{bellibatlu2026judgesense, benchmark2sq2026}
-flagged as preliminary, with no headline claim resting solely on
-either. A precise peer-reviewed vs.\ arXiv split is not reported
-because many corpus papers were initially posted to arXiv and later
-accepted at venues (NeurIPS, ACL, EMNLP, ICLR, TACL) while retaining
-the arXiv identifier in their BibTeX \texttt{journal} field; the
-complete per-paper record is in \texttt{references.bib}.
+\textbf{Corpus publication-status breakdown.} All 152 papers meet at
+least one quality condition (peer review, 10+ Google Scholar
+citations at screening, or recognized NLP/AI venue). A precise
+peer-reviewed vs.\ arXiv split is not reported because many corpus
+papers were posted to arXiv first and later accepted at venues
+(NeurIPS, ACL, EMNLP, ICLR, TACL) while retaining the arXiv
+identifier in their \texttt{journal} field; the per-paper record is
+in \texttt{references.bib}.
 
 \subsection{Screening Process}
 \label{subsec:screening}
 
 The primary-round database queries returned 2,847 unique records
 after deduplication (expansion-round counts are tabulated separately
-in Table~\ref{tab:expansion_rounds}). Two reviewers independently
-screened all titles and abstracts against the inclusion and exclusion
-criteria, working separately at each phase. Disagreements at title/abstract screening
-were resolved through discussion (percent agreement 94.1\%, $\kappa$
-= 0.81 over a 200-record dual-screened sample); unresolved cases were
+in Table~\ref{tab:expansion_rounds}). Two reviewers independently screened all titles and abstracts
+against the criteria. Disagreements were resolved through discussion
+(percent agreement 94.1\%, $\kappa$ = 0.81 over a 200-record
+dual-screened sample); unresolved cases were
 referred to a third reviewer, as specified in PRISMA 2020
 Item~8~\cite{page2021prisma}.
 
@@ -2863,19 +2846,14 @@ Safety \& bias integration & Adversarial and demographic probes as first-class d
 \end{tabular}
 \end{table*}
 
-One direction deserves more space. \emph{Evaluation frameworks for
-reasoning-first models} (o1, o3, DeepSeek-R1) challenge three
-baseline assumptions. For D1, the prompt is no longer the sole
-reasoning vehicle; internal chain-of-thought is generated
-autonomously before the answer, so benchmark accuracy cannot
-attribute performance to prompt design versus internal deliberation.
-For D3, the faithfulness of the exposed reasoning trace to actual
-computation is an open measurement problem. For D6,
-within-prompt stochasticity from internal CoT sampling adds a
-variance source invisible to single-prompt reporting. Whether
-D1/D3/D6 require new subcategories or can accommodate these cases
-with updated operational definitions is a priority for the next
-survey cycle.
+One direction deserves more space. \emph{Reasoning-first models}
+(o1, o3, DeepSeek-R1) challenge three assumptions: D1 cannot
+attribute performance to prompt design versus autonomous internal
+CoT; D3 faces an open measurement problem in trace faithfulness;
+D6 has a new variance source from internal CoT sampling invisible
+to single-prompt reporting. Whether D1/D3/D6 require new
+subcategories or updated operational definitions is a priority for
+the next survey cycle.
 
 \subsection{Using This Taxonomy in Citing Work}
 \label{subsec:using}
@@ -3082,7 +3060,7 @@ revision. Consistent with ACM policy, AI assistants are not credited
 as authors.
 
 
-\clearpage
+\FloatBarrier
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 \end{document}
