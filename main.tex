@@ -510,29 +510,37 @@ fairness, ethics); SAFE-PE targets individual prompt-level
 \emph{quality scoring} (case-studied on LLaMA across summarization,
 QA, and code generation), whereas the present survey targets
 \emph{study-level evaluation-framework configurations} across a
-152-paper PRISMA corpus. These works overlap with our
-theoretical grounding but target LLM benchmarks broadly, medical
-benchmarks, or psychometric methodology, not prompt-engineering
-evaluation configurations specifically. None of these
-centrally addresses the question we foreground: for a researcher
-evaluating a specific prompting technique, which evaluation framework
-should they use, and why? Answering that requires a classification
-of evaluation frameworks along dimensions meaningful for PE work
-specifically, which is the contribution of this survey.
+152-paper PRISMA corpus. Read together, these three streams supply pieces that our taxonomy
+combines into a single coding scheme. The technique-survey stream
+contributes the practice of dimensional labelling; the LLM-evaluation
+stream contributes the multi-axis treatment of evaluation; the
+construct-validity stream contributes the measurement-theoretic
+framing. None of the streams in isolation addresses the question we
+foreground: for a researcher evaluating a specific prompting
+technique, which evaluation framework should they use, and why?
+The integration produces that classification: dimensions chosen for
+PE work specifically (D1--D7), validity/reliability framing applied
+to evaluation configurations rather than to benchmarks, and
+empirical archetypes plus failure modes derived from the integrated
+view. The remainder of this section makes the integration
+boundaries explicit.
 
 \subsection{Differentiation from Prior Surveys}
 \label{subsec:differentiation}
 
-Several recent surveys overlap in topic with this paper, and a CSUR-
-or similar-tier reviewer is right to ask what specifically is novel
-here beyond reorganizing known evaluation practices. We answer that
-question directly. Table~\ref{tab:differentiation} compares this
-work to eleven closely related surveys on three axes: (1)
+Several recent surveys overlap in topic with this paper; the
+question is what the integration produces beyond reorganizing known
+evaluation practices. Table~\ref{tab:differentiation} positions this
+work against eleven closely related surveys on three axes: (1)
 \textit{primary scope} (catalogs prompting methods, evaluation
-methods, or both); (2) \textit{theoretical framing} (whether the
-survey commits to a conceptual structure beyond a flat enumeration);
+methods, or both), (2) \textit{theoretical framing} (whether the
+survey commits to a conceptual structure beyond a flat enumeration),
 and (3) \textit{coverage of the seven dimensions} introduced in
-Section~\ref{sec:taxonomy}.
+Section~\ref{sec:taxonomy}. Each prior row supplies a piece used in
+our integration: \checkmark{} marks coverage that this work absorbs
+directly; $\circ$ marks coverage we extend by re-anchoring it to
+PE evaluation specifically; \textendash{} marks an axis our taxonomy
+adds at the integration step.
 
 \begin{table*}[!t]
 \caption{Differentiation from prior surveys. ``Methods'' refers to a
@@ -755,19 +763,26 @@ feng2025sage}.
 
 A taxonomy of evaluation frameworks can do more than catalog choices
 if a small number of organizing tensions also explain why those
-choices cluster as they do. We propose two such tensions as an
-\emph{interpretive frame} (formalized in
-Section~\ref{subsec:validityreliability}; consistent with the corpus
-patterns in Section~\ref{sec:comparison}):
+choices cluster as they do. The two tensions we propose as an
+\emph{interpretive frame} are not original to this paper; they
+integrate (i) the construct-validity vs.\ measurement-reliability
+distinction long established in psychometrics
+\cite{cronbach1955construct, messick1995validity} and recently
+re-applied to ML measurement~\cite{jacobs2021measurement,
+bean2025measuring, ye2025psychometrics}, with (ii) the
+reference- vs.\ judgment-anchored distinction implicit in the
+LLM-judge survey literature~\cite{gu2025llmjudge, li2025generationjudgment}.
+Our integration is to apply this two-axis frame to the dimensional
+choices PE evaluation studies make, formalized in
+Section~\ref{subsec:validityreliability} and consistent with the corpus
+patterns in Section~\ref{sec:comparison}:
 (1)~\textit{construct validity} vs.\ \textit{measurement reliability}
 (Definitions~2--3), and
 (2)~\textit{reference-anchored} vs.\ \textit{judgment-anchored}
 evaluation (Definitions~4--5). Other organizing tensions are
-plausible; we choose these because they are well-established in the
-measurement-theory literature
-they project onto~\cite{cronbach1955construct, messick1995validity,
-jacobs2021measurement} and because the seven dimensions project onto
-them in identifiable ways. Whether this frame has explanatory force
+plausible; we choose these because the seven dimensions project onto
+them in identifiable ways and the prior streams cited above each
+ground one axis. Whether this frame has explanatory force
 beyond surface organization is an empirical question we examine in
 Section~\ref{subsec:archetypes}. Figure~\ref{fig:taxonomy} positions
 the dimensions; Section~\ref{sec:comparison} locates the 152 papers.
@@ -791,19 +806,20 @@ return to in Section~\ref{subsec:archetypes}.
 \label{subsec:fivetoseven}
 
 An earlier formulation used five dimensions (evaluation method, task
-scope, metric type, automation level, evaluation scope). Application
-to the corpus revealed two limitations: the five dimensions captured
-\emph{procedural} choices but did not name two literature-recognized
-first-class concerns: robustness to prompt
-rephrasing~\cite{sclar2023formatting, promptsensitivity2025,
-butterfly2024} and reproducibility under judge drift, API change, and
-contamination~\cite{ni2025benchmarks, feng2025sage}; second, automation
-level was treated as a peer dimension rather than as an operationalization
-of the reliability axis. The current taxonomy adds
-\textit{D6 (Robustness)} and \textit{D7 (Reproducibility and
-Contamination Resistance)} and reframes \textit{D4 (Automation Level)}
-as a sub-axis of reliability, making both underlying tensions
-traceable through every coding decision.
+scope, metric type, automation level, evaluation scope). The
+extension to seven is not an additive innovation but an integration:
+the prompt-sensitivity literature~\cite{sclar2023formatting,
+promptsensitivity2025, butterfly2024, mizrahi2024state,
+zhuo2024prosa, errica2024sensitivity, vaugrante2024replication} and
+the benchmark-contamination literature~\cite{ni2025benchmarks,
+feng2025sage, mcintosh2024inadequacies, balloccu2024leakcheat}
+already treat robustness and reproducibility as first-class
+evaluation concerns; we promote them from corpus findings inside
+other surveys to top-level dimensions (D6, D7) of a PE-evaluation
+taxonomy. The five-to-seven extension also reframes
+\textit{D4 (Automation Level)} as a sub-axis of reliability rather
+than a peer dimension, making both underlying tensions traceable
+through every coding decision.
 
 Per Definition~1, an evaluation framework is fully specified by a
 choice along each of D1--D7. The dimensions are conceptually distinct
@@ -1850,10 +1866,14 @@ that uncertainty propagates to the headline claims.
 \section{Comparative Analysis}
 \label{sec:comparison}
 
-Mapping the corpus against the taxonomy tests its expressive coverage,
-derives co-occurrence patterns, recurring \textit{evaluation
-archetypes}, and a failure-mode catalog, and grounds the synthesis in
-Section~\ref{sec:discussion}.
+Mapping the 152-paper corpus against the integrated taxonomy reveals
+patterns that no single prior survey makes visible: the joint
+distribution over D1--D7 surfaces recurring \textit{evaluation
+archetypes}, dimension-pair dependencies, and three failure modes
+where a paper's configuration does not fully support its
+contribution claim. Each pattern is a product of the integration in
+Section~\ref{sec:taxonomy}; we report them here and ground the
+discussion in Section~\ref{sec:discussion}.
 
 \paragraph{PE-core papers vs.\ evaluation infrastructure.} The corpus
 contains two overlapping populations: 76 \emph{PE-core papers}
@@ -2705,9 +2725,20 @@ quantifies how often each goes unaddressed across the corpus.
 The per-dimension distributions and archetype analysis
 (Section~\ref{sec:comparison}) are best read as empirical evidence
 for the two tensions of Section~\ref{subsec:tensions}, plus a
-within-run vs.\ across-time refinement (Definition~3). The sections
-below name each tension, point to corpus evidence, and identify what
-the taxonomy suggests is missing.
+within-run vs.\ across-time refinement (Definition~3). Each tension
+below integrates a prior literature stream with the PE corpus:
+construct validity vs.\ reliability draws on
+psychometrics~\cite{cronbach1955construct, messick1995validity,
+jacobs2021measurement, ye2025psychometrics} and applies it to PE
+configurations; reference- vs.\ judgment-anchored draws on the
+LLM-as-Judge survey literature~\cite{gu2025llmjudge,
+li2025generationjudgment} and applies it to whole-study reporting
+choices rather than to individual judge instances; within-run vs.\
+across-time draws on the contamination and judge-drift
+literature~\cite{balloccu2024leakcheat, feng2025sage,
+bellibatlu2026judgesense} and operationalizes its concerns through
+D7. The subsections name each tension, point to corpus evidence,
+and identify what the integration suggests is missing.
 
 \subsection{Tension 1: Scalability vs.\ Construct Validity}
 \label{subsec:tension_scalability}
@@ -2994,7 +3025,14 @@ evaluation, which is the lightest test we can offer of whether the
 labels are useful.
 The distance from describable to standardized is a coordination
 problem, and whether the community closes it is for the community to
-decide, not for this paper to prescribe.
+decide, not for this paper to prescribe. What this paper offers, at
+the close, is the integration: the D1--D7 codebook, FM1--FM3
+catalog, and three archetype labels are intended to be used together
+as a single tool. Subsequent work that adopts any one of these can
+reference the others from the same source; subsequent work that
+re-codes a different corpus can compare its archetype shares against
+ours through the released coding scheme. The integration is the
+artifact; the catalog of pieces is incidental.
 
 \FloatBarrier
 \section*{Acknowledgments}
