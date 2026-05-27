@@ -591,7 +591,8 @@ Section~\ref{sec:taxonomy}.
 \label{tab:differentiation}
 \centering
 \footnotesize
-\begin{tabular}{p{2.6cm} p{1.4cm} p{1.9cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm} p{0.55cm}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{2.5cm} p{1.4cm} p{3.1cm} p{0.5cm} p{0.5cm} p{0.5cm} p{0.5cm} p{0.5cm} p{0.5cm} p{0.5cm}}
 \toprule
 \textbf{Survey} & \textbf{Primary scope} & \textbf{Theoretical framing} &
 \textbf{D1} & \textbf{D2} & \textbf{D3} & \textbf{D4} & \textbf{D5} &
@@ -1399,14 +1400,7 @@ Science~\cite{kitchenham2007slr}. The primary search ran in
 The base query (adapted per database, full strings in the
 repository at \url{https://github.com/rohithreddybc/PromptEvalTaxonomy}):
 
-\medskip\noindent{\small\ttfamily
-(``prompt engineering'' OR ``prompting technique'' OR ``prompt optimization''\\
-\phantom{(}OR ``chain-of-thought'' OR ``few-shot prompting'' OR ``zero-shot prompting''\\
-\phantom{(}OR ``retrieval-augmented generation'')\\[2pt]
-AND (``evaluation'' OR ``benchmark'' OR ``assessment'' OR ``metric''\\
-\phantom{AND\,(}OR ``framework'' OR ``human evaluation'')\\[2pt]
-AND (``large language model'' OR ``LLM'' OR ``GPT'' OR ``language model'')}
-\medskip
+\noindent{\small\ttfamily (``prompt engineering'' OR ``prompting technique'' OR ``prompt optimization'' OR ``chain-of-thought'' OR ``few-shot prompting'' OR ``zero-shot prompting'' OR ``retrieval-augmented generation'') AND (``evaluation'' OR ``benchmark'' OR ``assessment'' OR ``metric'' OR ``framework'' OR ``human evaluation'') AND (``large language model'' OR ``LLM'' OR ``GPT'' OR ``language model'').}
 
 Supplementary searches targeted specific subtopics that the primary
 string was likely to undercount: LLM-as-Judge evaluation methodology,
@@ -2390,7 +2384,7 @@ as a one-hot vector.
 
 \emph{Check 1: silhouette against random baselines.} The
 silhouette~\cite{rousseeuw1987silhouettes} score for the rule-based
-three-archetype labelling on the 140 archetype-fitting papers is
+three-archetype labelling on the 141 archetype-fitting papers is
 \textbf{0.398}, against a mean of $-0.037$ for 100 random three-label
 assignments of the same cardinality. The
 three-archetype configuration is silhouette-maximising relative to
@@ -2965,13 +2959,15 @@ and 20 other pairs): reproducible via the PowerShell empirical-analysis
 script in the repository.
 \item \emph{Silhouette and ARI for cluster validation}
 (Section~\ref{subsubsec:clustervalidation}, Checks 1--4):
-reproducible via the Python sklearn script referenced in the
-repository \texttt{README}; alternative-clustering ARIs
+reproducible via the Python scikit-learn script
+\texttt{cluster\_validation.py} in the repository; alternative-clustering ARIs
 ($0.51$ k-means, $0.54$ Ward, $0.92$ average linkage,
 $0.51$ GMM, $0.51$ spectral) and bootstrap stability metrics
 ($0.62$ / $0.81$ / $0.52$ within-archetype co-cluster
-probability) reproduce under the documented random-seed and
-encoding settings.
+probability) reproduce within $\pm 0.05$ under the documented random
+seed (RNG\_SEED~=~42) and one-hot encoding; small deviations across
+scikit-learn versions are expected and documented in the repository
+\texttt{README}.
 \item \emph{Predictive validation}
 (Section~\ref{subsubsec:predictive}; $\chi^2 = 12.66$ on archetype
 vs D6 and $\chi^2 = 31.44$ on archetype vs D7): reproducible via

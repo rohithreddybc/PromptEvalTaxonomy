@@ -1,16 +1,16 @@
-# Extraction Dataset
+# Extraction Dataset Schema
 
-This directory will contain the 152-paper corpus extraction dataset from:
+This document describes the 152-paper corpus extraction dataset for:
 *A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models*
 Bellibaltu, Jena, Morla, Zhang (2026)
 
-The full machine-readable CSV will be released at paper acceptance to keep the dataset aligned with the final accepted version of the manuscript.
+The machine-readable dataset is provided as `corpus_d1d7.csv` in the repository root. A citable tagged version will be released at paper acceptance to keep the dataset aligned with the final accepted version of the manuscript.
 
 ---
 
-## Planned File
+## Released File
 
-`corpus_taxonomy_codes.csv` - machine-readable mapping of all 152 papers to their seven-dimensional taxonomy codes (D1-D7).
+`corpus_d1d7.csv` — machine-readable mapping of all 152 papers to their seven-dimensional taxonomy codes (D1-D7).
 
 ---
 

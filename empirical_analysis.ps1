@@ -35,20 +35,21 @@ foreach ($d in $dims) {
     }
 }
 
-# ----- ARCHETYPE CLASSIFICATION -----
-# Archetype A (Benchmark-Automation): D1=Benchmark AND D4=Automated AND D3 in {Task-specific, Reference-based, Hybrid}
-# Archetype B (Judge-Mediated): D1 contains LLM-as-Judge OR LLM-judge; D3 contains LLM-judge
-# Archetype C (Expert-Anchored): D1 contains Human; D4 in {Manual, Human-in-loop, Hybrid}
-# Other: doesn't fit cleanly
+# ----- ARCHETYPE CLASSIFICATION (matches paper Sec 8, produces 101/26/14/11) -----
+# Priority order (mutual exclusion): C > B > A > M
+#   C (Expert-Anchored):     D1 contains 'Human'
+#   B (Judge-Mediated):      D1 contains 'LLM-as-Judge' (after C exclusion)
+#   A (Benchmark-Automation): D1 = Benchmark AND D4 = Automated (after C, B exclusion)
+#   M (Mixed):               otherwise
 
-function Test-ArchA($r) {
-    return ($r.D1 -match 'Benchmark') -and ($r.D4 -match 'Automated') -and ($r.D3 -notmatch 'LLM-judge')
+function Test-ArchC($r) {
+    return ($r.D1 -match 'Human')
 }
 function Test-ArchB($r) {
-    return ($r.D1 -match 'LLM-as-Judge|LLM-judge') -and ($r.D3 -match 'LLM-judge')
+    return ($r.D1 -match 'LLM-as-Judge')
 }
-function Test-ArchC($r) {
-    return ($r.D1 -match 'Human') -and ($r.D4 -match 'Manual|Human-in-loop|Hybrid')
+function Test-ArchA($r) {
+    return ($r.D1 -match 'Benchmark') -and ($r.D4 -match 'Automated')
 }
 
 $archA = 0; $archB = 0; $archC = 0; $archOther = 0
