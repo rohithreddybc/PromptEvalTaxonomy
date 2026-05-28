@@ -25,6 +25,7 @@ through the ACM Digital Library after acceptance.
 | `make_prisma.py` | PRISMA 2020 flowchart generator (produces `prisma_flowchart.png`) |
 | `prisma_flowchart.png` | Final PRISMA flow diagram (Figure 2 in the paper) |
 | `supplementary.pdf` | Electronic Supplement: Appendix A (evaluation-design checklist), Appendix B (10-paper sample), Appendix C (per-paper coding extracts), Appendix D (full Tools table), Appendix E (detailed Limitations), Appendix F (clinical-RAG worked example), Appendix G (Future Research Agenda table), Appendix H (cluster-validation full method) |
+| `audit_integrity.py` | Standing integrity checks: bib orphans/broken/duplicate cites, per-row D1-D7 consistency between supplement Appendix C and the released CSV, and appendix cross-reference resolution. Run after any iteration that touches the paper, supplement, bibliography, or dataset. |
 | `LICENSE` | Creative Commons Attribution 4.0 International (CC BY 4.0) full license text |
 
 ---
