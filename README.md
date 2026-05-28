@@ -12,18 +12,20 @@ Released under the [Creative Commons Attribution 4.0 International License (CC B
 
 ## Contents
 
+This repository contains only the reproducibility artifacts and the
+Electronic Supplement. The paper PDF is distributed separately
+through the ACM Digital Library after acceptance.
+
 | File | Purpose |
 |------|---------|
-| `main.tex` | LaTeX source of the manuscript |
-| `references.bib` | BibTeX bibliography (200 entries) |
-| `supplementary.tex` / `supplementary.pdf` | Electronic Supplement (Appendix A: evaluation-design checklist; Appendix C: per-paper coding extracts) |
 | `corpus_d1d7.csv` | 152-paper x D1-D7 coding spreadsheet (the ground-truth dataset) |
+| `dataset_readme_new.md` | Schema for `corpus_d1d7.csv` (column definitions, atomic codes, distinct value tables) |
 | `empirical_analysis.ps1` | PowerShell script reproducing the silhouette, Cramer's V, and chi-squared analyses |
 | `cluster_validation.py` | Python (scikit-learn) script reproducing the five-algorithm ARI comparison and bootstrap stability analysis |
 | `make_prisma.py` | PRISMA 2020 flowchart generator (produces `prisma_flowchart.png`) |
 | `prisma_flowchart.png` | Final PRISMA flow diagram (Figure 2 in the paper) |
-| `taxonomy_diagram_pic.pdf` | Taxonomy figure (Figure 1) |
-| `dataset_readme_new.md` | Detailed schema for `corpus_d1d7.csv` (column definitions, coding rubric) |
+| `supplementary.pdf` | Electronic Supplement: Appendix A (evaluation-design checklist) and Appendix C (per-paper coding extracts) |
+| `LICENSE` | Creative Commons Attribution 4.0 International (CC BY 4.0) full license text |
 
 ---
 

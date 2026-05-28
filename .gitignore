@@ -19,3 +19,14 @@ main.pdf
 
 # Editor / tooling settings
 .claude/
+
+# Paper sources kept locally only (this repo is the artifact mirror, not the paper repo)
+main.tex
+references.bib
+supplementary.tex
+taxonomy_diagram_pic.pdf
+
+# Local helper scripts not part of the published artifact set
+_*.py
+_*.ps1
+backup/
