@@ -51,7 +51,7 @@ Totals always sum to 152 (one row per paper). Compound codes count as a single v
 
 ## Inter-rater agreement (Table 11 of the paper)
 
-Per-dimension Cohen's kappa on the dual-coded subsample (32 papers, ~21% of the corpus, two-coder design):
+Per-dimension Cohen's kappa on the dual-coded subsample (38 papers, 25% of the corpus, stratified random across paper categories, two-coder design):
 
 | Dim | kappa | Interpretation |
 |---|---|---|
