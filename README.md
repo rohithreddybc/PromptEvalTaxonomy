@@ -24,7 +24,7 @@ through the ACM Digital Library after acceptance.
 | `cluster_validation.py` | Python (scikit-learn) script reproducing the five-algorithm ARI comparison and bootstrap stability analysis |
 | `make_prisma.py` | PRISMA 2020 flowchart generator (produces `prisma_flowchart.png`) |
 | `prisma_flowchart.png` | Final PRISMA flow diagram (Figure 2 in the paper) |
-| `supplementary.pdf` | Electronic Supplement: Appendix A (evaluation-design checklist) and Appendix C (per-paper coding extracts) |
+| `supplementary.pdf` | Electronic Supplement: Appendix A (evaluation-design checklist), Appendix B (10-paper sample), Appendix C (per-paper coding extracts), Appendix D (full Tools table), Appendix E (detailed Limitations), Appendix F (clinical-RAG worked example), Appendix G (Future Research Agenda table), Appendix H (category-aggregated mapping), Appendix I (cluster-validation full method), Appendix J (expansion-round audit) |
 | `LICENSE` | Creative Commons Attribution 4.0 International (CC BY 4.0) full license text |
 
 ---
