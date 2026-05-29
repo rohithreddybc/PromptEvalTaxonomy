@@ -30,3 +30,6 @@ taxonomy_diagram_pic.pdf
 _*.py
 _*.ps1
 backup/
+
+# Private submission documents (author<->venue, not public artifacts)
+COVER_LETTER.md
