@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models</title>
+<meta name="description" content="A seven-dimensional, measurement-theoretic taxonomy of prompt-engineering evaluation, applied to a 151-paper PRISMA 2020 corpus.">
+<meta name="citation_title" content="A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models">
+<meta name="citation_author" content="Bellibatlu, Rohith Reddy">
+<meta name="citation_author_institution" content="Florida International University">
+<meta name="citation_author" content="Jena, Pratyush">
+<meta name="citation_author_institution" content="Florida International University">
+<meta name="citation_author" content="Morla, Triveni">
+<meta name="citation_author_institution" content="Florida International University">
+<meta name="citation_author" content="Zhang, Wenbin">
+<meta name="citation_author_institution" content="Florida International University">
+<meta name="citation_publication_date" content="2026/04/15">
+<meta name="citation_online_date" content="2026/09/27">
+<meta name="citation_technical_report_institution" content="Florida International University">
+<meta name="citation_language" content="en">
+<meta name="citation_keywords" content="prompt engineering; large language models; LLM evaluation; taxonomy; systematic review; LLM-as-judge; construct validity; measurement theory; reproducibility">
+<meta name="citation_pdf_url" content="https://rohithreddybc.github.io/PromptEvalTaxonomy/Bellibatlu_PE_Eval_Taxonomy.pdf">
+<meta name="citation_abstract_html_url" content="https://rohithreddybc.github.io/PromptEvalTaxonomy/">
+<meta name="citation_doi" content="10.2139/ssrn.6685399">
+<link rel="canonical" href="https://rohithreddybc.github.io/PromptEvalTaxonomy/">
+<style>
+  :root { --fg:#1b1b1b; --muted:#555; --bg:#fff; --link:#0b57d0; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e8e8e8; --muted:#aaa; --bg:#161616; --link:#8ab4f8; } }
+  body { font: 17px/1.6 Georgia, "Times New Roman", serif; color:var(--fg); background:var(--bg); max-width: 760px; margin: 0 auto; padding: 32px 16px; }
+  h1 { font-size: 1.6em; line-height: 1.3; margin: 0 0 12px; }
+  .authors { color: var(--muted); margin-bottom: 20px; }
+  a { color: var(--link); }
+  .links a { margin-right: 18px; font-family: system-ui, sans-serif; font-size: .95em; }
+  h2 { font-size: 1.1em; margin-top: 28px; }
+</style>
+</head>
+<body>
+<h1>A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models</h1>
+<div class="authors">Rohith Reddy Bellibatlu, Pratyush Jena, Triveni Morla, Wenbin Zhang<br>Florida International University, Miami, FL, USA</div>
+<p class="links">
+  <a href="Bellibatlu_PE_Eval_Taxonomy.pdf">Full text (PDF)</a>
+  <a href="Bellibatlu_PE_Eval_Taxonomy_supplement.pdf">Supplementary material (PDF)</a>
+  <a href="https://doi.org/10.2139/ssrn.6685399">SSRN</a>
+  <a href="https://doi.org/10.5281/zenodo.19584052">Zenodo</a>
+  <a href="https://github.com/rohithreddybc/PromptEvalTaxonomy">Code and data</a>
+</p>
+<h2>Abstract</h2>
+<p>Prompt engineering evaluation lacks a shared conceptual frame: two papers can report improvements on the same prompting technique using methods, metrics, and scopes that are each internally consistent yet mutually incomparable, because the literature has not converged on what should be measured or how. This survey provides a measurement-theoretic taxonomy of prompt-engineering evaluation, tracing the incomparability to two long-standing tensions in measurement theory: construct validity vs. measurement reliability, and reference-anchored vs. judgment-anchored evaluation. We propose a seven-dimensional taxonomy of the evaluation choices a study makes: how outputs are scored, on what task, with which metric, how automated the pipeline is, over how many models and datasets, whether rephrasing the prompt was tested, and whether a third party could reproduce the result. We apply it to a corpus of 151 papers assembled by a PRISMA 2020 systematic review. The coding falls into three recurring configurations, which we name Benchmark-Automation, Judge-Mediated, and Expert-Anchored, and which are largely a compact summary of how a study scores its outputs. We report two negative results about them: the dimensions the archetype rule does not read carry no independent trace of the partition, and the archetypes are not associated with held-out robustness or reproducibility practice once a structural dependency is removed. The same coding reveals three recurring failure modes, each a configuration that does not fully support the claim the paper makes with it; 45.0% of the corpus exhibits at least one. We ask readers to use the failure-mode catalog and the companion seven-question design checklist, which are the parts that survive this scrutiny intact. Benchmark-Automation papers (66.2%) live in the high-reliability, narrow-validity region: fine for ground-truth tasks, under-specified for open-ended generation. Judge-Mediated work (17.2%) addresses the construct gap, but the corpus has not converged on a shared judge-calibration protocol. Robustness and contamination-resistant evaluation remain minority practices in the corpus. Reporting a result's sensitivity to rephrasing, and the exact version of any LLM judge, should become default requirements rather than optional extras.</p>
+<h2>Cite</h2>
+<p>Rohith Reddy Bellibatlu, Pratyush Jena, Triveni Morla, and Wenbin Zhang. 2026. A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models. Preprint. doi:10.2139/ssrn.6685399</p>
+</body>
+</html>
