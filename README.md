@@ -4,7 +4,7 @@ Companion repository for the manuscript:
 
 > **A Systematic Survey and Taxonomy of Prompt Engineering Evaluation
 > Frameworks for Large Language Models.**
-> Bellibaltu, Jena, Morla, Zhang (2026). Submitted to ACM Computing Surveys.
+> Bellibatlu, Jena, Morla, Zhang (2026). Submitted to ACM Computing Surveys.
 
 Released under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE).
 

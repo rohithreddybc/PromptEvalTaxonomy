@@ -98,7 +98,7 @@
 "97","Polo et al.~\cite{polo2024promptseval}","PromptEval (Multi-Prompt Eval)","Benchmark","Multi-task","Task-specific","Automated","Cross-model","SB","AR"
 "98","Jang \& Lukasiewicz~\cite{jang2023consistency}","Consistency Analysis of ChatGPT","Human eval","Multi-task","Hybrid","Manual","Cross-domain","NR","NR"
 "99","Fu et al.~\cite{fu2023mme}","MME Multimodal Evaluation","Benchmark","Multi-task","Task-specific","Automated","Cross-model","Sng","AR"
-"100","Bellibaltu et al.~\cite{bellibatlu2026judgesense}","JudgeSense (Judge Sensitivity)","Benchmark","Multi-task","LLM-judge","Automated","Cross-model","SB","AR"
+"100","Bellibatlu et al.~\cite{bellibatlu2026judgesense}","JudgeSense (Judge Sensitivity)","Benchmark","Multi-task","LLM-judge","Automated","Cross-model","SB","AR"
 "101","Vatsal \& Singh~\cite{vatsal2025multilingual}","Multilingual PE Survey","Benchmark","Multilingual","Task-specific","Automated","Cross-domain","NR","NR"
 "102","Liu et al.~\cite{liu2023agentbench}","AgentBench","Benchmark","Agentic","Task-specific","Automated","Cross-model","Sng","AR"
 "103","Ma et al.~\cite{ma2024agentboard}","AgentBoard","Benchmark","Agentic","Task-specific","Automated","Cross-model","MAg","AR"

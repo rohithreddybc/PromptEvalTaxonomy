@@ -2,7 +2,7 @@
 
 This document describes the 152-paper corpus extraction dataset for:
 *A Systematic Survey and Taxonomy of Prompt Engineering Evaluation Frameworks for Large Language Models*
-Bellibaltu, Jena, Morla, Zhang (2026)
+Bellibatlu, Jena, Morla, Zhang (2026)
 
 The machine-readable dataset is provided as `corpus_d1d7.csv` in the repository root. A citable tagged version will be released at paper acceptance to keep the dataset aligned with the final accepted version of the manuscript.
 
